@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Thomas Goossens">
+<meta name="description" content="Maintaining a blog allows you to keep track of what you have done and thought. When you don’t remember how did you succeed to find a solution to a tricky problem, browsing your old posts might help you. As a scientist, it’s also the perfect tool to communicate your results to a wider audience. Moreover it allows you to showcase your work and possibly get hired for a future project. Nowadays many tools exist for you to publish on the web.">
+
+<meta property="og:title" content="How to quickly create and maintain a blog with R ?" />
+<meta property="og:description" content="Maintaining a blog allows you to keep track of what you have done and thought. When you don’t remember how did you succeed to find a solution to a tricky problem, browsing your old posts might help you. As a scientist, it’s also the perfect tool to communicate your results to a wider audience. Moreover it allows you to showcase your work and possibly get hired for a future project. Nowadays many tools exist for you to publish on the web." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/how-to-quickly-create-and-maintain-a-blog-with-r-/" />
+
+
+
+<meta property="article:published_time" content="2018-05-31T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-05-31T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+
+
+     How to quickly create and maintain a blog with R ? 
+
+</title>
+<link rel="canonical" href="../../blog/how-to-quickly-create-and-maintain-a-blog-with-r-/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/darcula.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="../../css/reset.css?t=2018-06-11%2010%3a45%3a16.017668301%20%2b0000%20UTC%20m%3d%2b0.050144031">
+    <link rel="stylesheet" href="../../css/pygments.css?t=2018-06-11%2010%3a45%3a16.017668301%20%2b0000%20UTC%20m%3d%2b0.050144031">
+    <link rel="stylesheet" href="../../css/main.css?t=2018-06-11%2010%3a45%3a16.017668301%20%2b0000%20UTC%20m%3d%2b0.050144031">
+    
+        <link rel="stylesheet" href="../../css/override.css?t=2018-06-11%2010%3a45%3a16.017668301%20%2b0000%20UTC%20m%3d%2b0.050144031">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="../../img/leaf.ico"
+
+>
+
+
+
+
+
+
+
+
+</head>
+
+
+<body lang="">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+            <a href="../../"><img class="avatar" src="https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=50" rcset="https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=100 2x, https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=150 3x, https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=200 4x"></a>
+            
+            <a href="../../"><div class="name">Thomas Goossens</div></a>
+            
+              <h3 class="self-intro">Geographer/Data-analyst/Coder</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="../../blog/"><span>blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="../../about/"><span>About</span></a></li>
+                    
+                        <li class="nav-code"><a href="../../code/"><span>Code</span></a></li>
+                    
+                        <li class="nav-cv"><a href="../../cv/"><span>CV</span></a></li>
+                    
+                        <li class="nav-drafts"><a href="../../drafts/"><span>Drafts</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+        
+            <a href="//stackoverflow.com/pokyah" target="_blank" rel="noopener"><img class="icon" src="../../img/stack-overflow.svg" alt="stackoverflow" /></a>          
+          
+        
+            <a href="//open.spotify.com/user/pokyah?si=P6TQ1j6tQRWJN1sqTKDAEA" target="_blank" rel="noopener"><img class="icon" src="../../img/spotify.svg" alt="spotify" /></a>
+          
+        
+            <a href="//github.com/pokyah" target="_blank" rel="noopener"><img class="icon" src="../../img/github.svg" alt="github" /></a>
+        
+
+        
+
+	
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/thomasgoossens1985" target="_blank" rel="noopener"><img class="icon" src="../../img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:hello.pokyah@gmail.com"><img class="icon" src="../../img/email.svg" alt="email" /></a>
+        
+
+        
+
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    How to quickly create and maintain a blog with R ?
+
+</div>
+
+                    <div class="initials"><a href="../../">ad</a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Thu May 31 2018 00:00:00 UTC'>May 31, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>5 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>Maintaining a blog allows you to keep track of what you have done and thought. When you don’t remember how did you succeed to find a solution to a tricky problem, browsing your old posts might help you. As a scientist, it’s also the perfect tool to communicate your results to a wider audience. Moreover it allows you to showcase your work and possibly get hired for a future project. Nowadays many tools exist for you to publish on the web. But as a R user you might be interested in a solution that seamlessly integrates with your habitual R workflow : <a href="https://bookdown.org/yihui/blogdown/">blogdown</a> !</p>
+<div id="how-to-build-your-site-using-blogdown" class="section level1">
+<h1>How to build your site using blogdown ?</h1>
+<div id="downloading-the-necessary-stuff" class="section level2">
+<h2>Downloading the necessary stuff</h2>
+<p>For a detailed explanation, I recommand you to read the full documentation on the blogdown official site. What would be need ? We juste need to install blogdown and <a href="https://gohugo.io/">Hugo</a> (a static site generator like the famous <a href="https://jekyllrb.com/">jekyll</a>). All of this can be achieved with 3 R commands :</p>
+<pre class="r"><code>install.packages(&quot;blogdown&quot;)
+library(blogdown)
+blogdown::install_hugo()</code></pre>
+</div>
+<div id="initiating-a-new-site" class="section level2">
+<h2>Initiating a new site</h2>
+<p>Now that we have what we need, we simply initiate a new hugo site using the followin R command :</p>
+<pre class="r"><code>blogdown::new_site()</code></pre>
+<p>Doing so will generate all the required files for your site to work. Once the command is executed, we can see our live site in action using :</p>
+<pre class="r"><code>blogdown::serve_site()</code></pre>
+<p>Woah ! Pretty neat and quick, no ? If your site looks “strange” (no styling), you might need to edit some settings in its <code>config.toml</code> file located at the root of your site folder. At the top of the file, replace the value of the <code>baseurl</code> key by <code>&quot;/&quot;</code> and below this line add this key-value pair :<code>relativeurls = true</code>. Normallyh everything should now looks much more nice !</p>
+</div>
+<div id="changing-the-parameters-of-the-site" class="section level2">
+<h2>Changing the parameters of the site</h2>
+<p>Now in the <code>config.toml</code> you can change the default settings like the title, authorname, etc according to your needs. You can even add new menu items. Once you are happy with your custom config, you <strong>must</strong> delete your <code>public</code> folder to avoid possibly conflicting git settings (you will recompile it later, once your git submodules config is done - see below) and turn your blogdown server off :</p>
+<pre class="r"><code>blogdown::stop_server()</code></pre>
+</div>
+<div id="initialise-git-version-control" class="section level2">
+<h2>Initialise git version control</h2>
+<p>As you will use <a href="https://pages.github.com/">github pages</a> to make your website publicly available, you will need to make its root folder a git repository ((if you don’t know how to use git and github, I would recommand you to take some time to <a href="http://r-bio.github.io/intro-git-rstudio/">learn</a> this inescapable tool for anyone who is building code). So head at <a href="https://www.github.com">github</a> and create a new repository. This repository will hold the source files of your hugo blog and not the rendered blog (you will see why later). Once your hugo blog source files repository is created on github, you will add it as your remote repository for your local website root directory as follows :</p>
+<pre class="bash"><code>$ cd &lt;LOCATION_OF_WEBSITE_ROOT_DIR&gt;
+$ git init
+$ git remote add origin https://github.com/&lt;YOUR_USERNAME&gt;/&lt;reponame&gt;.git
+$ git pull
+$ git push origin master</code></pre>
+</div>
+</div>
+<div id="publishing-your-site" class="section level1">
+<h1>Publishing your site</h1>
+<p>Now that your sources are under version control, it’s time to make the rendered static site availble publicly. The first step is to create a special github repository that you must call <code>&lt;YOUR_USERNAME&gt;.github.io</code>. Once it is created, github will treat it as a special repo and everything you will put into it will be publicly availble at <code>&lt;YOUR_USERNAME&gt;.github.io</code>.</p>
+<p>The second step is to add this repository as a <em>submodule</em> of your local website root folder actually stored in a fodler called <code>public</code> (the one yo uhave previously deleted) :</p>
+<pre class="bash"><code>$ cd &lt;LOCATION_OF_WEBSITE_ROOT_DIR&gt;
+$ git submodule add -b master git@github.com:&lt;YOUR_USERNAME&gt;/&lt;YOUR_USERNAME&gt;.github.io.git public</code></pre>
+<p>At this point, you can tell R blogdown to reconstruct your site under this git versioned <code>public</code> folder :</p>
+<pre class="r"><code>blogdown::serve_site()</code></pre>
+<p>This command rebuild your site in the <code>public</code> folder and allows you to inspect it your site in the RStudio viewer.</p>
+<p>As the 2 latest commands have produced some new files, we need to commit and push these on github :</p>
+<pre class="bash"><code>$ cd &lt;LOCATION_OF_WEBSITE_ROOT_DIR&gt;
+$ git add . 
+$ git commit -m &quot;adding submodule ref&quot;
+$ git push
+$ cd &lt;LOCATION_OF_WEBSITE_ROOT_DIR/public&gt;
+$ git add . 
+$ git commit -m &quot;adding rendered files&quot;
+$ git push</code></pre>
+<p>Nice ! Now you have keeped track of changes made both on your source files repo and on your rendered site repo. Wait a few seconds, and head at <YOUR_USERNAME>.github.io and you should see your website publicly available. Magic !</p>
+</div>
+<div id="how-to-change-the-design-of-your-blog" class="section level1">
+<h1>How to change the design of your blog ?</h1>
+<p>If you want to change the theme of your blog, there are many ways to achieve this. I’ve found the following procedure to be the most efficient one. It also uses the <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">git submodules</a> feature. The main idea of the procedure is to separate the versioning of your theme from the versioning of your content.</p>
+<div id="finding-a-theme" class="section level2">
+<h2>Finding a theme</h2>
+<p>Head at <a href="https://themes.gohugo.io/" class="uri">https://themes.gohugo.io/</a> and find the theme that best suits your tastes. Click on its “homepage button”, and fork the repository.</p>
+</div>
+<div id="adding-it-to-your-website" class="section level2">
+<h2>Adding it to your website</h2>
+<pre class="bash"><code>$ cd &lt;LOCATION_OF_WEBSITE_ROOT_DIR&gt;
+$ git submodule add -b master git@github.com:&lt;YOUR_USERNAME&gt;/&lt;THEME_NAME&gt;.github.io.git themes/&lt;THEME_NAME&gt; </code></pre>
+<p>This command has cloned your theme in the theme folder of your website. To use it, first make a backup of your <code>config.toml</code>. Then, in your choosen theme folder, open the <code>exampleSite</code> folder and copy paste its <code>config.toml</code> file to your website root folder. We need to proceed this way because <code>config.toml</code> files are theme dependent. Edit it by inspiring yourself from what was in your backed up config file.</p>
+<p>Once its done, you can ask blogdown to serve your site with its new design, commit and push both the sources and the rendered files.</p>
+</div>
+<div id="tweaking-the-theme" class="section level2">
+<h2>Tweaking the theme</h2>
+<p>if you want to make changes to your theme CSS, edit its css file found in your theme’s <code>static</code> folder. As the theme was added as a submodule you can also version it using it.</p>
+</div>
+</div>
+<div id="linking-files-in-your-posts" class="section level1">
+<h1>Linking files in your posts</h1>
+<p><a href="../../post/quickly-create-and-maintain-a-blog-with-R_files/Prostate_Cancer.csv">csv example</a></p>
+</div>
+<div id="sources" class="section level1">
+<h1>Sources</h1>
+<ul>
+<li><a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">Hugo Doc</a></li>
+</ul>
+</div>
+
+                <br>
+                
+                  <div class="tags">
+                    <strong>Tags:</strong>
+                  
+                    <a href="../../tags/blog">blog</a>
+                  
+                    <a href="../../tags/hugo">hugo</a>
+                  
+                    <a href="../../tags/github">github</a>
+                  
+                  </div>
+                  <br />
+                
+                <p class="back-to-posts"><a href="../../blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "pokyah-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123-45', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/go.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/r.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/bash.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+</body>
+</html>
+

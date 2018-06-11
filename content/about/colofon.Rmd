@@ -1,0 +1,22 @@
+---
+title: Meta
+author: Thomas Goossens
+date: '2017-04-01'
+---
+
+# Why this website ? 
+
+A website is highly useful for yourself to keep track of what you have done and thought. Sometimes you may go back to a certain old post of yours to relearn the tricks or methods you once mastered in the past but have forgotten.
+
+# How is it built ? 
+
+This website is built with [R blogdown](https://bookdown.org/yihui/blogdown/) which uses a combination of Hugo, Rmarkdown and knitr. 
+
+Its source code is publicly availbale on [github](https://github.com/pokyah-hugo-blog-source). Don't hesitate to fork, appropriate, edit and improve. 
+
+# Licenses
+
+The Stackoverlow and Spotify icons are provided by [fontawesome under the Creative Commons Attribution 4.0 License](Creative Commons Attribution 4.0)
+
+Copyright : Thomas Goossens - hello.pokyah@gmail.com
+ 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Thomas Goossens</title>
+    <link>/tags/linux/</link>
+    <description>Recent content in Linux on Thomas Goossens</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 08 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Quickly create your R project directory tree with pre-filled common files</title>
+      <link>/drafts/r-project-initializer/</link>
+      <pubDate>Fri, 08 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/drafts/r-project-initializer/</guid>
+      <description>Each time you start a new R project, it is highly recommanded to prepare a clean and organized working directory
+If you regularly create new projects, this working directory preparation task might seem tedious and time consuming. Creating the folders, intializing git, creating a license file, a readme file, etc.
+Instead of copying/pasting an existing pristine directory tree, I propose you to use the power of linux bash scripting.
+I’ve built a little script, inspired from frdvnw, that will allow you to quickly create a new R project directory tree along with all its commonly required files.</description>
+    </item>
+    
+    <item>
+      <title>Using R with Docker</title>
+      <link>/blog/using-r-with-docker/</link>
+      <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/using-r-with-docker/</guid>
+      <description>Why should you do that ? There are two main reasons to use R in conjunction with Docker. First, it allows you to quickly and easily share your work wathever the OS and R configuration of your collaborators. Hassle free collaboration ! Second, it allows you to work in an isolated environment. This means that you will never pollute your OS and e.g. run in time-consuming re-installation procedures due to broken configuration.</description>
+    </item>
+    
+    <item>
+      <title>Configurer un accès SSH à un hébergement mutualisé</title>
+      <link>/blog/configurer-un-acc%C3%A8s-ssh-%C3%A0-un-h%C3%A9bergement-mutualis%C3%A9/</link>
+      <pubDate>Sun, 30 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/configurer-un-acc%C3%A8s-ssh-%C3%A0-un-h%C3%A9bergement-mutualis%C3%A9/</guid>
+      <description>Disposer d’un d’accès SSH vous permet de réellement avoir la main sur votre hébergement mutualisé (qui n’est rien d’autre qu’un accès limité à certains dossiers et programmes stockés sur un serveur tournant généralement sous Linux).
+Grâce à votre accès SSH, vous pourrez notamment y exécuter des commandes unix et git directement depuis le terminal de votre ordinateur personnel. C’est l’outil idéal pour la maintenance de votre site WordPress par exemple !</description>
+    </item>
+    
+  </channel>
+</rss>

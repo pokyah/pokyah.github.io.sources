@@ -1,0 +1,91 @@
+baseurl             = "/"
+relativeurls        = true
+ignoreFiles         = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+builddrafts         = false
+canonifyurls        = true
+contentdir          = "content"
+languageCode        = "en-US"
+layoutdir           = "layouts"
+publishdir          = "public"
+theme               = "cocoa-hugo-theme"
+author              = "Thomas Goossens"
+title               = "Thomas Goossens"
+pygmentsuseclasses  = true
+disqusshortname     = "pokyah-github-io" # Comment out to disable Disqus.
+pluralizelisttitles = false
+googleAnalytics     = "UA-123-45"
+
+[permalinks]
+blog  = "blog/:slug/"
+
+[[menu.main]]
+name                   = "blog"
+weight                 = -120
+identifier             = "blog"
+url                    = "/blog/"
+
+[[menu.main]]
+name                   = "About"
+weight                 = -110
+identifier             = "about"
+url                    = "/about/"
+
+[[menu.main]]
+name                   = "Code"
+weight                 = -100
+identifier             = "code"
+url                    = "/code/"
+
+[[menu.main]]
+name                   = "Drafts"
+weight                 = -90
+identifier             = "drafts"
+url                    = "/drafts/"
+
+[[menu.main]]
+name                   = "CV"
+weight                 = -90
+identifier             = "cv"
+url                    = "/cv/"
+
+
+[params]
+include_rss            = true                          # include RSS <link> tag in <head> and show RSS icon
+latestpostscount       = 10                             # how many posts to display on the home page
+i18n_flags             = true                         # whether to display small country flags for available translations
+author                 = "Thomas Goossens"
+cachebuster            = true                          # add the current unix timestamp in query string for cache busting css assets
+dateform               = "Jan 2, 2006"
+dateformfull           = "Mon Jan 2 2006 15:04:05 MST"
+description            = "Don't panic"
+email                  = "hello.pokyah@gmail.com"
+extracssfiles          = [ "/css/override.css" ]       # In your `static` directory, add/remove files as necessary.
+faviconfile            = "img/leaf.ico"
+github                 = "//github.com/pokyah"
+stackoverflow          = "//stackoverflow.com/pokyah"
+linkedin               = "//linkedin.com/in/thomasgoossens1985"
+spotify                = "//open.spotify.com/user/pokyah?si=P6TQ1j6tQRWJN1sqTKDAEA"
+noshowreadtime         = false                         # if true, don't show "<x> minutes read" in posts
+selfintro              = "Geographer/Data-analyst/Coder"                            # appears in the site header when set to a non-empty string
+highlightjs            = true
+highlightjslanguages   = ["go", "r", "bash"]                        # additional languages not included in the "common" set
+highlightjsStyle       = "darcula"
+
+piwik                  = false                         # If true, Piwik integration is enabled
+# piwik_url            = "//www.example.com/piwik/"    # URL to your Piwik installation. Must End with a slash
+# piwik_id             = 2                             # Id of your site in Piwik
+
+gitalk                 = false
+# if gitalk is true, the following params should be set. These parameters could be retrieved from github OAuth
+gitalk_clientID        = "your client id"
+gitalk_clientSecret    = "your client secret"
+gitalk_repo            = "your repo url"
+gitalk_owner           = "the owner of this repo"
+gitalk_admin           = ['a', 'list', 'of', 'administrator']
+
+#avatar                 = "img/profile.png" # path to image in static dir e.g img/avatar.png (do not use in the same time as gravatar)
+gravatar             = "813fa5a73b53880ab30a635a6e807e9a"                # gravatar hash. see https://en.gravatar.com/site/implement/hash/. do not use in the same time as avatar
+
+# The following are DEPRECATED.
+gatracker              = "XYZ" # use googleAnalytics instead
+initials               = "ad"  # displayed on single post page; deprecated in v0.3.0.

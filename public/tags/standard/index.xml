@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Standard on Thomas Goossens</title>
+    <link>/tags/standard/</link>
+    <description>Recent content in Standard on Thomas Goossens</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/standard/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Producing and mapping gridded datasets with uncertainty using R</title>
+      <link>/blog/producing-and-mapping-gridded-datasets-with-uncertainty-using-r/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/producing-and-mapping-gridded-datasets-with-uncertainty-using-r/</guid>
+      <description>In the context of the Agromet project, we need to produce gridded maps of temperature using data acquired by a network of 30 automatic weather stations (AWS) spatially distributed in Wallonia. To each cell, an indicator of uncertainty (i.e. prediction error) must also be attached. Providing this uncertainty is of major importance because errors are not likely to be spatially homogeneous but will rather depend of the spatial arrangement of available points used to compute the model.</description>
+    </item>
+    
+  </channel>
+</rss>

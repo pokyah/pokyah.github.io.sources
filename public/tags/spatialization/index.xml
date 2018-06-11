@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spatialization on Thomas Goossens</title>
+    <link>/tags/spatialization/</link>
+    <description>Recent content in Spatialization on Thomas Goossens</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 28 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/spatialization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A methodological approach to assess the best weather spatialization technique</title>
+      <link>/blog/a-methodological-approach-to-assess-the-best-weather-spatialization-technique/</link>
+      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/a-methodological-approach-to-assess-the-best-weather-spatialization-technique/</guid>
+      <description>1. Context &amp;amp; objectives 1.1. Context European directive 2009/128/CE : establishing a framework for Community action to achieve the sustainable use of pesticides
+ more  The European directive 2009/128/CE imposes member-states to set up tools that allow for a more rational use of crop protection products. Among these tools, agricultural warning systems, based on crop monitoring models for the control of pests and diseases are widely adopted and have proved their efficiency.</description>
+    </item>
+    
+    <item>
+      <title>A review of weather spatialization projects</title>
+      <link>/blog/a-review-of-weather-spatialization-projects/</link>
+      <pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/a-review-of-weather-spatialization-projects/</guid>
+      <description>Introduction and context The aim of the Agromet project is to provide a near real-time hourly gridded datasets of weather parameters at the resolution of 1 km² for the whole region of Wallonia characterized by a quality indicator.
+The Agromet project is largely inspired by what the ZEPP has developed in the context of their late blight warning services (see academic paper).
+Before starting the development of our own service, we decided to submit a survey to our end users and to perform a preliminary benchmark of weather data interpolation facilities developed by other institutions.</description>
+    </item>
+    
+  </channel>
+</rss>

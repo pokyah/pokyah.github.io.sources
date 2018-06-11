@@ -1,0 +1,8 @@
+[submodule "themes/cocoa-hugo-theme"]
+	path = themes/cocoa-hugo-theme
+	url = git@github.com:pokyah/cocoa-hugo-theme.git
+	branch = master
+[submodule "public"]
+	path = public
+	url = git@github.com:pokyah/pokyah.github.io.git
+	branch = master

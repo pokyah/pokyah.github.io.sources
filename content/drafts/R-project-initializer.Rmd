@@ -1,0 +1,30 @@
+---
+title: Quickly create your R project directory tree with pre-filled common files
+author: Thomas Goossens
+date: '2018-06-08'
+categories:
+  - how-to
+  - R
+tags:
+  - productivity
+  - linux
+  - bash
+---
+
+Each time you start a new R project, it is __highly recommanded__ to prepare a clean and [organized working directory](https://nicercode.github.io/blog/2013-05-17-organising-my-project/)
+
+If you regularly create new projects, this working directory preparation task might seem tedious and time consuming. Creating the folders, intializing git, creating a license file, a readme file, etc. 
+
+Instead of copying/pasting an existing pristine directory tree, I propose you to use the power of linux bash scripting. 
+
+I've built a little script, inspired from [frdvnw]( https://frdvnw.github.io/data-sciences/linux/2018/04/12/my-r-skeletton.html), that will allow you to quickly create a new R project directory tree along with all its commonly required files.
+
+So, what does the script actually do ? 
+
+1. It pulls the Github R .gitgnore template file and make it your .gitignore file
+2. It pulls the GNU GPL V3 license from gnu.org and make it your LICENSE file
+3. It pulls a default init.R script from its repo. This init.R file contains a YAML header + Terms of Services footer + my habitual R script initialization functions (load common libraries, etc...)
+4. It creates the tree structure (data folder, output folder, img fodlers, etc)
+5. It intialize a new git repository and make a first commit for you ;)
+
+If you want to give it a try, head at its [repo](https://github.com/pokyah/R-project-init), fork/clone and play it ! 

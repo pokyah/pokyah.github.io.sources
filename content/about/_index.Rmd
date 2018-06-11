@@ -1,0 +1,12 @@
+---
+title: About
+author: Thomas Goossens
+---
+
+Hi & Welcome on my personal page,
+
+I'm Thomas, a former Glaciologist with a background in physical geography currently developing skills in supervised machine learning applied to spatial predictions using open source data analysis and GIS software (mainly R).
+
+I'm currently working at [CRA-W](http://www.cra.wallonie.be/fr) on the Agromet project  which aims to spatialize weather data in Wallonia (Belgium).  
+
+----
