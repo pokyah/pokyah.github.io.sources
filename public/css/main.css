@@ -103,7 +103,7 @@ section {
     padding: 0 16px;
     margin-left: 100px;
     margin-right: 100px;
-    max-width: 750px;
+    max-width: 800px;
   }
 }
 section.header {
@@ -584,28 +584,28 @@ section.main .content .markdown h6 {
   margin-top: 1.75rem;
 }
 section.main .content .markdown h1 {
-  font-size: 1.75rem;
+  font-size: 2.5rem;
   margin-bottom: 2rem;
 }
 section.main .content .markdown h2 {
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   margin-bottom: 1.5rem;
 }
 section.main .content .markdown h3 {
-  font-size: 1rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
 }
 section.main .content .markdown h4,
 section.main .content .markdown h5,
 section.main .content .markdown h6 {
-  font-size: 1rem;
+  font-size: 1.75rem;
   margin-bottom: 1rem;
   letter-spacing: none;
 }
 section.main .content .markdown code,
 section.main .content .markdown pre {
   font-family: 'Ubuntu Mono', 'Menlo', monospace;
-  font-size: 1rem;
+  font-size: 1.5rem;
   background-color: #f7f7f7;
 }
 section.main .content .markdown code {
