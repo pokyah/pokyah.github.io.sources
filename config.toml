@@ -69,7 +69,7 @@ noshowreadtime         = false                         # if true, don't show "<x
 selfintro              = "Geographer/Data-analyst/Coder"                            # appears in the site header when set to a non-empty string
 highlightjs            = true
 highlightjslanguages   = ["go", "r", "bash"]                        # additional languages not included in the "common" set
-highlightjsStyle       = "darcula"
+highlightjsStyle       = "tomorrow"
 
 piwik                  = false                         # If true, Piwik integration is enabled
 # piwik_url            = "//www.example.com/piwik/"    # URL to your Piwik installation. Must End with a slash

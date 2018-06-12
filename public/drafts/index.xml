@@ -6,10 +6,20 @@
     <description>Recent content in Drafts on Thomas Goossens</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 08 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/drafts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Removing large files from you git version control</title>
+      <link>/drafts/git-ignore-tips--tricks/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/drafts/git-ignore-tips--tricks/</guid>
+      <description>While working with geodata, you might often end up downloading large raw-data files likes .shp that you will need in your data process chain.
+As you don&amp;rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitnore file. But what if those files were created before there were added to the .gitignore ?</description>
+    </item>
     
     <item>
       <title>Quickly create your R project directory tree with pre-filled common files</title>
