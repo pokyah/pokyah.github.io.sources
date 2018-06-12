@@ -12,13 +12,25 @@
     
     
     <item>
+      <title>Boost your R productivity</title>
+      <link>/drafts/how-to-boost-your-r-productivity/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/drafts/how-to-boost-your-r-productivity/</guid>
+      <description>Snippets R studio doc Pay attention to escaping characters
+ .Renviron Efficient R programming book
+ R project + git .RData environ git for code gitignore for R
+ R dir initializer  knitr doc  </description>
+    </item>
+    
+    <item>
       <title>Removing large files from you git version control</title>
       <link>/drafts/git-ignore-tips--tricks/</link>
       <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/drafts/git-ignore-tips--tricks/</guid>
       <description>While working with geodata, you might often end up downloading large raw-data files likes .shp that you will need in your data process chain.
-As you don&amp;rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitnore file. But what if those files were created before there were added to the .gitignore ?</description>
+As you don&amp;rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitignore file. But what if those files were created before there were added to the .gitignore ?</description>
     </item>
     
     <item>
@@ -87,15 +99,6 @@ I’ve built a little script, inspired from frdvnw, that will allow you to quick
       <description>Attempting to statistically assess the agreement between two quantitative methods of measurements requires a validation tool.
 A widely adopted tool is the correlation study computed with one method as predictor and the other as response variable (e.g. see this publication that compares temperature measurements obtained by two different kind of weather stations at the exact same location).
 However, as described by Giavarina (2015), correlation study should not be used to asses the comparatibility or agreement between two instruments (because it studies the relation between one variable and the other and not the differences).</description>
-    </item>
-    
-    <item>
-      <title>Boost your R productivity</title>
-      <link>/blog/boost-your-r-productivity/</link>
-      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/boost-your-r-productivity/</guid>
-      <description></description>
     </item>
     
     <item>

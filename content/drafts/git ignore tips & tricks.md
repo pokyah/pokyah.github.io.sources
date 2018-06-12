@@ -11,7 +11,7 @@ tags:
 
 While working with geodata, you might often end up downloading large raw-data files likes `.shp` that you will need in your data process chain. 
 
-As you don't want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your `.gitnore` file. But what if those files were created before there were added to the `.gitignore` ? 
+As you don't want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your `.gitignore` file. But what if those files were created before there were added to the `.gitignore` ? 
 
 This problem happened to me this morning. My usual R specific `.gitignore` file was not setup to ignore large `.shp` files and I inadvertently added my `.shp` files to git. After some local commits, I pushed my work to my online repo and as it took a longer time than usual to upload, I suspected that large files were polluting my git index. 
 

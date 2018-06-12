@@ -10,11 +10,11 @@
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Thomas Goossens">
 <meta name="description" content="While working with geodata, you might often end up downloading large raw-data files likes .shp that you will need in your data process chain.
-As you don&rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitnore file. But what if those files were created before there were added to the .gitignore ?">
+As you don&rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitignore file. But what if those files were created before there were added to the .gitignore ?">
 
 <meta property="og:title" content="Removing large files from you git version control" />
 <meta property="og:description" content="While working with geodata, you might often end up downloading large raw-data files likes .shp that you will need in your data process chain.
-As you don&rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitnore file. But what if those files were created before there were added to the .gitignore ?" />
+As you don&rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitignore file. But what if those files were created before there were added to the .gitignore ?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/drafts/git-ignore-tips--tricks/" />
 
@@ -59,11 +59,11 @@ As you don&rsquo;t want to keep this static files under version control, you mus
 
 
     
-    <link rel="stylesheet" href="../../css/reset.css?t=2018-06-12%2008%3a37%3a02.506807344%20%2b0000%20UTC%20m%3d%2b0.044437898">
-    <link rel="stylesheet" href="../../css/pygments.css?t=2018-06-12%2008%3a37%3a02.506807344%20%2b0000%20UTC%20m%3d%2b0.044437898">
-    <link rel="stylesheet" href="../../css/main.css?t=2018-06-12%2008%3a37%3a02.506807344%20%2b0000%20UTC%20m%3d%2b0.044437898">
+    <link rel="stylesheet" href="../../css/reset.css?t=2018-06-12%2012%3a42%3a02.050430333%20%2b0000%20UTC%20m%3d%2b0.051494961">
+    <link rel="stylesheet" href="../../css/pygments.css?t=2018-06-12%2012%3a42%3a02.050430333%20%2b0000%20UTC%20m%3d%2b0.051494961">
+    <link rel="stylesheet" href="../../css/main.css?t=2018-06-12%2012%3a42%3a02.050430333%20%2b0000%20UTC%20m%3d%2b0.051494961">
     
-        <link rel="stylesheet" href="../../css/override.css?t=2018-06-12%2008%3a37%3a02.506807344%20%2b0000%20UTC%20m%3d%2b0.044437898">
+        <link rel="stylesheet" href="../../css/override.css?t=2018-06-12%2012%3a42%3a02.050430333%20%2b0000%20UTC%20m%3d%2b0.051494961">
     
 
 
@@ -186,7 +186,7 @@ As you don&rsquo;t want to keep this static files under version control, you mus
             <div class="markdown">
                 <p>While working with geodata, you might often end up downloading large raw-data files likes <code>.shp</code> that you will need in your data process chain.</p>
 
-<p>As you don&rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your <code>.gitnore</code> file. But what if those files were created before there were added to the <code>.gitignore</code> ?</p>
+<p>As you don&rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your <code>.gitignore</code> file. But what if those files were created before there were added to the <code>.gitignore</code> ?</p>
 
 <p>This problem happened to me this morning. My usual R specific <code>.gitignore</code> file was not setup to ignore large <code>.shp</code> files and I inadvertently added my <code>.shp</code> files to git. After some local commits, I pushed my work to my online repo and as it took a longer time than usual to upload, I suspected that large files were polluting my git index.</p>
 

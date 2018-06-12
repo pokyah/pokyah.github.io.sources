@@ -1,0 +1,31 @@
+---
+title: Boost your R productivity
+author: Thomas Goossens
+date: '2018-06-12'
+categories:
+  - how-to
+  - R
+tags:
+  - productivity
+---
+
+# Snippets
+
+[R studio doc](https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets)
+Pay attention to escaping characters
+
+# .Renviron
+
+[Efficient R programming book](https://csgillespie.github.io/efficientR/r-startup.html)
+
+# R project + git
+
+.RData environ
+git for code
+gitignore for R
+
+# R dir initializer
+
+# knitr doc
+
+
