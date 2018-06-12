@@ -602,10 +602,15 @@ section.main .content .markdown h6 {
   margin-bottom: 1rem;
   letter-spacing: none;
 }
+section.main .content .caption{
+ font-style: italic;
+  text-align: center;
+  margin-bottom: 1em; 
+}
 section.main .content .markdown code,
 section.main .content .markdown pre {
   font-family: 'Ubuntu Mono', 'Menlo', monospace;
-  font-size: 1.5rem;
+  font-size: 1rem;
   background-color: #f7f7f7;
 }
 section.main .content .markdown code {
