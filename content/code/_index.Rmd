@@ -61,6 +61,9 @@ Benchmark Visualizations in R
 
 # Other blogs  
 
+* [Fong Chun Chan](https://tinyheero.github.io/)
+A blog about bioinformatics, cancer research, R, statistics and BIG data
+
 * [Robert Miles](https://robertmyles.github.io/post/)
 
 * [Fred Vanwin Blog](https://frdvnw.github.io)
