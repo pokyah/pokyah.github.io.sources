@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>How T on Thomas Goossens</title>
+    <link>/tags/how-t/</link>
+    <description>Recent content in How T on Thomas Goossens</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 28 Feb 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/how-t/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Installing Ubuntu gnome 16.04 on a windows machine</title>
+      <link>/blog/installing-ubuntu-gnome-16.04-on-a-windows-machine/</link>
+      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/installing-ubuntu-gnome-16.04-on-a-windows-machine/</guid>
+      <description>Download the .iso file Head at https://wiki.ubuntu.com/UbuntuGNOME/GetUbuntuGNOME and select the proper version (64bit)
+Create a booting USB drive  If you have access to a Linux computer, launch startup disk creator
+ Once launched, select the USB drive on which you want to install Linux and select the iso file you have just downloaded
+ Click make Startup Disk
+ Once you get notified that the installation is finished, eject the USB drive</description>
+    </item>
+    
+  </channel>
+</rss>

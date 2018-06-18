@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>How To on Thomas Goossens</title>
+    <link>/tags/how-to/</link>
+    <description>Recent content in How To on Thomas Goossens</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 18 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/how-to/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Get a high resolution DEM raster for any country with R in 2 minutes</title>
+      <link>/blog/get-a-high-resolution-dem-raster-for-any-country-with-r-in-2-minutes/</link>
+      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/get-a-high-resolution-dem-raster-for-any-country-with-r-in-2-minutes/</guid>
+      <description>Today I was looking for an high resolution Digital Elevation Model for a Region of Belgium. Until now, I was using the raster::getData(&amp;quot;alt&amp;quot;, country = &amp;quot;BE&amp;quot;, mask = TRUE) which only provides a low resolution DEM (5 km).
+The belgian National Geographic institute provides DEM’s at high resolution (80m and 20m). These are available from their download portal. Unfortunately I have not found yet a trick to download their data automatically (RSelenium?</description>
+    </item>
+    
+    <item>
+      <title>Boost your R productivity</title>
+      <link>/blog/boost-your-r-productivity/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/boost-your-r-productivity/</guid>
+      <description>Snippets R studio doc Pay attention to escaping characters
+ .Renviron Efficient R programming book
+ R project + git .RData environ git for code gitignore for R
+ R dir initializer  knitr doc  </description>
+    </item>
+    
+    <item>
+      <title>Removing large files from you git version control</title>
+      <link>/blog/removing-large-files-from-you-git-version-control/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/removing-large-files-from-you-git-version-control/</guid>
+      <description>While working with geodata, you might often end up downloading large raw-data files likes .shp that you will need in your data process chain.
+As you don&amp;rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitignore file. But what if those files were created before there were added to the .gitignore ?</description>
+    </item>
+    
+    <item>
+      <title>Quickly create your R project directory tree with pre-filled common files</title>
+      <link>/blog/quickly-create-your-r-project-directory-tree-with-pre-filled-common-files/</link>
+      <pubDate>Fri, 08 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/quickly-create-your-r-project-directory-tree-with-pre-filled-common-files/</guid>
+      <description>Each time you start a new R project, it is highly recommanded to prepare a clean and organized working directory
+If you regularly create new projects, this working directory preparation task might seem tedious and time consuming. Creating the folders, intializing git, creating a license file, a readme file, etc.
+Instead of copying/pasting an existing pristine directory tree, I propose you to use the power of linux bash scripting.
+I’ve built a little script, inspired from frdvnw, that will allow you to quickly create a new R project directory tree along with all its commonly required files.</description>
+    </item>
+    
+    <item>
+      <title>Installing Ubuntu gnome 16.04 on a windows machine</title>
+      <link>/blog/installing-ubuntu-gnome-16.04-on-a-windows-machine/</link>
+      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/installing-ubuntu-gnome-16.04-on-a-windows-machine/</guid>
+      <description>Download the .iso file Head at https://wiki.ubuntu.com/UbuntuGNOME/GetUbuntuGNOME and select the proper version (64bit)
+Create a booting USB drive  If you have access to a Linux computer, launch startup disk creator
+ Once launched, select the USB drive on which you want to install Linux and select the iso file you have just downloaded
+ Click make Startup Disk
+ Once you get notified that the installation is finished, eject the USB drive</description>
+    </item>
+    
+  </channel>
+</rss>

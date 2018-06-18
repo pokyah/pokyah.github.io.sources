@@ -3,10 +3,10 @@ title: 'Installing Ubuntu gnome 16.04 on a windows machine'
 author: Thomas Goossens
 date: '2018-02-28'
 categories:
-  - R
-  - how-to
+  - linux
 tags:
-  - statistics
+  - how-to
+  - draft
 ---
 
 ## Download the .iso file 

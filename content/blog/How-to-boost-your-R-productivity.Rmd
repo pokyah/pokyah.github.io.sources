@@ -3,10 +3,11 @@ title: Boost your R productivity
 author: Thomas Goossens
 date: '2018-06-12'
 categories:
-  - how-to
+  - productivity
   - R
 tags:
-  - productivity
+  - how-to
+  - draft
 ---
 
 # Snippets

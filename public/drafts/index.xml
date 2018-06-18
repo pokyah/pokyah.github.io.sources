@@ -34,16 +34,6 @@ The belgian National Geographic institute provides DEM’s at high resolution (8
     </item>
     
     <item>
-      <title>Removing large files from you git version control</title>
-      <link>/drafts/git-ignore-tips--tricks/</link>
-      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/drafts/git-ignore-tips--tricks/</guid>
-      <description>While working with geodata, you might often end up downloading large raw-data files likes .shp that you will need in your data process chain.
-As you don&amp;rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitignore file. But what if those files were created before there were added to the .gitignore ?</description>
-    </item>
-    
-    <item>
       <title>Quickly create your R project directory tree with pre-filled common files</title>
       <link>/drafts/r-project-initializer/</link>
       <pubDate>Fri, 08 Jun 2018 00:00:00 +0000</pubDate>
@@ -53,19 +43,6 @@ As you don&amp;rsquo;t want to keep this static files under version control, you
 If you regularly create new projects, this working directory preparation task might seem tedious and time consuming. Creating the folders, intializing git, creating a license file, a readme file, etc.
 Instead of copying/pasting an existing pristine directory tree, I propose you to use the power of linux bash scripting.
 I’ve built a little script, inspired from frdvnw, that will allow you to quickly create a new R project directory tree along with all its commonly required files.</description>
-    </item>
-    
-    <item>
-      <title>Installing Ubuntu gnome 16.04 on a windows machine</title>
-      <link>/drafts/install-ubuntu-gnome-10.04/</link>
-      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/drafts/install-ubuntu-gnome-10.04/</guid>
-      <description>Download the .iso file Head at https://wiki.ubuntu.com/UbuntuGNOME/GetUbuntuGNOME and select the proper version (64bit)
-Create a booting USB drive  If you have access to a Linux computer, launch startup disk creator
- Once launched, select the USB drive on which you want to install Linux and select the iso file you have just downloaded
- Click make Startup Disk
- Once you get notified that the installation is finished, eject the USB drive</description>
     </item>
     
   </channel>

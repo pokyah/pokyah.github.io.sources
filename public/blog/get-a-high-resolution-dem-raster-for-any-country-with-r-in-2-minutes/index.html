@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Thomas Goossens">
+<meta name="description" content="Today I was looking for an high resolution Digital Elevation Model for a Region of Belgium. Until now, I was using the raster::getData(&quot;alt&quot;, country = &quot;BE&quot;, mask = TRUE) which only provides a low resolution DEM (5 km).
+The belgian National Geographic institute provides DEM’s at high resolution (80m and 20m). These are available from their download portal. Unfortunately I have not found yet a trick to download their data automatically (RSelenium?">
+
+<meta property="og:title" content="Get a high resolution DEM raster for any country with R in 2 minutes" />
+<meta property="og:description" content="Today I was looking for an high resolution Digital Elevation Model for a Region of Belgium. Until now, I was using the raster::getData(&quot;alt&quot;, country = &quot;BE&quot;, mask = TRUE) which only provides a low resolution DEM (5 km).
+The belgian National Geographic institute provides DEM’s at high resolution (80m and 20m). These are available from their download portal. Unfortunately I have not found yet a trick to download their data automatically (RSelenium?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/get-a-high-resolution-dem-raster-for-any-country-with-r-in-2-minutes/" />
+
+
+
+<meta property="article:published_time" content="2018-06-18T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-06-18T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+
+
+     Get a high resolution DEM raster for any country with R in 2 minutes 
+
+</title>
+<link rel="canonical" href="../../blog/get-a-high-resolution-dem-raster-for-any-country-with-r-in-2-minutes/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/tomorrow.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="../../css/reset.css?t=2018-06-18%2014%3a20%3a52.304724361%20%2b0000%20UTC%20m%3d%2b0.050111334">
+    <link rel="stylesheet" href="../../css/pygments.css?t=2018-06-18%2014%3a20%3a52.304724361%20%2b0000%20UTC%20m%3d%2b0.050111334">
+    <link rel="stylesheet" href="../../css/main.css?t=2018-06-18%2014%3a20%3a52.304724361%20%2b0000%20UTC%20m%3d%2b0.050111334">
+    
+        <link rel="stylesheet" href="../../css/override.css?t=2018-06-18%2014%3a20%3a52.304724361%20%2b0000%20UTC%20m%3d%2b0.050111334">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="../../img/leaf.ico"
+
+>
+
+
+
+
+
+
+
+
+</head>
+
+
+<body lang="">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+            <a href="../../"><img class="avatar" src="https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=50" rcset="https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=100 2x, https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=150 3x, https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=200 4x"></a>
+            
+            <a href="../../"><div class="name">Thomas Goossens</div></a>
+            
+              <h3 class="self-intro">Geographer/Data-analyst/Coder</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="../../blog/"><span>blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="../../about/"><span>About</span></a></li>
+                    
+                        <li class="nav-code"><a href="../../code/"><span>Code</span></a></li>
+                    
+                        <li class="nav-cv"><a href="../../cv/"><span>CV</span></a></li>
+                    
+                        <li class="nav-drafts"><a href="../../drafts/"><span>Drafts</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+        
+            <a href="//stackoverflow.com/pokyah" target="_blank" rel="noopener"><img class="icon" src="../../img/stack-overflow.svg" alt="stackoverflow" /></a>          
+          
+        
+            <a href="//open.spotify.com/user/pokyah?si=P6TQ1j6tQRWJN1sqTKDAEA" target="_blank" rel="noopener"><img class="icon" src="../../img/spotify.svg" alt="spotify" /></a>
+          
+        
+            <a href="//github.com/pokyah" target="_blank" rel="noopener"><img class="icon" src="../../img/github.svg" alt="github" /></a>
+        
+
+        
+
+	
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/thomasgoossens1985" target="_blank" rel="noopener"><img class="icon" src="../../img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:hello.pokyah@gmail.com"><img class="icon" src="../../img/email.svg" alt="email" /></a>
+        
+
+        
+
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Get a high resolution DEM raster for any country with R in 2 minutes
+
+</div>
+
+                    <div class="initials"><a href="../../">ad</a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Mon Jun 18 2018 00:00:00 UTC'>Jun 18, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>4 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>Today I was looking for an high resolution Digital Elevation Model for a Region of Belgium. Until now, I was using the <code>raster::getData(&quot;alt&quot;, country = &quot;BE&quot;, mask = TRUE)</code> which only provides a low resolution DEM (5 km).</p>
+<p>The belgian National Geographic institute provides DEM’s at high resolution (80m and 20m). These are available from their <a href="http://inspire.ngi.be/download-free/">download portal</a>. Unfortunately I have not found yet a trick to download their data automatically (RSelenium?) as they ask you to click on some buttons to accept their terms of services.</p>
+<p>After some researches on the web, I’ve found <a href="https://www.gis-blog.com/download-srtm-for-an-entire-country/">this</a> helpful tutorial from gis-blog.com where the author proposed a little script to automate the download process of SRTM tiles based on the intersections of the extent of your region of interest and the extent of the SRTM tiles. It also relies on the <code>raster::getData()</code> function but rather than passing <code>&quot;alt&quot;</code> as dataset name, it uses <code>&quot;SRTM&quot;</code>.</p>
+<p>While trying the script, the <code>getData</code> always threw me the exact same error as reported on <a href="https://stackoverflow.com/questions/47997347/downloading-srtm-data-with-raster-package">this</a> stackoverflow thread. After entering in debug mode (<code>debug(getData)</code>), I’ve found that the first URL from which the function tries to download the SRTM was broken while the third one pointing to <a href="http://srtm.csi.cgiar.org/" class="uri">http://srtm.csi.cgiar.org/</a> was valid. So I decided to modify the function according to my needs.</p>
+<p>I first forked the <a href="https://github.com/cran/raster">CRAN/raster</a> mirror repo and edited the .SRTM function so that it first tries to download SRTM data from <a href="http://srtm.csi.cgiar.org/" class="uri">http://srtm.csi.cgiar.org/</a>. I also had to change the file extension from “.TIF” to “.tif” as the files were created with a lowercase extension. You can find the full log of my edit on <a href="https://github.com/pokyah/raster/commits/master">commit log</a> of my raster fork repo. The last step was to make this adapted raster package available to my R installation instead of the CRAN version. For this, I simply used</p>
+<pre class="r"><code>devtools::install_github(&quot;pokyah/raster&quot;)
+library(raster)</code></pre>
+<p>As I was finally able to automatically download the SRTM tiles from <a href="http://srtm.csi.cgiar.org/" class="uri">http://srtm.csi.cgiar.org/</a>, the last remaining part of the task was to put all my code in a function. I wanted it to work not only for my current region of interest, so I decided to generalize it. my custom function allow you to construct a terrain raster stack with the desired resolution and CRS for your region of interest. To make it work, you first need to download the srtm tils.shp as mentioned in the <a href="https://www.gis-blog.com/download-srtm-for-an-entire-country/">gis-blog plost</a>. Here is its source code with an example :</p>
+<pre class="r"><code># @param country_code.chr a character specifying the ISO contrycode. Ex : BE for belgium
+# @param NAME_1.chr a character specifying the NAME_1 value for lower than country level information
+# @param aggregation_factor.num a numeric specifying the aggregation factor to get the desired spatial resolution
+# @param EPSG.chr a character specifying the EPSG code of the desired Coordiante Reference System (CRS)
+# @param path.chr a character specifying the path where to dowload the SRTM data
+build_highRes_terrain_rasters.fun &lt;- function(country_code.chr, NAME_1.chr=NULL, aggregation_factor.num=NULL, EPSG.chr=NULL, path.chr) {
+  # Path to downloaded SRTM Tiles refs
+  srtm.tiles.ref &lt;- raster::shapefile(&quot;&lt;PATH_TO_DOWNLOADED_TILES_REFS&quot;)
+
+  # Get country geometry first
+  extent.sp &lt;- raster::getData(&#39;GADM&#39;, country=country_code.chr, level=1)
+
+  if(!is.null(NAME_1.chr)){
+    extent.sp &lt;- subset(extent.sp, NAME_1 == NAME_1.chr)
+  }
+
+  # Intersect extent geometry and tile grid
+  intersects &lt;- rgeos::gIntersects(extent.sp, srtm.tiles.ref, byid=T)
+  tiles      &lt;- srtm.tiles.ref[intersects[,1],]
+
+  # Download tiles using getData
+  # inspired from https://www.gis-blog.com/download-srtm-for-an-entire-country/
+  srtm_list  &lt;- list()
+  for(i in 1:length(tiles)) {
+    lon &lt;- extent(tiles[i,])[1]  + (extent(tiles[i,])[2] - extent(tiles[i,])[1]) / 2
+    lat &lt;- extent(tiles[i,])[3]  + (extent(tiles[i,])[4] - extent(tiles[i,])[3]) / 2
+
+    tile &lt;- getData(&#39;SRTM&#39;, #data are downloaded from http://www.cgiar-csi.org/. See getData do of pokyah/raster repo on github
+                    lon=lon,
+                    lat=lat,
+                    download = FALSE,
+                    path = path.chr)
+
+    srtm_list[[i]] &lt;- tile
+  }
+
+  # Mosaic tiles
+  srtm_list$fun &lt;- mean
+  srtm_mosaic.ras &lt;- do.call(raster::mosaic, srtm_list)
+
+  # Crop tiles to extent borders
+  extent.elevation.ras &lt;- raster::crop(srtm_mosaic.ras, extent.sp)
+  extent.elevation.ras &lt;- raster::mask(extent.elevation.ras, extent.sp)
+
+  # transform to desired CRS
+  if(!is.null(EPSG.chr)){
+    raster::projectRaster(extent.elevation.ras, crs = toString((dplyr::filter(rgdal::make_EPSG(), code==EPSG.chr))$prj4))
+  }
+
+  # aggregate to lower resolution
+  # inspired from https://stackoverflow.com/questions/32278825/how-to-change-the-resolution-of-a-raster-layer-in-r
+  if(!is.null(aggregation_factor.num)){
+    extent.elevation.ras &lt;- raster::aggregate(extent.elevation.ras, fact=aggregation_factor.num)
+  }
+
+  # compute the slope from the elevation
+  # inspired from https://rpubs.com/etiennebr/visualraster
+  extent.slope.ras &lt;- raster::terrain(extent.elevation.ras, opt=&quot;slope&quot;, unit=&quot;degrees&quot;)
+  extent.aspect.ras &lt;- raster::terrain(extent.elevation.ras, opt=&quot;aspect&quot;, unit=&quot;degrees&quot;)
+  extent.roughness.ras &lt;- raster::terrain(extent.elevation.ras, opt=&quot;roughness&quot;)
+
+  # compute the aspect from the elevation
+  extent.terrain.ras = raster::stack(
+    extent.elevation.ras,
+    extent.slope.ras,
+    extent.aspect.ras,
+    extent.roughness.ras)
+}</code></pre>
+
+                <br>
+                
+                  <div class="tags">
+                    <strong>Tags:</strong>
+                  
+                    <a href="../../tags/draft">draft</a>
+                  
+                    <a href="../../tags/how-to">how-to</a>
+                  
+                  </div>
+                  <br />
+                
+                <p class="back-to-posts"><a href="../../blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "pokyah-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123-45', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/go.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/r.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/bash.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+</body>
+</html>
+

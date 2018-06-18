@@ -3,12 +3,12 @@ title: Quickly create your R project directory tree with pre-filled common files
 author: Thomas Goossens
 date: '2018-06-08'
 categories:
-  - how-to
   - R
-tags:
-  - productivity
   - linux
   - bash
+tags:
+  - productivity
+  - how-to
 ---
 
 Each time you start a new R project, it is __highly recommanded__ to prepare a clean and [organized working directory](https://nicercode.github.io/blog/2013-05-17-organising-my-project/)

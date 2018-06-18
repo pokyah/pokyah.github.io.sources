@@ -6,29 +6,17 @@
     <description>Recent content in Productivity on Thomas Goossens</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 12 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 08 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/productivity/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Boost your R productivity</title>
-      <link>/drafts/how-to-boost-your-r-productivity/</link>
-      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/drafts/how-to-boost-your-r-productivity/</guid>
-      <description>Snippets R studio doc Pay attention to escaping characters
- .Renviron Efficient R programming book
- R project + git .RData environ git for code gitignore for R
- R dir initializer  knitr doc  </description>
-    </item>
-    
-    <item>
       <title>Quickly create your R project directory tree with pre-filled common files</title>
-      <link>/drafts/r-project-initializer/</link>
+      <link>/blog/quickly-create-your-r-project-directory-tree-with-pre-filled-common-files/</link>
       <pubDate>Fri, 08 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/drafts/r-project-initializer/</guid>
+      <guid>/blog/quickly-create-your-r-project-directory-tree-with-pre-filled-common-files/</guid>
       <description>Each time you start a new R project, it is highly recommanded to prepare a clean and organized working directory
 If you regularly create new projects, this working directory preparation task might seem tedious and time consuming. Creating the folders, intializing git, creating a license file, a readme file, etc.
 Instead of copying/pasting an existing pristine directory tree, I propose you to use the power of linux bash scripting.

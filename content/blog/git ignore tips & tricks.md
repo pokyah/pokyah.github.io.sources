@@ -3,10 +3,10 @@ title: Removing large files from you git version control
 author: Thomas Goossens
 date: '2018-06-12'
 categories:
-  - how-to
   - git
 tags:
-  - git
+  - how-to
+  - draft
 ---
 
 While working with geodata, you might often end up downloading large raw-data files likes `.shp` that you will need in your data process chain. 
