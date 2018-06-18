@@ -1,14 +1,15 @@
 ---
-title: How to quickly create and maintain a blog with R ?
-author: Thomas Goossens
+title: "How to quickly create and maintain a blog with R ?"
+author: "Thomas Goossens"
 date: '2018-05-31'
-categories:
-  - how-to
-  - R
+output: pdf_document
 tags:
-  - blog
-  - hugo
-  - github
+- blog
+- hugo
+- github
+categories:
+- how-to
+- R
 ---
 
 ```{r setup, include=FALSE}
