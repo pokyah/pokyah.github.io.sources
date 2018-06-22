@@ -21,6 +21,8 @@ Could blockchain :
 
 Let's find out with a few lectures !
 
+![blockchain_infography](/blog/blockchain_for_research_curated_list_files/blockchain-3277335_960_720.png)
+
 
 * [Blockchain ‘could help combat mistrust in scientific process’](https://www.timeshighereducation.com/news/blockchain-could-help-combat-mistrust-scientific-process)  
 
