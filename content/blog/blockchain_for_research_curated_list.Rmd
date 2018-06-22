@@ -1,0 +1,48 @@
+---
+title: Blockchain for research - curated list
+author: Thomas Goossens
+date: '2018-06-22'
+categories:
+  - content curation
+tags:
+  - blockchain
+  - data
+  - research
+---
+
+Could blockchain :
+
+* help science reproductibility ?  
+* enhance research transparency ?  
+* avoid publication fraud ?  
+* enhance datasets exchanges ?   
+* help to fund research projects ?  
+* incentivize scientists ?   
+
+Let's find out with a few lectures !
+
+
+* [Blockchain ‘could help combat mistrust in scientific process’](https://www.timeshighereducation.com/news/blockchain-could-help-combat-mistrust-scientific-process)  
+
+* [Dash Puts Science Research On The Blockchain Academic publishing is ripe for disruption, and Dash seeks to prove a new paradigm.](https://cryptobriefing.com/dash-science-research-blockchain/)  
+
+* [Blockchain to help scholarly publishing fight fraud](https://www.chemistryworld.com/news/blockchain-to-help-scholarly-publishing-fight-fraud/3008803.article)
+
+* [Concerns About Blockchain for Science](https://medium.com/read-write-participate/concerns-about-blockchain-for-science-1540c4ac9bdb)  
+
+* [Blockchain for science and knowledge creation - A technical fix to the reproducibility crisis ?](https://www.researchgate.net/publication/306107836_Blockchain_for_science_and_knowledge_creation_-_A_technical_fix_to_the_reproducibility_crisis)  
+
+* [Many Scientific Studies Are Bogus, but Blockchain Can Help](https://blogs.scientificamerican.com/observations/many-scientific-studies-are-bogus-but-blockchain-can-help/)  
+
+* [BLOCKCHAINS COULD BE EVERY DATA SCIENTIST’S DREAM](http://dataconomy.com/2017/05/blockchains-data-scientist-dream/)  
+
+* [As a Data Scientist, Do You Have to Start Worrying About Blockchain Any Time Soon?](https://insidebigdata.com/2018/04/25/data-scientist-start-worrying-blockchain-time-soon/)  
+
+* [REPRODUCIBLE RESULTS THROUGH OPENESS TO SCIENTIFIC SELF-CORRECTION. Blockchainified Science](https://www.blockchainforscience.com/)  
+
+* [Can bitcoin’s cryptographic technology help save the environment?](http://www.sciencemag.org/news/2017/05/can-bitcoin-s-cryptographic-technology-help-save-environment)  
+
+* [Could Bitcoin technology help science?](https://www.nature.com/articles/d41586-017-08589-4)  
+
+* [How to harness Blockchain technology for marine conservation](https://peerj.com/preprints/26496/)  
+

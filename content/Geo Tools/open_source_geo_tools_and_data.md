@@ -1,0 +1,77 @@
+---
+title: Open-Source Geo Data and Tools
+author: Thomas Goossens
+date: '2018-06-19'
+categories:
+  - R
+  - web
+  - geomatic
+tags:
+  - how-to
+---
+
+## Online map editors & data visualisation tool
+* https://carto.com/
+* https://umap.openstreetmap.fr/fr/
+* http://geojson.io/
+
+## Geocoding
+* https://wiki.openstreetmap.org/wiki/Nominatim
+
+
+## Basemap providers
+* https://openmaptiles.org
+* http://maps.stamen.com
+* https://www.mapbox.com/
+* https://openaerialmap.org/
+* https://www.mapillary.com/
+* http://maperitive.net/
+* https://www.maptiler.com
+
+## R packages
+* https://rstudio.github.io/leaflet/
+* https://bhaskarvk.github.io/leaflet.extras/
+* https://cran.r-project.org/web/packages/raster/index.html
+* https://r-spatial.github.io/sf/
+* https://r-spatial.github.io/lwgeom/
+* https://cran.r-project.org/web/packages/sp/index.html
+* https://github.com/hadley/rvest
+* http://ropensci.github.io/RSelenium/
+
+## Belgium Specific
+
+## datasets
+* http://geopole.org/
+
+
+
+https://epsg.io
+
+
+
+https://openmaptiles.org
+signin/?route-to=https://www.mapbox.com/studio/
+/#toner/12/37.7706/-122.3782
+
+
+
+
+http://colorbrewer2.org
+https://materialdesignicons.com/
+https://fontawesome.com/
+
+http://overpass-turbo.eu/
+http://srtm.csi.cgiar.org/
+https://gadm.org/
+http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/
+https://www.gpsies.com/#10_50.2944_5.0978_hikebike
+https://openweathermap.org/
+http://www.atlas-belgique.be/cms2/
+http://inspire.ngi.be/download-free/atomfeeds/AtomFeed-CLC2012-en.xml
+https://github.com/tmcw/awesome-geojson
+
+
+
+
+
+

@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/blockchain-for-research---curated-list/</loc>
+    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/geo-tools/open_source_geo_tools_and_data/</loc>
+    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/get-a-high-resolution-dem-raster-for-any-country-with-r-in-2-minutes/</loc>
     <lastmod>2018-06-18T00:00:00+00:00</lastmod>
   </url>
@@ -88,6 +98,10 @@
   </url>
   
   <url>
+    <loc>/geo-tools/open_source_geo_tools_and_data/</loc>
+  </url>
+  
+  <url>
     <loc>/cv/</loc>
   </url>
   
@@ -109,8 +123,14 @@
   </url>
   
   <url>
+    <loc>/tags/blockchain/</loc>
+    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/blog/</loc>
-    <lastmod>2018-06-18T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -127,6 +147,18 @@
   </url>
   
   <url>
+    <loc>/categories/content-curation/</loc>
+    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/data/</loc>
+    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/docker/</loc>
     <lastmod>2018-03-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -139,6 +171,12 @@
   </url>
   
   <url>
+    <loc>/geo-tools/</loc>
+    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/geomatic/</loc>
     <lastmod>2018-05-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -146,7 +184,7 @@
   
   <url>
     <loc>/categories/geomatic/</loc>
-    <lastmod>2018-06-18T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -164,7 +202,7 @@
   
   <url>
     <loc>/tags/how-to/</loc>
-    <lastmod>2018-06-18T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -236,7 +274,13 @@
   
   <url>
     <loc>/categories/r/</loc>
-    <lastmod>2018-06-18T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/research/</loc>
+    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -272,13 +316,13 @@
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2018-05-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-06-18T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -291,6 +335,12 @@
   <url>
     <loc>/tags/weather/</loc>
     <lastmod>2018-04-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/web/</loc>
+    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

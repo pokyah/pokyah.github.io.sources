@@ -8,7 +8,6 @@ categories:
 tags:
   - draft
   - how-to
-  
 ---
 
 Today I was looking for an high resolution Digital Elevation Model for a Region of Belgium. 
