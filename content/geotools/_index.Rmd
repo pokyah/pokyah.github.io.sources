@@ -1,14 +1,16 @@
 ---
-title: Open-Source Geo Data and Tools
+title: Curated list of Open Source Geo Data and Tools
 author: Thomas Goossens
 date: '2018-06-19'
 categories:
   - R
   - web
   - geomatic
+  - opensource
 tags:
-  - how-to
+  - curation
 ---
+
 
 ## Online map editors & data visualisation tool
 * https://carto.com/
@@ -18,7 +20,6 @@ tags:
 ## Geocoding
 * https://wiki.openstreetmap.org/wiki/Nominatim
 
-
 ## Basemap providers
 * https://openmaptiles.org
 * http://maps.stamen.com
@@ -27,6 +28,7 @@ tags:
 * https://www.mapillary.com/
 * http://maperitive.net/
 * https://www.maptiler.com
+* https://openmaptiles.org
 
 ## R packages
 * https://rstudio.github.io/leaflet/
@@ -38,40 +40,28 @@ tags:
 * https://github.com/hadley/rvest
 * http://ropensci.github.io/RSelenium/
 
-## Belgium Specific
+## Simple Online tools
+* https://epsg.io
+* http://geojson.io/
+
+## Design, fonts and icons
+* http://colorbrewer2.org
+* https://materialdesignicons.com/
+* https://fontawesome.com/
 
 ## datasets
 * http://geopole.org/
+* https://gadm.org/
+* http://overpass-turbo.eu/
+* http://srtm.csi.cgiar.org/
+* http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/
+* https://www.gpsies.com/#10_50.2944_5.0978_hikebike
+* https://openweathermap.org/
+* https://github.com/tmcw/awesome-geojson
+* http://www.atlas-belgique.be/cms2/
+* http://inspire.ngi.be/download-free/atomfeeds/AtomFeed-CLC2012-en.xml
 
-
-
-https://epsg.io
-
-
-
-https://openmaptiles.org
-signin/?route-to=https://www.mapbox.com/studio/
-/#toner/12/37.7706/-122.3782
-
-
-
-
-http://colorbrewer2.org
-https://materialdesignicons.com/
-https://fontawesome.com/
-
-http://overpass-turbo.eu/
-http://srtm.csi.cgiar.org/
-https://gadm.org/
-http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/
-https://www.gpsies.com/#10_50.2944_5.0978_hikebike
-https://openweathermap.org/
-http://www.atlas-belgique.be/cms2/
-http://inspire.ngi.be/download-free/atomfeeds/AtomFeed-CLC2012-en.xml
-https://github.com/tmcw/awesome-geojson
-
-
-
-
+## books
+* https://geocompr.robinlovelace.net
 
 

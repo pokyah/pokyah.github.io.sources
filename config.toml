@@ -37,16 +37,22 @@ identifier             = "code"
 url                    = "/code/"
 
 [[menu.main]]
-name                   = "Drafts"
+name                   = "Blogroll"
 weight                 = -90
-identifier             = "drafts"
-url                    = "/drafts/"
+identifier             = "blogroll"
+url                    = "/blogroll/"
 
 [[menu.main]]
 name                   = "CV"
-weight                 = -90
+weight                 = -80
 identifier             = "cv"
 url                    = "/cv/"
+
+[[menu.main]]
+name                   = "Geo-Tools"
+weight                 = -80
+identifier             = "geotools"
+url                    = "/geotools/"
 
 
 [params]
@@ -57,7 +63,7 @@ author                 = "Thomas Goossens"
 cachebuster            = true                          # add the current unix timestamp in query string for cache busting css assets
 dateform               = "Jan 2, 2006"
 dateformfull           = "Mon Jan 2 2006 15:04:05 MST"
-description            = "Don't panic"
+description            = "Personal page of Thomas Goossens, geographer/data-scientist/coder"
 email                  = "hello.pokyah@gmail.com"
 extracssfiles          = [ "/css/override.css" ]       # In your `static` directory, add/remove files as necessary.
 faviconfile            = "img/leaf.ico"

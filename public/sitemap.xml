@@ -8,7 +8,7 @@
   </url>
   
   <url>
-    <loc>/geo-tools/open_source_geo_tools_and_data/</loc>
+    <loc>/geotools/</loc>
     <lastmod>2018-06-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -98,10 +98,6 @@
   </url>
   
   <url>
-    <loc>/geo-tools/open_source_geo_tools_and_data/</loc>
-  </url>
-  
-  <url>
     <loc>/cv/</loc>
   </url>
   
@@ -141,6 +137,10 @@
   </url>
   
   <url>
+    <loc>/blogroll/</loc>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
     <lastmod>2018-05-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -149,6 +149,12 @@
   <url>
     <loc>/categories/content-curation/</loc>
     <lastmod>2018-06-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/curation/</loc>
+    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -167,12 +173,6 @@
   <url>
     <loc>/tags/draft/</loc>
     <lastmod>2018-06-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/geo-tools/</loc>
-    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -202,7 +202,7 @@
   
   <url>
     <loc>/tags/how-to/</loc>
-    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -251,6 +251,12 @@
   <url>
     <loc>/tags/modeling/</loc>
     <lastmod>2018-05-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/opensource/</loc>
+    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

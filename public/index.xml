@@ -30,18 +30,6 @@ blockchain_infography
     </item>
     
     <item>
-      <title>Open-Source Geo Data and Tools</title>
-      <link>/geo-tools/open_source_geo_tools_and_data/</link>
-      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/geo-tools/open_source_geo_tools_and_data/</guid>
-      <description>Online map editors &amp;amp; data visualisation tool  https://carto.com/ https://umap.openstreetmap.fr/fr/ http://geojson.io/  Geocoding  https://wiki.openstreetmap.org/wiki/Nominatim  Basemap providers  https://openmaptiles.org http://maps.stamen.com https://www.mapbox.com/ https://openaerialmap.org/ https://www.mapillary.com/ http://maperitive.net/ https://www.maptiler.com  R packages  https://rstudio.github.io/leaflet/ https://bhaskarvk.github.io/leaflet.extras/ https://cran.r-project.org/web/packages/raster/index.html https://r-spatial.github.io/sf/ https://r-spatial.github.io/lwgeom/ https://cran.r-project.org/web/packages/sp/index.html https://github.com/hadley/rvest http://ropensci.github.io/RSelenium/  Belgium Specific datasets  http://geopole.org/  https://epsg.io
-https://openmaptiles.org signin/?route-to=https://www.mapbox.com/studio/ /#toner/12/37.7706/-122.3782
-http://colorbrewer2.org https://materialdesignicons.com/ https://fontawesome.com/
-http://overpass-turbo.eu/ http://srtm.csi.cgiar.org/ https://gadm.org/ http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/ https://www.gpsies.com/#10_50.2944_5.0978_hikebike https://openweathermap.org/ http://www.atlas-belgique.be/cms2/ http://inspire.ngi.be/download-free/atomfeeds/AtomFeed-CLC2012-en.xml https://github.com/tmcw/awesome-geojson</description>
-    </item>
-    
-    <item>
       <title>Get a high resolution DEM raster for any country with R in 2 minutes</title>
       <link>/blog/get-a-high-resolution-dem-raster-for-any-country-with-r-in-2-minutes/</link>
       <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
@@ -203,15 +191,6 @@ Grâce à votre accès SSH, vous pourrez notamment y exécuter des commandes uni
       <guid>/about/colofon/</guid>
       <description>Why this website ? A website is highly useful for yourself to keep track of what you have done and thought. Sometimes you may go back to a certain old post of yours to relearn the tricks or methods you once mastered in the past but have forgotten.
  How is it built ? This website is built with R blogdown which uses a combination of Hugo, Rmarkdown and knitr.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/geo-tools/open_source_geo_tools_and_data/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/geo-tools/open_source_geo_tools_and_data/</guid>
-      <description>Open-Source Geo Data and Tools       code{white-space: pre;} pre:not([class]) { background-color: white; }  if (window.hljs) { hljs.configure({languages: []}); hljs.initHighlightingOnLoad(); if (document.readyState &amp;&amp; document.readyState === &#34;complete&#34;) { window.setTimeout(function() { hljs.initHighlighting(); }, 0); } }  h1 { font-size: 34px; } h1.title { font-size: 38px; } h2 { font-size: 30px; } h3 { font-size: 24px; } h4 { font-size: 18px; } h5 { font-size: 16px; } h6 { font-size: 12px; } .</description>
     </item>
     
   </channel>

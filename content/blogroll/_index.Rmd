@@ -1,0 +1,36 @@
+---
+title: "Blogroll"
+author: "Thomas Goossens"
+date: "6/27/2018"
+output: html_document
+---
+
+* [J.W. Hollister](https://jwhollister.com)
+landscape ecologist with expertise in the spatial component of ecology and environmental sciences
+
+* [Maxwell B. Joseph](http://mbjoseph.github.io/blog)
+data scientist in the Analytics Hub at Earth Lab with interests in spatial analysis, occupancy modeling, machine learning, high performance computing, reproducible research, open science, and disease ecology.
+
+* [Fong Chun Chan](https://tinyheero.github.io/)
+A blog about bioinformatics, cancer research, R, statistics and BIG data
+
+* [Robert Miles](https://robertmyles.github.io/post/)
+freelance R consultancy
+
+* [Fred Vanwin Blog](https://frdvnw.github.io)
+R + Linux tips & tricks	
+
+* [Dean Attali](https://deanattali.com/)
+R shiny consultant. Lots of tips & tricks
+
+* [Sean Anderson](http://seananderson.ca/)
+R biologist + blogger
+
+* [strimas](http://strimas.com/r/snowfall/)
+R & open geosciences
+
+* [r-spatial](https://r-spatial.github.io)
+sf packages & spatial R stuffs
+
+* [stat545](https://github.com/STAT545-UBC/STAT545-UBC.github.io)
+Qualitative R-courses 
