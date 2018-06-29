@@ -15,7 +15,6 @@ tags:
 ## Online map editors & data visualisation tool
 * https://carto.com/
 * https://umap.openstreetmap.fr/fr/
-* http://geojson.io/
 
 ## Geocoding
 * https://wiki.openstreetmap.org/wiki/Nominatim
@@ -54,6 +53,7 @@ tags:
 * https://gadm.org/
 * http://overpass-turbo.eu/
 * http://srtm.csi.cgiar.org/
+* https://photovoltaic-software.com/solar-radiation-database.php
 * http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/
 * https://www.gpsies.com/#10_50.2944_5.0978_hikebike
 * https://openweathermap.org/
