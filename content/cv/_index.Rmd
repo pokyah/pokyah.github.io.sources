@@ -1,4 +1,147 @@
-# Curriculum Vitae
+---
+title: "Curriculum vitae"
+author: "Thomas Goossens"
+date: '2018-04-07'
+---
 
-*Coming soon*
+*\* English version soon available*
 
+Géophysicien de formation, je développe actuellement des compétences en machine learning supervisé appliqué aux prédictions de données spatiales à l'aide d'outils opensource (principalement R).
+
+## Parcours professionnel
+
+### Attaché scientifique (géostatisticien)
+[Centre Wallon de Recherche Agronomique CRA-W](http://www.cra.wallonie.be/fr/agromet)  
+*Gembloux avril 2017 - aujourd’hui*
+
+__Spatialisation de données météorologiques à l'aide de logiciels opensource dans le cadre du projet AGROMET__
+
+* Géostatistiques
+* SIG
+* Machine Learning
+* R + gstat + mlr + shiny + tidyverse
+
+### Cartographe Web
+Freelance  
+*Bruxelles mai 2016 - avril 2017*
+
+__Développement d’applications cartographiques interactives__
+
+* Leaflet.js, Mapbox.js, D3.js, osm2vectortiles, QGIS
+* Ecosystème Openstreetmap
+* Participation aux conférences [FOSS4G Belgium 2016](http://2016.foss4g.be/programme.php) et [State of the Map 2016](http://2016.stateofthemap.org/)
+
+### Développeur Web
+[Beebole SPRL](https://beebole.com/)  
+*Rhodes-Saint-genèse octobre 2015 - mai 2016*
+
+__Développeur frontend__
+
+* javascript/HTML/CSS
+* jQuery, pure.js, getmdl.io
+
+### Chercheur contractuel
+[ULB, Laboratoire de Glaciologie](http://dev.ulb.ac.be/glaciol/news.html)  
+*Ixelles janvier 2013 - octobre 2015*
+
+__Etudes physico-chimiques des phénomènes d’interaction glace/roche au sein des couches profondes des calottes polaires__
+
+* Préparation d’échantillons en chambre froide et analyses en laboratoire
+* Traitement, interprétation et présentation de données
+* Rédaction d’articles scientifiques et présentations orales
+* Présentations à [l’EGU 2015](http://meetingorganizer.copernicus.org/EGU2015/orals/18012) et au [Symposium NEEM](http://www.isogklima.nbi.ku.dk/arrangementfolder/engelske_arrangementer/2014-04-24-neem-symposium/Agenda_-_final.pdf)
+* Animations de foires aux sciences et encadrement de travaux pratiques
+
+### Chercheur contractuel
+[ULB, Laboratoire de Glaciologie](http://dev.ulb.ac.be/glaciol/news.html)  
+*Ixelles septembre 2012 - janvier 2013*
+
+__Mission d’échantillonnage de glace de mer durant 3 mois au départ de Scott Base (Antarctique) : YROSIAE (projet [BigSouth](http://www.co2.ulg.ac.be/bigsouth/index.htm))__ 
+
+* Echantillonnage  en conditions extrêmes et normes de sécurité élevées
+* Analyses de glace en laboratoire (chromatographie)
+* Gestion logistique liée à la fin de la mission
+
+### Responsable cellule gestion des eaux
+[Administration Communale d’Uccle](http://www.ukkel.be/fr/administration/travaux)  
+*Uccle mars 2010 - avril 2012*
+
+__Etude de réhabilitation de ruisseaux__
+
+* élaboration de cahiers des charges et gestion de marchés publics
+* politique de lutte contre les inondations
+* concertation entre les divers intervenants de l’eau à Bruxelles et la population et coordination des chantiers liés à la gestion de l’eau
+* Conception d’une base de donnée interactive d’automatisation de processus  de suivi de chantiers
+* Participation à l’élaboration du SIG communal
+
+### Chercheur contractuel
+[ULB, Laboratoire de Glaciologie](http://dev.ulb.ac.be/glaciol/news.html)  
+*Ixelles  janvier 2008 - mars 2010* 
+
+__Projet ASPI, interaction calotte et phénomènes sous-glaciaires__
+
+* Mission d’un mois au Groenland : participation au forage NEEM
+* Mission d’un mois en Alaska : échantillonnage de glace de mer à Barrow
+* Développement d’une technique de déformation de glace à l’aide d’une presse pneumatique
+
+## Formation
+### Licence en Sciences Géographiques 
+[Université Libre de Bruxelles](http://www.ulb.ac.be/) (ULB), 2007
+
+* [Diplôme](./Thomas_Goossens_Certificate.pdf)
+* [Mémoire](./Thomas_Goossens_master_thesis.pdf)
+
+###  Autres formations 
+* Introduction à PostGIS et Openlayers,  Oslandia, 2017
+* Formation aux outils de cartographie libres, Urbagora, 2016
+* Traitement d’image avec Matlab, Mathworks, 2014
+* Les Fondamentaux de Matlab, Mathworks, 2014
+* Mécanique vélo, Cyclo ASBL, 2013
+* Introduction à ArcGIS Desktop 10, ESRI Belux, 2010
+* Certification Selor article 8 et 9 § 1 (niveau élémentaire), Selor, 2010
+* Permis de conduire B, 2010
+* Formation Guide Nature, CNB, 2009
+* Animateur breveté, Communauté française, 2004
+
+## Profil académique
+* [Liste de publications dépôt ULB](http://difusion.ulb.ac.be/vufind/Author/Home?author=Goossens,%20Thomas)
+* [Profil sur Google Scholar](https://scholar.google.be/citations?user=oaxDZMwAAAAJ&hl=en)
+* [Dernière publication scientifique](https://www.the-cryosphere.net/10/553/2016/)
+* [Présentation EGU 2015]()
+
+## Technologies favorites
+* Linux + Unix
+* Docker
+* Git
+* R
+
+## Langues
+* __Français__ : langue maternelle
+* __Néerlandais__ : compréhension orale et écrite moyenne, expression orale et écrite de base
+* __Anglais__ : bonne compréhension orale et écrite, bonne expression orale et écrite
+
+## Bénévolat
+* [Les Lendemain de la Veille ASBL](http://ldlv.be/), membre du comité d’organisation des [Relais Givrés](http://www.relaisgivres.be/index.php?lang=en) 2018
+* [Les Lendemains de la Veille ASBL](http://ldlv.be/), contribution à l’organisation des Relais Givrés, 2016 - 2017
+* [ASBL Salaaï](https://www.facebook.com/Salaai-For-Nepal-822646194499092/) - récolte de fonds pour le Népal, 2015 - 2016
+* Festival Couleur Café - installation, 2009, 2010 - 2012
+* [Institut Haulot](http://www.heldb.be/fr/) - Membre extérieur du jury - projets aménagements du paysage, 2011 - 2012
+* [Les Scouts](https://lesscouts.be/) (unités 102 & 72-53) - Animateur, 2001 - 2010
+* [Foyer Scientifique et Culturel de la Plaine](https://www.ulb.ac.be/culture/foyers.html) - Coprésident, 2006-07
+
+## Autres intérêts
+* Blockchain
+* Géomatique
+* Economie P2P 
+* Transition énergétique
+* FOAM protocol
+* [Playlists curation](https://open.spotify.com/user/pokyah?si=RG-Qj41LQDaUOoZF4PffsQ)
+
+
+## Loisirs
+* Randonnée
+* Trail
+* Cyclisme
+* Slackline
+* Montage vidéo
+* Djaying
