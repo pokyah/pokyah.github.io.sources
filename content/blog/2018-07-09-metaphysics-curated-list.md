@@ -22,6 +22,8 @@ And could quantum physics help to answer these questions ?
 
 Let's find out ! 👇
 
+![metaphysics](/blog/2018-07-09-metaphysics-curated-list_files/metaphysics.jpg)
+
 * [Harvard scientists think they might have pinpointed the source of human consciousness](https://www.weforum.org/agenda/2016/11/harvard-scientists-think-they-might-have-pinpointed-the-source-of-human-consciousness/)
 
 * [NASA test proves pulsars can function as a celestial GPS](https://www.nature.com/articles/d41586-018-00478-8)
