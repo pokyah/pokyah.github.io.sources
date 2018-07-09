@@ -6,10 +6,20 @@
     <description>Recent content in Content Curation on Thomas Goossens</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 22 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Jul 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/content-curation/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Metaphysics - curated list</title>
+      <link>/blog/metaphysics---curated-list/</link>
+      <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/metaphysics---curated-list/</guid>
+      <description>Metaphysics is the branch of philosophy that deals with the first principles of things, including abstract concepts such as being, knowing, identity, time, and space. This curated list of posts and videos addresses the following qurestions :
+What is life ? What is a thing ? What it consciouness ? What is the true essence of reality ? Is the universe consciouss ? Are we living in a simulation ? is the Universe a quantum computer ?</description>
+    </item>
     
     <item>
       <title>Blockchain for research - curated list</title>
@@ -24,7 +34,6 @@
  enhance datasets exchanges ?
  help to fund research projects ?
  incentivize scientists ?  Let’s find out with a few lectures !
-blockchain_infography
   Blockchain ‘could help combat mistrust in scientific process’
  Dash Puts Science Research On The Blockchain Academic publishing is ripe for disruption, and Dash seeks to prove a new paradigm.</description>
     </item>

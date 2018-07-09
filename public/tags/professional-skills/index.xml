@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Professional Skills on Thomas Goossens</title>
+    <link>/tags/professional-skills/</link>
+    <description>Recent content in Professional Skills on Thomas Goossens</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 07 Apr 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/professional-skills/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Curriculum vitae</title>
+      <link>/cv/</link>
+      <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/cv/</guid>
+      <description>* English version soon available
+Géophysicien de formation, je développe actuellement des compétences en machine learning supervisé appliqué aux prédictions de données spatiales à l’aide d’outils opensource (principalement R).
+Parcours professionnel Attaché scientifique (géostatisticien) Centre Wallon de Recherche Agronomique CRA-W
+Gembloux avril 2017 - aujourd’hui
+Spatialisation de données météorologiques à l’aide de logiciels opensource dans le cadre du projet AGROMET
+ Géostatistiques SIG Machine Learning R + gstat + mlr + shiny + tidyverse   Cartographe Web Freelance</description>
+    </item>
+    
+  </channel>
+</rss>
