@@ -3,57 +3,57 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/blog/metaphysics---curated-list/</loc>
+    <loc>/post/metaphysics-curated-list/</loc>
     <lastmod>2018-07-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/blockchain-for-research---curated-list/</loc>
+    <loc>/post/blockchain_for_research_curated_list/</loc>
     <lastmod>2018-06-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/geotools/</loc>
+    <loc>/geo-tools/</loc>
     <lastmod>2018-06-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/get-a-high-resolution-dem-raster-for-any-country-with-r-in-2-minutes/</loc>
+    <loc>/post/srtm_data/</loc>
     <lastmod>2018-06-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/boost-your-r-productivity/</loc>
+    <loc>/post/how-to-boost-your-r-productivity/</loc>
     <lastmod>2018-06-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/removing-large-files-from-you-git-version-control/</loc>
+    <loc>/post/git-ignore-tips-and-tricks/</loc>
     <lastmod>2018-06-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/quickly-create-your-r-project-directory-tree-with-pre-filled-common-files/</loc>
+    <loc>/post/r-project-initializer/</loc>
     <lastmod>2018-06-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/how-to-quickly-create-and-maintain-a-blog-with-r-/</loc>
+    <loc>/post/quickly-create-and-maintain-a-blog-with-r/</loc>
     <lastmod>2018-05-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/producing-and-mapping-gridded-datasets-with-uncertainty-using-r/</loc>
+    <loc>/post/gridded-uncertainty/</loc>
     <lastmod>2018-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/a-methodological-approach-to-assess-the-best-weather-spatialization-technique/</loc>
+    <loc>/post/methodological-approach-to-assess-the-best-spatial-interpolation-method/</loc>
     <lastmod>2018-05-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/a-review-of-weather-spatialization-projects/</loc>
+    <loc>/post/spatialization-review/</loc>
     <lastmod>2018-05-24T00:00:00+00:00</lastmod>
   </url>
   
@@ -63,37 +63,37 @@
   </url>
   
   <url>
-    <loc>/blog/spatial-interpolation-using-multiple-linear-regression--a-beginnerss-overview-r-implementation/</loc>
+    <loc>/post/spatial-interpolation-using-multiple-linear-regression-a-beginners-overview-r-implementation/</loc>
     <lastmod>2018-04-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/quickly-publish-your-r-interactive-data-visualization-tools-with-github-pages/</loc>
+    <loc>/post/r_interactive_datavis_with_github_pages/</loc>
     <lastmod>2018-03-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/using-r-with-docker/</loc>
+    <loc>/post/using-r-with-docker/</loc>
     <lastmod>2018-03-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/assessing-the-agreement-between-two-quantitative-methods-of-measurements--understanding-the-bland-altman-analysis/</loc>
+    <loc>/post/assessing-the-agreement-between-two-quantitative-methods-of-measurements-understanding-the-bland-altman-analysis/</loc>
     <lastmod>2018-02-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/installing-ubuntu-gnome-16.04-on-a-windows-machine/</loc>
+    <loc>/post/install-ubuntu-gnome-16.04/</loc>
     <lastmod>2018-02-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/presentation-of-the-agromet-project/</loc>
+    <loc>/post/presentation-of-agromet-project/</loc>
     <lastmod>2017-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/configurer-un-acc%C3%A8s-ssh-%C3%A0-un-h%C3%A9bergement-mutualis%C3%A9/</loc>
+    <loc>/post/configurer-un-acces-ssh-a-un-hebergement-mutualise/</loc>
     <lastmod>2017-04-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -125,19 +125,13 @@
   </url>
   
   <url>
-    <loc>/tags/blockchain/</loc>
+    <loc>/categories/blockchain/</loc>
     <lastmod>2018-06-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/blog/</loc>
-    <lastmod>2018-07-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/blog/</loc>
+    <loc>/categories/blog/</loc>
     <lastmod>2018-05-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -153,20 +147,20 @@
   </url>
   
   <url>
-    <loc>/tags/consciousness/</loc>
-    <lastmod>2018-07-09T00:00:00+00:00</lastmod>
+    <loc>/categories/code/</loc>
+    <lastmod>2018-06-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/content-curation/</loc>
+    <loc>/categories/consciousness/</loc>
     <lastmod>2018-07-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/curation/</loc>
-    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
+    <lastmod>2018-07-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -177,26 +171,14 @@
   </url>
   
   <url>
-    <loc>/tags/data/</loc>
+    <loc>/categories/data/</loc>
     <lastmod>2018-06-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/docker/</loc>
+    <loc>/categories/docker/</loc>
     <lastmod>2018-03-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/draft/</loc>
-    <lastmod>2018-06-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/geomatic/</loc>
-    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -213,7 +195,7 @@
   </url>
   
   <url>
-    <loc>/tags/github/</loc>
+    <loc>/categories/github/</loc>
     <lastmod>2018-05-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -225,44 +207,26 @@
   </url>
   
   <url>
-    <loc>/categories/how-to/</loc>
+    <loc>/categories/hugo/</loc>
     <lastmod>2018-05-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/hugo/</loc>
-    <lastmod>2018-05-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/idealism/</loc>
+    <loc>/categories/idealism/</loc>
     <lastmod>2018-07-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/interpolation/</loc>
-    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/leaflet/</loc>
+    <loc>/categories/leaflet/</loc>
     <lastmod>2018-03-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/life/</loc>
+    <loc>/categories/life/</loc>
     <lastmod>2018-07-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/linux/</loc>
-    <lastmod>2018-03-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -273,25 +237,25 @@
   </url>
   
   <url>
-    <loc>/tags/materialism/</loc>
+    <loc>/categories/materialism/</loc>
     <lastmod>2018-07-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/metaphysics/</loc>
+    <loc>/categories/metaphysics/</loc>
     <lastmod>2018-07-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/method/</loc>
-    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
+    <loc>/tags/methodology/</loc>
+    <lastmod>2018-05-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/modeling/</loc>
+    <loc>/categories/modeling/</loc>
     <lastmod>2018-05-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -303,13 +267,19 @@
   </url>
   
   <url>
-    <loc>/tags/productivity/</loc>
-    <lastmod>2018-06-08T00:00:00+00:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2018-07-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/productivity/</loc>
+    <loc>/post/</loc>
+    <lastmod>2018-07-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/productivity/</loc>
     <lastmod>2018-06-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -321,25 +291,19 @@
   </url>
   
   <url>
-    <loc>/tags/quantum-physics/</loc>
+    <loc>/categories/quantum-physics/</loc>
     <lastmod>2018-07-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/r/</loc>
-    <lastmod>2018-05-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/categories/r/</loc>
-    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/research/</loc>
+    <loc>/categories/research/</loc>
     <lastmod>2018-06-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -357,56 +321,44 @@
   </url>
   
   <url>
-    <loc>/tags/spatialization/</loc>
-    <lastmod>2018-05-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/ssh/</loc>
+    <loc>/categories/ssh/</loc>
     <lastmod>2017-04-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/standard/</loc>
-    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/statistics/</loc>
+    <loc>/categories/statistics/</loc>
     <lastmod>2018-05-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
     <lastmod>2018-07-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/universe/</loc>
+    <loc>/tags/theory/</loc>
+    <lastmod>2018-05-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/universe/</loc>
     <lastmod>2018-07-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/unix/</loc>
+    <loc>/categories/unix/</loc>
     <lastmod>2017-04-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/weather/</loc>
-    <lastmod>2018-04-03T00:00:00+00:00</lastmod>
+    <loc>/categories/weather/</loc>
+    <lastmod>2018-05-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

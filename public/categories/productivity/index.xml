@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Productivity on Thomas Goossens</title>
+    <title>Productivity on Pokyah</title>
     <link>/categories/productivity/</link>
-    <description>Recent content in Productivity on Thomas Goossens</description>
+    <description>Recent content in Productivity on Pokyah</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 12 Jun 2018 00:00:00 +0000</lastBuildDate>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Boost your R productivity</title>
-      <link>/blog/boost-your-r-productivity/</link>
+      <link>/post/how-to-boost-your-r-productivity/</link>
       <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/blog/boost-your-r-productivity/</guid>
+      <guid>/post/how-to-boost-your-r-productivity/</guid>
       <description>Snippets R studio doc Pay attention to escaping characters
  .Renviron Efficient R programming book
  R project + git .RData environ git for code gitignore for R

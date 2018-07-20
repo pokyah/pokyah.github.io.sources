@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Git on Thomas Goossens</title>
+    <title>Git on Pokyah</title>
     <link>/categories/git/</link>
-    <description>Recent content in Git on Thomas Goossens</description>
+    <description>Recent content in Git on Pokyah</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 12 Jun 2018 00:00:00 +0000</lastBuildDate>
@@ -13,20 +13,20 @@
     
     <item>
       <title>Removing large files from you git version control</title>
-      <link>/blog/removing-large-files-from-you-git-version-control/</link>
+      <link>/post/git-ignore-tips-and-tricks/</link>
       <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/blog/removing-large-files-from-you-git-version-control/</guid>
+      <guid>/post/git-ignore-tips-and-tricks/</guid>
       <description>While working with geodata, you might often end up downloading large raw-data files likes .shp that you will need in your data process chain.
-As you don&amp;rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitignore file. But what if those files were created before there were added to the .gitignore ?</description>
+As you don’t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitignore file. But what if those files were created before there were added to the .gitignore ?</description>
     </item>
     
     <item>
       <title>Quickly publish your R interactive data visualization tools with github pages</title>
-      <link>/blog/quickly-publish-your-r-interactive-data-visualization-tools-with-github-pages/</link>
+      <link>/post/r_interactive_datavis_with_github_pages/</link>
       <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/blog/quickly-publish-your-r-interactive-data-visualization-tools-with-github-pages/</guid>
+      <guid>/post/r_interactive_datavis_with_github_pages/</guid>
       <description>As a data scientist, you certainly produce a bunch of tables, plots, maps and many other kind of outputs to let your data “speak for itself”. This is your core business and I’m sure you do it pretty well ! But when it comes to make this data available to your target audience things can quickly get more frustrating. How to share these outputs in a format that everyone can open ?</description>
     </item>
     

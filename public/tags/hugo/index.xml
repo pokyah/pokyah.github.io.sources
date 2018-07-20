@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hugo on Thomas Goossens</title>
+    <title>Hugo on Pokyah</title>
     <link>/tags/hugo/</link>
-    <description>Recent content in Hugo on Thomas Goossens</description>
+    <description>Recent content in Hugo on Pokyah</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Thu, 31 May 2018 00:00:00 +0000</lastBuildDate>
@@ -13,10 +13,10 @@
     
     <item>
       <title>How to quickly create and maintain a blog with R ?</title>
-      <link>/blog/how-to-quickly-create-and-maintain-a-blog-with-r-/</link>
+      <link>/post/quickly-create-and-maintain-a-blog-with-r/</link>
       <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/blog/how-to-quickly-create-and-maintain-a-blog-with-r-/</guid>
+      <guid>/post/quickly-create-and-maintain-a-blog-with-r/</guid>
       <description>Maintaining a blog allows you to keep track of what you have done and thought. When you don’t remember how did you succeed to find a solution to a tricky problem, browsing your old posts might help you. As a scientist, it’s also the perfect tool to communicate your results to a wider audience. Moreover it allows you to showcase your work and possibly get hired for a future project. Nowadays many tools exist for you to publish on the web.</description>
     </item>
     

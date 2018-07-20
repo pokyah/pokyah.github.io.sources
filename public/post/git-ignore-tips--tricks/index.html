@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Thomas Goossens">
+<meta name="description" content="While working with geodata, you might often end up downloading large raw-data files likes .shp that you will need in your data process chain.
+As you don&rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitignore file. But what if those files were created before there were added to the .gitignore ?">
+
+<meta property="og:title" content="Removing large files from you git version control" />
+<meta property="og:description" content="While working with geodata, you might often end up downloading large raw-data files likes .shp that you will need in your data process chain.
+As you don&rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitignore file. But what if those files were created before there were added to the .gitignore ?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/git-ignore-tips--tricks/" />
+
+
+
+<meta property="article:published_time" content="2018-06-12T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-06-12T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+
+
+     Removing large files from you git version control 
+
+</title>
+<link rel="canonical" href="../../post/git-ignore-tips--tricks/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/tomorrow.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="../../css/reset.css?t=2018-07-20%2008%3a10%3a31.15138774%20%2b0000%20UTC%20m%3d%2b0.094543446">
+    <link rel="stylesheet" href="../../css/pygments.css?t=2018-07-20%2008%3a10%3a31.15138774%20%2b0000%20UTC%20m%3d%2b0.094543446">
+    <link rel="stylesheet" href="../../css/main.css?t=2018-07-20%2008%3a10%3a31.15138774%20%2b0000%20UTC%20m%3d%2b0.094543446">
+    
+        <link rel="stylesheet" href="../../css/override.css?t=2018-07-20%2008%3a10%3a31.15138774%20%2b0000%20UTC%20m%3d%2b0.094543446">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="../../img/leaf.ico"
+
+>
+
+
+
+
+
+
+
+
+</head>
+
+
+<body lang="">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+            <a href="../../"><img class="avatar" src="https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=50" rcset="https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=100 2x, https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=150 3x, https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=200 4x"></a>
+            
+            <a href="../../"><div class="name">Thomas Goossens</div></a>
+            
+              <h3 class="self-intro">Geographer/Data-analyst/Coder</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-post"><a href="../../post/"><span>blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="../../about/"><span>About</span></a></li>
+                    
+                        <li class="nav-code"><a href="../../code/"><span>Code</span></a></li>
+                    
+                        <li class="nav-blogroll"><a href="../../blogroll/"><span>Blogroll</span></a></li>
+                    
+                        <li class="nav-cv"><a href="../../cv/"><span>CV</span></a></li>
+                    
+                        <li class="nav-geo-tools"><a href="../../geo-tools/"><span>Geo-Tools</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+        
+            <a href="//stackoverflow.com/pokyah" target="_blank" rel="noopener"><img class="icon" src="../../img/stack-overflow.svg" alt="stackoverflow" /></a>          
+          
+        
+            <a href="//open.spotify.com/user/pokyah?si=P6TQ1j6tQRWJN1sqTKDAEA" target="_blank" rel="noopener"><img class="icon" src="../../img/spotify.svg" alt="spotify" /></a>
+          
+        
+            <a href="//github.com/pokyah" target="_blank" rel="noopener"><img class="icon" src="../../img/github.svg" alt="github" /></a>
+        
+
+        
+
+	
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/thomasgoossens1985" target="_blank" rel="noopener"><img class="icon" src="../../img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:hello.pokyah@gmail.com"><img class="icon" src="../../img/email.svg" alt="email" /></a>
+        
+
+        
+
+        
+        </div>
+    </div>
+</section>
+
+<section class="main">
+    <div class="container">
+        <div class="content">
+            <div class="page-heading">
+
+    Removing large files from you git version control
+
+</div>
+
+            <div class="markdown">
+                <p>While working with geodata, you might often end up downloading large raw-data files likes <code>.shp</code> that you will need in your data process chain.</p>
+
+<p>As you don&rsquo;t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your <code>.gitignore</code> file. But what if those files were created before there were added to the <code>.gitignore</code> ?</p>
+
+<p>This problem happened to me this morning. My usual R specific <code>.gitignore</code> file was not setup to ignore large <code>.shp</code> files and I inadvertently added my <code>.shp</code> files to git. After some local commits, I pushed my work to my online repo and as it took a longer time than usual to upload, I suspected that large files were polluting my git index.</p>
+
+<p>So the first thing I did, is to add a &ldquo;ignore the folder containing my geodata&rdquo; rule to my <code>.gitignore</code> file : <code>geodata/</code>. To learn more about ignore folders, check <a href="https://stackoverflow.com/questions/14700835/gitignore-a-folder-content?noredirect=1&amp;lq=1">this</a> SO thread.</p>
+
+<p>Then, because the ignoring rule was setup after those files were already added to my git index, I had to remove them from the cache :</p>
+
+<pre><code class="language-bash">$ git rm --cached &lt;FOLDER_NAME_OR_FILE_NAME&gt;
+</code></pre>
+
+<p>This command was found on <a href="https://stackoverflow.com/questions/2047465/how-can-i-delete-a-file-from-git-repo">this</a> SO thread</p>
+
+<p>If you want to inspect which files of your project are ignored by git, run this command from <a href="https://stackoverflow.com/questions/15931238/unable-to-remove-file-that-really-exists-fatal-pathspec-did-not-match-any#15931542">this</a> SO thread :</p>
+
+<pre><code class="language-bash">$ git ls-files --others -i --exclude-standard
+</code></pre>
+
+<p>Finally, after adding the rule, and removing the files from my repository, I pushed again and ended up with the exact same problem : large files were being uploaded to my online repo. How could this be possible ? The problem, as mentioned in <a href="https://stackoverflow.com/questions/19573031/cant-push-to-github-because-of-large-file-which-i-already-deleted#23657759">this</a> SO thread, was that the file was still in my history. So I simply executed this command to solve my problem :</p>
+
+<pre><code class="language-bash">$ git filter-branch --index-filter 'git rm -r --cached --ignore-unmatch &lt;file/dir&gt;' HEAD
+</code></pre>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123-45', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/go.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/r.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/bash.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+</body>
+</html>
+

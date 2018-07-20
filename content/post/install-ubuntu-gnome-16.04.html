@@ -1,0 +1,71 @@
+---
+title: 'Installing Ubuntu gnome 16.04 on a windows machine'
+author: Thomas Goossens
+date: '2018-02-28'
+draft: true
+categories:
+  - linux
+tags:
+  - how-to
+---
+
+
+
+<div id="download-the-.iso-file" class="section level2">
+<h2>Download the .iso file</h2>
+<p>Head at <a href="https://wiki.ubuntu.com/UbuntuGNOME/GetUbuntuGNOME" class="uri">https://wiki.ubuntu.com/UbuntuGNOME/GetUbuntuGNOME</a> and select the proper version (64bit)</p>
+</div>
+<div id="create-a-booting-usb-drive" class="section level2">
+<h2>Create a booting USB drive</h2>
+<ul>
+<li><p>If you have access to a Linux computer, launch <a href="https://en.wikipedia.org/wiki/Startup_Disk_Creator">startup disk creator</a></p></li>
+<li><p>Once launched, select the USB drive on which you want to install Linux and select the iso file you have just downloaded</p></li>
+<li><p>Click make Startup Disk</p></li>
+<li><p>Once you get notified that the installation is finished, eject the USB drive</p></li>
+</ul>
+</div>
+<div id="enter-the-bios-config-to-setup-usb-boot" class="section level2">
+<h2>Enter the BIOS config to setup USB boot</h2>
+<ul>
+<li><p>plug the USB drive in the computer</p></li>
+<li><p>boot your computer and press either f2, f10 or even enter to enter in the BIOS config</p></li>
+<li><p>once in the BIOS, find the menu called boot/startup or something similar. If you cannot change boot order from BIOS, restart and press another key like f12 to access the Boot menu configuration and choose boot from USB drive of flash drive disk</p></li>
+<li><p>The PC should now boot from the linux USB drive</p></li>
+</ul>
+</div>
+<div id="linux-configuration" class="section level2">
+<h2>Linux configuration</h2>
+<ul>
+<li>Choose install Linux</li>
+<li>Do not connect to internet -&gt; sometimes it crashes the installation</li>
+<li>Thick Install third-party software</li>
+<li>Do not thick Encrypt</li>
+<li>Thick choose LVM</li>
+<li>Choose something else to manually edit the partition table</li>
+</ul>
+<div id="partition-table-edition" class="section level3">
+<h3>partition table edition</h3>
+<ul>
+<li>delete all the paritions with the minus sign</li>
+<li>create a new <strong>swap</strong> partition of 4000MB using the plus sign and choose SWAP</li>
+<li>on free space add a new partition for the root : 80000MB thick logical and choose ext4 at mount point choose “/”. Do not change beginning of this space</li>
+<li>on free space add a new partition for the home : remaining space thick logical and choose ext4 at mount point choose “/home”. Do not change beginning of this space</li>
+<li>sometimes, you need to also create a boot partition (Ubuntu does it automatically)</li>
+<li>click install now and validate erase</li>
+</ul>
+</div>
+<div id="user-config" class="section level3">
+<h3>user config</h3>
+<ul>
+<li>choose your timezone</li>
+<li>edit your username and password</li>
+<li>click install and wait for the instalaltion to be completed.</li>
+</ul>
+</div>
+<div id="install-all-softwares" class="section level3">
+<h3>install all softwares</h3>
+<ul>
+<li>go to the <a href="https://framagit.org/agromet-apps/craw-ansible">craw-ansible rpo</a> and follow the instructions in the README.md file</li>
+</ul>
+</div>
+</div>

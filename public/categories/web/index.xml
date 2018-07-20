@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Web on Thomas Goossens</title>
+    <title>Web on Pokyah</title>
     <link>/categories/web/</link>
-    <description>Recent content in Web on Thomas Goossens</description>
+    <description>Recent content in Web on Pokyah</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 19 Jun 2018 00:00:00 +0000</lastBuildDate>
@@ -13,11 +13,21 @@
     
     <item>
       <title>Curated list of Open Source Geo Data and Tools</title>
-      <link>/geotools/</link>
+      <link>/geo-tools/</link>
       <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/geotools/</guid>
+      <guid>/geo-tools/</guid>
       <description>Online map editors &amp;amp; data visualisation tool  https://carto.com/ https://umap.openstreetmap.fr/fr/   Geocoding  https://wiki.openstreetmap.org/wiki/Nominatim   Basemap providers  https://openmaptiles.org http://maps.stamen.com https://www.mapbox.com/ https://openaerialmap.org/ https://www.mapillary.com/ http://maperitive.net/ https://www.maptiler.com https://openmaptiles.org   R packages  https://rstudio.github.io/leaflet/ https://bhaskarvk.github.io/leaflet.extras/ https://cran.r-project.org/web/packages/raster/index.html https://r-spatial.github.io/sf/ https://r-spatial.github.io/lwgeom/ https://cran.r-project.org/web/packages/sp/index.html https://github.com/hadley/rvest http://ropensci.github.io/RSelenium/   Simple Online tools  https://epsg.io http://geojson.io/   Design, fonts and icons  http://colorbrewer2.org https://materialdesignicons.com/ https://fontawesome.com/   datasets  http://geopole.org/ https://gadm.org/ http://overpass-turbo.eu/ http://srtm.csi.cgiar.org/ https://photovoltaic-software.com/solar-radiation-database.php http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/ https://www.gpsies.com/#10_50.2944_5.0978_hikebike https://openweathermap.</description>
+    </item>
+    
+    <item>
+      <title>Configurer un accès SSH à un hébergement mutualisé</title>
+      <link>/post/configurer-un-acces-ssh-a-un-hebergement-mutualise/</link>
+      <pubDate>Sun, 30 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/configurer-un-acces-ssh-a-un-hebergement-mutualise/</guid>
+      <description>Disposer d’un d’accès SSH vous permet de réellement avoir la main sur votre hébergement mutualisé (qui n’est rien d’autre qu’un accès limité à certains dossiers et programmes stockés sur un serveur tournant généralement sous Linux).
+Grâce à votre accès SSH, vous pourrez notamment y exécuter des commandes unix et git directement depuis le terminal de votre ordinateur personnel. C’est l’outil idéal pour la maintenance de votre site WordPress par exemple !</description>
     </item>
     
   </channel>

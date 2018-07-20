@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Theory on Pokyah</title>
+    <link>/tags/theory/</link>
+    <description>Recent content in Theory on Pokyah</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 24 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/theory/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A review of weather spatialization projects</title>
+      <link>/post/spatialization-review/</link>
+      <pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/spatialization-review/</guid>
+      <description>Introduction and context The aim of the Agromet project is to provide a near real-time hourly gridded datasets of weather parameters at the resolution of 1 km² for the whole region of Wallonia characterized by a quality indicator.
+The Agromet project is largely inspired by what the ZEPP has developed in the context of their late blight warning services (see academic paper).
+Before starting the development of our own service, we decided to submit a survey to our end users and to perform a preliminary benchmark of weather data interpolation facilities developed by other institutions.</description>
+    </item>
+    
+    <item>
+      <title>Spatial interpolation using multiple linear regression : a beginners&#39;s overview (R implementation)</title>
+      <link>/post/spatial-interpolation-using-multiple-linear-regression-a-beginners-overview-r-implementation/</link>
+      <pubDate>Tue, 03 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/spatial-interpolation-using-multiple-linear-regression-a-beginners-overview-r-implementation/</guid>
+      <description>The AGROMET Project lead by the Walloon agricultural research center (CRA-W) requires to generate spatialized weather dataset. In this context, multiple spatialization methods will be tested and evaluated among which the multiple regression technique. This post provides an introductory material to the multiple regression modeling technique applied to spatial data. It is not a tutorial and it is rather aimed at paving the way for beginners who want to take their first steps into in the field of applied geostatistics (with R) by defining key concepts and providing a lot of external resources worth reading !</description>
+    </item>
+    
+  </channel>
+</rss>

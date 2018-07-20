@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blockchain on Thomas Goossens</title>
+    <title>Blockchain on Pokyah</title>
     <link>/tags/blockchain/</link>
-    <description>Recent content in Blockchain on Thomas Goossens</description>
+    <description>Recent content in Blockchain on Pokyah</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Fri, 22 Jun 2018 00:00:00 +0000</lastBuildDate>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Blockchain for research - curated list</title>
-      <link>/blog/blockchain-for-research---curated-list/</link>
+      <link>/post/blockchain_for_research_curated_list/</link>
       <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/blog/blockchain-for-research---curated-list/</guid>
+      <guid>/post/blockchain_for_research_curated_list/</guid>
       <description>Could blockchain :
  help science reproductibility ?
  enhance research transparency ?

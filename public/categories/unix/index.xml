@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unix on Pokyah</title>
+    <link>/categories/unix/</link>
+    <description>Recent content in Unix on Pokyah</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 30 Apr 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/unix/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Configurer un accès SSH à un hébergement mutualisé</title>
+      <link>/post/configurer-un-acces-ssh-a-un-hebergement-mutualise/</link>
+      <pubDate>Sun, 30 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/configurer-un-acces-ssh-a-un-hebergement-mutualise/</guid>
+      <description>Disposer d’un d’accès SSH vous permet de réellement avoir la main sur votre hébergement mutualisé (qui n’est rien d’autre qu’un accès limité à certains dossiers et programmes stockés sur un serveur tournant généralement sous Linux).
+Grâce à votre accès SSH, vous pourrez notamment y exécuter des commandes unix et git directement depuis le terminal de votre ordinateur personnel. C’est l’outil idéal pour la maintenance de votre site WordPress par exemple !</description>
+    </item>
+    
+  </channel>
+</rss>

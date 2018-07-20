@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statistics on Pokyah</title>
+    <link>/categories/statistics/</link>
+    <description>Recent content in Statistics on Pokyah</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/statistics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Producing and mapping gridded datasets with uncertainty using R</title>
+      <link>/post/gridded-uncertainty/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/gridded-uncertainty/</guid>
+      <description>In the context of the Agromet project, we need to produce gridded maps of temperature using data acquired by a network of 30 automatic weather stations (AWS) spatially distributed in Wallonia. To each cell, an indicator of uncertainty (i.e. prediction error) must also be attached. Providing this uncertainty is of major importance because errors are not likely to be spatially homogeneous but will rather depend of the spatial arrangement of available points used to compute the model.</description>
+    </item>
+    
+    <item>
+      <title>Spatial interpolation using multiple linear regression : a beginners&#39;s overview (R implementation)</title>
+      <link>/post/spatial-interpolation-using-multiple-linear-regression-a-beginners-overview-r-implementation/</link>
+      <pubDate>Tue, 03 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/spatial-interpolation-using-multiple-linear-regression-a-beginners-overview-r-implementation/</guid>
+      <description>The AGROMET Project lead by the Walloon agricultural research center (CRA-W) requires to generate spatialized weather dataset. In this context, multiple spatialization methods will be tested and evaluated among which the multiple regression technique. This post provides an introductory material to the multiple regression modeling technique applied to spatial data. It is not a tutorial and it is rather aimed at paving the way for beginners who want to take their first steps into in the field of applied geostatistics (with R) by defining key concepts and providing a lot of external resources worth reading !</description>
+    </item>
+    
+    <item>
+      <title>Assessing the agreement level between two quantitative methods of measurements : understanding the Bland Altman analysis</title>
+      <link>/post/assessing-the-agreement-between-two-quantitative-methods-of-measurements-understanding-the-bland-altman-analysis/</link>
+      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/assessing-the-agreement-between-two-quantitative-methods-of-measurements-understanding-the-bland-altman-analysis/</guid>
+      <description>Attempting to statistically assess the agreement level between two quantitative methods of measurements requires a validation tool.
+A widely adopted tool is the correlation study computed with one method as predictor and the other as response variable (e.g. see this publication that compares temperature measurements obtained by two different kind of weather stations at the exact same location).
+However, as described by Giavarina (2015), correlation study should not be used to asses the comparatibility or agreement between two instruments (because it studies the relation between one variable and the other and not the differences).</description>
+    </item>
+    
+  </channel>
+</rss>

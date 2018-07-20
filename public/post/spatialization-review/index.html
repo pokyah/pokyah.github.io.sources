@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Thomas Goossens">
+<meta name="description" content="Introduction and context The aim of the Agromet project is to provide a near real-time hourly gridded datasets of weather parameters at the resolution of 1 km² for the whole region of Wallonia characterized by a quality indicator.
+The Agromet project is largely inspired by what the ZEPP has developed in the context of their late blight warning services (see academic paper).
+Before starting the development of our own service, we decided to submit a survey to our end users and to perform a preliminary benchmark of weather data interpolation facilities developed by other institutions.">
+
+<meta property="og:title" content="A review of weather spatialization projects" />
+<meta property="og:description" content="Introduction and context The aim of the Agromet project is to provide a near real-time hourly gridded datasets of weather parameters at the resolution of 1 km² for the whole region of Wallonia characterized by a quality indicator.
+The Agromet project is largely inspired by what the ZEPP has developed in the context of their late blight warning services (see academic paper).
+Before starting the development of our own service, we decided to submit a survey to our end users and to perform a preliminary benchmark of weather data interpolation facilities developed by other institutions." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/spatialization-review/" />
+
+
+
+<meta property="article:published_time" content="2018-05-24T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-05-24T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+
+
+     A review of weather spatialization projects 
+
+</title>
+<link rel="canonical" href="../../post/spatialization-review/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/tomorrow.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="../../css/reset.css?t=2018-07-20%2008%3a29%3a29.927986439%20%2b0000%20UTC%20m%3d%2b0.076594806">
+    <link rel="stylesheet" href="../../css/pygments.css?t=2018-07-20%2008%3a29%3a29.927986439%20%2b0000%20UTC%20m%3d%2b0.076594806">
+    <link rel="stylesheet" href="../../css/main.css?t=2018-07-20%2008%3a29%3a29.927986439%20%2b0000%20UTC%20m%3d%2b0.076594806">
+    
+        <link rel="stylesheet" href="../../css/override.css?t=2018-07-20%2008%3a29%3a29.927986439%20%2b0000%20UTC%20m%3d%2b0.076594806">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="../../img/leaf.ico"
+
+>
+
+
+
+
+
+
+
+
+</head>
+
+
+<body lang="">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+            <a href="../../"><img class="avatar" src="https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=50" rcset="https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=100 2x, https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=150 3x, https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=200 4x"></a>
+            
+            <a href="../../"><div class="name">Thomas Goossens</div></a>
+            
+              <h3 class="self-intro">Geographer/Data-analyst/Coder</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-post"><a href="../../post/"><span>blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="../../about/"><span>About</span></a></li>
+                    
+                        <li class="nav-code"><a href="../../code/"><span>Code</span></a></li>
+                    
+                        <li class="nav-blogroll"><a href="../../blogroll/"><span>Blogroll</span></a></li>
+                    
+                        <li class="nav-cv"><a href="../../cv/"><span>CV</span></a></li>
+                    
+                        <li class="nav-geo-tools"><a href="../../geo-tools/"><span>Geo-Tools</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+        
+            <a href="//stackoverflow.com/pokyah" target="_blank" rel="noopener"><img class="icon" src="../../img/stack-overflow.svg" alt="stackoverflow" /></a>          
+          
+        
+            <a href="//open.spotify.com/user/pokyah?si=P6TQ1j6tQRWJN1sqTKDAEA" target="_blank" rel="noopener"><img class="icon" src="../../img/spotify.svg" alt="spotify" /></a>
+          
+        
+            <a href="//github.com/pokyah" target="_blank" rel="noopener"><img class="icon" src="../../img/github.svg" alt="github" /></a>
+        
+
+        
+
+	
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/thomasgoossens1985" target="_blank" rel="noopener"><img class="icon" src="../../img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:hello.pokyah@gmail.com"><img class="icon" src="../../img/email.svg" alt="email" /></a>
+        
+
+        
+
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    A review of weather spatialization projects
+
+</div>
+
+                    <div class="initials"><a href="../../">ad</a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Thu May 24 2018 00:00:00 UTC'>May 24, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>11 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <div id="introduction-and-context" class="section level1">
+<h1>Introduction and context</h1>
+<p>The aim of the Agromet project is to provide a near real-time hourly gridded datasets of weather parameters at the resolution of 1 km² for the whole region of Wallonia characterized by a quality indicator.</p>
+<p>The Agromet project is largely inspired by what the <a href="http://www.zepp.info/">ZEPP</a> has developed in the context of their late blight warning services (see <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/j.1365-2338.2007.01134.x">academic paper</a>).</p>
+<p>Before starting the development of our own service, we decided to submit a survey to our end users and to perform a preliminary benchmark of weather data interpolation facilities developed by other institutions.</p>
+<p>This document compiles the useful information we have gathered during our benchmarking and synthetise the main ideas to keep in mind while building our platform.</p>
+</div>
+<div id="literature-review" class="section level1">
+<h1>Literature review</h1>
+<p>An extensive literature review of weather spatialization techniques has been performed.</p>
+<div id="recommanded-academic-papers" class="section level2">
+<h2>Recommanded academic papers</h2>
+<p>Here is a short selection of the most useful papers regarding the comprehension of meteorological data spatialization for our walloon agricultural context :</p>
+<ul>
+<li><a href="https://www.snap.uaf.edu/sites/default/files/files/Interpolation_methods_for_climate_data.pdf">Interpolation methods for climate data literature review - <strong>Sluiters</strong></a></li>
+<li><a href="https://onlinelibrary.wiley.com/doi/full/10.1111/j.1365-2338.2007.01134.x">Use of geographic information systems in warning services for late blight* - <strong>Zeuner</strong></a></li>
+<li><a href="https://www.researchgate.net/publication/221916045_Decision_Support_Systems_in_Agriculture_Administration_of_Meteorological_Data_Use_of_Geographic_Information_SystemsGIS_and_Validation_Methods_in_Crop_Protection_Warning_Service">Decision Support Systems in Agriculture: Administration of Meteorological Data, Use of Geographic Information Systems(GIS) and Validation Methods in Crop Protection Warning Service - <strong>Racca</strong></a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S1352231008001829">Spatial interpolation of air pollution measurements using CORINE land cover data - <strong>Janssen</strong></a></li>
+<li><a href="https://www.researchgate.net/publication/6720140_Spatial_interpolation_of_ambient_ozone_concentrations_from_sparse_monitoring_points_in_Belgium">Spatial interpolation of ambient ozone concentrations from sparse monitoring points in Belgium - <strong>Hooyberghs</strong></a></li>
+<li><a href="https://www.researchgate.net/publication/281538637_The_Developments_in_Spatialization_of_Meteorological_and_Climatological_Elements">The developments in spatialization of meteorological and climatological elements - <strong>Tveito</strong></a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0168192304001443">Solar irradiance-corrected spatial interpolation of hourly temperature in complex terrain - <strong>Journée</strong></a></li>
+</ul>
+<p>In the coming months we plan to organize and share our full bibliography.</p>
+</div>
+<div id="reference-books" class="section level2">
+<h2>Reference books</h2>
+<p>These books focus on the theory relative to the general principles of spatialization techniques :</p>
+<ul>
+<li><a href="http://www.muthar-alomar.com/wp-content/uploads/2013/01/Spatial-Interpolation_for-Climate.pdf">Spatial Interpolation for Climate Data - The Use of GIS in Climatology and Meteorology - <strong>Dyras</strong></a><br />
+</li>
+<li><a href="http://www.itc.nl/library/papers_2009/general/PrinciplesGIS.pdf">Principles of Geographic Information Systems - An introductory textbook - <strong>Huisman</strong></a><br />
+</li>
+<li><a href="http://www.downloadreferencebook.com/download/principles-of-geographical-information-systems">Principles Of Geographical Information Systems - <strong>Burrough</strong></a></li>
+<li><a href="http://xa.yimg.com/kq/groups/17314041/411653630/name/ESRI%20-%20Using%20ArcGIS%20Geostatistical%20Analyst.pdf">Using ArcGIS Geostatistical Analyst - <strong>Johnston</strong></a></li>
+<li><a href="http://corpdata.s3.amazonaws.com/68229/Rec2008_023.pdf">A review of spatial interpolation methods for environmental scientists - <strong>Li</strong></a><br />
+</li>
+<li><a href="http://spatial-analyst.net/book/system/files/Hengl_2009_GEOSTATe2c0w.pdf">A Practical Guide to Geostatistical Mapping of Environmental Variables - <strong>Hengl</strong></a></li>
+</ul>
+</div>
+<div id="european-experts-in-weather-data-spatialization" class="section level2">
+<h2>European experts in weather data spatialization</h2>
+<p>Here is a list of european experts in terms of weather spatialization worth following.</p>
+<table>
+<colgroup>
+<col width="4%" />
+<col width="10%" />
+<col width="21%" />
+<col width="63%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Country</th>
+<th>Author</th>
+<th>Institution</th>
+<th>Publication</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Allemagne</td>
+<td><a href="https://www.researchgate.net/researcher/2067858955_T_Zeuner" title="T. Zeuner">T. Zeuner</a></td>
+<td>ZEPP German Crop Protection Services</td>
+<td><a href="http://onlinelibrary.wiley.com/doi/10.1111/j.1365-2338.2007.01134.x/abstract" title="Use of geographic information systems in warning services for late blight">Use of geographic information systems in warning services for late blight</a></td>
+</tr>
+<tr class="even">
+<td>Serbie</td>
+<td><a href="https://www.researchgate.net/profile/Milan_Kilibarda" title="Milan Kilibarda">Milan Kilibarda</a></td>
+<td>University of Belgrade</td>
+<td><a href="http://onlinelibrary.wiley.com/doi/10.1002/2013JD020803/full" title="Spatio-temporal interpolation of daily temperatures for global land areas at 1 km resolution">Spatio-temporal interpolation of daily temperatures for global land areas at 1 km resolution</a></td>
+</tr>
+<tr class="odd">
+<td>Pays-bas</td>
+<td><a href="https://www.researchgate.net/profile/Raymond_Sluiter" title="Raymond Sluiter">Raymond Sluiter</a></td>
+<td>KNMI</td>
+<td><a href="http://bibliotheek.knmi.nl/knmipubIR/IR2009-04.pdf" title="Interpolation methods for climate data - literature Review">Interpolation methods for climate data - literature Review</a></td>
+</tr>
+<tr class="even">
+<td>Pays-bas</td>
+<td><a href="https://www.researchgate.net/profile/Tomislav_Hengl/info" title="Tomislav Hengl">Tomislav Hengl</a></td>
+<td>ISRIC World Soil Information Institute</td>
+<td><a href="http://spatial-analyst.net/" title="R-package Spatial Analyst">R-package Spatial Analyst</a></td>
+</tr>
+<tr class="odd">
+<td>Norwegian</td>
+<td><a href="https://www.researchgate.net/profile/Jean_Marie_Lepioufle2" title="Jean-Marie Lepioufle">Jean-Marie Lepioufle</a></td>
+<td>Norwegian Meteorological Institute</td>
+<td><a href="https://www.researchgate.net/profile/Cristian_Lussana/publication/273490969_Recent_developments_in_spatial_interpolation_of_precipitation_and_temperature_at_MET_Norway/links/5795e56b08ae33e89facf86c/Recent-developments-in-spatial-interpolation-of-precipitation-and-temperature-at-MET-Norway.pdf?origin=publication_detail&amp;ev=pub_int_prw_xdl&amp;msrp=a_HsvemfIRpbbqok3OlrTe8W9s_6vi8bVNvdjephGEA2_k9Suwd0IUkjixOkL5r5jXh_oXKkzI389swr4tejguYvbA-0zorY72HaBur5WoU.5fBXmB2tkhX9yQfUWqB0dmFQjoHHkZWdTyFSeW_aeJilRXS_mvei-gj8CwU4R35LAY5De9xxW_E24VSGd3Z_GA.SH190BKK4lOgQzKG58PawvoInnZohck8jBvlJZjWcz-B3kVG2Ve1myuXcYtnLVMrsPNHqR9BrT8jAZuxD9oeKw.jn9JyplYcwA7xW0lx6Me8ZFBjvOCKR-cXndTvljnxwFnf9BRoJs1xBIjii81yczJmd5mdN501yE-GKYD5mxoNw" title="Recent developments in spatial interpolation of precipitation and temperature at MET Norway">Recent developments in spatial interpolation of precipitation and temperature at MET Norway</a></td>
+</tr>
+<tr class="even">
+<td>Grèce</td>
+<td><a href="https://www.researchgate.net/profile/Kostas_Philippopoulos" title="Kostas philippopoulos">Kostas philippopoulos</a></td>
+<td>University of Reading</td>
+<td><a href="https://www.researchgate.net/publication/269279018_Artificial_Neural_Network_Modeling_of_Relative_Humidity_and_Air_Temperature_Spatial_and_Temporal_Distributions_Over_Complex_Terrains" title="Artificial Neural Network Modeling of Relative Humidity and Air Temperature Spatial and Temporal Distributions Over Complex Terrains">Artificial Neural Network Modeling of Relative Humidity and Air Temperature Spatial and Temporal Distributions Over Complex Terrains</a></td>
+</tr>
+<tr class="odd">
+<td>Portugual</td>
+<td><a href="https://www.researchgate.net/profile/Alvaro_Silva13">Silva Alvaro</a></td>
+<td>Instituto Português do Mar e da Atmosfera</td>
+<td><a href="https://www.researchgate.net/publication/276058549_Neural_Networks_application_to_spatial_interpolation_of_climate_variables" title="Neural Networks application to spatial interpolation of climate variables">Neural Networks application to spatial interpolation of climate variables</a></td>
+</tr>
+<tr class="even">
+<td>Slovénie</td>
+<td><a href="https://www.researchgate.net/profile/Luka_Honzak" title="Luka honzak">Luka honzak</a></td>
+<td>Bo Mo LTD</td>
+<td><a href="http://www.bo-mo.si/fispace/" title="WEATHER SCENARIO APP">WEATHER SCENARIO APP</a></td>
+</tr>
+<tr class="odd">
+<td>France</td>
+<td><a href="https://www.researchgate.net/profile/Mehdi_Sine" title="Mehdi Sine">Mehdi Sine</a></td>
+<td>Vigicultures par Arvalis - institut du Végétal</td>
+<td><a href="https://www.researchgate.net/publication/230838280_VIGICULTURES_-_An_early_warning_system_for_crop_pest_management" title="VIGICULTURES – An early warning system for crop pest management">VIGICULTURES – An early warning system for crop pest management</a></td>
+</tr>
+<tr class="even">
+<td>Belgique</td>
+<td><a href="https://www.researchgate.net/profile/Aurore_Degre" title="Aurore Degré">Aurore Degré</a></td>
+<td>Faculté Gemboux</td>
+<td><a href="http://popups.ulg.ac.be/1780-4507/index.php?id=10003" title="Different methods for spatial interpolation of rainfall data for operational hydrology and hydrological modeling at watershed scale: a review">Different methods for spatial interpolation of rainfall data for operational hydrology and hydrological modeling at watershed scale: a review</a></td>
+</tr>
+<tr class="odd">
+<td>Pologne</td>
+<td><a href="https://www.researchgate.net/profile/Maciej_Kryza" title="Maciej Kryza">Maciej Kryza</a></td>
+<td>university de Wroclaw</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="key-learnings-from-the-review" class="section level2">
+<h2>Key learnings from the review</h2>
+<p>The literature reveals that a lot of spatial interpolation methods have been developed the last decades. These techniques have been borrowed from other fields and transposed (oil prospection) in the field of meteorology where the comprehension and modelisation of the processes is much more technical due to the complexity and the spatial heterogeneity of weather events. In such, there is not an out-of-the box recipe to apply to each weather parameter.</p>
+<p>The choice of the right interpolation method depends of many factors such as the spatial distribution of the weather station network, the topography, the number of stations, local gradients such as global circulation effects, etc. Moreover, more attention has been ported on the spatialization of <strong>climate</strong> data rather than <strong>hourly meteorological</strong> data which is our concern. Therefore, an important phase of testing, benchmarking and tweaking of the processes described here above is required in order to efficiently produce useful and sensible gridded outputs that could be used profitably by agronomical models.</p>
+<p>These phase will require a deep knowledge of the principles of these geostatistical spatialization method combined with the development of programming skills required to explore the data and conduct practical analysis. The exploratory phases needed for the development of an adjusted data analysis technique able to deal with data scarcity should be performed in a way such as the the most simple solutions are evaluated first. Depending of the results of the evaluation of the investigated technique, we will decide if further investigations are required. If no significant extra-value is added by are more complex process, the later will not be retained.</p>
+</div>
+</div>
+<div id="data-and-automatic-weather-stations-aws-networks-knowledge" class="section level1">
+<h1>Data and Automatic Weather Stations (AWS) networks knowledge</h1>
+<p>A specific attention will be ported on the analysis of the quality of the data produced by each of our stations. We will need to carry an analysis in order to detect eventual structural or local effects such as overheating in temperature shelters.</p>
+<p>It is important to get a deep insight and comprehensive overview of our weather station network before interpolating its data in order to avoid the integration of non-desired local or structural effects during the interpolation process. Local temperature effects will be detectable by pointing out abnormally high our low values appearing from long term analysis of each of the stations from our network.</p>
+<p>Again, a good knowledge of the station network (eg : situation and direct environment of each of the stations) is required. To remove local effects from the interpolation process, each station could first be weighted according to a quality parameter characterized by the local situation of the considered station. Time series analysis ( <a href="https://pokyah.github.io/pokyah-maps/temperature/">example map</a> ) will help us for this purpose.</p>
+<p>The Agromet project will spatialize weather data gathered both by the <a href="https://www.pameseb.be/">Pameseb</a> network own by the <a href="http://www.cra.wallonie.be/fr">CRA-W</a> and stations owned by the national weather office <a href="https://www.meteo.be">RMI</a>. Before integrating two different networks in the spatilization process, we need to assess their intercompatibilty. To address this, both our team and the RMI works on an intercomparison of the networks performed by the mean of a location (Humain - Belgium) equiped with 2 stations belongings to the 2 networks. The first results of this comparative analysis are available on <a href="https://pokyah.github.io/AWS-Humain-comparison/">this repository</a>.</p>
+<p>The first results suggest that for the temperature, we will need to apply a correction model to the Pameseb measurments recorded around the daily maximal temperature hours.</p>
+</div>
+<div id="understanding-our-end-users-needs" class="section level1">
+<h1>Understanding our end-users needs</h1>
+<p>A web-survey has been submitted to our potential end-users. Its purpose was to insure that the platform integrates the real needs of the future end-users (walloon crop warning system managers and academic research). The results of this survey also serve as a development priority list. The results are available in this <a href="../assets/survey/report_end-users-survey.pdf">report</a>.</p>
+</div>
+<div id="audit-of-an-external-spatialized-weather-data-provider" class="section level1">
+<h1>Audit of an external spatialized weather data provider</h1>
+<p>The Weather Company (owned by IBM) provides hourly gridded dataset at the resolution of 1 km². Using their solution would allow us to rapidly provide a functional platform. However, the inherent costs of the use of a third party provider and the lack of transparency regarding how the spatialization process works and performs do not allow us to choose this solution.</p>
+<p>As a research institution, it is also our role to develop expertise in various fields like weather data spatialization and to make this expertise valuable to our clients (the walloon farmers). Its is also worth to keep in mind that developping our own platform is an excellent way to value the Pameseb AWS network.</p>
+<p>For the complete solution proposed by IBM, please refer to the <a href="./spatialization-review-files/IBM/">IBM supplementary material</a></p>
+</div>
+<div id="exchanges-with-our-partners" class="section level1">
+<h1>Exchanges with our partners</h1>
+<p>Here we present the key learnings from the experience feedbacks of the various institutions we have met during our benchmarking campain.</p>
+<div id="knmi---netherlands" class="section level2">
+<h2>KNMI - Netherlands</h2>
+<p>The KNMI (KONINKELIJK NATIONAAL METEOROLOGISCH INSTITUUT) has developed what they call <a href="../assets/DailyMeteo2014_Sluiter_20140627_002s.pdf">An operational R-based interpolation facility for climate and meteo data</a>. In october 2017 we have organized a first knowledge exchange workshop with this partner.</p>
+<p>They have found R-software to be the most appropriate tool for weather data spatialization. This opinion is also shared by Meteo Switzerland (Christopher Frei), Meteo Norway (Ole Einar Tveito) and the RMI (Michel Journée).</p>
+<p>Raymond Sluiter has published the review paper <a href="https://www.researchgate.net/publication/242783501_Interpolation_methods_for_climate_data">Interpolation methods for climate data</a> into which he details the various deterministic and stochastic spatilization methods available. This review is an excellent starting point for who wants to start in the field of weather data spatialization.</p>
+<p>Their developments were conducted in the context of the creation of a new climate atlas rather than with agronomical purposes. According to their feedback, there is no out-of-the box solution. We must find the solution best suited to our purpose by proceeding from the simplest solution and progressively add more complexity while asserting the level of accuracy brougth by this additional complexity. A good balance must be found between complexity and operability since we aim to build an operational suite.</p>
+<p>Their presentations are available in the <a href="../assets/KNMI/">KNMI supplementary materials</a></p>
+</div>
+<div id="arvalis---france" class="section level2">
+<h2>Arvalis - France</h2>
+<p>Arvalis (Institut du Végétal) has also conducted weather data spatialization research in an agricultural context (crop warning systems). We have organized a knowledge exchange workshop in January 2018. Like the KNMI they have tested various methods with an increasing level of complexity. Our contact Olivier Deudon also uses R-software to conduct his researches.</p>
+<p>The key points of their research are detailed in the <a href="../assets/arvalis/">arvalis supplementary materials</a>. Here we present a brief summary of their methodology and main findings. The aim of their work was to test various methods of weather data spatial interpolation and find the most efficient ones (in terms of accuracy) for various parameters (temperature, relative humidity, rainfall) in the context of their specific AWS network (&gt; 400 stations in France).</p>
+<p>Regarding temperature :</p>
+<ul>
+<li>tested methods : Inverse distance, multiple regressions, various kriging methods</li>
+<li>validation method : splitting the dataset in training set (355 stations) and test set (100 stations)</li>
+<li>model evaluation criterion : RMSE</li>
+<li>method with the lowest RMSE for T°: universal kriging</li>
+<li>used covariates : elevation, surface solar irradiance</li>
+</ul>
+</div>
+<div id="zepp---germany" class="section level2">
+<h2>ZEPP - Germany</h2>
+<p>As mentioned above, our project is mainly inspired from the ZEPP (ZENTRALSTELLE DER LÄNDER FÜR EDV-GESTÜTZTE ENTSCHEIDUNGSHILFEN UND PROGRAMME IM PFLANZENSCHUTZ - <em>Central Institute for Decision Support Systems in Crop Protection</em>) work. Here we present the key points of our November 2017 workshop.</p>
+<p>It is essential to keep in mind the agricultural scope of the platform. The objective is make the best predictions <strong>in cultural area</strong>. It is not a problem if the quality of the prediction is not as high in area were not crops are grown (e.g. Hautes-Fagnes).</p>
+<p>What matters most are the quality of the decision support tools outputs based on our weather data rather than the weather data itself. Their comparison of various spatialization technique revealed that for their needs, the most efficient technique is the multiple regression based on elevation, latitude and longitude. This comparison is extensively discussed in the Zeuner PhD Thesis present in the <a href="../assets/ZEPP/">ZEPP supplementary material</a></p>
+<p>Here we present a brief summary of their method and main findings. The aim of their work was to provide an operationnal platform able to supply crop alert system models with hourly gridded datasets of temperature and relative humidity accross germany that present the highest accuracy.</p>
+<p>Regarding temperature :</p>
+<ul>
+<li>tested methods : krigin, IDW, spline, multiple regression</li>
+<li>validation method : 570 stations</li>
+<li>model evaluation criterion: difference hourly interpolated - measured at the location of the stations (+ boxplots)</li>
+<li>used covaraites : elevation</li>
+<li>choosen method : multiple regression</li>
+</ul>
+</div>
+<div id="rmi---royal-meteorological-institute---belgium" class="section level2">
+<h2>RMI - Royal Meteorological Institute - Belgium</h2>
+<p>The RMI is our primary partner in terms of weather data spatialization with who we work in close collaboration. As the KNMI, they have an advanced expertise in terms of spatialization of weather data using R software.</p>
+<p><a href="../assets/IRM/">RMI supplementary material</a></p>
+</div>
+</div>
+<div id="choosing-the-right-software" class="section level1">
+<h1>Choosing the right software</h1>
+<p>Among all the available programming languages, we choose <a href="https://www.r-project.org/" title="R">R</a> : - Fully <a href="https://www.wired.com/2013/09/why-free-software-is-more-important-now-than-ever-before/">open-source and free (like beer and freedom)</a> - large user base and <a href="https://thenextweb.com/offers/2018/03/28/tech-giants-are-harnessing-r-programming-learn-it-and-get-hired-with-this-complete-training-bundle/">more and more used</a> - R is developed by statisticians for statisticians - R is already used by other institutions implicated in weather data spatialization and internally at CRA-W - Many libraries (packages) cover our needs</p>
+<table>
+<colgroup>
+<col width="32%" />
+<col width="67%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>package</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://cran.r-project.org/web/packages/gstat/index.html" title="gstat">gstat</a></td>
+<td>Spatial and Spatio-Temporal Geostatistical Modelling, Prediction and Simulation</td>
+</tr>
+<tr class="even">
+<td><a href="https://cran.r-project.org/web/packages/meteo/index.html" title="meteo">meteo</a></td>
+<td>Spatio-Temporal Analysis and Mapping of Meteorological Observations</td>
+</tr>
+<tr class="odd">
+<td><a href="https://cran.rstudio.com/web/packages/sf/index.html" title="sf">sf</a></td>
+<td>Simple Features for R</td>
+</tr>
+<tr class="even">
+<td><a href="https://cran.r-project.org/web/packages/raster/index.html" title="raster">raster</a></td>
+<td>Geographic Data Analysis and Modeling</td>
+</tr>
+<tr class="odd">
+<td><a href="https://cran.r-project.org/web/packages/automap/index.html" title="automap">automap</a></td>
+<td>Automatic interpolation package</td>
+</tr>
+<tr class="even">
+<td><a href="https://cran.r-project.org/web/packages/dplyr/index.html" title="dplyr">dplyr</a></td>
+<td>A Grammar of Data Manipulation</td>
+</tr>
+<tr class="odd">
+<td><a href="https://cran.r-project.org/web/packages/rgdal/index.html" title="rgdal">rgdal</a></td>
+<td>Bindings for the Geospatial Data Abstraction Library</td>
+</tr>
+<tr class="even">
+<td><a href="https://cran.r-project.org/web/packages/ggplot2/index.html" title="ggplot2">ggplot2</a></td>
+<td>Create Elegant Data Visualisations Using the Grammar of Graphics</td>
+</tr>
+<tr class="odd">
+<td><a href="https://cran.r-project.org/web/packages/shiny/index.html" title="shiny">shiny</a></td>
+<td>Web Application Framework for R</td>
+</tr>
+<tr class="even">
+<td><a href="https://cran.r-project.org/web/packages/geoR/index.html" title="geoR">geoR</a></td>
+<td>Analysis of Geostatistical Data</td>
+</tr>
+<tr class="odd">
+<td><a href="https://cran.r-project.org/web/packages/validate/index.html" title="validate">validate</a></td>
+<td>Data Validation Infrastructure</td>
+</tr>
+<tr class="even">
+<td><a href="https://cran.r-project.org/web/packages/mlr/index.html" title="mlr">mlr</a></td>
+<td>Machine Learning in R</td>
+</tr>
+</tbody>
+</table>
+<p>Here is an <a href="https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis#gs.9_Pvc14">infography</a> that compares R to python.</p>
+</div>
+<div id="extra-investigations" class="section level1">
+<h1>Extra investigations</h1>
+<p>If extra time remains, we could investigate to incorporate crowdsourced datasets. At the present time, both the KNMI and the RMI work on such a process in the context of the <a href="http://wow.metoffice.gov.uk">WOW experiment</a> initiated by the UK metoffice.</p>
+</div>
+<div id="data-dissemination-policy" class="section level1">
+<h1>Data dissemination policy</h1>
+<p>A particular attention will be given to make our data <a href="https://inspire.ec.europa.eu/">INSPIRE</a> compliant and their origin will be described using the <a href="https://www.w3.org/TR/prov-dm/">W3C recommandations</a>.</p>
+<p>As developers we push for the adoption of an open-data policy as the <a href="https://cdla.io/">Community Data License Agreement</a>. However, the final decision regarding the choice of the policy will be taken at higher levels.</p>
+<p>Here is a selection of publications in agreement with an open-data approach :</p>
+<ul>
+<li><a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002598">open-source software in sciences paper</a></li>
+<li><a href="http://data.knmi.nl/services">KNMI data policy</a></li>
+<li><a href="https://ec.europa.eu/programmes/horizon2020/en/h2020-section/open-science-open-access">Eu general principle for open access to scientific publications in Horizon 2020</a></li>
+<li><a href="http://be.brussels/files-fr/a-propos-de-la-region/mrbc/lopen-data-et-les-administrations-en-rbc">Brussels administrations and open data</a></li>
+<li><a href="http://data.gov.be/fr/news/strategie-federale-open-data">Belgian federal state and open data</a></li>
+<li><a href="https://www.digitalwallonia.be/open-big-data-as-a-service/">Wallonia and open data</a></li>
+<li><a href="https://cointelegraph.com/news/the-open-source-world-is-worth-billions">The value of open source</a></li>
+<li><a href="http://bollier.org/blog/bauwens-use-peer-production-license-foster-%E2%80%9Copen-cooperativism%E2%80%9D">Open-source et cooperativism</a></li>
+</ul>
+</div>
+
+     
+                
+                  <div class="tags">
+                    <strong>Tags:</strong>
+                    <ul>
+                  
+                    <li>
+                      <a href="../../tags/review">review</a>
+                    </li>  
+                  
+                    <li>
+                      <a href="../../tags/theory">theory</a>
+                    </li>  
+                  
+                  </ul>
+                  </div>
+                  
+                
+                <br>
+                
+                  <div class="tags">
+                    <strong>Categories:</strong>
+                    <ul>
+                  
+                    <li>
+                      <a href="../../categories/agromet">agromet</a>
+                    </li>
+                  
+                    <li>
+                      <a href="../../categories/geomatic">geomatic</a>
+                    </li>
+                  
+                  </ul>
+                  </div>
+                  <br />
+                
+                <p class="back-to-posts"><a href="../../blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "pokyah-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123-45', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/go.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/r.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/bash.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+</body>
+</html>
+

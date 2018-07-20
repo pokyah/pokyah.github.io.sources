@@ -1,0 +1,157 @@
+---
+title: 'Spatial interpolation using multiple linear regression : a beginners''s overview
+  (R implementation)'
+author: Thomas Goossens
+date: '2018-04-03'
+categories:
+  - geomatic
+  - modeling
+  - r
+  - statistics
+  - weather
+tags:
+  - theory
+---
+
+
+
+<p>The AGROMET Project lead by the Walloon agricultural research center (<a href="http://www.cra.wallonie.be/fr">CRA-W</a>) requires to generate spatialized weather dataset. In this context, multiple spatialization methods will be tested and evaluated among which the <strong>multiple regression</strong> technique. This post provides an introductory material to the multiple regression modeling technique applied to spatial data. It is not a tutorial and it is rather aimed at paving the way for beginners who want to take their first steps into in the field of applied geostatistics (with R) by defining key concepts and providing a lot of external resources worth reading !</p>
+<details> <summary>Full details about the AGROMET project</summary>
+<p>
+<!-- the above p cannot start right at the beginning of the line and is mandatory for everything else to work -->
+<h3>
+Context
+</h3>
+<p>The European directive 2009/128/CE imposes member-states to set up tools that allow for a more rational use of crop protection products. Among these tools, agricultural warning systems, based on crop monitoring models for the control of pests and diseases are widely adopted and have proved their efficiency. However, due to the difficulty to get meteorological data at high spatial resolution (at the parcel scale), they still are underused. The use of geostatistical tools (Kriging, Multiple Regressions, Artificial Neural Networks, etc.) makes it possible to interpolate data provided by physical weather stations in such a way that a high spatial resolution network (mesh size of 1 km2) of virtual weather stations could be generated. That is the objective of the AGROMET project. <br></p>
+<h3>
+Objectives
+</h3>
+<p>The project aims to set up an operational web-platform designed for real-time agro-meteorological data dissemination at high spatial (1km2) and temporal (hourly) resolution. To achieve the availability of data at such a high spatial resolution, we plan to “spatialize” the real-time data sent by more than 30 connected physical weather stations belonging to the PAMESEB and RMI networks. This spatialization will then result in a gridded dataset corresponding to a network of 16 000 virtual stations uniformly spread on the whole territory of Wallonia. These “spatialized” data will be made available through a web-platform providing interactive visualization widgets (maps, charts, tables and various indicators) and an API allowing their use on the fly, notably by agricultural warning systems providers. An extensive and precise documentation about data origin, geo-statistic algorithms used and uncertainty will also be available.</p>
+</p>
+<p></details></p>
+<div id="spatialization-definition" class="section level2">
+<h2>Spatialization definition</h2>
+<p>Spatialization or spatial interpolation creates a <strong>continuous surface</strong> from values measured at discrete locations to predict values at any location in the interest zone with the best accuracy. Characterizing the error and the variability of the predicted data are also parts of spatialization procedures.</p>
+<p>In the chapter <em>The principles of geostatistical analysis</em> of the <a href="http://dusk2.geo.orst.edu/gis/geostat_analyst.pdf">Using ArcGis Geostatistical analyst</a>, K. Johnston gives an efficient overview of what spatialization is and what are the two big groups of techniques (deterministic and stochastic).</p>
+<p>We will not present all of them in the context of this post to keep the focus on the multiple regression technique.</p>
+<p>(<em>The book also provides a glossary of recurrent geostatistical terms (another useful one is available on Pr. D.E. Meyers <a href="http://www.u.arizona.edu/~donaldm/homepage/glossary.html">personal page</a></em>).</p>
+</div>
+<div id="multiple-linear-regression-key-concept" class="section level2">
+<h2>Multiple linear Regression : key concept</h2>
+<p>No need to reinvent the wheel, let’s borrow 3 definitions found in the literature :</p>
+<ol style="list-style-type: decimal">
+<li>From Selva Prabhakaran’s <a href="http://r-statistics.co/Linear-Regression.html">r-statistics.co site</a> :</li>
+</ol>
+<blockquote>
+<p>“Linear regression is used to predict the value of an outcome variable Y based on one or more input predictor variables X. The aim is to establish a linear relationship (a mathematical formula) between the predictor variable(s) and the response variable, so that, we can use this formula to estimate the value of the response Y, when only the predictors (Xs) values are known.”</p>
+</blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>In his comprehensive <a href="https://www.snap.uaf.edu/sites/default/files/files/Interpolation_methods_for_climate_data.pdf">litterature review</a>, R. Sluiters from the <a href="http://www.knmi.nl/home">KNMI</a> defines multiple regression as follows :</li>
+</ol>
+<blockquote>
+<p>“Linear regression expresses the relation between a predicted variable and one or more explanatory variables. In its simples form a straight line is fitted through the data points. Linear regression models are most often global interpolators. Linear regression models are deterministic, but by considering some statistical assumptions about the probability distribution of the predicted variable the method becomes stochastic. In that case the standard error can be calculated, the inference about the regression parameter and the predicted values can be assessed and the prediction accuracy can be calculated. For deterministic linear regression models the assumption is that the regression model could be interpreted on the basis of physical reasons, for stochastic linear regression models a normal distribution and spatial independence is also assumed. No extrapolations are allowed from the theoretical perspective. Ancillary data can be included using multiple regression. For deterministic linear regression models the measure of success is through cross validation. For stochastic linear regression models it can be measured by the explained variance and the regression standard error.”</p>
+</blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>In their paper (from which the Agromet project was inspired) <em>Decision Support Systems in Agriculture: Administration of Meteorological Data, Use of Geographic Information Systems(GIS) and Validation Methods in Crop Protection Warning Service</em>, <a href="https://www.intechopen.com/books/efficient-decision-support-systems-practice-and-challenges-from-current-to-future/decision-support-systems-in-agriculture-administration-of-meteorological-data-use-of-geographic-info">Racca et al. 2011</a> present multiple regression in these terms:</li>
+</ol>
+<blockquote>
+<p>“The general purpose of multiple regressions (the term was first used by Pearson, 1908) is to learn more about the relationship between several independent or predictor variables and a dependent or criterion variable. MR is an interpolation method that allows simultaneous testing and modeling of multiple independent variables (Cohen, et al., 2003). Parameters that have an influence on temperature and relative humidity, e.g. elevation, slope, aspect, can therefore be tested simultaneously.”</p>
+</blockquote>
+<p>(<em>In this paper, the authors also briefly present why the Multiple Regression technique was chosen over other modeling techniques. A more detailed explanation of the comparative study between the various techniques is available in the companion paper by <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1365-2338.2007.01134.x">Zeuner et. 2007</a></em>).</p>
+</div>
+<div id="data-prediction-using-multiple-linear-regression-workflow" class="section level2">
+<h2>Data prediction using multiple linear regression : workflow</h2>
+<div id="building-the-model" class="section level3">
+<h3>Building the model</h3>
+<p>In <a href="https://machinelearningmastery.com/supervised-and-unsupervised-machine-learning-algorithms/">Supervised machine learning</a>, the response variable is modeled as a function of predictors. To build the model you will need to construct a dataset made of predictors (e.g. elevation, latitude, longitude, soil occupation, aspect) and response variable (e.g. temperature, humidity, rainfall). You will most likely also need to inspect and clean your dataset (e.g. removing outliers, check for errors, treat any missing values) before building the model :</p>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Garbage_in,_garbage_out">Garbage in, garbage out</a></p>
+</blockquote>
+<p>Once your dataset is prepared you can build your regression model. Each data-analysis software provides a set of functions to build such a kind of model (in R you do it with the <code>lm()</code> function).</p>
+</div>
+<div id="evaluating-the-model---linear-regression-diagnostics" class="section level3">
+<h3>Evaluating the model - Linear Regression Diagnostics</h3>
+<p>Once the linear model is fitted, the mathematical formula to predict the response variable is obtained. However it is not enough to actually use this model ! Before using a regression model, you have to ensure that it is <strong>statistically significant</strong>. There are many indicators that you can use to evaluate the validity of a regression model, among which :</p>
+<ul>
+<li>Residual plot</li>
+<li>Goodness of fit</li>
+<li>Standard error of the regression</li>
+<li>p-value</li>
+</ul>
+<p>To get a deep insight of these model diagnostic indicators, check these 2 excellent R-oriented posts about evaluating regression model outputs by <a href="https://feliperego.github.io/blog/2015/10/23/Interpreting-Model-Output-In-R">Felipe Rego</a> and <a href="http://r-statistics.co/Linear-Regression.html">Selva Prabhakaran</a>. You can also have a quick look at this <a href="https://www.otexts.org/fpp/4/4">page</a>. You may also have a look at the Minitab’s blog posts (<a href="http://blog.minitab.com/blog/adventures-in-statistics-2/multiple-regession-analysis-use-adjusted-r-squared-and-predicted-r-squared-to-include-the-correct-number-of-variables">1</a>, <a href="http://blog.minitab.com/blog/adventures-in-statistics-2/regression-analysis-how-do-i-interpret-r-squared-and-assess-the-goodness-of-fit">2</a> concerning the interpretation of the R² values</p>
+</div>
+<div id="using-the-model-and-measuring-its-success-i.e.validation-process" class="section level3">
+<h3>Using the model and measuring its success (i.e. validation process)</h3>
+<p>Now that you have tested the validity of your model (i.e. your model is statistically significant), you can use it to make some predictions. But an important question then arises : how well your model performs at predicting the data at unknown locations ? To answer this question, you need to rigorously test your model performance as much as possible. This is done using a <strong>cross-validation</strong> (CV) process.</p>
+<p>From Robin Lovelace’s <em>Geocomputation with R</em> <a href="https://geocompr.robinlovelace.net/spatial-cv.html">book</a> :</p>
+<blockquote>
+<p>CV determines a model’s ability to predict new data or differently put its ability to generalize. To achieve this, CV splits a dataset (repeatedly) into <strong>test</strong> and <strong>training</strong> sets. It uses the training data to fit the model, and checks if the trained model is able to predict the correct results for the test data. Basically, cross-validation helps to detect over-fitting since a model that fits too closely the training data and its specific peculiarities (noise, random fluctuations) will have a bad prediction performance on the test data. However, the basic requirement for this is, that the test data is independent of the training data. CV achieves this by splitting the data randomly into test and training sets. However, randomly splitting spatial data results in the fact that training points are frequently located next to test points. Since points close to each other are more similar compared to points further away, test and training datasets might not be independent. The consequence is that cross-validation would fail to detect over-fitting in the presence of spatial autocorrelation</p>
+</blockquote>
+<p>(<em>To understand the <a href="https://stats.stackexchange.com/questions/36145/linear-regression-and-spatial-autocorrelation">importance of the autocorrelation concept</a>, you could read the <a href="http://rspatial.org/analysis/rst/7-spregression.html">Spatial regression models paragraph</a> of the Spatial Data Analysis and Modeling with R website and watch this short <a href="https://www.youtube.com/watch?v=M9ecMxVG6jQ">video</a></em>).</p>
+<p>To assess how well a model performs at making its predictions actually good predictions, 2 CV methods are often presented :<br />
+* (spatial) k-fold cross validation * (spatial) leave-one-out (refs : <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1111/geb.12161">K. Le Rest</a> &amp; <a href="https://davidrroberts.wordpress.com/2016/03/11/spatial-leave-one-out-sloo-cross-validation/">D.R. Roberts</a>)</p>
+<p>How to know which one best fits your needs <a href="https://stats.stackexchange.com/questions/154830/10-fold-cross-validation-vs-leave-one-out-cross-validation">(k-fold or leave-one-out)</a> ? The short answer is to use the leave-one-out method when you have a small amount of samples.</p>
+<p>To check if the trained model is able to predict the correct results for the test data, <a href="http://r-statistics.co/Linear-Regression.html">calculating the accuracy measures and error rates</a> allows to find out the prediction accuracy of the model. <a href="https://www.geos.ed.ac.uk/~gisteac/gis_book_abridged/files/ch14.pdf">Paper</a> about spatial predictions errors</p>
+<p>In your analysis, you might try many variants of the same kind of modeling technique, for example, by adding or removing extra independent variables. In this case, you will need to establish a diagnostic of the measure of success of each of the variants investigated. There is no universal technique to compare these. You can grab some ideas to implement in your own work from the <a href="https://www.sciencedirect.com/science/article/pii/S0304380010000463">Aertsen et al. 2010 paper</a> where they describe a multi-criteria decision analysis for model evaluation.</p>
+</div>
+<div id="assessing-the-uncertainty-on-the-predicted-values" class="section level3">
+<h3>Assessing the uncertainty on the predicted values</h3>
+</div>
+</div>
+<div id="r-guidelines" class="section level2">
+<h2>R guidelines</h2>
+<p>Now that you have a better insight of what spatialization and multiple linear regressions are, it’s time to get the job done and dive in some coding work with R !</p>
+<div id="if-you-are-totally-new-to-programming-with-r" class="section level3">
+<h3>If you are totally new to programming with R…</h3>
+<p>Learning and mastering a new programming language might scare you as it seems as a very difficult goal to achieve. However, with the help of the Internet and the R community, you can quickly start to write your first R programs. You can learn through tutorials (like at <a href="https://www.datacamp.com/courses/free-introduction-to-r">Datacamp</a>), blog posts (like the blog aggregator <a href="https://www.r-bloggers.com/">R-Bloggers</a>), package documentation (on <a href="https://cran.r-project.org/">CRAN</a>) and of course help forums like <a href="https://stackoverflow.com/">Stackoverflow</a> which is where I spend a lot of time searching answers to my questions (most of the time already posted by others).</p>
+</div>
+<div id="why-r" class="section level3">
+<h3>Why R ?</h3>
+<ul>
+<li>R is open-source <a href="https://www.gnu.org/philosophy/shouldbefree.en.html">(why it is important)</a></li>
+<li>R is gaining more and more popularity. Mastering it can opens you <a href="https://thenextweb.com/offers/2018/03/28/tech-giants-are-harnessing-r-programming-learn-it-and-get-hired-with-this-complete-training-bundle/">many job opportunities</a></li>
+</ul>
+<p>A good starting point to work with multiple regression analysis with R is <a href="https://feliperego.github.io/blog/2015/03/12/Multiple-Linear-Regression-First-Steps">this</a> tutorial by Felipe Rego. On his excellent blog you will also find a detailed <a href="https://feliperego.github.io/blog/2015/10/23/Interpreting-Model-Output-In-R">post</a> about regression model output interpretation.</p>
+<p>(<em>A special version of spatial regression modeling is the Geographically weighted regression which is described in <a href="https://rpubs.com/chrisbrunsdon/101305">this</a> R tutorial written by Pr. Chris Brundson</em>).</p>
+</div>
+<div id="getting-started-with-r-for-spatial-data-analysis" class="section level3">
+<h3>Getting started with R for spatial data analysis</h3>
+<p>In the <a href="https://geocompr.robinlovelace.net">Geocomputation with R book</a> by Robin Lovelace you will get all you need to get started with spatial data manipulation and analysis with R. The book tutorials make a heavy use of these libraries, and especially the new <a href="https://edzer.github.io/UseR2017/">sf package</a> for spatial data analysis.</p>
+<pre class="r"><code>library(sf)            # classes and functions for vector data
+library(raster)        # classes and functions for raster data
+library(spData)        # load geographic data
+library(spDataLarge)   # load larger geographic data</code></pre>
+</div>
+<div id="useful-r-cheatsheets" class="section level3">
+<h3>Useful R cheatsheets</h3>
+<ul>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">dplyr</a> - Data manipulation</li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">ggplot2</a> - Data Visualization</li>
+<li><a href="https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf">Coordiante reference systems</a></li>
+</ul>
+</div>
+<div id="worth-reading-r-spatial-oriented-blog" class="section level3">
+<h3>Worth reading R spatial oriented blog</h3>
+<p><a href="https://www.r-spatial.org/" class="uri">https://www.r-spatial.org/</a></p>
+</div>
+</div>
+<div id="a-note-about-coordinate-reference-systems-crs-notations" class="section level2">
+<h2>A note about coordinate reference systems (CRS) notations</h2>
+<div id="geographic-vs-projected-coordinate-reference-system-crs" class="section level3">
+<h3>Geographic vs projected coordinate reference system (CRS)</h3>
+<ul>
+<li><strong>Geographic CRS’s</strong> identify any location on the Earth’s surface using two values — longitude and latitude</li>
+<li><strong>Projected CRS’s</strong> are based on Cartesian coordinates on an implicitly flat surface. They have an origin, x and y axes, and a linear unit of measurement such as meters. All projected CRSs are based on a geographic CRS, and rely on map projections to convert the three-dimensional surface of the Earth into Easting and Northing (x and y) values in a projected CRS.</li>
+</ul>
+</div>
+<div id="notations-systems-of-crss" class="section level3">
+<h3>Notations systems of CRSs</h3>
+<ul>
+<li><a href="https://earthdatascience.org/courses/earth-analytics/spatial-data-r/understand-epsg-wkt-and-other-crs-definition-file-types/">EPSG vs. proj4string notations</a></li>
+</ul>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>Thanks to this post and all its references, you should now be able to start building a multiple regression spatial interpolation analysis based on your own data using R. If you need additional references, you could also check out this multiple linear regression <a href="https://www.statmethods.net/stats/regression.html">tutorial</a> by R.I. Kabacoff.</p>
+</div>

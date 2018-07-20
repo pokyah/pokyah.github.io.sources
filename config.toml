@@ -9,20 +9,20 @@ layoutdir           = "layouts"
 publishdir          = "public"
 theme               = "cocoa-hugo-theme"
 author              = "Thomas Goossens"
-title               = "Thomas Goossens"
+title               = "Pokyah"
 pygmentsuseclasses  = true
 disqusshortname     = "pokyah-github-io" # Comment out to disable Disqus.
 pluralizelisttitles = false
 googleAnalytics     = "UA-123-45"
 
 [permalinks]
-blog  = "blog/:slug/"
+blog  = "post/:slug/"
 
 [[menu.main]]
 name                   = "blog"
 weight                 = -120
-identifier             = "blog"
-url                    = "/blog/"
+identifier             = "post"
+url                    = "/post/"
 
 [[menu.main]]
 name                   = "About"
@@ -51,8 +51,8 @@ url                    = "/cv/"
 [[menu.main]]
 name                   = "Geo-Tools"
 weight                 = -80
-identifier             = "geotools"
-url                    = "/geotools/"
+identifier             = "geo-tools"
+url                    = "/geo-tools/"
 
 
 [params]
@@ -63,7 +63,7 @@ author                 = "Thomas Goossens"
 cachebuster            = true                          # add the current unix timestamp in query string for cache busting css assets
 dateform               = "Jan 2, 2006"
 dateformfull           = "Mon Jan 2 2006 15:04:05 MST"
-description            = "Personal page of Thomas Goossens, geographer/data-scientist/coder"
+description            = "Pokyah. Opensource Science, GIS and data analysis. Personal page of Thomas Goossens, geographer/data-scientist/coder"
 email                  = "hello.pokyah@gmail.com"
 extracssfiles          = [ "/css/override.css" ]       # In your `static` directory, add/remove files as necessary.
 faviconfile            = "img/leaf.ico"

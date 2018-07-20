@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data on Pokyah</title>
+    <link>/categories/data/</link>
+    <description>Recent content in Data on Pokyah</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 22 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/data/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blockchain for research - curated list</title>
+      <link>/post/blockchain_for_research_curated_list/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/blockchain_for_research_curated_list/</guid>
+      <description>Could blockchain :
+ help science reproductibility ?
+ enhance research transparency ?
+ avoid publication fraud ?
+ enhance datasets exchanges ?
+ help to fund research projects ?
+ incentivize scientists ?  Let’s find out with a few lectures !
+  Blockchain ‘could help combat mistrust in scientific process’
+ Dash Puts Science Research On The Blockchain Academic publishing is ripe for disruption, and Dash seeks to prove a new paradigm.</description>
+    </item>
+    
+  </channel>
+</rss>

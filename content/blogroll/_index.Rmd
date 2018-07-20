@@ -5,6 +5,12 @@ date: "6/27/2018"
 output: html_document
 ---
 
+* [Maëlle's R blog](https://masalmon.eu/)
+open-source, open data and open science.
+
+* [Statnmap](https://statnmap.com)
+Sébastien Rochette : R, modélisation et cartographie (Formation et consultance)
+
 * [J.W. Hollister](https://jwhollister.com)
 landscape ecologist with expertise in the spatial component of ecology and environmental sciences
 

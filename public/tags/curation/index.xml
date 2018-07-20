@@ -1,22 +1,49 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Curation on Thomas Goossens</title>
+    <title>Curation on Pokyah</title>
     <link>/tags/curation/</link>
-    <description>Recent content in Curation on Thomas Goossens</description>
+    <description>Recent content in Curation on Pokyah</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 19 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Jul 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/curation/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Metaphysics - curated list</title>
+      <link>/post/metaphysics-curated-list/</link>
+      <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/metaphysics-curated-list/</guid>
+      <description>Metaphysics is the branch of philosophy that deals with the first principles of things, including abstract concepts such as being, knowing, identity, time, and space. This curated list of posts and videos addresses the following qurestions :
+What is life ? What is a thing ? What it consciouness ? What is the true essence of reality ? Is the universe consciouss ? Are we living in a simulation ? is the Universe a quantum computer ?</description>
+    </item>
+    
+    <item>
+      <title>Blockchain for research - curated list</title>
+      <link>/post/blockchain_for_research_curated_list/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/blockchain_for_research_curated_list/</guid>
+      <description>Could blockchain :
+ help science reproductibility ?
+ enhance research transparency ?
+ avoid publication fraud ?
+ enhance datasets exchanges ?
+ help to fund research projects ?
+ incentivize scientists ?  Let’s find out with a few lectures !
+  Blockchain ‘could help combat mistrust in scientific process’
+ Dash Puts Science Research On The Blockchain Academic publishing is ripe for disruption, and Dash seeks to prove a new paradigm.</description>
+    </item>
+    
+    <item>
       <title>Curated list of Open Source Geo Data and Tools</title>
-      <link>/geotools/</link>
+      <link>/geo-tools/</link>
       <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/geotools/</guid>
+      <guid>/geo-tools/</guid>
       <description>Online map editors &amp;amp; data visualisation tool  https://carto.com/ https://umap.openstreetmap.fr/fr/   Geocoding  https://wiki.openstreetmap.org/wiki/Nominatim   Basemap providers  https://openmaptiles.org http://maps.stamen.com https://www.mapbox.com/ https://openaerialmap.org/ https://www.mapillary.com/ http://maperitive.net/ https://www.maptiler.com https://openmaptiles.org   R packages  https://rstudio.github.io/leaflet/ https://bhaskarvk.github.io/leaflet.extras/ https://cran.r-project.org/web/packages/raster/index.html https://r-spatial.github.io/sf/ https://r-spatial.github.io/lwgeom/ https://cran.r-project.org/web/packages/sp/index.html https://github.com/hadley/rvest http://ropensci.github.io/RSelenium/   Simple Online tools  https://epsg.io http://geojson.io/   Design, fonts and icons  http://colorbrewer2.org https://materialdesignicons.com/ https://fontawesome.com/   datasets  http://geopole.org/ https://gadm.org/ http://overpass-turbo.eu/ http://srtm.csi.cgiar.org/ https://photovoltaic-software.com/solar-radiation-database.php http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/ https://www.gpsies.com/#10_50.2944_5.0978_hikebike https://openweathermap.</description>
     </item>
     

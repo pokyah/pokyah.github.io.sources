@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Thomas Goossens">
+<meta name="description" content="In the context of the Agromet project, we need to produce gridded maps of temperature using data acquired by a network of 30 automatic weather stations (AWS) spatially distributed in Wallonia. To each cell, an indicator of uncertainty (i.e. prediction error) must also be attached. Providing this uncertainty is of major importance because errors are not likely to be spatially homogeneous but will rather depend of the spatial arrangement of available points used to compute the model.">
+
+<meta property="og:title" content="Producing and mapping gridded datasets with uncertainty using R" />
+<meta property="og:description" content="In the context of the Agromet project, we need to produce gridded maps of temperature using data acquired by a network of 30 automatic weather stations (AWS) spatially distributed in Wallonia. To each cell, an indicator of uncertainty (i.e. prediction error) must also be attached. Providing this uncertainty is of major importance because errors are not likely to be spatially homogeneous but will rather depend of the spatial arrangement of available points used to compute the model." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/gridded-uncertainty/" />
+
+
+
+<meta property="article:published_time" content="2018-05-30T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-05-30T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+
+
+     Producing and mapping gridded datasets with uncertainty using R 
+
+</title>
+<link rel="canonical" href="../../post/gridded-uncertainty/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/tomorrow.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="../../css/reset.css?t=2018-07-20%2008%3a29%3a29.924009169%20%2b0000%20UTC%20m%3d%2b0.072617568">
+    <link rel="stylesheet" href="../../css/pygments.css?t=2018-07-20%2008%3a29%3a29.924009169%20%2b0000%20UTC%20m%3d%2b0.072617568">
+    <link rel="stylesheet" href="../../css/main.css?t=2018-07-20%2008%3a29%3a29.924009169%20%2b0000%20UTC%20m%3d%2b0.072617568">
+    
+        <link rel="stylesheet" href="../../css/override.css?t=2018-07-20%2008%3a29%3a29.924009169%20%2b0000%20UTC%20m%3d%2b0.072617568">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="../../img/leaf.ico"
+
+>
+
+
+
+
+
+
+
+
+</head>
+
+
+<body lang="">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+            <a href="../../"><img class="avatar" src="https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=50" rcset="https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=100 2x, https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=150 3x, https://gravatar.com/avatar/813fa5a73b53880ab30a635a6e807e9a?s=200 4x"></a>
+            
+            <a href="../../"><div class="name">Thomas Goossens</div></a>
+            
+              <h3 class="self-intro">Geographer/Data-analyst/Coder</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-post"><a href="../../post/"><span>blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="../../about/"><span>About</span></a></li>
+                    
+                        <li class="nav-code"><a href="../../code/"><span>Code</span></a></li>
+                    
+                        <li class="nav-blogroll"><a href="../../blogroll/"><span>Blogroll</span></a></li>
+                    
+                        <li class="nav-cv"><a href="../../cv/"><span>CV</span></a></li>
+                    
+                        <li class="nav-geo-tools"><a href="../../geo-tools/"><span>Geo-Tools</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+        
+            <a href="//stackoverflow.com/pokyah" target="_blank" rel="noopener"><img class="icon" src="../../img/stack-overflow.svg" alt="stackoverflow" /></a>          
+          
+        
+            <a href="//open.spotify.com/user/pokyah?si=P6TQ1j6tQRWJN1sqTKDAEA" target="_blank" rel="noopener"><img class="icon" src="../../img/spotify.svg" alt="spotify" /></a>
+          
+        
+            <a href="//github.com/pokyah" target="_blank" rel="noopener"><img class="icon" src="../../img/github.svg" alt="github" /></a>
+        
+
+        
+
+	
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/thomasgoossens1985" target="_blank" rel="noopener"><img class="icon" src="../../img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:hello.pokyah@gmail.com"><img class="icon" src="../../img/email.svg" alt="email" /></a>
+        
+
+        
+
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Producing and mapping gridded datasets with uncertainty using R
+
+</div>
+
+                    <div class="initials"><a href="../../">ad</a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Wed May 30 2018 00:00:00 UTC'>May 30, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>4 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>In the context of the Agromet project, we need to produce gridded maps of temperature using data acquired by a network of 30 automatic weather stations (AWS) spatially distributed in Wallonia. To each cell, an indicator of uncertainty (i.e. prediction error) must also be attached. Providing this uncertainty is of major importance because errors are not likely to be spatially homogeneous but will rather depend of the spatial arrangement of available points used to compute the model. This post will <strong>briefly</strong> present what could be described as prediction uncertainties and how to extract these using basic R examples.</p>
+<div id="theory-regarding-the-uncertainty" class="section level2">
+<h2>Theory regarding the uncertainty</h2>
+<p>Model parameters are computed from a sample (the data from our AWS network in our case) to estimate the parameters of the whole population (our grid). Models actually generalize what is learnt on a sample on the whole population. So the question arises whether we can use this generalization with enough confidence (can we extrapolate these parameters to the whole population) ?</p>
+<p>To answer this question, 2 tools are commonly used :</p>
+<ul>
+<li>the <strong>standard error</strong><br />
+</li>
+<li>the <strong>confidence interval</strong></li>
+</ul>
+<p>The standard error is what quantifies the uncertainty while the 95% confidence intervals represent quantiles between which are found 95 % of the samples means after removing the 2.5 % of both the bigger and smaller values. A good explanation of its meaning can be found <a href="https://www.mathsisfun.com/data/confidence-interval.html">here</a> and <a href="https://www.thoughtco.com/what-is-a-confidence-interval-3126415">here</a></p>
+<p>In the paper <a href="https://www.sciencedirect.com/science/article/pii/0304380095001913"><em>Spatial uncertainty analysis: propagation of interpolation errors in spatially distributed models</em></a>, the uncertainty is depicted as the <strong>standard error</strong> of the predictions.</p>
+<p>We can also cite the <a href="http://www.irceline.be/~celinair/rio/rio_corine.pdf"><em>Spatial interpolation of air pollution measurements using CORINE land cover data</em></a> paper :</p>
+<blockquote>
+<p>When solving the Ordinary Kriging equations, a value for the error variance can be obtained at the same time (Isaaks et al. 1989). This error variance is a measure for the uncertainty of the interpolation result</p>
+</blockquote>
+<p>As a reminder, here are some definitions useful to understand what the standard error exactly is:</p>
+<ul>
+<li><p>The <strong>standard error</strong> (SE) of a statistic (usually an estimate of a parameter) is the <strong>standard deviation</strong> of its sampling distribution.</p></li>
+<li><p>The <strong>standard deviation</strong> is the positive square root of the <strong>variance</strong>. The standard deviation is expressed in the same units as the mean is, whereas the variance is expressed in squared units.</p></li>
+<li><p>The <strong>variance</strong> is the average squared dispersion around the mean. Variance is a measurement of the spread between numbers in a data set. The variance measures how far each number in the set is from the mean. Variance is calculated by taking the differences between each number in the set and the mean, squaring the differences (to make them positive) and dividing the sum of the squares by the number of values in the set.</p></li>
+</ul>
+</div>
+<div id="how-to-extract-the-uncertainties-of-predictions-using-r" class="section level2">
+<h2>How to extract the uncertainties of predictions using R ?</h2>
+<p>Let’s find an example on the web. <a href="https://scholar.google.com/citations?user=2oYU7S8AAAAJ&amp;hl=en">Tomislav Hengl</a>, an expert in the field of geostatistics has published a nice tutorial about how to <a href="http://spatial-analyst.net/wiki/index.php/Uncertainty_visualization#Visualization_of_uncertainty_using_whitening_in_R">vizualize spatial uncertainty</a>. In his tutorial, he uses the <code>se</code> output of the <code>krige</code> function as the uncertainty indicator. (<a href="https://www.rdocumentation.org/packages/gstat/versions/1.1-6/topics/krige"><code>krige</code> doc</a>, is a simple wrapper method around <code>gstat</code> and <code>predict</code>). The code here below comes from his tutorial</p>
+<pre class="r"><code>library(rgdal)
+library(maptools)
+library(gstat)
+
+# using the Meuse dataset
+data(meuse)
+coordinates(meuse) &lt;- ~x+y
+data(meuse.grid)
+gridded(meuse.grid) &lt;- ~x+y
+fullgrid(meuse.grid) &lt;- TRUE
+
+# universal kriging:
+k.m &lt;- fit.variogram(variogram(log(zinc)~sqrt(dist), meuse), vgm(1, &quot;Sph&quot;, 300, 1))
+vismaps &lt;- krige(log(zinc)~sqrt(dist), meuse, meuse.grid, model=k.m)
+names(vismaps) &lt;- c(&quot;z&quot;,&quot;e&quot;)
+
+# Plot the predictions and the standard error :
+z.plot &lt;- spplot(vismaps[&quot;z&quot;], col.regions=bpy.colors(), scales=list(draw=TRUE), sp.layout=list(&quot;sp.points&quot;, pch=&quot;+&quot;, col=&quot;black&quot;, meuse))
+e.plot &lt;- spplot(vismaps[&quot;e&quot;], col.regions=bpy.colors(), scales=list(draw=TRUE))
+
+print(z.plot, split=c(1,1,2,1), more=TRUE)
+print(e.plot, split=c(2,1,2,1), more=FALSE)</code></pre>
+<div class="figure">
+<img src="../../post/gridded-uncertainty_files/meuse_grid_uncertainty.png" alt="Meuse data Kriging + uncertainty" />
+<p class="caption">Meuse data Kriging + uncertainty</p>
+</div>
+<p>Nice we have what we need ! Easy ! But how are SE computed for the predictions ? We could have a look at the source code of the krige function. But let’s build it manually with a simple example for the sake of comprehesion. Doing so, requires some matrix algebra (variance + covariance matrix). A detailed explanation of the next code block is available in <a href="http://www.cra.wallonie.be/wp/wp-content/uploads/2016/12/Formation_Stats_3_1_GLM.pdf">this course</a></p>
+<pre class="r"><code># example from @frdvwn
+
+# creating a sample
+set.seed(123)
+n &lt;- 100
+n.lev &lt;- 10
+alpha &lt;- 10
+beta &lt;- 1.3
+sigma &lt;- 4
+
+x &lt;- rep(1:n.lev,each=n/n.lev)
+y &lt;- alpha - beta*x + rnorm(n,0,sigma)
+
+# vizualizing the dataset
+plot(x,y)</code></pre>
+<div class="figure">
+<img src="../../post/gridded-uncertainty_files/data_meuse_uncertainty.png" alt="Meuse plot" />
+<p class="caption">Meuse plot</p>
+</div>
+<pre class="r"><code># modelizing
+mod &lt;- lm(y~x)
+
+# creating the points on which we want to predict values using the model equation
+X &lt;- cbind(1,seq(0,10,0.01))
+beta &lt;- coef(mod)
+
+# Predicting manually using matrix algebra
+y.hat &lt;- X %*% beta
+V &lt;- as.matrix(vcov(mod))
+y.hat.se &lt;- sqrt(diag(X %*% V %*% t(X)))
+
+# Predicting using predict function
+auto.y.hat.se &lt;- predict(object = mod, newdata = data.frame(x=X[,2]), se.fit=TRUE)$se.fit
+
+# Vizualizing the SE
+plot(y~x)
+lines(y.hat ~ X[,2],col=&quot;red&quot;)
+lines(y.hat + y.hat.se ~ X[,2],col=&quot;red&quot;,lty=2)
+lines(y.hat - y.hat.se ~ X[,2],col=&quot;red&quot;,lty=2)
+lines(y.hat + auto.y.hat.se ~ X[,2],col=&quot;green&quot;,lty=2)
+lines(y.hat - auto.y.hat.se ~ X[,2],col=&quot;green&quot;,lty=2)</code></pre>
+<div class="figure">
+<img src="../../post/gridded-uncertainty_files/data_meuse_uncertainty_model.png" alt="Meuse plot with SE" />
+<p class="caption">Meuse plot with SE</p>
+</div>
+<pre class="r"><code># same values ? 
+print(head(auto.y.hat.se))
+
+    ##         1         2         3         4         5         6 
+    ## 0.7905189 0.7893898 0.7882612 0.7871330 0.7860052 0.7848779
+
+print(head(y.hat.se))
+
+    ##         1         2         3         4         5         6 
+    ## 0.7905189 0.7893898 0.7882612 0.7871330 0.7860052 0.7848779
+</code></pre>
+<p>Ok we have succeeded to manually compute the Standard errors of the predictions !</p>
+</div>
+
+     
+                
+                  <div class="tags">
+                    <strong>Tags:</strong>
+                    <ul>
+                  
+                    <li>
+                      <a href="../../tags/how-to">how-to</a>
+                    </li>  
+                  
+                  </ul>
+                  </div>
+                  
+                
+                <br>
+                
+                  <div class="tags">
+                    <strong>Categories:</strong>
+                    <ul>
+                  
+                    <li>
+                      <a href="../../categories/geomatic">geomatic</a>
+                    </li>
+                  
+                    <li>
+                      <a href="../../categories/modeling">modeling</a>
+                    </li>
+                  
+                    <li>
+                      <a href="../../categories/r">r</a>
+                    </li>
+                  
+                    <li>
+                      <a href="../../categories/statistics">statistics</a>
+                    </li>
+                  
+                  </ul>
+                  </div>
+                  <br />
+                
+                <p class="back-to-posts"><a href="../../blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "pokyah-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-123-45', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/go.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/r.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/bash.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+</body>
+</html>
+
