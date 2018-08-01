@@ -12,6 +12,17 @@ tags:
 
 
 
+<div id="dockerized-r-studio" class="section level1">
+<h1>Dockerized R studio</h1>
+<p>Serve multiple instances of R studio server (free version) at multiple ports for parallel tasks.</p>
+<p>An extensive documentation is available on the <a href="https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image">rocker-org wiki</a></p>
+<pre class="bash"><code>sudo docker run -w /home/rstudio/ --rm -p 1515:8787 -v /home/&lt;hostusername&gt;/:/home/rstudio/ pokyah/agrometeordocker</code></pre>
+<pre class="bash"><code>sudo docker run -w /home/rstudio/ --rm -p 1414:8787 -v /home/&lt;hostusername&gt;/:/home/rstudio/ pokyah/agrometeordocker</code></pre>
+</div>
+<div id="shiny-apps-as-package-dockerized-shiny-server" class="section level1">
+<h1>Shiny apps as package + dockerized shiny server</h1>
+<p>See doc from <a href="https://github.com/pokyah/shiny-1">rocker-org shiny server Docker image</a> and Dean Attali Stackoverflow <a href="https://stackoverflow.com/questions/37830819/developing-shiny-app-as-a-package-and-deploying-it-to-shiny-server">answser</a> regarding shinyapps as packages</p>
+</div>
 <div id="snippets" class="section level1">
 <h1>Snippets</h1>
 <p><a href="https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets">R studio doc</a> Pay attention to escaping characters</p>
