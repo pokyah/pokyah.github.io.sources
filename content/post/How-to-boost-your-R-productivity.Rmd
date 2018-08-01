@@ -10,6 +10,21 @@ tags:
   - productivity
 ---
 
+# Dockerized R studio
+Serve multiple instances of R studio server (free version) at multiple ports for parallel tasks.
+
+An extensive documentation is available on the [rocker-org wiki](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image)
+
+```bash
+sudo docker run -w /home/rstudio/ --rm -p 1515:8787 -v /home/<hostusername>/:/home/rstudio/ pokyah/agrometeordocker
+```
+```bash
+sudo docker run -w /home/rstudio/ --rm -p 1414:8787 -v /home/<hostusername>/:/home/rstudio/ pokyah/agrometeordocker
+```
+# Shiny apps as package + dockerized shiny server
+
+See doc from [rocker-org shiny server Docker image](https://github.com/pokyah/shiny-1) and Dean Attali Stackoverflow [answser](https://stackoverflow.com/questions/37830819/developing-shiny-app-as-a-package-and-deploying-it-to-shiny-server) regarding shinyapps as packages
+
 # Snippets
 
 [R studio doc](https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets)

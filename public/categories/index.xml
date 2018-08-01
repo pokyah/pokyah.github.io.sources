@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Pokyah</title>
+    <title>Categories on pokyah - opensource science, GIS and data-analysis</title>
     <link>/categories/</link>
-    <description>Recent content in Categories on Pokyah</description>
+    <description>Recent content in Categories on pokyah - opensource science, GIS and data-analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Mon, 28 May 2018 00:00:00 +0000</lastBuildDate>
@@ -48,15 +48,6 @@
     </item>
     
     <item>
-      <title>Code</title>
-      <link>/categories/code/</link>
-      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/code/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Consciousness</title>
       <link>/categories/consciousness/</link>
       <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
@@ -95,7 +86,7 @@
     <item>
       <title>Git</title>
       <link>/categories/git/</link>
-      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/git/</guid>
       <description></description>
@@ -203,7 +194,7 @@
     <item>
       <title>R</title>
       <link>/categories/r/</link>
-      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 08 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/r/</guid>
       <description></description>

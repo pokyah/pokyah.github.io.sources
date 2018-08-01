@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Git on Pokyah</title>
+    <title>Git on pokyah - opensource science, GIS and data-analysis</title>
     <link>/categories/git/</link>
-    <description>Recent content in Git on Pokyah</description>
+    <description>Recent content in Git on pokyah - opensource science, GIS and data-analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 12 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Mar 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/git/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Removing large files from you git version control</title>
-      <link>/post/git-ignore-tips-and-tricks/</link>
-      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/git-ignore-tips-and-tricks/</guid>
-      <description>While working with geodata, you might often end up downloading large raw-data files likes .shp that you will need in your data process chain.
-As you don’t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your .gitignore file. But what if those files were created before there were added to the .gitignore ?</description>
-    </item>
     
     <item>
       <title>Quickly publish your R interactive data visualization tools with github pages</title>
