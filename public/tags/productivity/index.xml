@@ -6,10 +6,21 @@
     <description>Recent content in Productivity on pokyah - opensource science, GIS and data-analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 08 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/productivity/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Boost your R productivity</title>
+      <link>/post/how-to-boost-your-r-productivity/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/how-to-boost-your-r-productivity/</guid>
+      <description>Dockerized R studio Serve multiple instances of R studio server (free version) at multiple ports for parallel tasks.
+An extensive documentation is available on the rocker-org wiki
+sudo docker run -w /home/rstudio/ --rm -p 1515:8787 -v /home/&amp;lt;hostusername&amp;gt;/:/home/rstudio/ pokyah/agrometeordocker sudo docker run -w /home/rstudio/ --rm -p 1414:8787 -v /home/&amp;lt;hostusername&amp;gt;/:/home/rstudio/ pokyah/agrometeordocker  Shiny apps as package + dockerized shiny server See doc from rocker-org shiny server Docker image and Dean Attali Stackoverflow answser regarding shinyapps as packages</description>
+    </item>
     
     <item>
       <title>Quickly create your R project directory tree with pre-filled common files</title>

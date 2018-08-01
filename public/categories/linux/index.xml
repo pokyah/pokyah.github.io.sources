@@ -6,10 +6,19 @@
     <description>Recent content in Linux on pokyah - opensource science, GIS and data-analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 08 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Building a dockerized shiny server with packaged shiny apps and deploy it publicly in 2 minutes</title>
+      <link>/post/2018-08-01-building-a-dockerized-shiny-server-with-packaged-shiny-apps/</link>
+      <pubDate>Wed, 01 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-08-01-building-a-dockerized-shiny-server-with-packaged-shiny-apps/</guid>
+      <description>Write your shiny App as a package Building shiny apps as package will help you to produce a cleaner and easier to maintain code thanks to devtools and testthat. https://wlandau.github.io/2016/11/01/appPackage/. I heavily recommand you to code your app in this way. Doing so will also allow you to use devtools::install_github() to quickly install your app on any computer/server. R packages are the most efficient way to make reproductible science. Why ?</description>
+    </item>
     
     <item>
       <title>Quickly create your R project directory tree with pre-filled common files</title>
@@ -30,6 +39,19 @@ I’ve built a little script, inspired from frdvnw, that will allow you to quick
       
       <guid>/post/using-r-with-docker/</guid>
       <description>Why should you do that ? There are two main reasons to use R in conjunction with Docker. First, it allows you to quickly and easily share your work wathever the OS and R configuration of your collaborators. Hassle free collaboration ! Second, it allows you to work in an isolated environment. This means that you will never pollute your OS and e.g. run in time-consuming re-installation procedures due to broken configuration.</description>
+    </item>
+    
+    <item>
+      <title>Installing Ubuntu gnome 16.04 on a windows machine</title>
+      <link>/post/install-ubuntu-gnome-16.04/</link>
+      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/install-ubuntu-gnome-16.04/</guid>
+      <description>Download the .iso file Head at https://wiki.ubuntu.com/UbuntuGNOME/GetUbuntuGNOME and select the proper version (64bit)
+ Create a booting USB drive  If you have access to a Linux computer, launch startup disk creator
+ Once launched, select the USB drive on which you want to install Linux and select the iso file you have just downloaded
+ Click make Startup Disk
+ Once you get notified that the installation is finished, eject the USB drive</description>
     </item>
     
     <item>

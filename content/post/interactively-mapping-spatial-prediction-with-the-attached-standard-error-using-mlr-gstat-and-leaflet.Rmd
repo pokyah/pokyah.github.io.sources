@@ -1,7 +1,7 @@
 ---
-title: '"Interactively-Mapping-Spatial-Prediction-With-the-Attached-Standard-Error-Using-Mlr-Gstat-and-Leaflet"
+title: Interactively-Mapping-Spatial-Prediction-With-the-Attached-Standard-Error-Using-Mlr-Gstat-and-Leaflet
 author: Thomas Goossens
-date = "2018-07-20T12:52:41Z"
+date: "2018-07-20T12:52:41Z"
 categories:
   - r
   - geomatic
@@ -13,7 +13,7 @@ draft: true
 
 Here we demonstrate how to map the prediction together with the uncertainty in an intuitive and intelligible way. Our approach is based on [this](http://spatial-analyst.net/wiki/index.php/Uncertainty_visualization#Visualization_of_uncertainty_using_whitening_in_R) post by *Tomislav Hengl* and [this](https://www.e-education.psu.edu/geog486/node/1891) post by *Penn state college of earth and mineral sciences*
 
-```{r}
+```{r, eval = FALSE}
 # For the example, using the output of mlr gstat KED from previous section
 # loading datasets
 data(meuse)

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shiny on pokyah - opensource science, GIS and data-analysis</title>
+    <link>/categories/shiny/</link>
+    <description>Recent content in Shiny on pokyah - opensource science, GIS and data-analysis</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 01 Aug 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/shiny/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Building a dockerized shiny server with packaged shiny apps and deploy it publicly in 2 minutes</title>
+      <link>/post/2018-08-01-building-a-dockerized-shiny-server-with-packaged-shiny-apps/</link>
+      <pubDate>Wed, 01 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-08-01-building-a-dockerized-shiny-server-with-packaged-shiny-apps/</guid>
+      <description>Write your shiny App as a package Building shiny apps as package will help you to produce a cleaner and easier to maintain code thanks to devtools and testthat. https://wlandau.github.io/2016/11/01/appPackage/. I heavily recommand you to code your app in this way. Doing so will also allow you to use devtools::install_github() to quickly install your app on any computer/server. R packages are the most efficient way to make reproductible science. Why ?</description>
+    </item>
+    
+  </channel>
+</rss>

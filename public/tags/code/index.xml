@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Code on pokyah - opensource science, GIS and data-analysis</title>
+    <link>/tags/code/</link>
+    <description>Recent content in Code on pokyah - opensource science, GIS and data-analysis</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 20 Jul 2018 12:52:41 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/code/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Interactively-Mapping-Spatial-Prediction-With-the-Attached-Standard-Error-Using-Mlr-Gstat-and-Leaflet</title>
+      <link>/post/interactively-mapping-spatial-prediction-with-the-attached-standard-error-using-mlr-gstat-and-leaflet/</link>
+      <pubDate>Fri, 20 Jul 2018 12:52:41 +0000</pubDate>
+      
+      <guid>/post/interactively-mapping-spatial-prediction-with-the-attached-standard-error-using-mlr-gstat-and-leaflet/</guid>
+      <description>Here we demonstrate how to map the prediction together with the uncertainty in an intuitive and intelligible way. Our approach is based on this post by Tomislav Hengl and this post by Penn state college of earth and mineral sciences
+# For the example, using the output of mlr gstat KED from previous section # loading datasets data(meuse) data(meuse.grid) # imputing values to missing data meuse = impute(meuse, classes = list(numeric = imputeMean(), factor = imputeMode()), dummy.</description>
+    </item>
+    
+  </channel>
+</rss>
