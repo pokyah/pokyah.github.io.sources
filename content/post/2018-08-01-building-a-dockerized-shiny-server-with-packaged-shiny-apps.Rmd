@@ -1,0 +1,48 @@
+---
+title: Building a dockerized shiny server with packaged shiny apps and deploy it publicly
+author: Thomas Goossens
+date: '2018-01-08'
+draft: true
+categories:
+  - r
+  - docker
+  - linux
+  - shiny
+tags:
+  - how-to
+  - internet
+---
+
+# Write your shiny App as a package
+
+https://stackoverflow.com/questions/37830819/developing-shiny-app-as-a-package-and-deploying-it-to-shiny-server
+
+# Create a shiny server docker image which contains the package
+
+clone https://github.com/pokyah/shiny-1 and add your shiny app package to the Dockerfile with :
+
+`RUN R -e "devtools::install_github('pokyah/defHydWal', ref='dockerized', force=TRUE)"`
+
+Save, commit and push to github
+
+# linking your github repo to dockerhub for quick deployment on any server
+
+https://felixcentmerino.wordpress.com/containers/sync-up-docker-hub-and-github-to-build-images-automatically/
+
+# installing the docker image on a server 
+
+once docker hub shows that the build is ready, on the host server :
+`docker pull pokyah/shiny-1`
+
+# On the host server, create a folder which contains your R scripts that instantiate the shiny app. Example R script : 
+
+```r
+dir <- system.file("shiny", "reporting", package = "defHydWal")
+setwd(dir)
+shiny::shinyAppDir(".")
+```
+
+# instantiate at an open port in detached mode
+```bash
+sudo docker run -d --rm -p 3838:3838     -v /home/tgoossens/Documents/code/agrometeor/shiny-1/mountpoints/:/srv/shiny-server/     -v /srv/shinylog/:/var/log/shiny-server/     pokyah/shinyagro
+```
