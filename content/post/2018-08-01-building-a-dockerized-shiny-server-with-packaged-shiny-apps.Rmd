@@ -43,20 +43,12 @@ To do so, you will need to link your github and dockerhub accounts. To do so, si
 
 # installing the docker shiny server image on a server 
 
+Once docker hub shows that the build is ready, on the host server enter the folowing command :
+
 ```bash
 $ sudo docker pull <USERNAME/IMAGENAME>
 ```
-
-
-
-#
-
-
-
-once docker hub shows that the build is ready, on the host server :
-`docker pull pokyah/shiny-1`
-
-# On the host server, create a folder which contains your R scripts that instantiate the shiny app. Example R script : 
+The shiny server image is now available in your server. But we need one more step ! As the shinyapps are only available as packages, we need some extra lines of R code to actually initiate the shiny apps. On the host server, create a folder which contains your R scripts that instantiate the shiny app. Example R script : 
 
 ```r
 dir <- system.file("shiny", "reporting", package = "defHydWal")
@@ -64,7 +56,11 @@ setwd(dir)
 shiny::shinyAppDir(".")
 ```
 
+
+
 # instantiate at an open port in detached mode
 ```bash
 sudo docker run -d --rm -p 3838:3838     -v /home/tgoossens/Documents/code/agrometeor/shiny-1/mountpoints/:/srv/shiny-server/     -v /srv/shinylog/:/var/log/shiny-server/     pokyah/shinyagro
 ```
+
+for mounting the token : https://stackoverflow.com/questions/18861834/mounting-multiple-volumes-on-a-docker-container

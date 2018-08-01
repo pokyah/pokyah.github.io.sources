@@ -35,14 +35,9 @@ tags:
 </div>
 <div id="installing-the-docker-shiny-server-image-on-a-server" class="section level1">
 <h1>installing the docker shiny server image on a server</h1>
+<p>Once docker hub shows that the build is ready, on the host server enter the folowing command :</p>
 <pre class="bash"><code>$ sudo docker pull &lt;USERNAME/IMAGENAME&gt;</code></pre>
-</div>
-<div id="section" class="section level1">
-<h1></h1>
-<p>once docker hub shows that the build is ready, on the host server : <code>docker pull pokyah/shiny-1</code></p>
-</div>
-<div id="on-the-host-server-create-a-folder-which-contains-your-r-scripts-that-instantiate-the-shiny-app.-example-r-script" class="section level1">
-<h1>On the host server, create a folder which contains your R scripts that instantiate the shiny app. Example R script :</h1>
+<p>The shiny server image is now available in your server. But we need one more step ! As the shinyapps are only available as packages, we need some extra lines of R code to actually initiate the shiny apps. On the host server, create a folder which contains your R scripts that instantiate the shiny app. Example R script :</p>
 <pre class="r"><code>dir &lt;- system.file(&quot;shiny&quot;, &quot;reporting&quot;, package = &quot;defHydWal&quot;)
 setwd(dir)
 shiny::shinyAppDir(&quot;.&quot;)</code></pre>
@@ -50,4 +45,5 @@ shiny::shinyAppDir(&quot;.&quot;)</code></pre>
 <div id="instantiate-at-an-open-port-in-detached-mode" class="section level1">
 <h1>instantiate at an open port in detached mode</h1>
 <pre class="bash"><code>sudo docker run -d --rm -p 3838:3838     -v /home/tgoossens/Documents/code/agrometeor/shiny-1/mountpoints/:/srv/shiny-server/     -v /srv/shinylog/:/var/log/shiny-server/     pokyah/shinyagro</code></pre>
+<p>for mounting the token : <a href="https://stackoverflow.com/questions/18861834/mounting-multiple-volumes-on-a-docker-container" class="uri">https://stackoverflow.com/questions/18861834/mounting-multiple-volumes-on-a-docker-container</a></p>
 </div>
