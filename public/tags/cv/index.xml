@@ -8,7 +8,7 @@
     <language>en-US</language>
     <lastBuildDate>Sat, 07 Apr 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/cv/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/cv/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,12 +17,179 @@
       <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>/cv/</guid>
-      <description>* English version soon available
-Géophysicien de formation, je développe actuellement des compétences en machine learning supervisé appliqué aux prédictions de données spatiales à l’aide d’outils opensource (principalement R).
-Parcours professionnel Attaché scientifique (géostatisticien) Centre Wallon de Recherche Agronomique CRA-W
-Gembloux avril 2017 - aujourd’hui
-Spatialisation de données météorologiques à l’aide de logiciels opensource dans le cadre du projet AGROMET
- Géostatistiques SIG Machine Learning R + gstat + mlr + shiny + tidyverse   Cartographe Web Freelance</description>
+      <description>&lt;p&gt;&lt;em&gt;* English version soon available&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Géophysicien de formation, je développe actuellement des compétences en machine learning supervisé appliqué aux prédictions de données spatiales à l’aide d’outils opensource (principalement R).&lt;/p&gt;
+&lt;div id=&#34;parcours-professionnel&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Parcours professionnel&lt;/h2&gt;
+&lt;div id=&#34;attache-scientifique-geostatisticien&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Attaché scientifique (géostatisticien)&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.cra.wallonie.be/fr/agromet&#34;&gt;Centre Wallon de Recherche Agronomique CRA-W&lt;/a&gt;&lt;br /&gt;
+&lt;em&gt;Gembloux avril 2017 - aujourd’hui&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Spatialisation de données météorologiques à l’aide de logiciels opensource dans le cadre du projet AGROMET&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Géostatistiques&lt;/li&gt;
+&lt;li&gt;SIG&lt;/li&gt;
+&lt;li&gt;Machine Learning&lt;/li&gt;
+&lt;li&gt;R + gstat + mlr + shiny + tidyverse&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cartographe-web&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Cartographe Web&lt;/h3&gt;
+&lt;p&gt;Freelance&lt;br /&gt;
+&lt;em&gt;Bruxelles mai 2016 - avril 2017&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Développement d’applications cartographiques interactives&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Leaflet.js, Mapbox.js, D3.js, osm2vectortiles, QGIS&lt;/li&gt;
+&lt;li&gt;Ecosystème Openstreetmap&lt;/li&gt;
+&lt;li&gt;Participation aux conférences &lt;a href=&#34;http://2016.foss4g.be/programme.php&#34;&gt;FOSS4G Belgium 2016&lt;/a&gt; et &lt;a href=&#34;http://2016.stateofthemap.org/&#34;&gt;State of the Map 2016&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;developpeur-web&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Développeur Web&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://beebole.com/&#34;&gt;Beebole SPRL&lt;/a&gt;&lt;br /&gt;
+&lt;em&gt;Rhodes-Saint-genèse octobre 2015 - mai 2016&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Développeur frontend&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;javascript/HTML/CSS&lt;/li&gt;
+&lt;li&gt;jQuery, pure.js, getmdl.io&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;chercheur-contractuel&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Chercheur contractuel&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://dev.ulb.ac.be/glaciol/news.html&#34;&gt;ULB, Laboratoire de Glaciologie&lt;/a&gt;&lt;br /&gt;
+&lt;em&gt;Ixelles janvier 2013 - octobre 2015&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Etudes physico-chimiques des phénomènes d’interaction glace/roche au sein des couches profondes des calottes polaires&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Préparation d’échantillons en chambre froide et analyses en laboratoire&lt;/li&gt;
+&lt;li&gt;Traitement, interprétation et présentation de données&lt;/li&gt;
+&lt;li&gt;Rédaction d’articles scientifiques et présentations orales&lt;/li&gt;
+&lt;li&gt;Présentations à &lt;a href=&#34;http://meetingorganizer.copernicus.org/EGU2015/orals/18012&#34;&gt;l’EGU 2015&lt;/a&gt; et au &lt;a href=&#34;http://www.isogklima.nbi.ku.dk/arrangementfolder/engelske_arrangementer/2014-04-24-neem-symposium/Agenda_-_final.pdf&#34;&gt;Symposium NEEM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Animations de foires aux sciences et encadrement de travaux pratiques&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;chercheur-contractuel-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Chercheur contractuel&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://dev.ulb.ac.be/glaciol/news.html&#34;&gt;ULB, Laboratoire de Glaciologie&lt;/a&gt;&lt;br /&gt;
+&lt;em&gt;Ixelles septembre 2012 - janvier 2013&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Mission d’échantillonnage de glace de mer durant 3 mois au départ de Scott Base (Antarctique) : YROSIAE (projet &lt;a href=&#34;http://www.co2.ulg.ac.be/bigsouth/index.htm&#34;&gt;BigSouth&lt;/a&gt;)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Echantillonnage en conditions extrêmes et normes de sécurité élevées&lt;/li&gt;
+&lt;li&gt;Analyses de glace en laboratoire (chromatographie)&lt;/li&gt;
+&lt;li&gt;Gestion logistique liée à la fin de la mission&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;responsable-cellule-gestion-des-eaux&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Responsable cellule gestion des eaux&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ukkel.be/fr/administration/travaux&#34;&gt;Administration Communale d’Uccle&lt;/a&gt;&lt;br /&gt;
+&lt;em&gt;Uccle mars 2010 - avril 2012&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Etude de réhabilitation de ruisseaux&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;élaboration de cahiers des charges et gestion de marchés publics&lt;/li&gt;
+&lt;li&gt;politique de lutte contre les inondations&lt;/li&gt;
+&lt;li&gt;concertation entre les divers intervenants de l’eau à Bruxelles et la population et coordination des chantiers liés à la gestion de l’eau&lt;/li&gt;
+&lt;li&gt;Conception d’une base de donnée interactive d’automatisation de processus de suivi de chantiers&lt;/li&gt;
+&lt;li&gt;Participation à l’élaboration du SIG communal&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;chercheur-contractuel-2&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Chercheur contractuel&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://dev.ulb.ac.be/glaciol/news.html&#34;&gt;ULB, Laboratoire de Glaciologie&lt;/a&gt;&lt;br /&gt;
+&lt;em&gt;Ixelles janvier 2008 - mars 2010&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Projet ASPI, interaction calotte et phénomènes sous-glaciaires&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mission d’un mois au Groenland : participation au forage NEEM&lt;/li&gt;
+&lt;li&gt;Mission d’un mois en Alaska : échantillonnage de glace de mer à Barrow&lt;/li&gt;
+&lt;li&gt;Développement d’une technique de déformation de glace à l’aide d’une presse pneumatique&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;formation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Formation&lt;/h2&gt;
+&lt;div id=&#34;licence-en-sciences-geographiques&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Licence en Sciences Géographiques&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ulb.ac.be/&#34;&gt;Université Libre de Bruxelles&lt;/a&gt; (ULB), 2007&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;./Thomas_Goossens_Certificate.pdf&#34;&gt;Diplôme&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./Thomas_Goossens_master_thesis.pdf&#34;&gt;Mémoire&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;autres-formations&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Autres formations&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction à PostGIS et Openlayers, Oslandia, 2017&lt;/li&gt;
+&lt;li&gt;Formation aux outils de cartographie libres, Urbagora, 2016&lt;/li&gt;
+&lt;li&gt;Traitement d’image avec Matlab, Mathworks, 2014&lt;/li&gt;
+&lt;li&gt;Les Fondamentaux de Matlab, Mathworks, 2014&lt;/li&gt;
+&lt;li&gt;Mécanique vélo, Cyclo ASBL, 2013&lt;/li&gt;
+&lt;li&gt;Introduction à ArcGIS Desktop 10, ESRI Belux, 2010&lt;/li&gt;
+&lt;li&gt;Certification Selor article 8 et 9 § 1 (niveau élémentaire), Selor, 2010&lt;/li&gt;
+&lt;li&gt;Permis de conduire B, 2010&lt;/li&gt;
+&lt;li&gt;Formation Guide Nature, CNB, 2009&lt;/li&gt;
+&lt;li&gt;Animateur breveté, Communauté française, 2004&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;profil-academique&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Profil académique&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://difusion.ulb.ac.be/vufind/Author/Home?author=Goossens,%20Thomas&#34;&gt;Liste de publications dépôt ULB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://scholar.google.be/citations?user=oaxDZMwAAAAJ&amp;amp;hl=en&#34;&gt;Profil sur Google Scholar&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.the-cryosphere.net/10/553/2016/&#34;&gt;Dernière publication scientifique&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;&#34;&gt;Présentation EGU 2015&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;technologies-favorites&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Technologies favorites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Linux + Unix&lt;/li&gt;
+&lt;li&gt;Docker&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;li&gt;R&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;langues&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Langues&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Français&lt;/strong&gt; : langue maternelle&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Néerlandais&lt;/strong&gt; : compréhension orale et écrite moyenne, expression orale et écrite de base&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Anglais&lt;/strong&gt; : bonne compréhension orale et écrite, bonne expression orale et écrite&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;benevolat&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bénévolat&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ldlv.be/&#34;&gt;Les Lendemain de la Veille ASBL&lt;/a&gt;, membre du comité d’organisation des &lt;a href=&#34;http://www.relaisgivres.be/index.php?lang=en&#34;&gt;Relais Givrés&lt;/a&gt; 2018&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ldlv.be/&#34;&gt;Les Lendemains de la Veille ASBL&lt;/a&gt;, contribution à l’organisation des Relais Givrés, 2016 - 2017&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.facebook.com/Salaai-For-Nepal-822646194499092/&#34;&gt;ASBL Salaaï&lt;/a&gt; - récolte de fonds pour le Népal, 2015 - 2016&lt;/li&gt;
+&lt;li&gt;Festival Couleur Café - installation, 2009, 2010 - 2012&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.heldb.be/fr/&#34;&gt;Institut Haulot&lt;/a&gt; - Membre extérieur du jury - projets aménagements du paysage, 2011 - 2012&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lesscouts.be/&#34;&gt;Les Scouts&lt;/a&gt; (unités 102 &amp;amp; 72-53) - Animateur, 2001 - 2010&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ulb.ac.be/culture/foyers.html&#34;&gt;Foyer Scientifique et Culturel de la Plaine&lt;/a&gt; - Coprésident, 2006-07&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;autres-interets&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Autres intérêts&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Blockchain&lt;/li&gt;
+&lt;li&gt;Géomatique&lt;/li&gt;
+&lt;li&gt;Economie P2P&lt;/li&gt;
+&lt;li&gt;Transition énergétique&lt;/li&gt;
+&lt;li&gt;FOAM protocol&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://open.spotify.com/user/pokyah?si=RG-Qj41LQDaUOoZF4PffsQ&#34;&gt;Playlists curation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;loisirs&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Loisirs&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Randonnée&lt;/li&gt;
+&lt;li&gt;Trail&lt;/li&gt;
+&lt;li&gt;Cyclisme&lt;/li&gt;
+&lt;li&gt;Slackline&lt;/li&gt;
+&lt;li&gt;Montage vidéo&lt;/li&gt;
+&lt;li&gt;Djaying&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>

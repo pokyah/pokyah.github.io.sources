@@ -8,7 +8,7 @@
     <language>en-US</language>
     <lastBuildDate>Thu, 31 May 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/github/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/categories/github/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,7 +17,89 @@
       <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/quickly-create-and-maintain-a-blog-with-r/</guid>
-      <description>Maintaining a blog allows you to keep track of what you have done and thought. When you don’t remember how did you succeed to find a solution to a tricky problem, browsing your old posts might help you. As a scientist, it’s also the perfect tool to communicate your results to a wider audience. Moreover it allows you to showcase your work and possibly get hired for a future project. Nowadays many tools exist for you to publish on the web.</description>
+      <description>&lt;p&gt;Maintaining a blog allows you to keep track of what you have done and thought. When you don’t remember how did you succeed to find a solution to a tricky problem, browsing your old posts might help you. As a scientist, it’s also the perfect tool to communicate your results to a wider audience. Moreover it allows you to showcase your work and possibly get hired for a future project. Nowadays many tools exist for you to publish on the web. But as a R user you might be interested in a solution that seamlessly integrates with your habitual R workflow : &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;blogdown&lt;/a&gt; !&lt;/p&gt;
+&lt;div id=&#34;how-to-build-your-site-using-blogdown&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;How to build your site using blogdown ?&lt;/h1&gt;
+&lt;div id=&#34;downloading-the-necessary-stuff&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Downloading the necessary stuff&lt;/h2&gt;
+&lt;p&gt;For a detailed explanation, I recommand you to read the full documentation on the blogdown official site. What would be need ? We juste need to install blogdown and &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; (a static site generator like the famous &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;jekyll&lt;/a&gt;). All of this can be achieved with 3 R commands :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;blogdown&amp;quot;)
+library(blogdown)
+blogdown::install_hugo()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;initiating-a-new-site&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Initiating a new site&lt;/h2&gt;
+&lt;p&gt;Now that we have what we need, we simply initiate a new hugo site using the followin R command :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;blogdown::new_site()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Doing so will generate all the required files for your site to work. Once the command is executed, we can see our live site in action using :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;blogdown::serve_site()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Woah ! Pretty neat and quick, no ? If your site looks “strange” (no styling), you might need to edit some settings in its &lt;code&gt;config.toml&lt;/code&gt; file located at the root of your site folder. At the top of the file, replace the value of the &lt;code&gt;baseurl&lt;/code&gt; key by &lt;code&gt;&amp;quot;/&amp;quot;&lt;/code&gt; and below this line add this key-value pair :&lt;code&gt;relativeurls = true&lt;/code&gt;. Normallyh everything should now looks much more nice !&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;changing-the-parameters-of-the-site&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Changing the parameters of the site&lt;/h2&gt;
+&lt;p&gt;Now in the &lt;code&gt;config.toml&lt;/code&gt; you can change the default settings like the title, authorname, etc according to your needs. You can even add new menu items. Once you are happy with your custom config, you &lt;strong&gt;must&lt;/strong&gt; delete your &lt;code&gt;public&lt;/code&gt; folder to avoid possibly conflicting git settings (you will recompile it later, once your git submodules config is done - see below) and turn your blogdown server off :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;blogdown::stop_server()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;initialise-git-version-control&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Initialise git version control&lt;/h2&gt;
+&lt;p&gt;As you will use &lt;a href=&#34;https://pages.github.com/&#34;&gt;github pages&lt;/a&gt; to make your website publicly available, you will need to make its root folder a git repository ((if you don’t know how to use git and github, I would recommand you to take some time to &lt;a href=&#34;http://r-bio.github.io/intro-git-rstudio/&#34;&gt;learn&lt;/a&gt; this inescapable tool for anyone who is building code). So head at &lt;a href=&#34;https://www.github.com&#34;&gt;github&lt;/a&gt; and create a new repository. This repository will hold the source files of your hugo blog and not the rendered blog (you will see why later). Once your hugo blog source files repository is created on github, you will add it as your remote repository for your local website root directory as follows :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ cd &amp;lt;LOCATION_OF_WEBSITE_ROOT_DIR&amp;gt;
+$ git init
+$ git remote add origin https://github.com/&amp;lt;YOUR_USERNAME&amp;gt;/&amp;lt;reponame&amp;gt;.git
+$ git pull
+$ git push origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;publishing-your-site&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Publishing your site&lt;/h1&gt;
+&lt;p&gt;Now that your sources are under version control, it’s time to make the rendered static site availble publicly. The first step is to create a special github repository that you must call &lt;code&gt;&amp;lt;YOUR_USERNAME&amp;gt;.github.io&lt;/code&gt;. Once it is created, github will treat it as a special repo and everything you will put into it will be publicly availble at &lt;code&gt;&amp;lt;YOUR_USERNAME&amp;gt;.github.io&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The second step is to add this repository as a &lt;em&gt;submodule&lt;/em&gt; of your local website root folder actually stored in a fodler called &lt;code&gt;public&lt;/code&gt; (the one yo uhave previously deleted) :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ cd &amp;lt;LOCATION_OF_WEBSITE_ROOT_DIR&amp;gt;
+$ git submodule add -b master git@github.com:&amp;lt;YOUR_USERNAME&amp;gt;/&amp;lt;YOUR_USERNAME&amp;gt;.github.io.git public&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At this point, you can tell R blogdown to reconstruct your site under this git versioned &lt;code&gt;public&lt;/code&gt; folder :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;blogdown::serve_site()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This command rebuild your site in the &lt;code&gt;public&lt;/code&gt; folder and allows you to inspect it your site in the RStudio viewer.&lt;/p&gt;
+&lt;p&gt;As the 2 latest commands have produced some new files, we need to commit and push these on github :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ cd &amp;lt;LOCATION_OF_WEBSITE_ROOT_DIR&amp;gt;
+$ git add . 
+$ git commit -m &amp;quot;adding submodule ref&amp;quot;
+$ git push
+$ cd &amp;lt;LOCATION_OF_WEBSITE_ROOT_DIR/public&amp;gt;
+$ git add . 
+$ git commit -m &amp;quot;adding rendered files&amp;quot;
+$ git push&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nice ! Now you have keeped track of changes made both on your source files repo and on your rendered site repo. Wait a few seconds, and head at &lt;YOUR_USERNAME&gt;.github.io and you should see your website publicly available. Magic !&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-to-change-the-design-of-your-blog&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;How to change the design of your blog ?&lt;/h1&gt;
+&lt;p&gt;If you want to change the theme of your blog, there are many ways to achieve this. I’ve found the following procedure to be the most efficient one. It also uses the &lt;a href=&#34;https://git-scm.com/book/en/v2/Git-Tools-Submodules&#34;&gt;git submodules&lt;/a&gt; feature. The main idea of the procedure is to separate the versioning of your theme from the versioning of your content.&lt;/p&gt;
+&lt;div id=&#34;finding-a-theme&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Finding a theme&lt;/h2&gt;
+&lt;p&gt;Head at &lt;a href=&#34;https://themes.gohugo.io/&#34; class=&#34;uri&#34;&gt;https://themes.gohugo.io/&lt;/a&gt; and find the theme that best suits your tastes. Click on its “homepage button”, and fork the repository.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-it-to-your-website&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Adding it to your website&lt;/h2&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ cd &amp;lt;LOCATION_OF_WEBSITE_ROOT_DIR&amp;gt;
+$ git submodule add -b master git@github.com:&amp;lt;YOUR_USERNAME&amp;gt;/&amp;lt;THEME_NAME&amp;gt;.github.io.git themes/&amp;lt;THEME_NAME&amp;gt; &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This command has cloned your theme in the theme folder of your website. To use it, first make a backup of your &lt;code&gt;config.toml&lt;/code&gt;. Then, in your choosen theme folder, open the &lt;code&gt;exampleSite&lt;/code&gt; folder and copy paste its &lt;code&gt;config.toml&lt;/code&gt; file to your website root folder. We need to proceed this way because &lt;code&gt;config.toml&lt;/code&gt; files are theme dependent. Edit it by inspiring yourself from what was in your backed up config file.&lt;/p&gt;
+&lt;p&gt;Once its done, you can ask blogdown to serve your site with its new design, commit and push both the sources and the rendered files.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;tweaking-the-theme&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Tweaking the theme&lt;/h2&gt;
+&lt;p&gt;if you want to make changes to your theme CSS, edit its css file found in your theme’s &lt;code&gt;static&lt;/code&gt; folder. As the theme was added as a submodule you can also version it using it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;linking-files-in-your-posts&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Linking files in your posts&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;../../post/quickly-create-and-maintain-a-blog-with-R_files/Prostate_Cancer.csv&#34;&gt;csv example&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;sources&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Sources&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gohugo.io/hosting-and-deployment/hosting-on-github/&#34;&gt;Hugo Doc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -26,7 +108,117 @@
       <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/r_interactive_datavis_with_github_pages/</guid>
-      <description>As a data scientist, you certainly produce a bunch of tables, plots, maps and many other kind of outputs to let your data “speak for itself”. This is your core business and I’m sure you do it pretty well ! But when it comes to make this data available to your target audience things can quickly get more frustrating. How to share these outputs in a format that everyone can open ?</description>
+      <description>&lt;p&gt;As a data scientist, you certainly produce a bunch of tables, plots, maps and many other kind of outputs to let your data “speak for itself”. This is your core business and I’m sure you do it pretty well ! But when it comes to make this data available to your target audience things can quickly get more frustrating. How to share these outputs in a format that everyone can open ? How to easily send these to 100 persons ? How to notify them of any updated output ? How to make these outputs more interactive so that your audience can get a full insight of your data analysis ?&lt;/p&gt;
+&lt;p&gt;R and web technologies can help you to solve these problems you probably have already encountered.&lt;/p&gt;
+&lt;p&gt;Thanks to the advances in web technologies and the development of powerful Javascript librairies, our web-browsers are now able to render impressive data visualization apps and presentations. These last years, the R community has developed countless libraries (leaflet, shiny, plotly, knitr, etc) that take advantages from these advances.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;You can now easily and quickly transform your analysis outputs in eye catching web apps that make your data intelligible !&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this post we will see how to combine these R libraries capabilities with &lt;a href=&#34;https://pages.github.com/&#34;&gt;Github pages&lt;/a&gt; in order to quickly make your top notch data visualization output available to your audience (and don’t be modest : to the world)&lt;/p&gt;
+&lt;p&gt;Before we dig into the topic, it is important to first understand what a webpage actually is. So here is a short recap !&lt;/p&gt;
+&lt;div id=&#34;how-does-a-webpage-works-in-simple-terms&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;How does a webpage works (in simple terms) ?&lt;/h2&gt;
+&lt;p&gt;When you enter an address (URL) in your web-browser, it sends a request to the hosting server. In returns, the server sends to your web-browser the requested content in the form of an HTML file. HTML is simply a kind of formatted text that contains specific tags to structure your text (headings, tables, lists, text formatting, etc) and that can eventually link to other documents. The role of your web-browser is to translate this non-human readable HTML to its human friendly version (if it is not clear, check &lt;a href=&#34;https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default&#34;&gt;this&lt;/a&gt; example).&lt;/p&gt;
+&lt;p&gt;This HTML can be “upgraded” by 2 other languages also supported by your web-broser : CSS and Javascript. While CSS is responsible for the styling (font color, background color, font-size, etc), the Javascript manages the interactivity (like zooming on a map), the animations and the actions that can be performed by/on the web-page (like actions triggered by clicking on a button). And that’s it ! You can build any webpage with these 3 ingredients.&lt;/p&gt;
+&lt;p&gt;As Github pages only works with static content, an important thing to get in mind is the &lt;a href=&#34;http://smallbusiness.chron.com/difference-between-dynamic-static-pages-69951.html&#34;&gt;difference&lt;/a&gt; between a static and a dynamic webpage !&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-is-github-pages&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;What is Github pages&lt;/h2&gt;
+&lt;p&gt;For those who are familiar with the version control software git you most probably already knows &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt; as a git repository hosting service (if you don’t know what &lt;a href=&#34;https://git-scm.com/&#34;&gt;git&lt;/a&gt; is, you really &lt;strong&gt;must&lt;/strong&gt; get to &lt;a href=&#34;http://r-bio.github.io/intro-git-rstudio/&#34;&gt;know it&lt;/a&gt; to impressively speed up your (R) code development). Github offers many other possibilities : collaborative code developement, issues tracking and discussions, project presentation page, wiki, &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;Jekyll blog&lt;/a&gt; and various integrations with other web services thanks to their API. Among these features, exists &lt;a href=&#34;https://pages.github.com/&#34;&gt;Github pages&lt;/a&gt; which is intended to allow you to publish &lt;strong&gt;static&lt;/strong&gt; pages without the need to run our rent your own webserver. &lt;strong&gt;So, as long as your datavisualization output does not require any running backend (be it in node.js, Python, R, Java, Ruby, etc), you can host it on Github pages !&lt;/strong&gt; Unfortunately this means that &lt;a href=&#34;https://shiny.rstudio.com/&#34;&gt;R Shiny apps&lt;/a&gt; can not be hosted on Github pages. But yeah, you can still publish &lt;a href=&#34;https://rstudio.github.io/leaflet/&#34;&gt;leaflet&lt;/a&gt; maps, &lt;a href=&#34;https://plot.ly/r/&#34;&gt;plotly&lt;/a&gt; graphs and &lt;a href=&#34;https://yihui.name/knitr/demo/minimal/&#34;&gt;knitr&lt;/a&gt; html reports ! That already opens up a wide range of possibilities !&lt;/p&gt;
+&lt;p&gt;What does Github pages actually does ?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Github pages turns your repository containing your source file hosted at :&lt;br /&gt;
+&lt;code&gt;https://github.com/yourUserName/repositoryName&lt;/code&gt;&lt;br /&gt;
+to a rendered web-page hosted at :&lt;br /&gt;
+&lt;code&gt;https://yourUserName.github.com/repositoryName&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-to-publish-your-r-outputs-to-github-pages&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;How to publish your R outputs to Github pages ?&lt;/h2&gt;
+&lt;p&gt;The workflow is as follows (more details with an example here below) :&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Exports your R analysis outputs to a specific folder&lt;/li&gt;
+&lt;li&gt;Make this folder a git repository&lt;/li&gt;
+&lt;li&gt;Create a &lt;code&gt;gh-pages&lt;/code&gt; branch&lt;/li&gt;
+&lt;li&gt;Commit your changes&lt;/li&gt;
+&lt;li&gt;Push to Github&lt;/li&gt;
+&lt;li&gt;Visit your published work at &lt;code&gt;https://yourGithubUsername.github.io/repositoryname&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;To illustrate this process, we will use R to build an interactive leaflet map that displays two layers : A DEM of Belgium and a &lt;a href=&#34;https://en.wikipedia.org/wiki/Web_Map_Service&#34;&gt;WMS&lt;/a&gt; layer of currently observed precipitations provided by the &lt;a href=&#34;http://www.knmi.nl/home&#34;&gt;KNMI&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;first-things-first-create-an-online-repository-at-github&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;First things first : create an online repository at Github&lt;/h3&gt;
+&lt;p&gt;Once you have created a Github account, go to &lt;code&gt;https://github.com/yourUserName&lt;/code&gt;, click on the &lt;em&gt;+&lt;/em&gt; button and select &lt;em&gt;new repository&lt;/em&gt;. Give it the name &lt;code&gt;myoutputs&lt;/code&gt; (or whatever you want) :&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../../post/R_interactive_datavis_with_github_pages_files/new_repository.png&#34; alt=&#34;github new repository screenshot&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;github new repository screenshot&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Eventually add a description and choose an existing .gitignore file and license and click on &lt;em&gt;create repository&lt;/em&gt;. You are now on your Github &lt;em&gt;myoutputs&lt;/em&gt; repository page. Click on the green button &lt;em&gt;Clone or download&lt;/em&gt;, then on the link &lt;em&gt;use HTTPS&lt;/em&gt; (you can of course also use &lt;a href=&#34;https://help.github.com/articles/connecting-to-github-with-ssh/&#34;&gt;SSH&lt;/a&gt; if you know what it means) and copy the link provided in the text box :&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../../post/R_interactive_datavis_with_github_pages_files/clone_repo.png&#34; alt=&#34;github clone screenshot&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;github clone screenshot&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;sync-i.e.clone-this-repository-to-your-computer-and-create-the-gh-pages-branch-for-auto-publishing-to-github-pages&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Sync (i.e. clone) this repository to your computer and create the gh-pages branch for auto-publishing to Github pages&lt;/h3&gt;
+&lt;p&gt;Let’s create a folder called &lt;code&gt;dev&lt;/code&gt; under your home directory into which we will clone the online repository by pasting its addresse as a parameter of the &lt;code&gt;git clone&lt;/code&gt; command in your terminal (&lt;a href=&#34;http://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/commandlinegit.html&#34;&gt;more about the use of git with the command line&lt;/a&gt;) :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ mdkir ~/dev
+$ cd ~/dev
+$ git clone https://github.com/yourUserName/myoutputs.git&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Enter your Github username and password (if you have choosen HTTPS instead of SSH), press enter and your &lt;code&gt;dev&lt;/code&gt; folder now contains a &lt;code&gt;myoutputs&lt;/code&gt; folder which is a git repository (i.e. the root of the &lt;code&gt;myoutputs&lt;/code&gt; folder contains a hidden &lt;code&gt;.git&lt;/code&gt; folder that manages all its git features). Let’s check this :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ ls -al&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If everything went OK, you should see the &lt;code&gt;myoutputs&lt;/code&gt; and the &lt;code&gt;.git&lt;/code&gt; folder listed in your terminal. Now, let’s create a specific branch (more about branches &lt;a href=&#34;https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell&#34;&gt;here&lt;/a&gt;) for automatic hosting and publishing of your outputs! Github uses &lt;code&gt;gh-pages&lt;/code&gt; as the default branch name to create an hosted webpage version of your repository source code. So let’s create it and use it !&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git checkout -b gh-pages&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;code-your-interactive-leaflet-map-with-r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Code your interactive leaflet map with R !&lt;/h3&gt;
+&lt;p&gt;Your are now ready to build some git versioned code and make it ready to be published on the web through the magic of git and Github pages !&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://pokyah.github.io/pokyah-maps/bel-dem-knmi/demo-map.R&#34;&gt;Download&lt;/a&gt; the source of the &lt;code&gt;demo-map.R&lt;/code&gt; (which is intended to produce an HTML leaflet map) script and save it under your &lt;code&gt;myoutputs&lt;/code&gt;. Open your terminal inside this folder and execute it :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ Rscript demo-map.R&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The script has produced a &lt;code&gt;demo-map.html&lt;/code&gt; file containing the interactive map plus a &lt;code&gt;demo-map_files&lt;/code&gt; folder containing all the required javascript libraries required to make it interactive. It has also saved 3 files resulting from the download of the raster elevation data. The resulting map looks like this :&lt;/p&gt;
+&lt;iframe src=&#34;https://pokyah.github.io/pokyah-maps/bel-dem-knmi/&#34; width=&#34;100%&#34; height=&#34;400&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;If you get errors it might be because you don’t have the required libraries installed. To avoid such problems, simply install the missing libraries (and if you are adventurous enough, you can have a look at my &lt;a href=&#34;it%20%7B%7B%20site.baseurl%20%7D%7D%7B%%20post_url%202018-03-01-using-r-with-docker%20%%7D&#34;&gt;R + Docker tutorial&lt;/a&gt;!)&lt;/p&gt;
+&lt;p&gt;Your interactive web map is now built ! You can locally open it by right-clicking on the &lt;code&gt;demo-map.html&lt;/code&gt; file and choose to open it with your favorite web-browser. Check the various buttons to be sure that everything works as expected. What is important to know is that this impressive web app does not need any backend to run. Once the page is loaded, everything works inside your web-browser thanks to HTML, CSS and Javascript !&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ok, but how is it then possible for me navigate and zoom in every part of the world without having to run a server to get the base layer tiles ?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That’s probably what you will tell ! The trick is that leaflet render tiles stored on a third party tiles provider (i.e. a web-server). It is actually a simple line of Javascript that does the magic of calling the tiles and serving these to your web-browser. If you turn your wifi off, you will see that you won’t be able anymore to see the base layer while navigating the world.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;publish-it-online-using-gh-pages&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Publish it online using gh-pages !&lt;/h3&gt;
+&lt;p&gt;Head back to your terminal (opened in your &lt;code&gt;myoutputs&lt;/code&gt; folder) and save and publish your work to Github.&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git add .
+$ git commit -m &amp;quot;adding interactive demo-map.html&amp;quot;
+$ git push --set-upstream origin gh-pages&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now the source code of your interactive map (both the &lt;code&gt;demo-map.R&lt;/code&gt; and the &lt;code&gt;demo-map.html&lt;/code&gt; ) has been pushed to &lt;code&gt;https://github.com/yourUserName/myoutputs&lt;/code&gt; and your hosted interactive map is rendered at &lt;code&gt;https://yourUserName.github.io/myoutputs/demo-map.html&lt;/code&gt; !&lt;/p&gt;
+&lt;p&gt;Great ! Simply share this link to your audience and you are done ! Your interactive webmap is available to them !&lt;/p&gt;
+&lt;p&gt;Sometimes github pages struggles to rebuild your rendered page when you commit your changes. If this happens, you can force github pages to rebuild it using these two git instructions (solution found on &lt;a href=&#34;https://stackoverflow.com/questions/24098792/how-to-force-github-pages-build&#34;&gt;stackoverflow&lt;/a&gt;) :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git commit -m &amp;#39;rebuild pages&amp;#39; --allow-empty
+$ git push origin gh-pages&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;some-optionally-tricks-to-improve-this-workflow&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Some optionally tricks to improve this workflow&lt;/h2&gt;
+&lt;p&gt;If you want to showcase multiple interactive data visualizations outputs, it might be cool to have a webpage that presents all of them so that your visitors can easily discover your work. The simplest solution is to create an &lt;code&gt;index.html&lt;/code&gt; file that lists all your outputs and that is located at the root of your &lt;code&gt;myoutputs&lt;/code&gt; directory. Doing so, while your visitors head at &lt;code&gt;https://yourUserName.github.io/myoutputs&lt;/code&gt;, the &lt;code&gt;index.html&lt;/code&gt; will act as a home page and your visitors will receive a listing of the outputs you have add to your &lt;code&gt;myoutputs&lt;/code&gt; repository.&lt;/p&gt;
+&lt;p&gt;You have two options to maintain this directory listing &lt;code&gt;index.html&lt;/code&gt; file updated. Either you manually add a new line for each new interactive output you want to showcase, either you run a bash script that build the &lt;code&gt;index.html&lt;/code&gt; file for you (preferred).&lt;/p&gt;
+&lt;div id=&#34;bash-script-to-build-the-directory-listing-index.html-file&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;bash script to build the directory listing index.html file&lt;/h3&gt;
+&lt;p&gt;Download and save &lt;a href=&#34;https://pokyah.github.io/pokyah-maps/index-html.sh&#34;&gt;this&lt;/a&gt; bash script under your &lt;code&gt;myoutputs&lt;/code&gt; folder. Make it executable :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ chmod a+x index-html.sh&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This script is intendend to automatically generate an index.html files that lists all the files available in a specific folder. Let’s run it :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ ls | ./index-html.sh &amp;gt; index.html&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You now have a nice index.html files that lists all your files stored in your &lt;code&gt;myoutputs&lt;/code&gt; folder.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pushing-the-index.html-file-to-github&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;pushing the index.html file to github&lt;/h3&gt;
+&lt;p&gt;Each time, you run this bash script to update you index.html file, you of course have to push it to Github so that when your visitors head at &lt;code&gt;https://yourUserName.github.io/myoutputs&lt;/code&gt; they get an updated list of all your files available. For this purpose we do as previsously mentioned : add, commit and push :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git add .
+$ git commit -m &amp;quot;adding index.html and updating it with bash script&amp;quot;
+$ git push origin gh-pages&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;You are now able to publicly share your best R interactive datavisulization HTML outputs thanks to Github pages. You are of course not limited to R. You can use this system to showcase any HTML/CSS/JS creation, be it a full static website (great templates available &lt;a href=&#34;https://html5up.net/&#34;&gt;here&lt;/a&gt;) our a little javascript game for example.&lt;br /&gt;
+If you want to easily host a blog with Github pages, have a look at Jekyll and &lt;a href=&#34;https://github.com/barryclark/jekyll-now&#34;&gt;this excellent&lt;/a&gt; easy and instant Jekyll install repository (that I have used to build this blog).&lt;/p&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>

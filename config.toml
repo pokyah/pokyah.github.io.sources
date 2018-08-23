@@ -50,7 +50,7 @@ url                    = "/cv/"
 
 [[menu.main]]
 name                   = "Geo-Tools"
-weight                 = -80
+weight                 = -70
 identifier             = "geo-tools"
 url                    = "/geo-tools/"
 

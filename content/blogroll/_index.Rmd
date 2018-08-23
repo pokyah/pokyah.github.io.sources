@@ -5,6 +5,9 @@ date: "6/27/2018"
 output: html_document
 ---
 
+* [R-bloggers](https://www.r-bloggers.com)
+R news and tutorials contributed by (750) R bloggers
+
 * [Maëlle's R blog](https://masalmon.eu/)
 open-source, open data and open science.
 

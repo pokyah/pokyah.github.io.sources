@@ -4,7 +4,7 @@
   
   <url>
     <loc>/post/2018-08-01-building-a-dockerized-shiny-server-with-packaged-shiny-apps/</loc>
-    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -157,14 +157,14 @@
   </url>
   
   <url>
-    <loc>/tags/code/</loc>
-    <lastmod>2018-07-20T12:52:41+00:00</lastmod>
+    <loc>/categories/code/</loc>
+    <lastmod>2018-06-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/code/</loc>
-    <lastmod>2018-06-12T00:00:00+00:00</lastmod>
+    <loc>/tags/code/</loc>
+    <lastmod>2018-07-20T12:52:41+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -194,7 +194,7 @@
   
   <url>
     <loc>/categories/docker/</loc>
-    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -218,7 +218,7 @@
   
   <url>
     <loc>/tags/how-to/</loc>
-    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -231,12 +231,6 @@
   <url>
     <loc>/categories/idealism/</loc>
     <lastmod>2018-07-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/internet/</loc>
-    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -254,7 +248,7 @@
   
   <url>
     <loc>/categories/linux/</loc>
-    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -290,7 +284,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -314,7 +308,7 @@
   
   <url>
     <loc>/categories/r/</loc>
-    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -338,7 +332,7 @@
   
   <url>
     <loc>/categories/shiny/</loc>
-    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -392,7 +386,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-08-01T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

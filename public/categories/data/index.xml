@@ -8,7 +8,7 @@
     <language>en-US</language>
     <lastBuildDate>Fri, 22 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/data/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/categories/data/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,15 +17,40 @@
       <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/blockchain_for_research_curated_list/</guid>
-      <description>Could blockchain :
- help science reproductibility ?
- enhance research transparency ?
- avoid publication fraud ?
- enhance datasets exchanges ?
- help to fund research projects ?
- incentivize scientists ?  Let’s find out with a few lectures !
-  Blockchain ‘could help combat mistrust in scientific process’
- Dash Puts Science Research On The Blockchain Academic publishing is ripe for disruption, and Dash seeks to prove a new paradigm.</description>
+      <description>&lt;p&gt;Could blockchain :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;help science reproductibility ?&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;enhance research transparency ?&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;avoid publication fraud ?&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;enhance datasets exchanges ?&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;help to fund research projects ?&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;incentivize scientists ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s find out with a few lectures !&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../../post/blockchain_for_research_curated_list_files/blockchain-3277335_960_720.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.timeshighereducation.com/news/blockchain-could-help-combat-mistrust-scientific-process&#34;&gt;Blockchain ‘could help combat mistrust in scientific process’&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://cryptobriefing.com/dash-science-research-blockchain/&#34;&gt;Dash Puts Science Research On The Blockchain Academic publishing is ripe for disruption, and Dash seeks to prove a new paradigm.&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.chemistryworld.com/news/blockchain-to-help-scholarly-publishing-fight-fraud/3008803.article&#34;&gt;Blockchain to help scholarly publishing fight fraud&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://medium.com/read-write-participate/concerns-about-blockchain-for-science-1540c4ac9bdb&#34;&gt;Concerns About Blockchain for Science&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.researchgate.net/publication/306107836_Blockchain_for_science_and_knowledge_creation_-_A_technical_fix_to_the_reproducibility_crisis&#34;&gt;Blockchain for science and knowledge creation - A technical fix to the reproducibility crisis ?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://blogs.scientificamerican.com/observations/many-scientific-studies-are-bogus-but-blockchain-can-help/&#34;&gt;Many Scientific Studies Are Bogus, but Blockchain Can Help&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://dataconomy.com/2017/05/blockchains-data-scientist-dream/&#34;&gt;BLOCKCHAINS COULD BE EVERY DATA SCIENTIST’S DREAM&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://insidebigdata.com/2018/04/25/data-scientist-start-worrying-blockchain-time-soon/&#34;&gt;As a Data Scientist, Do You Have to Start Worrying About Blockchain Any Time Soon?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.blockchainforscience.com/&#34;&gt;REPRODUCIBLE RESULTS THROUGH OPENESS TO SCIENTIFIC SELF-CORRECTION. Blockchainified Science&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.sciencemag.org/news/2017/05/can-bitcoin-s-cryptographic-technology-help-save-environment&#34;&gt;Can bitcoin’s cryptographic technology help save the environment?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.nature.com/articles/d41586-017-08589-4&#34;&gt;Could Bitcoin technology help science?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://peerj.com/preprints/26496/&#34;&gt;How to harness Blockchain technology for marine conservation&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

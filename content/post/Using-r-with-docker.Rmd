@@ -133,7 +133,7 @@ $ docker run -w /home/rstudio/ rm -p 8787:8787 -v /yourUsername/Rprojects/yourPr
 ```
 Docker will instantiate a new container from the rocker/tidyverse image and make your project folder available to the container by mounting it. All the modifications that you made to your mounted host folder from your container will be effective in your host machine. So once you stop your container, don't worry, your modifications will be saved ! 
 
-To launch your container RStudio install, open a web-browser and navigate to `http://localhost:8787`. You habitual RStudio interface will be launched within a few seconds and your mounted folder will appear in the files pane. __Congratulations, you are now ready to work within a dockerised RStudio install !__
+To launch your container RStudio install, open a web-browser and navigate to `http://localhost:8787`. You habitual RStudio interface will be launched within a few seconds and your mounted folder will appear in the files pane. __Congratulations, you are now ready to work within a dockerized RStudio install !__
 
 In most of the cases, before running an image, you will need to customise it so that it reflects your own needs. __Customising an image__ requires to __edit its Dockerfile__ and rebuild the image as mentioned earlier. 
 

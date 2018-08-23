@@ -1,7 +1,7 @@
 ---
 title: Building a dockerized shiny server with packaged shiny apps and deploy it publicly in 2 minutes
 author: Thomas Goossens
-date: '2018-08-01'
+date: '2018-08-23'
 draft: true
 categories:
   - r
@@ -10,40 +10,44 @@ categories:
   - shiny
 tags:
   - how-to
-  - internet
 ---
 
 
 
+<p>Let’s imagine you want to build an interactive data vizualization app that could be accessible from the internet. As an R expert, one of your best bet could be to use the power of shiny apps. You probably wonder what could be one of the most efficient way to easily and quickly deploy it ? Let’s find out how the magic of docker and R packages will help you achieve this !</p>
 <div id="write-your-shiny-app-as-a-package" class="section level1">
 <h1>Write your shiny App as a package</h1>
-<p>Building shiny apps as package will help you to produce a cleaner and easier to maintain code thanks to devtools and testthat. <a href="https://wlandau.github.io/2016/11/01/appPackage/" class="uri">https://wlandau.github.io/2016/11/01/appPackage/</a>. I heavily recommand you to code your app in this way. Doing so will also allow you to use <code>devtools::install_github()</code> to quickly install your app on any computer/server. R packages are the most efficient way to make reproductible science. <a href="https://kbroman.org/pkg_primer/pages/why.html">Why ?</a></p>
-<p>To know how to code your shiny app as a package, <a href="https://stackoverflow.com/questions/37830819/developing-shiny-app-as-a-package-and-deploying-it-to-shiny-server">this</a> stackoveflow thread is an excellent starting point.</p>
+<p><a href="https://wlandau.github.io/2016/11/01/appPackage/">Building shiny apps as package</a> will help you to produce a cleaner and easier to maintain code thanks to devtools and testthat. I heavily recommand you to code your app this way. Doing so will also allow you to use <code>devtools::install_github()</code> to quickly install your app on any computer, server and Docker container.</p>
+<p>Moreover R packages are <a href="https://kbroman.org/pkg_primer/pages/why.html">the most efficient way to make reproductible science</a>.</p>
+<p>To understand how to code your shiny app as a package, Dean Attali’s answers in <a href="https://stackoverflow.com/questions/37830819/developing-shiny-app-as-a-package-and-deploying-it-to-shiny-server">this</a> stackoveflow thread, and his blog post <a href="https://deanattali.com/2015/04/21/r-package-shiny-app/">“Supplementing your R package with a Shiny app”</a> are excellent starting points.</p>
+<p>Follow the instructions and make sure that your shiny app code is placed into the <code>inst</code> folder of your package.</p>
 </div>
 <div id="create-a-shiny-server-docker-image-which-contains-the-packaged-shiny-apps" class="section level1">
 <h1>Create a shiny server docker image which contains the packaged shiny app(s)</h1>
-<p>A <a href="https://shiny.rstudio.com/articles/shiny-server.html">shiny server</a> allows you to distribute mulitples shiny apps over the internet at their own URL in an easy and efficient way. Setting up a shiny server may be time consuming but thanks to Docker and the rocker-org community, you can now quickly set up your own shiny server ! To do so, simply clone the rocker-org shiny server <a href="https://github.com/tocker-org/shiny-1">repo</a> :</p>
+<p>A <a href="https://shiny.rstudio.com/articles/shiny-server.html">shiny server</a> allows you to distribute multiple shiny apps over the internet at their own URL in an easy and efficient way. Setting up a shiny server may be time consuming but thanks to Docker and the <a href="https://www.rocker-project.org/">rocker-org community</a>, you can now quickly set up your own shiny server ! To do so, simply clone the rocker-org shiny server <a href="https://github.com/tocker-org/shiny-1">repo</a> :</p>
 <pre class="bash"><code>$ git clone git@github.com:rocker-org/shiny.git</code></pre>
-<p>Open the Dockerfile (which is the recipe to create the Docker image that will be used to instantiate the shiny server) and add the instruction to install your packaged shinyApp. If your app is pushed to a github repository, you can paste this line to …</p>
-<p><code>RUN R -e &quot;devtools::install_github('&lt;USERNAME&gt;/&lt;REPONAME&gt;', ref='&lt;BRANCHNAME&gt;', force=TRUE)&quot;</code></p>
-<p>Repeat this step for every packaged shiny app you want to be accessible through your server.</p>
-<p>Now you can push your modified Docker file to github.</p>
+<p>Open the Dockerfile (which is the recipe to create the Docker image that will be used to instantiate the shiny server) and add the instruction line to add your packaged shinyApp to your Docker image. If your packaged app is pushed to a github repository, paste this line in the Dockerfile and adapt the &lt;PLACEHOLDERS&gt; :</p>
+<p><code>RUN R -e &quot;devtools::install_github('&lt;GITHUB_USERNAME&gt;/&lt;PACKAGE_REPO_NAME&gt;', ref='&lt;BRANCHNAME&gt;', force=TRUE)&quot;</code></p>
+<p>Repeat this step for every packaged shiny app you want to be accessible through your dockerized shiny server. Save your work and push it to github.</p>
 </div>
 <div id="make-your-docker-shiny-server-image-accessible-through-docker-hub" class="section level1">
 <h1>Make your docker shiny server image accessible through docker hub</h1>
-<p>To do so, you will need to link your github and dockerhub accounts. To do so, simply follow the instructions provided in <a href="https://felixcentmerino.wordpress.com/containers/sync-up-docker-hub-and-github-to-build-images-automatically/">this post</a></p>
+<p>This step will later allows you to quickly install and instantiate the shiny server docker container. To do so, simply link your github and dockerhub accounts by following the instructions provided in <a href="https://felixcentmerino.wordpress.com/containers/sync-up-docker-hub-and-github-to-build-images-automatically/">this post</a></p>
 </div>
-<div id="installing-the-docker-shiny-server-image-on-a-server" class="section level1">
-<h1>installing the docker shiny server image on a server</h1>
-<p>Once docker hub shows that the build is ready, on the host server enter the folowing command :</p>
-<pre class="bash"><code>$ sudo docker pull &lt;USERNAME/IMAGENAME&gt;</code></pre>
-<p>The shiny server image is now available in your server. But we need one more step ! As the shinyapps are only available as packages, we need some extra lines of R code to actually initiate the shiny apps. On the host server, create a folder which contains your R scripts that instantiate the shiny app. Example R script :</p>
-<pre class="r"><code>dir &lt;- system.file(&quot;shiny&quot;, &quot;reporting&quot;, package = &quot;defHydWal&quot;)
+<div id="install-the-docker-shiny-server-image-on-your-server" class="section level1">
+<h1>Install the docker shiny server image on your server</h1>
+<p>Once docker hub shows that the image build is ready with no errors, download the image on your host server by adapting this command :</p>
+<pre class="bash"><code>$ sudo docker pull &lt;DOCKERHUB_USERNAME/IMAGENAME&gt;</code></pre>
+<p>At this point, you only need some extra lines of R code to actually deploy your packaged shiny apps ! As your shiny apps source files are located into the <a href="http://r-pkgs.had.co.nz/inst.html"><code>inst</code> folder</a> of your packages, you will use the <code>sytem.file</code> function to actually call and initiate these. On your host server, create a folder and name it for example <code>shiny_launchers_mountpoint</code>. Inside this folder, create a folder for each of the shiny apps you have add to your Docker image, and give these folders the same name as your packaged shiny apps. Finally, inside each of this folder create and <code>app.R</code> file that contains the following lines (of course, don’t forget to adapt the &lt;PLACEHOLDERS&gt;) :</p>
+<pre class="r"><code>dir &lt;- system.file(&quot;&lt;SHINY_APP_CODE_LOCATION_INSIDE_INST_FOLDER&gt;&quot;, package = &quot;&lt;PACKAGE_REPO_NAME&gt;&quot;)
 setwd(dir)
 shiny::shinyAppDir(&quot;.&quot;)</code></pre>
+<p>At the root of the <code>shiny_launchers_mountpoint</code> create an index.html file that will act as the homepage of your shiny server. You can put whatver you want into it. A good idea is to create a link for each of your shiny apps.</p>
 </div>
-<div id="instantiate-at-an-open-port-in-detached-mode" class="section level1">
-<h1>instantiate at an open port in detached mode</h1>
-<pre class="bash"><code>sudo docker run -d --rm -p 3838:3838     -v /home/tgoossens/Documents/code/agrometeor/shiny-1/mountpoints/:/srv/shiny-server/     -v /srv/shinylog/:/var/log/shiny-server/     pokyah/shinyagro</code></pre>
-<p>for mounting the token : <a href="https://stackoverflow.com/questions/18861834/mounting-multiple-volumes-on-a-docker-container" class="uri">https://stackoverflow.com/questions/18861834/mounting-multiple-volumes-on-a-docker-container</a></p>
+<div id="instantiate-your-docker-container" class="section level1">
+<h1>Instantiate your docker container</h1>
+<p>Now that all of your infrastructure is ready, the last step is to run your shiny server. In your host server terminal, run this command to instantiate your shiny apps server container in detached mode :</p>
+<pre class="bash"><code>sudo docker run -d --rm -p 3838:3838 -v &lt;FULL_PATH_OF_YOUR_FOLDER_CONTAINING_THE_R_SCRIPT&gt;:/srv/shiny-server/     -v /srv/shinylog/:/var/log/shiny-server/     &lt;DOCKERHUB_USERNAME&gt;/&lt;REPONAME&gt;</code></pre>
+<p>Now head at <code>localhost:3838/apps</code> into your browser and your index.html file will be served. Click on the link of the shiny app you want to consult and you are done !</p>
+<p>If you want to consult it from another computer, replace <code>localhost</code> by the domain name or IP of your host server !</p>
 </div>

@@ -6,18 +6,55 @@
     <description>Recent content in Docker on pokyah - opensource science, GIS and data-analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 01 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Aug 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Building a dockerized shiny server with packaged shiny apps and deploy it publicly in 2 minutes</title>
       <link>/post/2018-08-01-building-a-dockerized-shiny-server-with-packaged-shiny-apps/</link>
-      <pubDate>Wed, 01 Aug 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-08-01-building-a-dockerized-shiny-server-with-packaged-shiny-apps/</guid>
-      <description>Write your shiny App as a package Building shiny apps as package will help you to produce a cleaner and easier to maintain code thanks to devtools and testthat. https://wlandau.github.io/2016/11/01/appPackage/. I heavily recommand you to code your app in this way. Doing so will also allow you to use devtools::install_github() to quickly install your app on any computer/server. R packages are the most efficient way to make reproductible science. Why ?</description>
+      <description>&lt;p&gt;Let’s imagine you want to build an interactive data vizualization app that could be accessible from the internet. As an R expert, one of your best bet could be to use the power of shiny apps. You probably wonder what could be one of the most efficient way to easily and quickly deploy it ? Let’s find out how the magic of docker and R packages will help you achieve this !&lt;/p&gt;
+&lt;div id=&#34;write-your-shiny-app-as-a-package&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Write your shiny App as a package&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://wlandau.github.io/2016/11/01/appPackage/&#34;&gt;Building shiny apps as package&lt;/a&gt; will help you to produce a cleaner and easier to maintain code thanks to devtools and testthat. I heavily recommand you to code your app this way. Doing so will also allow you to use &lt;code&gt;devtools::install_github()&lt;/code&gt; to quickly install your app on any computer, server and Docker container.&lt;/p&gt;
+&lt;p&gt;Moreover R packages are &lt;a href=&#34;https://kbroman.org/pkg_primer/pages/why.html&#34;&gt;the most efficient way to make reproductible science&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To understand how to code your shiny app as a package, Dean Attali’s answers in &lt;a href=&#34;https://stackoverflow.com/questions/37830819/developing-shiny-app-as-a-package-and-deploying-it-to-shiny-server&#34;&gt;this&lt;/a&gt; stackoveflow thread, and his blog post &lt;a href=&#34;https://deanattali.com/2015/04/21/r-package-shiny-app/&#34;&gt;“Supplementing your R package with a Shiny app”&lt;/a&gt; are excellent starting points.&lt;/p&gt;
+&lt;p&gt;Follow the instructions and make sure that your shiny app code is placed into the &lt;code&gt;inst&lt;/code&gt; folder of your package.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;create-a-shiny-server-docker-image-which-contains-the-packaged-shiny-apps&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Create a shiny server docker image which contains the packaged shiny app(s)&lt;/h1&gt;
+&lt;p&gt;A &lt;a href=&#34;https://shiny.rstudio.com/articles/shiny-server.html&#34;&gt;shiny server&lt;/a&gt; allows you to distribute multiple shiny apps over the internet at their own URL in an easy and efficient way. Setting up a shiny server may be time consuming but thanks to Docker and the &lt;a href=&#34;https://www.rocker-project.org/&#34;&gt;rocker-org community&lt;/a&gt;, you can now quickly set up your own shiny server ! To do so, simply clone the rocker-org shiny server &lt;a href=&#34;https://github.com/tocker-org/shiny-1&#34;&gt;repo&lt;/a&gt; :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git clone git@github.com:rocker-org/shiny.git&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Open the Dockerfile (which is the recipe to create the Docker image that will be used to instantiate the shiny server) and add the instruction line to add your packaged shinyApp to your Docker image. If your packaged app is pushed to a github repository, paste this line in the Dockerfile and adapt the &amp;lt;PLACEHOLDERS&amp;gt; :&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;RUN R -e &amp;quot;devtools::install_github(&#39;&amp;lt;GITHUB_USERNAME&amp;gt;/&amp;lt;PACKAGE_REPO_NAME&amp;gt;&#39;, ref=&#39;&amp;lt;BRANCHNAME&amp;gt;&#39;, force=TRUE)&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Repeat this step for every packaged shiny app you want to be accessible through your dockerized shiny server. Save your work and push it to github.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;make-your-docker-shiny-server-image-accessible-through-docker-hub&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Make your docker shiny server image accessible through docker hub&lt;/h1&gt;
+&lt;p&gt;This step will later allows you to quickly install and instantiate the shiny server docker container. To do so, simply link your github and dockerhub accounts by following the instructions provided in &lt;a href=&#34;https://felixcentmerino.wordpress.com/containers/sync-up-docker-hub-and-github-to-build-images-automatically/&#34;&gt;this post&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;install-the-docker-shiny-server-image-on-your-server&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Install the docker shiny server image on your server&lt;/h1&gt;
+&lt;p&gt;Once docker hub shows that the image build is ready with no errors, download the image on your host server by adapting this command :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ sudo docker pull &amp;lt;DOCKERHUB_USERNAME/IMAGENAME&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At this point, you only need some extra lines of R code to actually deploy your packaged shiny apps ! As your shiny apps source files are located into the &lt;a href=&#34;http://r-pkgs.had.co.nz/inst.html&#34;&gt;&lt;code&gt;inst&lt;/code&gt; folder&lt;/a&gt; of your packages, you will use the &lt;code&gt;sytem.file&lt;/code&gt; function to actually call and initiate these. On your host server, create a folder and name it for example &lt;code&gt;shiny_launchers_mountpoint&lt;/code&gt;. Inside this folder, create a folder for each of the shiny apps you have add to your Docker image, and give these folders the same name as your packaged shiny apps. Finally, inside each of this folder create and &lt;code&gt;app.R&lt;/code&gt; file that contains the following lines (of course, don’t forget to adapt the &amp;lt;PLACEHOLDERS&amp;gt;) :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dir &amp;lt;- system.file(&amp;quot;&amp;lt;SHINY_APP_CODE_LOCATION_INSIDE_INST_FOLDER&amp;gt;&amp;quot;, package = &amp;quot;&amp;lt;PACKAGE_REPO_NAME&amp;gt;&amp;quot;)
+setwd(dir)
+shiny::shinyAppDir(&amp;quot;.&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At the root of the &lt;code&gt;shiny_launchers_mountpoint&lt;/code&gt; create an index.html file that will act as the homepage of your shiny server. You can put whatver you want into it. A good idea is to create a link for each of your shiny apps.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;instantiate-your-docker-container&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Instantiate your docker container&lt;/h1&gt;
+&lt;p&gt;Now that all of your infrastructure is ready, the last step is to run your shiny server. In your host server terminal, run this command to instantiate your shiny apps server container in detached mode :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo docker run -d --rm -p 3838:3838 -v &amp;lt;FULL_PATH_OF_YOUR_FOLDER_CONTAINING_THE_R_SCRIPT&amp;gt;:/srv/shiny-server/     -v /srv/shinylog/:/var/log/shiny-server/     &amp;lt;DOCKERHUB_USERNAME&amp;gt;/&amp;lt;REPONAME&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now head at &lt;code&gt;localhost:3838/apps&lt;/code&gt; into your browser and your index.html file will be served. Click on the link of the shiny app you want to consult and you are done !&lt;/p&gt;
+&lt;p&gt;If you want to consult it from another computer, replace &lt;code&gt;localhost&lt;/code&gt; by the domain name or IP of your host server !&lt;/p&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -26,7 +63,116 @@
       <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/using-r-with-docker/</guid>
-      <description>Why should you do that ? There are two main reasons to use R in conjunction with Docker. First, it allows you to quickly and easily share your work wathever the OS and R configuration of your collaborators. Hassle free collaboration ! Second, it allows you to work in an isolated environment. This means that you will never pollute your OS and e.g. run in time-consuming re-installation procedures due to broken configuration.</description>
+      <description>&lt;p&gt;Why should you do that ? There are two main reasons to use R in conjunction with Docker. First, it allows you to quickly and easily share your work wathever the OS and R configuration of your collaborators. Hassle free collaboration ! Second, it allows you to work in an isolated environment. This means that you will never pollute your OS and e.g. run in time-consuming re-installation procedures due to broken configuration. In case of OS crash, simply relaunch your &lt;em&gt;Docker R container&lt;/em&gt; with a single command (more about containers below) and you are ready to work !&lt;/p&gt;
+&lt;p&gt;This tutorial is an introduction to R with Docker. It it not an extensive description of the &lt;a href=&#34;https://docs.docker.com/&#34;&gt;enormous amount of features&lt;/a&gt; and all the complexity of Docker. It’s rather a good base to get started that I’ve written based on my own R development needs.&lt;/p&gt;
+&lt;div id=&#34;what-is-a-docker-container&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;What is a Docker container ?&lt;/h2&gt;
+&lt;p&gt;Docker is the piece of software that allows you to run &lt;strong&gt;containers&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;From the &lt;a href=&#34;https://www.docker.com/what-container&#34;&gt;official Docker website&lt;/a&gt; :&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A container image is a lightweight, stand-alone, executable package of a piece of software that includes everything needed to run it: code, runtime, system tools, system libraries, settings. Available for both Linux and Windows based apps, containerized software will always run the same, regardless of the environment. Containers isolate software from its surroundings, for example differences between development and staging environments and help reduce conflicts between teams running different software on the same infrastructure.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This container approach has many advantages compares to the use of virtual machines : lightweight, quick and modular.&lt;/p&gt;
+&lt;p&gt;In the Docker terminology, a containers actually means a running instance of an &lt;strong&gt;image&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Again, from the official Docker Website :&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Docker images are the basis of containers. An Image is an ordered collection of root filesystem changes and the corresponding execution parameters for use within a container runtime. An image typically contains a union of layered filesystems stacked on top of each other. An image does not have state and it never changes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-docker-will-help-you-with-your-r-related-work&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;How Docker will help you with your R related work ?&lt;/h2&gt;
+&lt;p&gt;Now that you understand what a container is, I’ll tell you what you can do with Docker in the context of you R work.&lt;/p&gt;
+&lt;p&gt;You can create and use a container that runs with the Linux distro &lt;em&gt;of your choice&lt;/em&gt;, with a version of R &lt;em&gt;of your choice&lt;/em&gt;, the packages and required OS dependencies &lt;em&gt;of your choices&lt;/em&gt;, and all of this in a totally isolated environment that is setup in seconds. And of course, you can create multiple containers with various R configurations depending of your needs !&lt;/p&gt;
+&lt;p&gt;This means that you will never run anymore in compatibility problems. It will also make your work &lt;a href=&#34;https://www.nature.com/articles/s41562-016-0021&#34;&gt;reproductible&lt;/a&gt; as you can share your containers with colleagues.&lt;/p&gt;
+&lt;p&gt;Docker also makes the use of the &lt;a href=&#34;https://rstudio.github.io/packrat/&#34;&gt;Packrat&lt;/a&gt; dependency management quite obsolete.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;docker-installation-instructions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Docker installation instructions&lt;/h2&gt;
+&lt;p&gt;You know why you should use Docker in the context of your R work and you want to install it now ! Well, to do it, simply follow the &lt;a href=&#34;https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce-1&#34;&gt;installation instructions&lt;/a&gt; on the Docker official website or follow this nice &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04&#34;&gt;Digital Ocean tutorial&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Before we dive into the R part, you will need to understand some essential Docker concepts.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;essential-docker-concepts-commands&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Essential Docker concepts &amp;amp; commands&lt;/h2&gt;
+&lt;p&gt;Each &lt;strong&gt;image&lt;/strong&gt; has its own &lt;strong&gt;name&lt;/strong&gt; and &lt;strong&gt;ID&lt;/strong&gt;. You can list all your available Docker images and get their name and ID using the &lt;code&gt;image&lt;/code&gt; command :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+agrometeor          latest              fea4eeec5c2a        10 days ago         2.41GB&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To &lt;strong&gt;run an image as a container&lt;/strong&gt;, simply use the &lt;code&gt;run&lt;/code&gt; command with the image ID or name :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker run &amp;lt;IMAGE-NAME&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that this command can receive many optional parameters (we will see an example later).&lt;/p&gt;
+&lt;p&gt;You can also run a container from an image which is hosted on &lt;a href=&#34;https://hub.docker.com/r/pokyah/agrometeordocker/&#34;&gt;Docker Hub&lt;/a&gt;. Docker will automatically download it on your computer and run it as a container once it is downloaded (to use this feature, you will first need to create a Docker hub account).&lt;/p&gt;
+&lt;p&gt;For geospatial R work you could for example run the image named &lt;a href=&#34;https://hub.docker.com/r/rocker/geospatial/&#34;&gt;rocker/geospatial&lt;/a&gt; which contains Linux, R, Rstudio and the most famous R spatial packages and their OS dependencies :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker run rocker/geospatial&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can of course run multiple different images simultanesously but you can also run a single image simultaneously in multiple separate containers. To &lt;strong&gt;list all your running Docker containers&lt;/strong&gt; and get their name and ID, use the &lt;code&gt;ps&lt;/code&gt; command. Note that the name is randomly generated by Docker.&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
+b18f77625a00        agrometeor          &amp;quot;/init&amp;quot;             About an hour ago   Up About an hour    0.0.0.0:8787-&amp;gt;8787/tcp   silly_roentgen
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Running containers use computing ressources. To &lt;strong&gt;stop and remove&lt;/strong&gt; a running container use the &lt;code&gt;rm&lt;/code&gt; command :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker rm -f &amp;lt;CONTAINER-ID&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Pay attention that when you stop a container, all the work that has been done inside the container is lost ! This is on purpose and we will later see the proper and efficient way to save your R developments made inside a container. If you want to save modifications made inside a container (e.g. adding a R library and its OS dependencies) you have to &lt;code&gt;commit&lt;/code&gt; your container. But this is out of the scope of this tutorial. If you are interested, you can read the corresponding &lt;a href=&#34;https://docs.docker.com/engine/reference/commandline/commit/#commit-a-container-with-new-configurations&#34;&gt;doc&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you need it, you can explore the file system of the running container (similarly to what you do when you are connected to a server using ssh conection) :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker exec -t -i &amp;lt;CONTAINER-ID&amp;gt; /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Docker is not limited to images existing on Docker Hub. It allows you to create your images with the configuration of your own. Creativity is the limit. Creating a Docker image requires a &lt;strong&gt;Dockfile&lt;/strong&gt; which is simply a configuration file that tells Docker what to put in your image. For example, you can find the Dockfile that was used to create the rocker/geospatial image that we mentioned earlier on &lt;a href=&#34;https://github.com/rocker-org/geospatial/blob/master/Dockerfile&#34;&gt;github&lt;/a&gt; . To &lt;strong&gt;build an image&lt;/strong&gt; from a dockfile you simply open a terminal in the folder containing the dockfile and execute the &lt;code&gt;build&lt;/code&gt; command with the name you want to attribute to your image (don’t forget the “.” at the end !) :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker build -t &amp;lt;IMAGE-NAME&amp;gt; .&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There a lot of ressources on the web that explain how to create your own images. Check my selection in the further reading section at the end of the post.&lt;/p&gt;
+&lt;p&gt;In case you are sure you will not anymore run an image as container(s), you can delete it to save some space on your computer :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker rmi &amp;lt;IMAGE_NAME:VERSION/IMAGE-ID&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And to delete all images (really ?!) :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker rmi $(docker images -qf &amp;quot;dangling=true&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;using-rstudio-inside-a-docker-container-and-saving-your-work&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Using RStudio inside a Docker container and saving your work&lt;/h2&gt;
+&lt;p&gt;Let’s dive in the latest part of this tutorial : running R inside a container. It’s actually pretty simple. It involves 2 steps :&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Choosing the pre-build R oriented Docker image you want to use&lt;/li&gt;
+&lt;li&gt;Running it as a container with optional parameters&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let’s say you need to make some R developments made easier with the &lt;a href=&#34;https://www.tidyverse.org/&#34;&gt;tidyverse&lt;/a&gt; family packages. To do this you will download the pre-built &lt;a href=&#34;https://hub.docker.com/r/rocker/tidyverse/image&#34;&gt;rocker/tidyverse&lt;/a&gt; from Docker hub using the command &lt;code&gt;pull&lt;/code&gt; (note the similarity with &lt;a href=&#34;http://r-bio.github.io/intro-git-rstudio/&#34;&gt;git&lt;/a&gt;):&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker pull rocker/tidyverse&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Remember that we have learned that once closed, containers loose all the modifications you have made within it. So, &lt;strong&gt;how to save your R developments made within a container&lt;/strong&gt; ? The trick is to actually &lt;strong&gt;mount your project folder from your host computer to the container&lt;/strong&gt;. This is achieved by passing optional parameters to the &lt;code&gt;run&lt;/code&gt; command.&lt;/p&gt;
+&lt;p&gt;If you want to run a container from the rocker/tidyverse image with an R project located in your host computer at &lt;code&gt;/home/yourUsername/Rprojects/yourProject/&lt;/code&gt; and work in RStudio, use the &lt;code&gt;run&lt;/code&gt; command with these optional parameters :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker run -w /home/rstudio/ rm -p 8787:8787 -v /yourUsername/Rprojects/yourProject/:/home/rstudio/ rocker/tidyverse&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Docker will instantiate a new container from the rocker/tidyverse image and make your project folder available to the container by mounting it. All the modifications that you made to your mounted host folder from your container will be effective in your host machine. So once you stop your container, don’t worry, your modifications will be saved !&lt;/p&gt;
+&lt;p&gt;To launch your container RStudio install, open a web-browser and navigate to &lt;code&gt;http://localhost:8787&lt;/code&gt;. You habitual RStudio interface will be launched within a few seconds and your mounted folder will appear in the files pane. &lt;strong&gt;Congratulations, you are now ready to work within a dockerized RStudio install !&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In most of the cases, before running an image, you will need to customise it so that it reflects your own needs. &lt;strong&gt;Customising an image&lt;/strong&gt; requires to &lt;strong&gt;edit its Dockerfile&lt;/strong&gt; and rebuild the image as mentioned earlier.&lt;/p&gt;
+&lt;p&gt;To keep &lt;strong&gt;git versioned Dockerfile -s&lt;/strong&gt; of your images, you can push them to &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt;. Hosting your Dockerfile on Github offers you a nice feature : &lt;a href=&#34;https://docs.docker.com/docker-hub/builds/&#34;&gt;automated builds&lt;/a&gt;. Once enabled, each time you push a modification of your Dockerfile to Github, Docker will rebuild your image and make it ready to be pulled by others.&lt;/p&gt;
+&lt;p&gt;You can share this very specific R environment with your co-workers. First, share them this tutorial and then share your image. For this purpose, you have two solutions :&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Sending them the corresponding Dockerfile and let them build the image on their machine (more complex)&lt;/li&gt;
+&lt;li&gt;Upload your image to Docker hub (manually or with the automated build feature) and simply send them the name of your image so that then can you it immediately use it with the &lt;code&gt;run&lt;/code&gt; command&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;You have learned how to use Docker to run your own customized R isolated environment inside a container and how to share this specific environment with your colleagues.&lt;/p&gt;
+&lt;p&gt;If you want to try a my pokyah/agrometeor container, have a look at its &lt;a href=&#34;https://github.com/pokyah/agrometeorDocker&#34;&gt;repository&lt;/a&gt;. There you will also learn how to create a custom bash command to launch your containers.&lt;/p&gt;
+&lt;p&gt;In a next tutorial, I’ll explain you how to run a container able to connect to an external postgreSQL database.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;future-readings&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Future readings&lt;/h2&gt;
+&lt;div id=&#34;good-tutorials&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Good tutorials&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.andrewheiss.com/blog/2017/04/27/super-basic-practical-guide-to-docker-and-rstudio/&#34;&gt;Andrew Heiss tuto&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://dirk.eddelbuettel.com/papers/useR2015_docker.pdf&#34;&gt;Dirk Eddelbuettel presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://knausb.github.io/2017/06/running-r-in-docker/&#34;&gt;Brian J. Knaus CLI tuto&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.r-bloggers.com/r-3-3-0-is-another-motivation-for-docker/&#34;&gt;R-Blogger post&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;dockerfile-customization&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Dockerfile customization&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://o2r.info/2017/05/30/containerit-package/&#34;&gt;R package to create Dockerfile&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ropenscilabs.github.io/r-docker-tutorial/05-dockerfiles.html&#34;&gt;tutorial from ropenscilabs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.mirantis.com/blog/how-do-i-create-a-new-docker-image-for-my-application/&#34;&gt;mirantis blog tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/45289764/install-r-packages-using-docker-file&#34;&gt;stackoverflow install-r-packages-using-docker-file&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/46902203/verify-r-packages-installed-into-docker-container&#34;&gt;stackoverflow verify-r-packages-installed-into-docker-container&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/26500174/upload-local-files-to-docker-container?noredirect=1&amp;amp;lq=1&#34;&gt;stackoverflow upload-local-files-to-docker-container&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>

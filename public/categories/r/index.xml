@@ -6,18 +6,55 @@
     <description>Recent content in R on pokyah - opensource science, GIS and data-analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 01 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Aug 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Building a dockerized shiny server with packaged shiny apps and deploy it publicly in 2 minutes</title>
       <link>/post/2018-08-01-building-a-dockerized-shiny-server-with-packaged-shiny-apps/</link>
-      <pubDate>Wed, 01 Aug 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-08-01-building-a-dockerized-shiny-server-with-packaged-shiny-apps/</guid>
-      <description>Write your shiny App as a package Building shiny apps as package will help you to produce a cleaner and easier to maintain code thanks to devtools and testthat. https://wlandau.github.io/2016/11/01/appPackage/. I heavily recommand you to code your app in this way. Doing so will also allow you to use devtools::install_github() to quickly install your app on any computer/server. R packages are the most efficient way to make reproductible science. Why ?</description>
+      <description>&lt;p&gt;Let’s imagine you want to build an interactive data vizualization app that could be accessible from the internet. As an R expert, one of your best bet could be to use the power of shiny apps. You probably wonder what could be one of the most efficient way to easily and quickly deploy it ? Let’s find out how the magic of docker and R packages will help you achieve this !&lt;/p&gt;
+&lt;div id=&#34;write-your-shiny-app-as-a-package&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Write your shiny App as a package&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://wlandau.github.io/2016/11/01/appPackage/&#34;&gt;Building shiny apps as package&lt;/a&gt; will help you to produce a cleaner and easier to maintain code thanks to devtools and testthat. I heavily recommand you to code your app this way. Doing so will also allow you to use &lt;code&gt;devtools::install_github()&lt;/code&gt; to quickly install your app on any computer, server and Docker container.&lt;/p&gt;
+&lt;p&gt;Moreover R packages are &lt;a href=&#34;https://kbroman.org/pkg_primer/pages/why.html&#34;&gt;the most efficient way to make reproductible science&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To understand how to code your shiny app as a package, Dean Attali’s answers in &lt;a href=&#34;https://stackoverflow.com/questions/37830819/developing-shiny-app-as-a-package-and-deploying-it-to-shiny-server&#34;&gt;this&lt;/a&gt; stackoveflow thread, and his blog post &lt;a href=&#34;https://deanattali.com/2015/04/21/r-package-shiny-app/&#34;&gt;“Supplementing your R package with a Shiny app”&lt;/a&gt; are excellent starting points.&lt;/p&gt;
+&lt;p&gt;Follow the instructions and make sure that your shiny app code is placed into the &lt;code&gt;inst&lt;/code&gt; folder of your package.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;create-a-shiny-server-docker-image-which-contains-the-packaged-shiny-apps&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Create a shiny server docker image which contains the packaged shiny app(s)&lt;/h1&gt;
+&lt;p&gt;A &lt;a href=&#34;https://shiny.rstudio.com/articles/shiny-server.html&#34;&gt;shiny server&lt;/a&gt; allows you to distribute multiple shiny apps over the internet at their own URL in an easy and efficient way. Setting up a shiny server may be time consuming but thanks to Docker and the &lt;a href=&#34;https://www.rocker-project.org/&#34;&gt;rocker-org community&lt;/a&gt;, you can now quickly set up your own shiny server ! To do so, simply clone the rocker-org shiny server &lt;a href=&#34;https://github.com/tocker-org/shiny-1&#34;&gt;repo&lt;/a&gt; :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git clone git@github.com:rocker-org/shiny.git&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Open the Dockerfile (which is the recipe to create the Docker image that will be used to instantiate the shiny server) and add the instruction line to add your packaged shinyApp to your Docker image. If your packaged app is pushed to a github repository, paste this line in the Dockerfile and adapt the &amp;lt;PLACEHOLDERS&amp;gt; :&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;RUN R -e &amp;quot;devtools::install_github(&#39;&amp;lt;GITHUB_USERNAME&amp;gt;/&amp;lt;PACKAGE_REPO_NAME&amp;gt;&#39;, ref=&#39;&amp;lt;BRANCHNAME&amp;gt;&#39;, force=TRUE)&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Repeat this step for every packaged shiny app you want to be accessible through your dockerized shiny server. Save your work and push it to github.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;make-your-docker-shiny-server-image-accessible-through-docker-hub&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Make your docker shiny server image accessible through docker hub&lt;/h1&gt;
+&lt;p&gt;This step will later allows you to quickly install and instantiate the shiny server docker container. To do so, simply link your github and dockerhub accounts by following the instructions provided in &lt;a href=&#34;https://felixcentmerino.wordpress.com/containers/sync-up-docker-hub-and-github-to-build-images-automatically/&#34;&gt;this post&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;install-the-docker-shiny-server-image-on-your-server&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Install the docker shiny server image on your server&lt;/h1&gt;
+&lt;p&gt;Once docker hub shows that the image build is ready with no errors, download the image on your host server by adapting this command :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ sudo docker pull &amp;lt;DOCKERHUB_USERNAME/IMAGENAME&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At this point, you only need some extra lines of R code to actually deploy your packaged shiny apps ! As your shiny apps source files are located into the &lt;a href=&#34;http://r-pkgs.had.co.nz/inst.html&#34;&gt;&lt;code&gt;inst&lt;/code&gt; folder&lt;/a&gt; of your packages, you will use the &lt;code&gt;sytem.file&lt;/code&gt; function to actually call and initiate these. On your host server, create a folder and name it for example &lt;code&gt;shiny_launchers_mountpoint&lt;/code&gt;. Inside this folder, create a folder for each of the shiny apps you have add to your Docker image, and give these folders the same name as your packaged shiny apps. Finally, inside each of this folder create and &lt;code&gt;app.R&lt;/code&gt; file that contains the following lines (of course, don’t forget to adapt the &amp;lt;PLACEHOLDERS&amp;gt;) :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dir &amp;lt;- system.file(&amp;quot;&amp;lt;SHINY_APP_CODE_LOCATION_INSIDE_INST_FOLDER&amp;gt;&amp;quot;, package = &amp;quot;&amp;lt;PACKAGE_REPO_NAME&amp;gt;&amp;quot;)
+setwd(dir)
+shiny::shinyAppDir(&amp;quot;.&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At the root of the &lt;code&gt;shiny_launchers_mountpoint&lt;/code&gt; create an index.html file that will act as the homepage of your shiny server. You can put whatver you want into it. A good idea is to create a link for each of your shiny apps.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;instantiate-your-docker-container&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Instantiate your docker container&lt;/h1&gt;
+&lt;p&gt;Now that all of your infrastructure is ready, the last step is to run your shiny server. In your host server terminal, run this command to instantiate your shiny apps server container in detached mode :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo docker run -d --rm -p 3838:3838 -v &amp;lt;FULL_PATH_OF_YOUR_FOLDER_CONTAINING_THE_R_SCRIPT&amp;gt;:/srv/shiny-server/     -v /srv/shinylog/:/var/log/shiny-server/     &amp;lt;DOCKERHUB_USERNAME&amp;gt;/&amp;lt;REPONAME&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now head at &lt;code&gt;localhost:3838/apps&lt;/code&gt; into your browser and your index.html file will be served. Click on the link of the shiny app you want to consult and you are done !&lt;/p&gt;
+&lt;p&gt;If you want to consult it from another computer, replace &lt;code&gt;localhost&lt;/code&gt; by the domain name or IP of your host server !&lt;/p&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -26,8 +63,175 @@
       <pubDate>Fri, 20 Jul 2018 12:52:41 +0000</pubDate>
       
       <guid>/post/interactively-mapping-spatial-prediction-with-the-attached-standard-error-using-mlr-gstat-and-leaflet/</guid>
-      <description>Here we demonstrate how to map the prediction together with the uncertainty in an intuitive and intelligible way. Our approach is based on this post by Tomislav Hengl and this post by Penn state college of earth and mineral sciences
-# For the example, using the output of mlr gstat KED from previous section # loading datasets data(meuse) data(meuse.grid) # imputing values to missing data meuse = impute(meuse, classes = list(numeric = imputeMean(), factor = imputeMode()), dummy.</description>
+      <description>&lt;p&gt;Here we demonstrate how to map the prediction together with the uncertainty in an intuitive and intelligible way. Our approach is based on &lt;a href=&#34;http://spatial-analyst.net/wiki/index.php/Uncertainty_visualization#Visualization_of_uncertainty_using_whitening_in_R&#34;&gt;this&lt;/a&gt; post by &lt;em&gt;Tomislav Hengl&lt;/em&gt; and &lt;a href=&#34;https://www.e-education.psu.edu/geog486/node/1891&#34;&gt;this&lt;/a&gt; post by &lt;em&gt;Penn state college of earth and mineral sciences&lt;/em&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# For the example, using the output of mlr gstat KED from previous section
+# loading datasets
+data(meuse)
+data(meuse.grid)
+# imputing values to missing data
+meuse = impute(meuse, classes = list(numeric = imputeMean(), factor = imputeMode()),
+  dummy.classes = &amp;quot;integer&amp;quot;)$data
+meuse.grid = impute(meuse.grid, classes = list(numeric = imputeMean(), factor = imputeMode()),
+  dummy.classes = &amp;quot;integer&amp;quot;)$data
+# adding a column with log zinc
+meuse = meuse %&amp;gt;% dplyr::mutate(log_zinc = log(zinc))
+# adding a column with sqrt dist
+meuse = meuse %&amp;gt;% dplyr::mutate(sqrt_dist = sqrt(dist))
+meuse.grid = meuse.grid %&amp;gt;% dplyr::mutate(sqrt_dist = sqrt(dist))
+# defining the regression task
+task = makeRegrTask(id = &amp;quot;meuse&amp;quot;,  data = meuse, target = &amp;quot;log_zinc&amp;quot;)
+task.krg = dropFeatures(task = task, features = getTaskFeatureNames(task)[-c(1,2,15)])
+# defining the learner
+lrn.krg = makeLearner(cl = &amp;quot;regr.gstat&amp;quot;, id = &amp;quot;ln(zn) mlr kriging with external drift&amp;quot;, predict.type = &amp;quot;response&amp;quot;, psill = 1, model = &amp;quot;Exp&amp;quot;, range = 300, nugget = 1, locations = ~x+y) 
+# training the model
+mod.krg = train(lrn.krg, task.krg)
+# kriging
+newdata.pred.krg = predict(object = mod.krg, newdata = meuse.grid)
+mlr.krg = bind_cols(data.frame(meuse.grid), newdata.pred.krg$data)
+# mapping
+coordinates(mlr.krg) = ~x+y
+gridded(mlr.krg) = TRUE
+pred.plot = spplot(mlr.krg[&amp;quot;response&amp;quot;], do.log = T, colorkey = TRUE, main = mod.krg$learner$id)
+# SE - defining the standard error learner by altering the previous one.
+se.lrn.krg = setPredictType(lrn.krg, predict.type = &amp;quot;se&amp;quot;)
+# training the SE model
+se.mod.krg = train(se.lrn.krg, task.krg)
+# SE kriging
+se.newdata.pred.krg = predict(object = se.mod.krg, newdata = meuse.grid)
+se.mlr.krg = bind_cols(data.frame(meuse.grid), se.newdata.pred.krg$data)
+
+# mapping with leaflet
+
+# loading the required libraries
+library(leaflet)
+library(dplyr)
+library(htmltools)
+library(sf)
+
+# defining the function to create a palette of different levels of alpha for the choosen color 
+alphaPal = function(color) {
+  alpha = seq(0,1,0.1)
+  r = col2rgb(color, alpha=T)
+  r = t(apply(r, 1, rep, length(alpha)))
+  # Apply alpha
+  r[4,] = alpha*255
+  r = r/255.0
+  codes = (rgb(r[1,], r[2,], r[3,], r[4,]))
+  return(codes)
+}
+
+# keeping what we need 
+interpolated.df = se.mlr.krg %&amp;gt;% select(one_of(c(&amp;quot;x&amp;quot;,&amp;quot;y&amp;quot;,&amp;quot;response&amp;quot;,&amp;quot;se&amp;quot;)))
+# making it spatial object class sf
+interpolated.sf = st_as_sf(interpolated.df,coords = c(&amp;quot;x&amp;quot;,&amp;quot;y&amp;quot;))
+# defining the crs
+st_crs(interpolated.sf) = 28992 # found at https://rdrr.io/cran/sp/man/meuse.html
+# transforming to geographic CRS (EPSG = 4326)
+interpolated.sf = st_transform(interpolated.sf, crs = 4326)
+# Now we need to inject this point info into polygon centered arounds the points to fake a raster layer but which is interactive
+class(mlr.krg) # SpatialPixelsDataFrame
+# making the gridded mlr.krg a raster 
+grid.r = raster::raster(mlr.krg, values=TRUE)
+# convert raster to polygons
+grid.sp = raster::rasterToPolygons(grid.r, dissolve = F)
+class(grid.sp) # SpatialPolygonsDataFrame
+# converting to sf for later joining
+grid.sf = st_as_sf(grid.sp)
+st_crs(grid.sf) = 28992 # found at https://rdrr.io/cran/sp/man/meuse.html
+# transforming to geographic CRS (EPSG = 4326)
+grid.sf = st_transform(grid.sf, crs = 4326)
+# injecting the prediction and se data into the polygon grid doing a spatial join
+# interpolated.sf = st_join(grid.sf, interpolated.sf) %&amp;gt;% select(one_of(c(&amp;quot;response&amp;quot;, &amp;quot;se&amp;quot;)))
+interpolated.pg.sf = dplyr::bind_cols(grid.sf, interpolated.sf)
+interpolated.pg.sf = interpolated.pg.sf %&amp;gt;% select(one_of(c(&amp;quot;response&amp;quot;, &amp;quot;se&amp;quot;)))
+# Do we have polygons ? 
+head(interpolated.pg.sf)
+
+# defining the function to map using leaflet
+leafletize = function(data.sf){
+  # to make the map responsive
+  responsiveness.chr = &amp;quot;\&amp;#39;&amp;lt;meta name=\&amp;quot;viewport\&amp;quot; content=\&amp;quot;width=device-width, initial-scale=1.0\&amp;quot;&amp;gt;\&amp;#39;&amp;quot;
+  
+  # defining the color palette for the response
+  varPal = colorNumeric(
+    palette = &amp;quot;Spectral&amp;quot;,
+    domain = data.sf$response
+  )
+  
+  # defining the transparent colorpal for the se
+  uncPal = colorNumeric(
+    palette = alphaPal(&amp;quot;#e6e6e6&amp;quot;),
+    domain = data.sf$se,
+    alpha = TRUE
+  )
+
+  # 
+  prediction.map = leaflet::leaflet(data.sf) %&amp;gt;%
+    addProviderTiles(group = &amp;quot;Stamen&amp;quot;,
+                     providers$Stamen.Toner,
+                     options = providerTileOptions(opacity = 0.25)
+    ) %&amp;gt;%
+    addProviderTiles(group = &amp;quot;Satellite&amp;quot;,
+                     providers$Esri.WorldImagery,
+                     options = providerTileOptions(opacity = 1)
+    ) %&amp;gt;%
+    fitBounds(sf::st_bbox(data.sf)[[1]],
+              sf::st_bbox(data.sf)[[2]],
+              sf::st_bbox(data.sf)[[3]],
+              sf::st_bbox(data.sf)[[4]]
+    ) %&amp;gt;%
+    addLayersControl(baseGroups = c(&amp;quot;Stamen&amp;quot;, &amp;quot;Satellite&amp;quot;),
+                     overlayGroups = c(&amp;quot;prediction&amp;quot;, &amp;quot;se&amp;quot;),
+                     options = layersControlOptions(collapsed = TRUE)
+    ) %&amp;gt;%
+    addEasyButton(easyButton(
+      icon=&amp;quot;fa-crosshairs&amp;quot;, title=&amp;quot;Locate Me&amp;quot;,
+      onClick=JS(&amp;quot;function(btn, map){ map.locate({setView: true}); }&amp;quot;))) %&amp;gt;%
+    htmlwidgets::onRender(paste0(&amp;quot;
+                                 function(el, x) {
+                                 $(&amp;#39;head&amp;#39;).append(&amp;quot;,responsiveness.chr,&amp;quot;);
+                                 }&amp;quot;)
+    ) %&amp;gt;%
+    addPolygons(
+                group = &amp;quot;prediction&amp;quot;,
+                color = &amp;quot;#444444&amp;quot;, stroke = FALSE, weight = 1, smoothFactor = 0.5,
+                opacity = 1.0, fillOpacity = 0.9,
+                fillColor = ~varPal(response),
+                highlightOptions = highlightOptions(color = &amp;quot;white&amp;quot;, weight = 2,
+                                                    bringToFront = TRUE)
+    )%&amp;gt;%
+    addLegend(
+              position = &amp;quot;bottomright&amp;quot;, pal = varPal, values = ~response,
+              title = &amp;quot;prediction&amp;quot;,
+              group = &amp;quot;prediction&amp;quot;,
+              opacity = 1
+    )%&amp;gt;%
+    addPolygons(
+                group = &amp;quot;se&amp;quot;,
+                color = &amp;quot;#444444&amp;quot;, stroke = FALSE, weight = 1, smoothFactor = 0.5,
+                opacity = 1.0, fillOpacity = 1,
+                fillColor = ~uncPal(se),
+                highlightOptions = highlightOptions(color = &amp;quot;white&amp;quot;, weight = 2,
+                                                    bringToFront = TRUE),
+                label = ~ paste(&amp;quot;prediction:&amp;quot;, signif(data.sf$response, 2), &amp;quot;\n&amp;quot;,&amp;quot;se: &amp;quot;, signif(data.sf$se, 2))
+    ) %&amp;gt;%
+    addLegend(
+              group = &amp;quot;se&amp;quot;,
+              position = &amp;quot;bottomleft&amp;quot;, pal = uncPal, values = ~se,
+              title = &amp;quot;se&amp;quot;,
+              opacity = 1
+    )
+  return(prediction.map)
+}
+# create the map object
+prediction.map = leafletize(interpolated.pg.sf)
+
+# render it
+html = list(h3(paste0(&amp;quot;interactive prediction map&amp;quot;)),
+                 prediction.map 
+                 )
+tagList(html)&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
@@ -36,8 +240,83 @@
       <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/srtm_data/</guid>
-      <description>Today I was looking for an high resolution Digital Elevation Model for a Region of Belgium. Until now, I was using the raster::getData(&amp;quot;alt&amp;quot;, country = &amp;quot;BE&amp;quot;, mask = TRUE) which only provides a low resolution DEM (5 km).
-The belgian National Geographic institute provides DEM’s at high resolution (80m and 20m). These are available from their download portal. Unfortunately I have not found yet a trick to download their data automatically (RSelenium?</description>
+      <description>&lt;p&gt;Today I was looking for an high resolution Digital Elevation Model for a Region of Belgium. Until now, I was using the &lt;code&gt;raster::getData(&amp;quot;alt&amp;quot;, country = &amp;quot;BE&amp;quot;, mask = TRUE)&lt;/code&gt; which only provides a low resolution DEM (5 km).&lt;/p&gt;
+&lt;p&gt;The belgian National Geographic institute provides DEM’s at high resolution (80m and 20m). These are available from their &lt;a href=&#34;http://inspire.ngi.be/download-free/&#34;&gt;download portal&lt;/a&gt;. Unfortunately I have not found yet a trick to download their data automatically (RSelenium?) as they ask you to click on some buttons to accept their terms of services.&lt;/p&gt;
+&lt;p&gt;After some researches on the web, I’ve found &lt;a href=&#34;https://www.gis-blog.com/download-srtm-for-an-entire-country/&#34;&gt;this&lt;/a&gt; helpful tutorial from gis-blog.com where the author proposed a little script to automate the download process of SRTM tiles based on the intersections of the extent of your region of interest and the extent of the SRTM tiles. It also relies on the &lt;code&gt;raster::getData()&lt;/code&gt; function but rather than passing &lt;code&gt;&amp;quot;alt&amp;quot;&lt;/code&gt; as dataset name, it uses &lt;code&gt;&amp;quot;SRTM&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;While trying the script, the &lt;code&gt;getData&lt;/code&gt; always threw me the exact same error as reported on &lt;a href=&#34;https://stackoverflow.com/questions/47997347/downloading-srtm-data-with-raster-package&#34;&gt;this&lt;/a&gt; stackoverflow thread. After entering in debug mode (&lt;code&gt;debug(getData)&lt;/code&gt;), I’ve found that the first URL from which the function tries to download the SRTM was broken while the third one pointing to &lt;a href=&#34;http://srtm.csi.cgiar.org/&#34; class=&#34;uri&#34;&gt;http://srtm.csi.cgiar.org/&lt;/a&gt; was valid. So I decided to modify the function according to my needs.&lt;/p&gt;
+&lt;p&gt;I first forked the &lt;a href=&#34;https://github.com/cran/raster&#34;&gt;CRAN/raster&lt;/a&gt; mirror repo and edited the .SRTM function so that it first tries to download SRTM data from &lt;a href=&#34;http://srtm.csi.cgiar.org/&#34; class=&#34;uri&#34;&gt;http://srtm.csi.cgiar.org/&lt;/a&gt;. I also had to change the file extension from “.TIF” to “.tif” as the files were created with a lowercase extension. You can find the full log of my edit on &lt;a href=&#34;https://github.com/pokyah/raster/commits/master&#34;&gt;commit log&lt;/a&gt; of my raster fork repo. The last step was to make this adapted raster package available to my R installation instead of the CRAN version. For this, I simply used&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;devtools::install_github(&amp;quot;pokyah/raster&amp;quot;)
+library(raster)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As I was finally able to automatically download the SRTM tiles from &lt;a href=&#34;http://srtm.csi.cgiar.org/&#34; class=&#34;uri&#34;&gt;http://srtm.csi.cgiar.org/&lt;/a&gt;, the last remaining part of the task was to put all my code in a function. I wanted it to work not only for my current region of interest, so I decided to generalize it. my custom function allow you to construct a terrain raster stack with the desired resolution and CRS for your region of interest. To make it work, you first need to download the srtm tils.shp as mentioned in the &lt;a href=&#34;https://www.gis-blog.com/download-srtm-for-an-entire-country/&#34;&gt;gis-blog plost&lt;/a&gt;. Here is its source code with an example :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# @param country_code.chr a character specifying the ISO contrycode. Ex : BE for belgium
+# @param NAME_1.chr a character specifying the NAME_1 value for lower than country level information
+# @param aggregation_factor.num a numeric specifying the aggregation factor to get the desired spatial resolution
+# @param EPSG.chr a character specifying the EPSG code of the desired Coordiante Reference System (CRS)
+# @param path.chr a character specifying the path where to dowload the SRTM data
+build_highRes_terrain_rasters.fun &amp;lt;- function(country_code.chr, NAME_1.chr=NULL, aggregation_factor.num=NULL, EPSG.chr=NULL, path.chr) {
+  # Path to downloaded SRTM Tiles refs
+  srtm.tiles.ref &amp;lt;- raster::shapefile(&amp;quot;&amp;lt;PATH_TO_DOWNLOADED_TILES_REFS&amp;quot;)
+
+  # Get country geometry first
+  extent.sp &amp;lt;- raster::getData(&amp;#39;GADM&amp;#39;, country=country_code.chr, level=1)
+
+  if(!is.null(NAME_1.chr)){
+    extent.sp &amp;lt;- subset(extent.sp, NAME_1 == NAME_1.chr)
+  }
+
+  # Intersect extent geometry and tile grid
+  intersects &amp;lt;- rgeos::gIntersects(extent.sp, srtm.tiles.ref, byid=T)
+  tiles      &amp;lt;- srtm.tiles.ref[intersects[,1],]
+
+  # Download tiles using getData
+  # inspired from https://www.gis-blog.com/download-srtm-for-an-entire-country/
+  srtm_list  &amp;lt;- list()
+  for(i in 1:length(tiles)) {
+    lon &amp;lt;- extent(tiles[i,])[1]  + (extent(tiles[i,])[2] - extent(tiles[i,])[1]) / 2
+    lat &amp;lt;- extent(tiles[i,])[3]  + (extent(tiles[i,])[4] - extent(tiles[i,])[3]) / 2
+
+    tile &amp;lt;- getData(&amp;#39;SRTM&amp;#39;, #data are downloaded from http://www.cgiar-csi.org/. See getData do of pokyah/raster repo on github
+                    lon=lon,
+                    lat=lat,
+                    download = FALSE,
+                    path = path.chr)
+
+    srtm_list[[i]] &amp;lt;- tile
+  }
+
+  # Mosaic tiles
+  srtm_list$fun &amp;lt;- mean
+  srtm_mosaic.ras &amp;lt;- do.call(raster::mosaic, srtm_list)
+
+  # Crop tiles to extent borders
+  extent.elevation.ras &amp;lt;- raster::crop(srtm_mosaic.ras, extent.sp)
+  extent.elevation.ras &amp;lt;- raster::mask(extent.elevation.ras, extent.sp)
+
+  # transform to desired CRS
+  if(!is.null(EPSG.chr)){
+    raster::projectRaster(extent.elevation.ras, crs = toString((dplyr::filter(rgdal::make_EPSG(), code==EPSG.chr))$prj4))
+  }
+
+  # aggregate to lower resolution
+  # inspired from https://stackoverflow.com/questions/32278825/how-to-change-the-resolution-of-a-raster-layer-in-r
+  if(!is.null(aggregation_factor.num)){
+    extent.elevation.ras &amp;lt;- raster::aggregate(extent.elevation.ras, fact=aggregation_factor.num)
+  }
+
+  # compute the slope from the elevation
+  # inspired from https://rpubs.com/etiennebr/visualraster
+  extent.slope.ras &amp;lt;- raster::terrain(extent.elevation.ras, opt=&amp;quot;slope&amp;quot;, unit=&amp;quot;degrees&amp;quot;)
+  extent.aspect.ras &amp;lt;- raster::terrain(extent.elevation.ras, opt=&amp;quot;aspect&amp;quot;, unit=&amp;quot;degrees&amp;quot;)
+  extent.roughness.ras &amp;lt;- raster::terrain(extent.elevation.ras, opt=&amp;quot;roughness&amp;quot;)
+
+  # compute the aspect from the elevation
+  extent.terrain.ras = raster::stack(
+    extent.elevation.ras,
+    extent.slope.ras,
+    extent.aspect.ras,
+    extent.roughness.ras)
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
     <item>
@@ -46,9 +325,36 @@ The belgian National Geographic institute provides DEM’s at high resolution (8
       <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/how-to-boost-your-r-productivity/</guid>
-      <description>Dockerized R studio Serve multiple instances of R studio server (free version) at multiple ports for parallel tasks.
-An extensive documentation is available on the rocker-org wiki
-sudo docker run -w /home/rstudio/ --rm -p 1515:8787 -v /home/&amp;lt;hostusername&amp;gt;/:/home/rstudio/ pokyah/agrometeordocker sudo docker run -w /home/rstudio/ --rm -p 1414:8787 -v /home/&amp;lt;hostusername&amp;gt;/:/home/rstudio/ pokyah/agrometeordocker  Shiny apps as package + dockerized shiny server See doc from rocker-org shiny server Docker image and Dean Attali Stackoverflow answser regarding shinyapps as packages</description>
+      <description>&lt;div id=&#34;dockerized-r-studio&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Dockerized R studio&lt;/h1&gt;
+&lt;p&gt;Serve multiple instances of R studio server (free version) at multiple ports for parallel tasks.&lt;/p&gt;
+&lt;p&gt;An extensive documentation is available on the &lt;a href=&#34;https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image&#34;&gt;rocker-org wiki&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo docker run -w /home/rstudio/ --rm -p 1515:8787 -v /home/&amp;lt;hostusername&amp;gt;/:/home/rstudio/ pokyah/agrometeordocker&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo docker run -w /home/rstudio/ --rm -p 1414:8787 -v /home/&amp;lt;hostusername&amp;gt;/:/home/rstudio/ pokyah/agrometeordocker&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;shiny-apps-as-package-dockerized-shiny-server&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Shiny apps as package + dockerized shiny server&lt;/h1&gt;
+&lt;p&gt;See doc from &lt;a href=&#34;https://github.com/pokyah/shiny-1&#34;&gt;rocker-org shiny server Docker image&lt;/a&gt; and Dean Attali Stackoverflow &lt;a href=&#34;https://stackoverflow.com/questions/37830819/developing-shiny-app-as-a-package-and-deploying-it-to-shiny-server&#34;&gt;answser&lt;/a&gt; regarding shinyapps as packages&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;snippets&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Snippets&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets&#34;&gt;R studio doc&lt;/a&gt; Pay attention to escaping characters&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;renviron&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;.Renviron&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://csgillespie.github.io/efficientR/r-startup.html&#34;&gt;Efficient R programming book&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;r-project-git&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;R project + git&lt;/h1&gt;
+&lt;p&gt;.RData environ git for code gitignore for R&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;r-dir-initializer&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;R dir initializer&lt;/h1&gt;
+&lt;/div&gt;
+&lt;div id=&#34;knitr-doc&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;knitr doc&lt;/h1&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -57,10 +363,20 @@ sudo docker run -w /home/rstudio/ --rm -p 1515:8787 -v /home/&amp;lt;hostusernam
       <pubDate>Fri, 08 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/r-project-initializer/</guid>
-      <description>Each time you start a new R project, it is highly recommanded to prepare a clean and organized working directory
-If you regularly create new projects, this working directory preparation task might seem tedious and time consuming. Creating the folders, intializing git, creating a license file, a readme file, etc.
-Instead of copying/pasting an existing pristine directory tree, I propose you to use the power of linux bash scripting.
-I’ve built a little script, inspired from frdvnw, that will allow you to quickly create a new R project directory tree along with all its commonly required files.</description>
+      <description>&lt;p&gt;Each time you start a new R project, it is &lt;strong&gt;highly recommanded&lt;/strong&gt; to prepare a clean and &lt;a href=&#34;https://nicercode.github.io/blog/2013-05-17-organising-my-project/&#34;&gt;organized working directory&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you regularly create new projects, this working directory preparation task might seem tedious and time consuming. Creating the folders, intializing git, creating a license file, a readme file, etc.&lt;/p&gt;
+&lt;p&gt;Instead of copying/pasting an existing pristine directory tree, I propose you to use the power of linux bash scripting.&lt;/p&gt;
+&lt;p&gt;I’ve built a little script, inspired from &lt;a href=&#34;https://frdvnw.github.io/data-sciences/linux/2018/04/12/my-r-skeletton.html&#34;&gt;frdvnw&lt;/a&gt;, that will allow you to quickly create a new R project directory tree along with all its commonly required files.&lt;/p&gt;
+&lt;p&gt;So, what does the script actually do ?&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;It pulls the Github R .gitgnore template file and make it your .gitignore file&lt;/li&gt;
+&lt;li&gt;It pulls the GNU GPL V3 license from gnu.org and make it your LICENSE file&lt;/li&gt;
+&lt;li&gt;It pulls a default init.R script from its repo. This init.R file contains a YAML header + Terms of Services footer + my habitual R script initialization functions (load common libraries, etc…)&lt;/li&gt;
+&lt;li&gt;It creates the tree structure (data folder, output folder, img fodlers, etc)&lt;/li&gt;
+&lt;li&gt;It intialize a new git repository and make a first commit for you ;)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If you want to give it a try, head at its &lt;a href=&#34;https://github.com/pokyah/R-project-init&#34;&gt;repo&lt;/a&gt;, fork/clone and play it !&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -69,7 +385,89 @@ I’ve built a little script, inspired from frdvnw, that will allow you to quick
       <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/quickly-create-and-maintain-a-blog-with-r/</guid>
-      <description>Maintaining a blog allows you to keep track of what you have done and thought. When you don’t remember how did you succeed to find a solution to a tricky problem, browsing your old posts might help you. As a scientist, it’s also the perfect tool to communicate your results to a wider audience. Moreover it allows you to showcase your work and possibly get hired for a future project. Nowadays many tools exist for you to publish on the web.</description>
+      <description>&lt;p&gt;Maintaining a blog allows you to keep track of what you have done and thought. When you don’t remember how did you succeed to find a solution to a tricky problem, browsing your old posts might help you. As a scientist, it’s also the perfect tool to communicate your results to a wider audience. Moreover it allows you to showcase your work and possibly get hired for a future project. Nowadays many tools exist for you to publish on the web. But as a R user you might be interested in a solution that seamlessly integrates with your habitual R workflow : &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;blogdown&lt;/a&gt; !&lt;/p&gt;
+&lt;div id=&#34;how-to-build-your-site-using-blogdown&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;How to build your site using blogdown ?&lt;/h1&gt;
+&lt;div id=&#34;downloading-the-necessary-stuff&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Downloading the necessary stuff&lt;/h2&gt;
+&lt;p&gt;For a detailed explanation, I recommand you to read the full documentation on the blogdown official site. What would be need ? We juste need to install blogdown and &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; (a static site generator like the famous &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;jekyll&lt;/a&gt;). All of this can be achieved with 3 R commands :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;blogdown&amp;quot;)
+library(blogdown)
+blogdown::install_hugo()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;initiating-a-new-site&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Initiating a new site&lt;/h2&gt;
+&lt;p&gt;Now that we have what we need, we simply initiate a new hugo site using the followin R command :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;blogdown::new_site()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Doing so will generate all the required files for your site to work. Once the command is executed, we can see our live site in action using :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;blogdown::serve_site()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Woah ! Pretty neat and quick, no ? If your site looks “strange” (no styling), you might need to edit some settings in its &lt;code&gt;config.toml&lt;/code&gt; file located at the root of your site folder. At the top of the file, replace the value of the &lt;code&gt;baseurl&lt;/code&gt; key by &lt;code&gt;&amp;quot;/&amp;quot;&lt;/code&gt; and below this line add this key-value pair :&lt;code&gt;relativeurls = true&lt;/code&gt;. Normallyh everything should now looks much more nice !&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;changing-the-parameters-of-the-site&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Changing the parameters of the site&lt;/h2&gt;
+&lt;p&gt;Now in the &lt;code&gt;config.toml&lt;/code&gt; you can change the default settings like the title, authorname, etc according to your needs. You can even add new menu items. Once you are happy with your custom config, you &lt;strong&gt;must&lt;/strong&gt; delete your &lt;code&gt;public&lt;/code&gt; folder to avoid possibly conflicting git settings (you will recompile it later, once your git submodules config is done - see below) and turn your blogdown server off :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;blogdown::stop_server()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;initialise-git-version-control&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Initialise git version control&lt;/h2&gt;
+&lt;p&gt;As you will use &lt;a href=&#34;https://pages.github.com/&#34;&gt;github pages&lt;/a&gt; to make your website publicly available, you will need to make its root folder a git repository ((if you don’t know how to use git and github, I would recommand you to take some time to &lt;a href=&#34;http://r-bio.github.io/intro-git-rstudio/&#34;&gt;learn&lt;/a&gt; this inescapable tool for anyone who is building code). So head at &lt;a href=&#34;https://www.github.com&#34;&gt;github&lt;/a&gt; and create a new repository. This repository will hold the source files of your hugo blog and not the rendered blog (you will see why later). Once your hugo blog source files repository is created on github, you will add it as your remote repository for your local website root directory as follows :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ cd &amp;lt;LOCATION_OF_WEBSITE_ROOT_DIR&amp;gt;
+$ git init
+$ git remote add origin https://github.com/&amp;lt;YOUR_USERNAME&amp;gt;/&amp;lt;reponame&amp;gt;.git
+$ git pull
+$ git push origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;publishing-your-site&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Publishing your site&lt;/h1&gt;
+&lt;p&gt;Now that your sources are under version control, it’s time to make the rendered static site availble publicly. The first step is to create a special github repository that you must call &lt;code&gt;&amp;lt;YOUR_USERNAME&amp;gt;.github.io&lt;/code&gt;. Once it is created, github will treat it as a special repo and everything you will put into it will be publicly availble at &lt;code&gt;&amp;lt;YOUR_USERNAME&amp;gt;.github.io&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The second step is to add this repository as a &lt;em&gt;submodule&lt;/em&gt; of your local website root folder actually stored in a fodler called &lt;code&gt;public&lt;/code&gt; (the one yo uhave previously deleted) :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ cd &amp;lt;LOCATION_OF_WEBSITE_ROOT_DIR&amp;gt;
+$ git submodule add -b master git@github.com:&amp;lt;YOUR_USERNAME&amp;gt;/&amp;lt;YOUR_USERNAME&amp;gt;.github.io.git public&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At this point, you can tell R blogdown to reconstruct your site under this git versioned &lt;code&gt;public&lt;/code&gt; folder :&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;blogdown::serve_site()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This command rebuild your site in the &lt;code&gt;public&lt;/code&gt; folder and allows you to inspect it your site in the RStudio viewer.&lt;/p&gt;
+&lt;p&gt;As the 2 latest commands have produced some new files, we need to commit and push these on github :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ cd &amp;lt;LOCATION_OF_WEBSITE_ROOT_DIR&amp;gt;
+$ git add . 
+$ git commit -m &amp;quot;adding submodule ref&amp;quot;
+$ git push
+$ cd &amp;lt;LOCATION_OF_WEBSITE_ROOT_DIR/public&amp;gt;
+$ git add . 
+$ git commit -m &amp;quot;adding rendered files&amp;quot;
+$ git push&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nice ! Now you have keeped track of changes made both on your source files repo and on your rendered site repo. Wait a few seconds, and head at &lt;YOUR_USERNAME&gt;.github.io and you should see your website publicly available. Magic !&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-to-change-the-design-of-your-blog&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;How to change the design of your blog ?&lt;/h1&gt;
+&lt;p&gt;If you want to change the theme of your blog, there are many ways to achieve this. I’ve found the following procedure to be the most efficient one. It also uses the &lt;a href=&#34;https://git-scm.com/book/en/v2/Git-Tools-Submodules&#34;&gt;git submodules&lt;/a&gt; feature. The main idea of the procedure is to separate the versioning of your theme from the versioning of your content.&lt;/p&gt;
+&lt;div id=&#34;finding-a-theme&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Finding a theme&lt;/h2&gt;
+&lt;p&gt;Head at &lt;a href=&#34;https://themes.gohugo.io/&#34; class=&#34;uri&#34;&gt;https://themes.gohugo.io/&lt;/a&gt; and find the theme that best suits your tastes. Click on its “homepage button”, and fork the repository.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-it-to-your-website&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Adding it to your website&lt;/h2&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ cd &amp;lt;LOCATION_OF_WEBSITE_ROOT_DIR&amp;gt;
+$ git submodule add -b master git@github.com:&amp;lt;YOUR_USERNAME&amp;gt;/&amp;lt;THEME_NAME&amp;gt;.github.io.git themes/&amp;lt;THEME_NAME&amp;gt; &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This command has cloned your theme in the theme folder of your website. To use it, first make a backup of your &lt;code&gt;config.toml&lt;/code&gt;. Then, in your choosen theme folder, open the &lt;code&gt;exampleSite&lt;/code&gt; folder and copy paste its &lt;code&gt;config.toml&lt;/code&gt; file to your website root folder. We need to proceed this way because &lt;code&gt;config.toml&lt;/code&gt; files are theme dependent. Edit it by inspiring yourself from what was in your backed up config file.&lt;/p&gt;
+&lt;p&gt;Once its done, you can ask blogdown to serve your site with its new design, commit and push both the sources and the rendered files.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;tweaking-the-theme&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Tweaking the theme&lt;/h2&gt;
+&lt;p&gt;if you want to make changes to your theme CSS, edit its css file found in your theme’s &lt;code&gt;static&lt;/code&gt; folder. As the theme was added as a submodule you can also version it using it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;linking-files-in-your-posts&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Linking files in your posts&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;../../post/quickly-create-and-maintain-a-blog-with-R_files/Prostate_Cancer.csv&#34;&gt;csv example&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;sources&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Sources&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gohugo.io/hosting-and-deployment/hosting-on-github/&#34;&gt;Hugo Doc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -78,7 +476,118 @@ I’ve built a little script, inspired from frdvnw, that will allow you to quick
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/gridded-uncertainty/</guid>
-      <description>In the context of the Agromet project, we need to produce gridded maps of temperature using data acquired by a network of 30 automatic weather stations (AWS) spatially distributed in Wallonia. To each cell, an indicator of uncertainty (i.e. prediction error) must also be attached. Providing this uncertainty is of major importance because errors are not likely to be spatially homogeneous but will rather depend of the spatial arrangement of available points used to compute the model.</description>
+      <description>&lt;p&gt;In the context of the Agromet project, we need to produce gridded maps of temperature using data acquired by a network of 30 automatic weather stations (AWS) spatially distributed in Wallonia. To each cell, an indicator of uncertainty (i.e. prediction error) must also be attached. Providing this uncertainty is of major importance because errors are not likely to be spatially homogeneous but will rather depend of the spatial arrangement of available points used to compute the model. This post will &lt;strong&gt;briefly&lt;/strong&gt; present what could be described as prediction uncertainties and how to extract these using basic R examples.&lt;/p&gt;
+&lt;div id=&#34;theory-regarding-the-uncertainty&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Theory regarding the uncertainty&lt;/h2&gt;
+&lt;p&gt;Model parameters are computed from a sample (the data from our AWS network in our case) to estimate the parameters of the whole population (our grid). Models actually generalize what is learnt on a sample on the whole population. So the question arises whether we can use this generalization with enough confidence (can we extrapolate these parameters to the whole population) ?&lt;/p&gt;
+&lt;p&gt;To answer this question, 2 tools are commonly used :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the &lt;strong&gt;standard error&lt;/strong&gt;&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;the &lt;strong&gt;confidence interval&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The standard error is what quantifies the uncertainty while the 95% confidence intervals represent quantiles between which are found 95 % of the samples means after removing the 2.5 % of both the bigger and smaller values. A good explanation of its meaning can be found &lt;a href=&#34;https://www.mathsisfun.com/data/confidence-interval.html&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;https://www.thoughtco.com/what-is-a-confidence-interval-3126415&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In the paper &lt;a href=&#34;https://www.sciencedirect.com/science/article/pii/0304380095001913&#34;&gt;&lt;em&gt;Spatial uncertainty analysis: propagation of interpolation errors in spatially distributed models&lt;/em&gt;&lt;/a&gt;, the uncertainty is depicted as the &lt;strong&gt;standard error&lt;/strong&gt; of the predictions.&lt;/p&gt;
+&lt;p&gt;We can also cite the &lt;a href=&#34;http://www.irceline.be/~celinair/rio/rio_corine.pdf&#34;&gt;&lt;em&gt;Spatial interpolation of air pollution measurements using CORINE land cover data&lt;/em&gt;&lt;/a&gt; paper :&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When solving the Ordinary Kriging equations, a value for the error variance can be obtained at the same time (Isaaks et al. 1989). This error variance is a measure for the uncertainty of the interpolation result&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As a reminder, here are some definitions useful to understand what the standard error exactly is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The &lt;strong&gt;standard error&lt;/strong&gt; (SE) of a statistic (usually an estimate of a parameter) is the &lt;strong&gt;standard deviation&lt;/strong&gt; of its sampling distribution.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &lt;strong&gt;standard deviation&lt;/strong&gt; is the positive square root of the &lt;strong&gt;variance&lt;/strong&gt;. The standard deviation is expressed in the same units as the mean is, whereas the variance is expressed in squared units.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &lt;strong&gt;variance&lt;/strong&gt; is the average squared dispersion around the mean. Variance is a measurement of the spread between numbers in a data set. The variance measures how far each number in the set is from the mean. Variance is calculated by taking the differences between each number in the set and the mean, squaring the differences (to make them positive) and dividing the sum of the squares by the number of values in the set.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-to-extract-the-uncertainties-of-predictions-using-r&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;How to extract the uncertainties of predictions using R ?&lt;/h2&gt;
+&lt;p&gt;Let’s find an example on the web. &lt;a href=&#34;https://scholar.google.com/citations?user=2oYU7S8AAAAJ&amp;amp;hl=en&#34;&gt;Tomislav Hengl&lt;/a&gt;, an expert in the field of geostatistics has published a nice tutorial about how to &lt;a href=&#34;http://spatial-analyst.net/wiki/index.php/Uncertainty_visualization#Visualization_of_uncertainty_using_whitening_in_R&#34;&gt;vizualize spatial uncertainty&lt;/a&gt;. In his tutorial, he uses the &lt;code&gt;se&lt;/code&gt; output of the &lt;code&gt;krige&lt;/code&gt; function as the uncertainty indicator. (&lt;a href=&#34;https://www.rdocumentation.org/packages/gstat/versions/1.1-6/topics/krige&#34;&gt;&lt;code&gt;krige&lt;/code&gt; doc&lt;/a&gt;, is a simple wrapper method around &lt;code&gt;gstat&lt;/code&gt; and &lt;code&gt;predict&lt;/code&gt;). The code here below comes from his tutorial&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(rgdal)
+library(maptools)
+library(gstat)
+
+# using the Meuse dataset
+data(meuse)
+coordinates(meuse) &amp;lt;- ~x+y
+data(meuse.grid)
+gridded(meuse.grid) &amp;lt;- ~x+y
+fullgrid(meuse.grid) &amp;lt;- TRUE
+
+# universal kriging:
+k.m &amp;lt;- fit.variogram(variogram(log(zinc)~sqrt(dist), meuse), vgm(1, &amp;quot;Sph&amp;quot;, 300, 1))
+vismaps &amp;lt;- krige(log(zinc)~sqrt(dist), meuse, meuse.grid, model=k.m)
+names(vismaps) &amp;lt;- c(&amp;quot;z&amp;quot;,&amp;quot;e&amp;quot;)
+
+# Plot the predictions and the standard error :
+z.plot &amp;lt;- spplot(vismaps[&amp;quot;z&amp;quot;], col.regions=bpy.colors(), scales=list(draw=TRUE), sp.layout=list(&amp;quot;sp.points&amp;quot;, pch=&amp;quot;+&amp;quot;, col=&amp;quot;black&amp;quot;, meuse))
+e.plot &amp;lt;- spplot(vismaps[&amp;quot;e&amp;quot;], col.regions=bpy.colors(), scales=list(draw=TRUE))
+
+print(z.plot, split=c(1,1,2,1), more=TRUE)
+print(e.plot, split=c(2,1,2,1), more=FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../../post/gridded-uncertainty_files/meuse_grid_uncertainty.png&#34; alt=&#34;Meuse data Kriging + uncertainty&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Meuse data Kriging + uncertainty&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Nice we have what we need ! Easy ! But how are SE computed for the predictions ? We could have a look at the source code of the krige function. But let’s build it manually with a simple example for the sake of comprehesion. Doing so, requires some matrix algebra (variance + covariance matrix). A detailed explanation of the next code block is available in &lt;a href=&#34;http://www.cra.wallonie.be/wp/wp-content/uploads/2016/12/Formation_Stats_3_1_GLM.pdf&#34;&gt;this course&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# example from @frdvwn
+
+# creating a sample
+set.seed(123)
+n &amp;lt;- 100
+n.lev &amp;lt;- 10
+alpha &amp;lt;- 10
+beta &amp;lt;- 1.3
+sigma &amp;lt;- 4
+
+x &amp;lt;- rep(1:n.lev,each=n/n.lev)
+y &amp;lt;- alpha - beta*x + rnorm(n,0,sigma)
+
+# vizualizing the dataset
+plot(x,y)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../../post/gridded-uncertainty_files/data_meuse_uncertainty.png&#34; alt=&#34;Meuse plot&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Meuse plot&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# modelizing
+mod &amp;lt;- lm(y~x)
+
+# creating the points on which we want to predict values using the model equation
+X &amp;lt;- cbind(1,seq(0,10,0.01))
+beta &amp;lt;- coef(mod)
+
+# Predicting manually using matrix algebra
+y.hat &amp;lt;- X %*% beta
+V &amp;lt;- as.matrix(vcov(mod))
+y.hat.se &amp;lt;- sqrt(diag(X %*% V %*% t(X)))
+
+# Predicting using predict function
+auto.y.hat.se &amp;lt;- predict(object = mod, newdata = data.frame(x=X[,2]), se.fit=TRUE)$se.fit
+
+# Vizualizing the SE
+plot(y~x)
+lines(y.hat ~ X[,2],col=&amp;quot;red&amp;quot;)
+lines(y.hat + y.hat.se ~ X[,2],col=&amp;quot;red&amp;quot;,lty=2)
+lines(y.hat - y.hat.se ~ X[,2],col=&amp;quot;red&amp;quot;,lty=2)
+lines(y.hat + auto.y.hat.se ~ X[,2],col=&amp;quot;green&amp;quot;,lty=2)
+lines(y.hat - auto.y.hat.se ~ X[,2],col=&amp;quot;green&amp;quot;,lty=2)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../../post/gridded-uncertainty_files/data_meuse_uncertainty_model.png&#34; alt=&#34;Meuse plot with SE&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Meuse plot with SE&lt;/p&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# same values ? 
+print(head(auto.y.hat.se))
+
+    ##         1         2         3         4         5         6 
+    ## 0.7905189 0.7893898 0.7882612 0.7871330 0.7860052 0.7848779
+
+print(head(y.hat.se))
+
+    ##         1         2         3         4         5         6 
+    ## 0.7905189 0.7893898 0.7882612 0.7871330 0.7860052 0.7848779
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ok we have succeeded to manually compute the Standard errors of the predictions !&lt;/p&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -87,7 +596,147 @@ I’ve built a little script, inspired from frdvnw, that will allow you to quick
       <pubDate>Tue, 03 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/spatial-interpolation-using-multiple-linear-regression-a-beginners-overview-r-implementation/</guid>
-      <description>The AGROMET Project lead by the Walloon agricultural research center (CRA-W) requires to generate spatialized weather dataset. In this context, multiple spatialization methods will be tested and evaluated among which the multiple regression technique. This post provides an introductory material to the multiple regression modeling technique applied to spatial data. It is not a tutorial and it is rather aimed at paving the way for beginners who want to take their first steps into in the field of applied geostatistics (with R) by defining key concepts and providing a lot of external resources worth reading !</description>
+      <description>&lt;p&gt;The AGROMET Project lead by the Walloon agricultural research center (&lt;a href=&#34;http://www.cra.wallonie.be/fr&#34;&gt;CRA-W&lt;/a&gt;) requires to generate spatialized weather dataset. In this context, multiple spatialization methods will be tested and evaluated among which the &lt;strong&gt;multiple regression&lt;/strong&gt; technique. This post provides an introductory material to the multiple regression modeling technique applied to spatial data. It is not a tutorial and it is rather aimed at paving the way for beginners who want to take their first steps into in the field of applied geostatistics (with R) by defining key concepts and providing a lot of external resources worth reading !&lt;/p&gt;
+&lt;details&gt; &lt;summary&gt;Full details about the AGROMET project&lt;/summary&gt;
+&lt;p&gt;
+&lt;!-- the above p cannot start right at the beginning of the line and is mandatory for everything else to work --&gt;
+&lt;h3&gt;
+Context
+&lt;/h3&gt;
+&lt;p&gt;The European directive 2009/128/CE imposes member-states to set up tools that allow for a more rational use of crop protection products. Among these tools, agricultural warning systems, based on crop monitoring models for the control of pests and diseases are widely adopted and have proved their efficiency. However, due to the difficulty to get meteorological data at high spatial resolution (at the parcel scale), they still are underused. The use of geostatistical tools (Kriging, Multiple Regressions, Artificial Neural Networks, etc.) makes it possible to interpolate data provided by physical weather stations in such a way that a high spatial resolution network (mesh size of 1 km2) of virtual weather stations could be generated. That is the objective of the AGROMET project. &lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;
+Objectives
+&lt;/h3&gt;
+&lt;p&gt;The project aims to set up an operational web-platform designed for real-time agro-meteorological data dissemination at high spatial (1km2) and temporal (hourly) resolution. To achieve the availability of data at such a high spatial resolution, we plan to “spatialize” the real-time data sent by more than 30 connected physical weather stations belonging to the PAMESEB and RMI networks. This spatialization will then result in a gridded dataset corresponding to a network of 16 000 virtual stations uniformly spread on the whole territory of Wallonia. These “spatialized” data will be made available through a web-platform providing interactive visualization widgets (maps, charts, tables and various indicators) and an API allowing their use on the fly, notably by agricultural warning systems providers. An extensive and precise documentation about data origin, geo-statistic algorithms used and uncertainty will also be available.&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;/details&gt;&lt;/p&gt;
+&lt;div id=&#34;spatialization-definition&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Spatialization definition&lt;/h2&gt;
+&lt;p&gt;Spatialization or spatial interpolation creates a &lt;strong&gt;continuous surface&lt;/strong&gt; from values measured at discrete locations to predict values at any location in the interest zone with the best accuracy. Characterizing the error and the variability of the predicted data are also parts of spatialization procedures.&lt;/p&gt;
+&lt;p&gt;In the chapter &lt;em&gt;The principles of geostatistical analysis&lt;/em&gt; of the &lt;a href=&#34;http://dusk2.geo.orst.edu/gis/geostat_analyst.pdf&#34;&gt;Using ArcGis Geostatistical analyst&lt;/a&gt;, K. Johnston gives an efficient overview of what spatialization is and what are the two big groups of techniques (deterministic and stochastic).&lt;/p&gt;
+&lt;p&gt;We will not present all of them in the context of this post to keep the focus on the multiple regression technique.&lt;/p&gt;
+&lt;p&gt;(&lt;em&gt;The book also provides a glossary of recurrent geostatistical terms (another useful one is available on Pr. D.E. Meyers &lt;a href=&#34;http://www.u.arizona.edu/~donaldm/homepage/glossary.html&#34;&gt;personal page&lt;/a&gt;&lt;/em&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;multiple-linear-regression-key-concept&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Multiple linear Regression : key concept&lt;/h2&gt;
+&lt;p&gt;No need to reinvent the wheel, let’s borrow 3 definitions found in the literature :&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;From Selva Prabhakaran’s &lt;a href=&#34;http://r-statistics.co/Linear-Regression.html&#34;&gt;r-statistics.co site&lt;/a&gt; :&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Linear regression is used to predict the value of an outcome variable Y based on one or more input predictor variables X. The aim is to establish a linear relationship (a mathematical formula) between the predictor variable(s) and the response variable, so that, we can use this formula to estimate the value of the response Y, when only the predictors (Xs) values are known.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;In his comprehensive &lt;a href=&#34;https://www.snap.uaf.edu/sites/default/files/files/Interpolation_methods_for_climate_data.pdf&#34;&gt;litterature review&lt;/a&gt;, R. Sluiters from the &lt;a href=&#34;http://www.knmi.nl/home&#34;&gt;KNMI&lt;/a&gt; defines multiple regression as follows :&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Linear regression expresses the relation between a predicted variable and one or more explanatory variables. In its simples form a straight line is fitted through the data points. Linear regression models are most often global interpolators. Linear regression models are deterministic, but by considering some statistical assumptions about the probability distribution of the predicted variable the method becomes stochastic. In that case the standard error can be calculated, the inference about the regression parameter and the predicted values can be assessed and the prediction accuracy can be calculated. For deterministic linear regression models the assumption is that the regression model could be interpreted on the basis of physical reasons, for stochastic linear regression models a normal distribution and spatial independence is also assumed. No extrapolations are allowed from the theoretical perspective. Ancillary data can be included using multiple regression. For deterministic linear regression models the measure of success is through cross validation. For stochastic linear regression models it can be measured by the explained variance and the regression standard error.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;In their paper (from which the Agromet project was inspired) &lt;em&gt;Decision Support Systems in Agriculture: Administration of Meteorological Data, Use of Geographic Information Systems(GIS) and Validation Methods in Crop Protection Warning Service&lt;/em&gt;, &lt;a href=&#34;https://www.intechopen.com/books/efficient-decision-support-systems-practice-and-challenges-from-current-to-future/decision-support-systems-in-agriculture-administration-of-meteorological-data-use-of-geographic-info&#34;&gt;Racca et al. 2011&lt;/a&gt; present multiple regression in these terms:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“The general purpose of multiple regressions (the term was first used by Pearson, 1908) is to learn more about the relationship between several independent or predictor variables and a dependent or criterion variable. MR is an interpolation method that allows simultaneous testing and modeling of multiple independent variables (Cohen, et al., 2003). Parameters that have an influence on temperature and relative humidity, e.g. elevation, slope, aspect, can therefore be tested simultaneously.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;(&lt;em&gt;In this paper, the authors also briefly present why the Multiple Regression technique was chosen over other modeling techniques. A more detailed explanation of the comparative study between the various techniques is available in the companion paper by &lt;a href=&#34;https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1365-2338.2007.01134.x&#34;&gt;Zeuner et. 2007&lt;/a&gt;&lt;/em&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;data-prediction-using-multiple-linear-regression-workflow&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Data prediction using multiple linear regression : workflow&lt;/h2&gt;
+&lt;div id=&#34;building-the-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Building the model&lt;/h3&gt;
+&lt;p&gt;In &lt;a href=&#34;https://machinelearningmastery.com/supervised-and-unsupervised-machine-learning-algorithms/&#34;&gt;Supervised machine learning&lt;/a&gt;, the response variable is modeled as a function of predictors. To build the model you will need to construct a dataset made of predictors (e.g. elevation, latitude, longitude, soil occupation, aspect) and response variable (e.g. temperature, humidity, rainfall). You will most likely also need to inspect and clean your dataset (e.g. removing outliers, check for errors, treat any missing values) before building the model :&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Garbage_in,_garbage_out&#34;&gt;Garbage in, garbage out&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Once your dataset is prepared you can build your regression model. Each data-analysis software provides a set of functions to build such a kind of model (in R you do it with the &lt;code&gt;lm()&lt;/code&gt; function).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;evaluating-the-model---linear-regression-diagnostics&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Evaluating the model - Linear Regression Diagnostics&lt;/h3&gt;
+&lt;p&gt;Once the linear model is fitted, the mathematical formula to predict the response variable is obtained. However it is not enough to actually use this model ! Before using a regression model, you have to ensure that it is &lt;strong&gt;statistically significant&lt;/strong&gt;. There are many indicators that you can use to evaluate the validity of a regression model, among which :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Residual plot&lt;/li&gt;
+&lt;li&gt;Goodness of fit&lt;/li&gt;
+&lt;li&gt;Standard error of the regression&lt;/li&gt;
+&lt;li&gt;p-value&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To get a deep insight of these model diagnostic indicators, check these 2 excellent R-oriented posts about evaluating regression model outputs by &lt;a href=&#34;https://feliperego.github.io/blog/2015/10/23/Interpreting-Model-Output-In-R&#34;&gt;Felipe Rego&lt;/a&gt; and &lt;a href=&#34;http://r-statistics.co/Linear-Regression.html&#34;&gt;Selva Prabhakaran&lt;/a&gt;. You can also have a quick look at this &lt;a href=&#34;https://www.otexts.org/fpp/4/4&#34;&gt;page&lt;/a&gt;. You may also have a look at the Minitab’s blog posts (&lt;a href=&#34;http://blog.minitab.com/blog/adventures-in-statistics-2/multiple-regession-analysis-use-adjusted-r-squared-and-predicted-r-squared-to-include-the-correct-number-of-variables&#34;&gt;1&lt;/a&gt;, &lt;a href=&#34;http://blog.minitab.com/blog/adventures-in-statistics-2/regression-analysis-how-do-i-interpret-r-squared-and-assess-the-goodness-of-fit&#34;&gt;2&lt;/a&gt; concerning the interpretation of the R² values&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;using-the-model-and-measuring-its-success-i.e.validation-process&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Using the model and measuring its success (i.e. validation process)&lt;/h3&gt;
+&lt;p&gt;Now that you have tested the validity of your model (i.e. your model is statistically significant), you can use it to make some predictions. But an important question then arises : how well your model performs at predicting the data at unknown locations ? To answer this question, you need to rigorously test your model performance as much as possible. This is done using a &lt;strong&gt;cross-validation&lt;/strong&gt; (CV) process.&lt;/p&gt;
+&lt;p&gt;From Robin Lovelace’s &lt;em&gt;Geocomputation with R&lt;/em&gt; &lt;a href=&#34;https://geocompr.robinlovelace.net/spatial-cv.html&#34;&gt;book&lt;/a&gt; :&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;CV determines a model’s ability to predict new data or differently put its ability to generalize. To achieve this, CV splits a dataset (repeatedly) into &lt;strong&gt;test&lt;/strong&gt; and &lt;strong&gt;training&lt;/strong&gt; sets. It uses the training data to fit the model, and checks if the trained model is able to predict the correct results for the test data. Basically, cross-validation helps to detect over-fitting since a model that fits too closely the training data and its specific peculiarities (noise, random fluctuations) will have a bad prediction performance on the test data. However, the basic requirement for this is, that the test data is independent of the training data. CV achieves this by splitting the data randomly into test and training sets. However, randomly splitting spatial data results in the fact that training points are frequently located next to test points. Since points close to each other are more similar compared to points further away, test and training datasets might not be independent. The consequence is that cross-validation would fail to detect over-fitting in the presence of spatial autocorrelation&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;(&lt;em&gt;To understand the &lt;a href=&#34;https://stats.stackexchange.com/questions/36145/linear-regression-and-spatial-autocorrelation&#34;&gt;importance of the autocorrelation concept&lt;/a&gt;, you could read the &lt;a href=&#34;http://rspatial.org/analysis/rst/7-spregression.html&#34;&gt;Spatial regression models paragraph&lt;/a&gt; of the Spatial Data Analysis and Modeling with R website and watch this short &lt;a href=&#34;https://www.youtube.com/watch?v=M9ecMxVG6jQ&#34;&gt;video&lt;/a&gt;&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;To assess how well a model performs at making its predictions actually good predictions, 2 CV methods are often presented :&lt;br /&gt;
+* (spatial) k-fold cross validation * (spatial) leave-one-out (refs : &lt;a href=&#34;https://onlinelibrary.wiley.com/doi/pdf/10.1111/geb.12161&#34;&gt;K. Le Rest&lt;/a&gt; &amp;amp; &lt;a href=&#34;https://davidrroberts.wordpress.com/2016/03/11/spatial-leave-one-out-sloo-cross-validation/&#34;&gt;D.R. Roberts&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;How to know which one best fits your needs &lt;a href=&#34;https://stats.stackexchange.com/questions/154830/10-fold-cross-validation-vs-leave-one-out-cross-validation&#34;&gt;(k-fold or leave-one-out)&lt;/a&gt; ? The short answer is to use the leave-one-out method when you have a small amount of samples.&lt;/p&gt;
+&lt;p&gt;To check if the trained model is able to predict the correct results for the test data, &lt;a href=&#34;http://r-statistics.co/Linear-Regression.html&#34;&gt;calculating the accuracy measures and error rates&lt;/a&gt; allows to find out the prediction accuracy of the model. &lt;a href=&#34;https://www.geos.ed.ac.uk/~gisteac/gis_book_abridged/files/ch14.pdf&#34;&gt;Paper&lt;/a&gt; about spatial predictions errors&lt;/p&gt;
+&lt;p&gt;In your analysis, you might try many variants of the same kind of modeling technique, for example, by adding or removing extra independent variables. In this case, you will need to establish a diagnostic of the measure of success of each of the variants investigated. There is no universal technique to compare these. You can grab some ideas to implement in your own work from the &lt;a href=&#34;https://www.sciencedirect.com/science/article/pii/S0304380010000463&#34;&gt;Aertsen et al. 2010 paper&lt;/a&gt; where they describe a multi-criteria decision analysis for model evaluation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;assessing-the-uncertainty-on-the-predicted-values&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Assessing the uncertainty on the predicted values&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;r-guidelines&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;R guidelines&lt;/h2&gt;
+&lt;p&gt;Now that you have a better insight of what spatialization and multiple linear regressions are, it’s time to get the job done and dive in some coding work with R !&lt;/p&gt;
+&lt;div id=&#34;if-you-are-totally-new-to-programming-with-r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;If you are totally new to programming with R…&lt;/h3&gt;
+&lt;p&gt;Learning and mastering a new programming language might scare you as it seems as a very difficult goal to achieve. However, with the help of the Internet and the R community, you can quickly start to write your first R programs. You can learn through tutorials (like at &lt;a href=&#34;https://www.datacamp.com/courses/free-introduction-to-r&#34;&gt;Datacamp&lt;/a&gt;), blog posts (like the blog aggregator &lt;a href=&#34;https://www.r-bloggers.com/&#34;&gt;R-Bloggers&lt;/a&gt;), package documentation (on &lt;a href=&#34;https://cran.r-project.org/&#34;&gt;CRAN&lt;/a&gt;) and of course help forums like &lt;a href=&#34;https://stackoverflow.com/&#34;&gt;Stackoverflow&lt;/a&gt; which is where I spend a lot of time searching answers to my questions (most of the time already posted by others).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;why-r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Why R ?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;R is open-source &lt;a href=&#34;https://www.gnu.org/philosophy/shouldbefree.en.html&#34;&gt;(why it is important)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;R is gaining more and more popularity. Mastering it can opens you &lt;a href=&#34;https://thenextweb.com/offers/2018/03/28/tech-giants-are-harnessing-r-programming-learn-it-and-get-hired-with-this-complete-training-bundle/&#34;&gt;many job opportunities&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A good starting point to work with multiple regression analysis with R is &lt;a href=&#34;https://feliperego.github.io/blog/2015/03/12/Multiple-Linear-Regression-First-Steps&#34;&gt;this&lt;/a&gt; tutorial by Felipe Rego. On his excellent blog you will also find a detailed &lt;a href=&#34;https://feliperego.github.io/blog/2015/10/23/Interpreting-Model-Output-In-R&#34;&gt;post&lt;/a&gt; about regression model output interpretation.&lt;/p&gt;
+&lt;p&gt;(&lt;em&gt;A special version of spatial regression modeling is the Geographically weighted regression which is described in &lt;a href=&#34;https://rpubs.com/chrisbrunsdon/101305&#34;&gt;this&lt;/a&gt; R tutorial written by Pr. Chris Brundson&lt;/em&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;getting-started-with-r-for-spatial-data-analysis&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Getting started with R for spatial data analysis&lt;/h3&gt;
+&lt;p&gt;In the &lt;a href=&#34;https://geocompr.robinlovelace.net&#34;&gt;Geocomputation with R book&lt;/a&gt; by Robin Lovelace you will get all you need to get started with spatial data manipulation and analysis with R. The book tutorials make a heavy use of these libraries, and especially the new &lt;a href=&#34;https://edzer.github.io/UseR2017/&#34;&gt;sf package&lt;/a&gt; for spatial data analysis.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(sf)            # classes and functions for vector data
+library(raster)        # classes and functions for raster data
+library(spData)        # load geographic data
+library(spDataLarge)   # load larger geographic data&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;useful-r-cheatsheets&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Useful R cheatsheets&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf&#34;&gt;dplyr&lt;/a&gt; - Data manipulation&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf&#34;&gt;ggplot2&lt;/a&gt; - Data Visualization&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf&#34;&gt;Coordiante reference systems&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;worth-reading-r-spatial-oriented-blog&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Worth reading R spatial oriented blog&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.r-spatial.org/&#34; class=&#34;uri&#34;&gt;https://www.r-spatial.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-note-about-coordinate-reference-systems-crs-notations&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A note about coordinate reference systems (CRS) notations&lt;/h2&gt;
+&lt;div id=&#34;geographic-vs-projected-coordinate-reference-system-crs&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Geographic vs projected coordinate reference system (CRS)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Geographic CRS’s&lt;/strong&gt; identify any location on the Earth’s surface using two values — longitude and latitude&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Projected CRS’s&lt;/strong&gt; are based on Cartesian coordinates on an implicitly flat surface. They have an origin, x and y axes, and a linear unit of measurement such as meters. All projected CRSs are based on a geographic CRS, and rely on map projections to convert the three-dimensional surface of the Earth into Easting and Northing (x and y) values in a projected CRS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;notations-systems-of-crss&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Notations systems of CRSs&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://earthdatascience.org/courses/earth-analytics/spatial-data-r/understand-epsg-wkt-and-other-crs-definition-file-types/&#34;&gt;EPSG vs. proj4string notations&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Thanks to this post and all its references, you should now be able to start building a multiple regression spatial interpolation analysis based on your own data using R. If you need additional references, you could also check out this multiple linear regression &lt;a href=&#34;https://www.statmethods.net/stats/regression.html&#34;&gt;tutorial&lt;/a&gt; by R.I. Kabacoff.&lt;/p&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -96,7 +745,117 @@ I’ve built a little script, inspired from frdvnw, that will allow you to quick
       <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/r_interactive_datavis_with_github_pages/</guid>
-      <description>As a data scientist, you certainly produce a bunch of tables, plots, maps and many other kind of outputs to let your data “speak for itself”. This is your core business and I’m sure you do it pretty well ! But when it comes to make this data available to your target audience things can quickly get more frustrating. How to share these outputs in a format that everyone can open ?</description>
+      <description>&lt;p&gt;As a data scientist, you certainly produce a bunch of tables, plots, maps and many other kind of outputs to let your data “speak for itself”. This is your core business and I’m sure you do it pretty well ! But when it comes to make this data available to your target audience things can quickly get more frustrating. How to share these outputs in a format that everyone can open ? How to easily send these to 100 persons ? How to notify them of any updated output ? How to make these outputs more interactive so that your audience can get a full insight of your data analysis ?&lt;/p&gt;
+&lt;p&gt;R and web technologies can help you to solve these problems you probably have already encountered.&lt;/p&gt;
+&lt;p&gt;Thanks to the advances in web technologies and the development of powerful Javascript librairies, our web-browsers are now able to render impressive data visualization apps and presentations. These last years, the R community has developed countless libraries (leaflet, shiny, plotly, knitr, etc) that take advantages from these advances.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;You can now easily and quickly transform your analysis outputs in eye catching web apps that make your data intelligible !&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this post we will see how to combine these R libraries capabilities with &lt;a href=&#34;https://pages.github.com/&#34;&gt;Github pages&lt;/a&gt; in order to quickly make your top notch data visualization output available to your audience (and don’t be modest : to the world)&lt;/p&gt;
+&lt;p&gt;Before we dig into the topic, it is important to first understand what a webpage actually is. So here is a short recap !&lt;/p&gt;
+&lt;div id=&#34;how-does-a-webpage-works-in-simple-terms&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;How does a webpage works (in simple terms) ?&lt;/h2&gt;
+&lt;p&gt;When you enter an address (URL) in your web-browser, it sends a request to the hosting server. In returns, the server sends to your web-browser the requested content in the form of an HTML file. HTML is simply a kind of formatted text that contains specific tags to structure your text (headings, tables, lists, text formatting, etc) and that can eventually link to other documents. The role of your web-browser is to translate this non-human readable HTML to its human friendly version (if it is not clear, check &lt;a href=&#34;https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default&#34;&gt;this&lt;/a&gt; example).&lt;/p&gt;
+&lt;p&gt;This HTML can be “upgraded” by 2 other languages also supported by your web-broser : CSS and Javascript. While CSS is responsible for the styling (font color, background color, font-size, etc), the Javascript manages the interactivity (like zooming on a map), the animations and the actions that can be performed by/on the web-page (like actions triggered by clicking on a button). And that’s it ! You can build any webpage with these 3 ingredients.&lt;/p&gt;
+&lt;p&gt;As Github pages only works with static content, an important thing to get in mind is the &lt;a href=&#34;http://smallbusiness.chron.com/difference-between-dynamic-static-pages-69951.html&#34;&gt;difference&lt;/a&gt; between a static and a dynamic webpage !&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-is-github-pages&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;What is Github pages&lt;/h2&gt;
+&lt;p&gt;For those who are familiar with the version control software git you most probably already knows &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt; as a git repository hosting service (if you don’t know what &lt;a href=&#34;https://git-scm.com/&#34;&gt;git&lt;/a&gt; is, you really &lt;strong&gt;must&lt;/strong&gt; get to &lt;a href=&#34;http://r-bio.github.io/intro-git-rstudio/&#34;&gt;know it&lt;/a&gt; to impressively speed up your (R) code development). Github offers many other possibilities : collaborative code developement, issues tracking and discussions, project presentation page, wiki, &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;Jekyll blog&lt;/a&gt; and various integrations with other web services thanks to their API. Among these features, exists &lt;a href=&#34;https://pages.github.com/&#34;&gt;Github pages&lt;/a&gt; which is intended to allow you to publish &lt;strong&gt;static&lt;/strong&gt; pages without the need to run our rent your own webserver. &lt;strong&gt;So, as long as your datavisualization output does not require any running backend (be it in node.js, Python, R, Java, Ruby, etc), you can host it on Github pages !&lt;/strong&gt; Unfortunately this means that &lt;a href=&#34;https://shiny.rstudio.com/&#34;&gt;R Shiny apps&lt;/a&gt; can not be hosted on Github pages. But yeah, you can still publish &lt;a href=&#34;https://rstudio.github.io/leaflet/&#34;&gt;leaflet&lt;/a&gt; maps, &lt;a href=&#34;https://plot.ly/r/&#34;&gt;plotly&lt;/a&gt; graphs and &lt;a href=&#34;https://yihui.name/knitr/demo/minimal/&#34;&gt;knitr&lt;/a&gt; html reports ! That already opens up a wide range of possibilities !&lt;/p&gt;
+&lt;p&gt;What does Github pages actually does ?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Github pages turns your repository containing your source file hosted at :&lt;br /&gt;
+&lt;code&gt;https://github.com/yourUserName/repositoryName&lt;/code&gt;&lt;br /&gt;
+to a rendered web-page hosted at :&lt;br /&gt;
+&lt;code&gt;https://yourUserName.github.com/repositoryName&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-to-publish-your-r-outputs-to-github-pages&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;How to publish your R outputs to Github pages ?&lt;/h2&gt;
+&lt;p&gt;The workflow is as follows (more details with an example here below) :&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Exports your R analysis outputs to a specific folder&lt;/li&gt;
+&lt;li&gt;Make this folder a git repository&lt;/li&gt;
+&lt;li&gt;Create a &lt;code&gt;gh-pages&lt;/code&gt; branch&lt;/li&gt;
+&lt;li&gt;Commit your changes&lt;/li&gt;
+&lt;li&gt;Push to Github&lt;/li&gt;
+&lt;li&gt;Visit your published work at &lt;code&gt;https://yourGithubUsername.github.io/repositoryname&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;To illustrate this process, we will use R to build an interactive leaflet map that displays two layers : A DEM of Belgium and a &lt;a href=&#34;https://en.wikipedia.org/wiki/Web_Map_Service&#34;&gt;WMS&lt;/a&gt; layer of currently observed precipitations provided by the &lt;a href=&#34;http://www.knmi.nl/home&#34;&gt;KNMI&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;first-things-first-create-an-online-repository-at-github&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;First things first : create an online repository at Github&lt;/h3&gt;
+&lt;p&gt;Once you have created a Github account, go to &lt;code&gt;https://github.com/yourUserName&lt;/code&gt;, click on the &lt;em&gt;+&lt;/em&gt; button and select &lt;em&gt;new repository&lt;/em&gt;. Give it the name &lt;code&gt;myoutputs&lt;/code&gt; (or whatever you want) :&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../../post/R_interactive_datavis_with_github_pages_files/new_repository.png&#34; alt=&#34;github new repository screenshot&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;github new repository screenshot&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Eventually add a description and choose an existing .gitignore file and license and click on &lt;em&gt;create repository&lt;/em&gt;. You are now on your Github &lt;em&gt;myoutputs&lt;/em&gt; repository page. Click on the green button &lt;em&gt;Clone or download&lt;/em&gt;, then on the link &lt;em&gt;use HTTPS&lt;/em&gt; (you can of course also use &lt;a href=&#34;https://help.github.com/articles/connecting-to-github-with-ssh/&#34;&gt;SSH&lt;/a&gt; if you know what it means) and copy the link provided in the text box :&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;../../post/R_interactive_datavis_with_github_pages_files/clone_repo.png&#34; alt=&#34;github clone screenshot&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;github clone screenshot&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;sync-i.e.clone-this-repository-to-your-computer-and-create-the-gh-pages-branch-for-auto-publishing-to-github-pages&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Sync (i.e. clone) this repository to your computer and create the gh-pages branch for auto-publishing to Github pages&lt;/h3&gt;
+&lt;p&gt;Let’s create a folder called &lt;code&gt;dev&lt;/code&gt; under your home directory into which we will clone the online repository by pasting its addresse as a parameter of the &lt;code&gt;git clone&lt;/code&gt; command in your terminal (&lt;a href=&#34;http://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/commandlinegit.html&#34;&gt;more about the use of git with the command line&lt;/a&gt;) :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ mdkir ~/dev
+$ cd ~/dev
+$ git clone https://github.com/yourUserName/myoutputs.git&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Enter your Github username and password (if you have choosen HTTPS instead of SSH), press enter and your &lt;code&gt;dev&lt;/code&gt; folder now contains a &lt;code&gt;myoutputs&lt;/code&gt; folder which is a git repository (i.e. the root of the &lt;code&gt;myoutputs&lt;/code&gt; folder contains a hidden &lt;code&gt;.git&lt;/code&gt; folder that manages all its git features). Let’s check this :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ ls -al&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If everything went OK, you should see the &lt;code&gt;myoutputs&lt;/code&gt; and the &lt;code&gt;.git&lt;/code&gt; folder listed in your terminal. Now, let’s create a specific branch (more about branches &lt;a href=&#34;https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell&#34;&gt;here&lt;/a&gt;) for automatic hosting and publishing of your outputs! Github uses &lt;code&gt;gh-pages&lt;/code&gt; as the default branch name to create an hosted webpage version of your repository source code. So let’s create it and use it !&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git checkout -b gh-pages&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;code-your-interactive-leaflet-map-with-r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Code your interactive leaflet map with R !&lt;/h3&gt;
+&lt;p&gt;Your are now ready to build some git versioned code and make it ready to be published on the web through the magic of git and Github pages !&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://pokyah.github.io/pokyah-maps/bel-dem-knmi/demo-map.R&#34;&gt;Download&lt;/a&gt; the source of the &lt;code&gt;demo-map.R&lt;/code&gt; (which is intended to produce an HTML leaflet map) script and save it under your &lt;code&gt;myoutputs&lt;/code&gt;. Open your terminal inside this folder and execute it :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ Rscript demo-map.R&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The script has produced a &lt;code&gt;demo-map.html&lt;/code&gt; file containing the interactive map plus a &lt;code&gt;demo-map_files&lt;/code&gt; folder containing all the required javascript libraries required to make it interactive. It has also saved 3 files resulting from the download of the raster elevation data. The resulting map looks like this :&lt;/p&gt;
+&lt;iframe src=&#34;https://pokyah.github.io/pokyah-maps/bel-dem-knmi/&#34; width=&#34;100%&#34; height=&#34;400&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;If you get errors it might be because you don’t have the required libraries installed. To avoid such problems, simply install the missing libraries (and if you are adventurous enough, you can have a look at my &lt;a href=&#34;it%20%7B%7B%20site.baseurl%20%7D%7D%7B%%20post_url%202018-03-01-using-r-with-docker%20%%7D&#34;&gt;R + Docker tutorial&lt;/a&gt;!)&lt;/p&gt;
+&lt;p&gt;Your interactive web map is now built ! You can locally open it by right-clicking on the &lt;code&gt;demo-map.html&lt;/code&gt; file and choose to open it with your favorite web-browser. Check the various buttons to be sure that everything works as expected. What is important to know is that this impressive web app does not need any backend to run. Once the page is loaded, everything works inside your web-browser thanks to HTML, CSS and Javascript !&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ok, but how is it then possible for me navigate and zoom in every part of the world without having to run a server to get the base layer tiles ?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That’s probably what you will tell ! The trick is that leaflet render tiles stored on a third party tiles provider (i.e. a web-server). It is actually a simple line of Javascript that does the magic of calling the tiles and serving these to your web-browser. If you turn your wifi off, you will see that you won’t be able anymore to see the base layer while navigating the world.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;publish-it-online-using-gh-pages&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Publish it online using gh-pages !&lt;/h3&gt;
+&lt;p&gt;Head back to your terminal (opened in your &lt;code&gt;myoutputs&lt;/code&gt; folder) and save and publish your work to Github.&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git add .
+$ git commit -m &amp;quot;adding interactive demo-map.html&amp;quot;
+$ git push --set-upstream origin gh-pages&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now the source code of your interactive map (both the &lt;code&gt;demo-map.R&lt;/code&gt; and the &lt;code&gt;demo-map.html&lt;/code&gt; ) has been pushed to &lt;code&gt;https://github.com/yourUserName/myoutputs&lt;/code&gt; and your hosted interactive map is rendered at &lt;code&gt;https://yourUserName.github.io/myoutputs/demo-map.html&lt;/code&gt; !&lt;/p&gt;
+&lt;p&gt;Great ! Simply share this link to your audience and you are done ! Your interactive webmap is available to them !&lt;/p&gt;
+&lt;p&gt;Sometimes github pages struggles to rebuild your rendered page when you commit your changes. If this happens, you can force github pages to rebuild it using these two git instructions (solution found on &lt;a href=&#34;https://stackoverflow.com/questions/24098792/how-to-force-github-pages-build&#34;&gt;stackoverflow&lt;/a&gt;) :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git commit -m &amp;#39;rebuild pages&amp;#39; --allow-empty
+$ git push origin gh-pages&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;some-optionally-tricks-to-improve-this-workflow&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Some optionally tricks to improve this workflow&lt;/h2&gt;
+&lt;p&gt;If you want to showcase multiple interactive data visualizations outputs, it might be cool to have a webpage that presents all of them so that your visitors can easily discover your work. The simplest solution is to create an &lt;code&gt;index.html&lt;/code&gt; file that lists all your outputs and that is located at the root of your &lt;code&gt;myoutputs&lt;/code&gt; directory. Doing so, while your visitors head at &lt;code&gt;https://yourUserName.github.io/myoutputs&lt;/code&gt;, the &lt;code&gt;index.html&lt;/code&gt; will act as a home page and your visitors will receive a listing of the outputs you have add to your &lt;code&gt;myoutputs&lt;/code&gt; repository.&lt;/p&gt;
+&lt;p&gt;You have two options to maintain this directory listing &lt;code&gt;index.html&lt;/code&gt; file updated. Either you manually add a new line for each new interactive output you want to showcase, either you run a bash script that build the &lt;code&gt;index.html&lt;/code&gt; file for you (preferred).&lt;/p&gt;
+&lt;div id=&#34;bash-script-to-build-the-directory-listing-index.html-file&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;bash script to build the directory listing index.html file&lt;/h3&gt;
+&lt;p&gt;Download and save &lt;a href=&#34;https://pokyah.github.io/pokyah-maps/index-html.sh&#34;&gt;this&lt;/a&gt; bash script under your &lt;code&gt;myoutputs&lt;/code&gt; folder. Make it executable :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ chmod a+x index-html.sh&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This script is intendend to automatically generate an index.html files that lists all the files available in a specific folder. Let’s run it :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ ls | ./index-html.sh &amp;gt; index.html&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You now have a nice index.html files that lists all your files stored in your &lt;code&gt;myoutputs&lt;/code&gt; folder.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pushing-the-index.html-file-to-github&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;pushing the index.html file to github&lt;/h3&gt;
+&lt;p&gt;Each time, you run this bash script to update you index.html file, you of course have to push it to Github so that when your visitors head at &lt;code&gt;https://yourUserName.github.io/myoutputs&lt;/code&gt; they get an updated list of all your files available. For this purpose we do as previsously mentioned : add, commit and push :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git add .
+$ git commit -m &amp;quot;adding index.html and updating it with bash script&amp;quot;
+$ git push origin gh-pages&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;You are now able to publicly share your best R interactive datavisulization HTML outputs thanks to Github pages. You are of course not limited to R. You can use this system to showcase any HTML/CSS/JS creation, be it a full static website (great templates available &lt;a href=&#34;https://html5up.net/&#34;&gt;here&lt;/a&gt;) our a little javascript game for example.&lt;br /&gt;
+If you want to easily host a blog with Github pages, have a look at Jekyll and &lt;a href=&#34;https://github.com/barryclark/jekyll-now&#34;&gt;this excellent&lt;/a&gt; easy and instant Jekyll install repository (that I have used to build this blog).&lt;/p&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -105,7 +864,116 @@ I’ve built a little script, inspired from frdvnw, that will allow you to quick
       <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/using-r-with-docker/</guid>
-      <description>Why should you do that ? There are two main reasons to use R in conjunction with Docker. First, it allows you to quickly and easily share your work wathever the OS and R configuration of your collaborators. Hassle free collaboration ! Second, it allows you to work in an isolated environment. This means that you will never pollute your OS and e.g. run in time-consuming re-installation procedures due to broken configuration.</description>
+      <description>&lt;p&gt;Why should you do that ? There are two main reasons to use R in conjunction with Docker. First, it allows you to quickly and easily share your work wathever the OS and R configuration of your collaborators. Hassle free collaboration ! Second, it allows you to work in an isolated environment. This means that you will never pollute your OS and e.g. run in time-consuming re-installation procedures due to broken configuration. In case of OS crash, simply relaunch your &lt;em&gt;Docker R container&lt;/em&gt; with a single command (more about containers below) and you are ready to work !&lt;/p&gt;
+&lt;p&gt;This tutorial is an introduction to R with Docker. It it not an extensive description of the &lt;a href=&#34;https://docs.docker.com/&#34;&gt;enormous amount of features&lt;/a&gt; and all the complexity of Docker. It’s rather a good base to get started that I’ve written based on my own R development needs.&lt;/p&gt;
+&lt;div id=&#34;what-is-a-docker-container&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;What is a Docker container ?&lt;/h2&gt;
+&lt;p&gt;Docker is the piece of software that allows you to run &lt;strong&gt;containers&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;From the &lt;a href=&#34;https://www.docker.com/what-container&#34;&gt;official Docker website&lt;/a&gt; :&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A container image is a lightweight, stand-alone, executable package of a piece of software that includes everything needed to run it: code, runtime, system tools, system libraries, settings. Available for both Linux and Windows based apps, containerized software will always run the same, regardless of the environment. Containers isolate software from its surroundings, for example differences between development and staging environments and help reduce conflicts between teams running different software on the same infrastructure.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This container approach has many advantages compares to the use of virtual machines : lightweight, quick and modular.&lt;/p&gt;
+&lt;p&gt;In the Docker terminology, a containers actually means a running instance of an &lt;strong&gt;image&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Again, from the official Docker Website :&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Docker images are the basis of containers. An Image is an ordered collection of root filesystem changes and the corresponding execution parameters for use within a container runtime. An image typically contains a union of layered filesystems stacked on top of each other. An image does not have state and it never changes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-docker-will-help-you-with-your-r-related-work&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;How Docker will help you with your R related work ?&lt;/h2&gt;
+&lt;p&gt;Now that you understand what a container is, I’ll tell you what you can do with Docker in the context of you R work.&lt;/p&gt;
+&lt;p&gt;You can create and use a container that runs with the Linux distro &lt;em&gt;of your choice&lt;/em&gt;, with a version of R &lt;em&gt;of your choice&lt;/em&gt;, the packages and required OS dependencies &lt;em&gt;of your choices&lt;/em&gt;, and all of this in a totally isolated environment that is setup in seconds. And of course, you can create multiple containers with various R configurations depending of your needs !&lt;/p&gt;
+&lt;p&gt;This means that you will never run anymore in compatibility problems. It will also make your work &lt;a href=&#34;https://www.nature.com/articles/s41562-016-0021&#34;&gt;reproductible&lt;/a&gt; as you can share your containers with colleagues.&lt;/p&gt;
+&lt;p&gt;Docker also makes the use of the &lt;a href=&#34;https://rstudio.github.io/packrat/&#34;&gt;Packrat&lt;/a&gt; dependency management quite obsolete.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;docker-installation-instructions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Docker installation instructions&lt;/h2&gt;
+&lt;p&gt;You know why you should use Docker in the context of your R work and you want to install it now ! Well, to do it, simply follow the &lt;a href=&#34;https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce-1&#34;&gt;installation instructions&lt;/a&gt; on the Docker official website or follow this nice &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04&#34;&gt;Digital Ocean tutorial&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Before we dive into the R part, you will need to understand some essential Docker concepts.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;essential-docker-concepts-commands&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Essential Docker concepts &amp;amp; commands&lt;/h2&gt;
+&lt;p&gt;Each &lt;strong&gt;image&lt;/strong&gt; has its own &lt;strong&gt;name&lt;/strong&gt; and &lt;strong&gt;ID&lt;/strong&gt;. You can list all your available Docker images and get their name and ID using the &lt;code&gt;image&lt;/code&gt; command :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+agrometeor          latest              fea4eeec5c2a        10 days ago         2.41GB&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To &lt;strong&gt;run an image as a container&lt;/strong&gt;, simply use the &lt;code&gt;run&lt;/code&gt; command with the image ID or name :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker run &amp;lt;IMAGE-NAME&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that this command can receive many optional parameters (we will see an example later).&lt;/p&gt;
+&lt;p&gt;You can also run a container from an image which is hosted on &lt;a href=&#34;https://hub.docker.com/r/pokyah/agrometeordocker/&#34;&gt;Docker Hub&lt;/a&gt;. Docker will automatically download it on your computer and run it as a container once it is downloaded (to use this feature, you will first need to create a Docker hub account).&lt;/p&gt;
+&lt;p&gt;For geospatial R work you could for example run the image named &lt;a href=&#34;https://hub.docker.com/r/rocker/geospatial/&#34;&gt;rocker/geospatial&lt;/a&gt; which contains Linux, R, Rstudio and the most famous R spatial packages and their OS dependencies :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker run rocker/geospatial&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can of course run multiple different images simultanesously but you can also run a single image simultaneously in multiple separate containers. To &lt;strong&gt;list all your running Docker containers&lt;/strong&gt; and get their name and ID, use the &lt;code&gt;ps&lt;/code&gt; command. Note that the name is randomly generated by Docker.&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
+b18f77625a00        agrometeor          &amp;quot;/init&amp;quot;             About an hour ago   Up About an hour    0.0.0.0:8787-&amp;gt;8787/tcp   silly_roentgen
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Running containers use computing ressources. To &lt;strong&gt;stop and remove&lt;/strong&gt; a running container use the &lt;code&gt;rm&lt;/code&gt; command :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker rm -f &amp;lt;CONTAINER-ID&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Pay attention that when you stop a container, all the work that has been done inside the container is lost ! This is on purpose and we will later see the proper and efficient way to save your R developments made inside a container. If you want to save modifications made inside a container (e.g. adding a R library and its OS dependencies) you have to &lt;code&gt;commit&lt;/code&gt; your container. But this is out of the scope of this tutorial. If you are interested, you can read the corresponding &lt;a href=&#34;https://docs.docker.com/engine/reference/commandline/commit/#commit-a-container-with-new-configurations&#34;&gt;doc&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you need it, you can explore the file system of the running container (similarly to what you do when you are connected to a server using ssh conection) :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker exec -t -i &amp;lt;CONTAINER-ID&amp;gt; /bin/bash&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Docker is not limited to images existing on Docker Hub. It allows you to create your images with the configuration of your own. Creativity is the limit. Creating a Docker image requires a &lt;strong&gt;Dockfile&lt;/strong&gt; which is simply a configuration file that tells Docker what to put in your image. For example, you can find the Dockfile that was used to create the rocker/geospatial image that we mentioned earlier on &lt;a href=&#34;https://github.com/rocker-org/geospatial/blob/master/Dockerfile&#34;&gt;github&lt;/a&gt; . To &lt;strong&gt;build an image&lt;/strong&gt; from a dockfile you simply open a terminal in the folder containing the dockfile and execute the &lt;code&gt;build&lt;/code&gt; command with the name you want to attribute to your image (don’t forget the “.” at the end !) :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker build -t &amp;lt;IMAGE-NAME&amp;gt; .&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There a lot of ressources on the web that explain how to create your own images. Check my selection in the further reading section at the end of the post.&lt;/p&gt;
+&lt;p&gt;In case you are sure you will not anymore run an image as container(s), you can delete it to save some space on your computer :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker rmi &amp;lt;IMAGE_NAME:VERSION/IMAGE-ID&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And to delete all images (really ?!) :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker rmi $(docker images -qf &amp;quot;dangling=true&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;using-rstudio-inside-a-docker-container-and-saving-your-work&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Using RStudio inside a Docker container and saving your work&lt;/h2&gt;
+&lt;p&gt;Let’s dive in the latest part of this tutorial : running R inside a container. It’s actually pretty simple. It involves 2 steps :&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Choosing the pre-build R oriented Docker image you want to use&lt;/li&gt;
+&lt;li&gt;Running it as a container with optional parameters&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let’s say you need to make some R developments made easier with the &lt;a href=&#34;https://www.tidyverse.org/&#34;&gt;tidyverse&lt;/a&gt; family packages. To do this you will download the pre-built &lt;a href=&#34;https://hub.docker.com/r/rocker/tidyverse/image&#34;&gt;rocker/tidyverse&lt;/a&gt; from Docker hub using the command &lt;code&gt;pull&lt;/code&gt; (note the similarity with &lt;a href=&#34;http://r-bio.github.io/intro-git-rstudio/&#34;&gt;git&lt;/a&gt;):&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker pull rocker/tidyverse&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Remember that we have learned that once closed, containers loose all the modifications you have made within it. So, &lt;strong&gt;how to save your R developments made within a container&lt;/strong&gt; ? The trick is to actually &lt;strong&gt;mount your project folder from your host computer to the container&lt;/strong&gt;. This is achieved by passing optional parameters to the &lt;code&gt;run&lt;/code&gt; command.&lt;/p&gt;
+&lt;p&gt;If you want to run a container from the rocker/tidyverse image with an R project located in your host computer at &lt;code&gt;/home/yourUsername/Rprojects/yourProject/&lt;/code&gt; and work in RStudio, use the &lt;code&gt;run&lt;/code&gt; command with these optional parameters :&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker run -w /home/rstudio/ rm -p 8787:8787 -v /yourUsername/Rprojects/yourProject/:/home/rstudio/ rocker/tidyverse&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Docker will instantiate a new container from the rocker/tidyverse image and make your project folder available to the container by mounting it. All the modifications that you made to your mounted host folder from your container will be effective in your host machine. So once you stop your container, don’t worry, your modifications will be saved !&lt;/p&gt;
+&lt;p&gt;To launch your container RStudio install, open a web-browser and navigate to &lt;code&gt;http://localhost:8787&lt;/code&gt;. You habitual RStudio interface will be launched within a few seconds and your mounted folder will appear in the files pane. &lt;strong&gt;Congratulations, you are now ready to work within a dockerized RStudio install !&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In most of the cases, before running an image, you will need to customise it so that it reflects your own needs. &lt;strong&gt;Customising an image&lt;/strong&gt; requires to &lt;strong&gt;edit its Dockerfile&lt;/strong&gt; and rebuild the image as mentioned earlier.&lt;/p&gt;
+&lt;p&gt;To keep &lt;strong&gt;git versioned Dockerfile -s&lt;/strong&gt; of your images, you can push them to &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt;. Hosting your Dockerfile on Github offers you a nice feature : &lt;a href=&#34;https://docs.docker.com/docker-hub/builds/&#34;&gt;automated builds&lt;/a&gt;. Once enabled, each time you push a modification of your Dockerfile to Github, Docker will rebuild your image and make it ready to be pulled by others.&lt;/p&gt;
+&lt;p&gt;You can share this very specific R environment with your co-workers. First, share them this tutorial and then share your image. For this purpose, you have two solutions :&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Sending them the corresponding Dockerfile and let them build the image on their machine (more complex)&lt;/li&gt;
+&lt;li&gt;Upload your image to Docker hub (manually or with the automated build feature) and simply send them the name of your image so that then can you it immediately use it with the &lt;code&gt;run&lt;/code&gt; command&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;You have learned how to use Docker to run your own customized R isolated environment inside a container and how to share this specific environment with your colleagues.&lt;/p&gt;
+&lt;p&gt;If you want to try a my pokyah/agrometeor container, have a look at its &lt;a href=&#34;https://github.com/pokyah/agrometeorDocker&#34;&gt;repository&lt;/a&gt;. There you will also learn how to create a custom bash command to launch your containers.&lt;/p&gt;
+&lt;p&gt;In a next tutorial, I’ll explain you how to run a container able to connect to an external postgreSQL database.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;future-readings&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Future readings&lt;/h2&gt;
+&lt;div id=&#34;good-tutorials&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Good tutorials&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.andrewheiss.com/blog/2017/04/27/super-basic-practical-guide-to-docker-and-rstudio/&#34;&gt;Andrew Heiss tuto&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://dirk.eddelbuettel.com/papers/useR2015_docker.pdf&#34;&gt;Dirk Eddelbuettel presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://knausb.github.io/2017/06/running-r-in-docker/&#34;&gt;Brian J. Knaus CLI tuto&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.r-bloggers.com/r-3-3-0-is-another-motivation-for-docker/&#34;&gt;R-Blogger post&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;dockerfile-customization&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Dockerfile customization&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://o2r.info/2017/05/30/containerit-package/&#34;&gt;R package to create Dockerfile&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ropenscilabs.github.io/r-docker-tutorial/05-dockerfiles.html&#34;&gt;tutorial from ropenscilabs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.mirantis.com/blog/how-do-i-create-a-new-docker-image-for-my-application/&#34;&gt;mirantis blog tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/45289764/install-r-packages-using-docker-file&#34;&gt;stackoverflow install-r-packages-using-docker-file&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/46902203/verify-r-packages-installed-into-docker-container&#34;&gt;stackoverflow verify-r-packages-installed-into-docker-container&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/26500174/upload-local-files-to-docker-container?noredirect=1&amp;amp;lq=1&#34;&gt;stackoverflow upload-local-files-to-docker-container&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -114,9 +982,59 @@ I’ve built a little script, inspired from frdvnw, that will allow you to quick
       <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/assessing-the-agreement-between-two-quantitative-methods-of-measurements-understanding-the-bland-altman-analysis/</guid>
-      <description>Attempting to statistically assess the agreement level between two quantitative methods of measurements requires a validation tool.
-A widely adopted tool is the correlation study computed with one method as predictor and the other as response variable (e.g. see this publication that compares temperature measurements obtained by two different kind of weather stations at the exact same location).
-However, as described by Giavarina (2015), correlation study should not be used to asses the comparatibility or agreement between two instruments (because it studies the relation between one variable and the other and not the differences).</description>
+      <description>&lt;p&gt;Attempting to statistically assess the agreement level between two quantitative methods of measurements requires a validation tool.&lt;/p&gt;
+&lt;p&gt;A widely adopted tool is the correlation study computed with one method as predictor and the other as response variable (e.g. see &lt;a href=&#34;http://onlinelibrary.wiley.com/doi/10.1002/wea.2158/pdf&#34;&gt;this&lt;/a&gt; publication that compares temperature measurements obtained by two different kind of weather stations at the exact same location).&lt;/p&gt;
+&lt;p&gt;However, as described by &lt;a href=&#34;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4470095/&#34;&gt;Giavarina (2015)&lt;/a&gt;, correlation study should not be used to asses the comparatibility or agreement between two instruments (because it studies the relation between one variable and the other and not the &lt;strong&gt;differences&lt;/strong&gt;).&lt;/p&gt;
+&lt;p&gt;In 1986, &lt;a href=&#34;https://www-users.york.ac.uk/~mb55/meas/ba.pdf&#34;&gt;Bland and Altman&lt;/a&gt; have proposed an analysis that quantifies the agreement between two quantitative sets of measurements of the same parameter by statistically studying the behaviors of the differences between paired measurements. This analysis is useful to determine if a method can be used interoperably with another without the need of a correction model&lt;/p&gt;
+&lt;div id=&#34;some-words-about-measurements-difference&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Some words about measurements difference&lt;/h2&gt;
+&lt;p&gt;From &lt;a href=&#34;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4470095/&#34;&gt;Giavarina (2015)&lt;/a&gt; :&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;An ideal model would claim that the measurements obtained by one method or another gave exactly the same results. So, all the differences would be equal to zero. But any measurement of variables always implies some degree of error. Even the mere analytical imprecision for method A and method B generates a variability of the differences. However, if the variability of the differences were only linked to analytical imprecision of each of the two methods, the average of these differences should be zero. This is the first point required to evaluate the agreement between the two methods: look at the average of the differences between the paired data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div id=&#34;quick-presentation-of-the-bland-altman-analysis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Quick presentation of the Bland Altman analysis&lt;/h2&gt;
+&lt;p&gt;Their graphical method plots the &lt;strong&gt;differences between the two paired measurements&lt;/strong&gt; against &lt;strong&gt;the averages of these measurements&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Here is an examplative Bland-Altman plot : [blandAltman plot example]({{ “/assets/images/blandAltman.png” | absolute_url }})&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/BlandAltmanLeh/vignettes/Intro.html&#34;&gt;Source&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Horizontal lines are drawn at the &lt;strong&gt;mean difference&lt;/strong&gt; (thick red line), and at the upper and lower &lt;strong&gt;limits of agreement&lt;/strong&gt; (thick blue lines) together with their 0.95 &lt;a href=&#34;https://www.mathsisfun.com/data/confidence-interval.html&#34;&gt;confidence interval - CI&lt;/a&gt; (thin lines).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The &lt;strong&gt;mean difference&lt;/strong&gt; is the estimated &lt;strong&gt;bias&lt;/strong&gt;. Its 0.95 CI illustrates the magnitude of the systematic difference.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &lt;strong&gt;limits of agreement&lt;/strong&gt; measure the &lt;strong&gt;random fluctuations around the mean difference&lt;/strong&gt;. These correspond to the mean difference plus and minus 1.96 times the standard deviation of the differences. These lines tell us how far apart measurements by 2 methods were more likely to be for most individuals.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The Maximum allowed difference between methods (D)&lt;/strong&gt; is an arbitrary treshold which value must be chosen so that differences in the range −D to D are considered irrelevant or neglectable in the context of your study.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;interpretation-guidelines&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Interpretation guidelines&lt;/h2&gt;
+&lt;p&gt;The plot allows to infer some information about the agreement of two methods :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;If the line of equality (horizontal line at 0) is not in the mean difference 0.95 CI, there is a &lt;strong&gt;significant systematic difference&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If the mean value of the difference differs significantly from 0, this indicates the presence of a &lt;strong&gt;fixed bias&lt;/strong&gt;. This bias can be adjusted for by subtracting the mean difference from the the measurements of the method we want to determine if it can substituate the other.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If the limits of agreement do not exceed the maximum allowed difference, the two methods are considered to be &lt;strong&gt;in agreement&lt;/strong&gt;. They are therefore considered as interchangeable. This interpretation does not however takes CI into accounts (see next point).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If the maximum allowed difference is higher than the 0.95 upper limit of the higher limit of agreement and if the maximum allowed difference is lower than the 0.95 lower limit of the lower limit, we are &lt;strong&gt;95% certain that the methods do not disagree&lt;/strong&gt; (if the differences are &lt;a href=&#34;https://rexplorations.wordpress.com/2015/08/11/normality-tests-in-r/&#34;&gt;normally distributed&lt;/a&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If the scatter presents a trend, there is a relationship between the differences and the magnitude of measurements (&lt;strong&gt;proportional error/bias&lt;/strong&gt;). The existence of such a proportional bias indicates that the methods do not agree equally through the range of measurements. To formally evaluate this relationship, one could compute a regression model between the difference and the average of the 2 methods.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;some-usage-precautions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Some usage precautions&lt;/h2&gt;
+&lt;p&gt;The Bland and Altman analysis allows to determine if the bias is significant (e.i. the line of equality is not within the confidence interval of the mean difference) &lt;strong&gt;but&lt;/strong&gt; it does not allow to say if the agreement is sufficient or suitable for your instruments interoperability.&lt;/p&gt;
+&lt;p&gt;This analysis modestly quantifies the bias and a range of agreement within which 95% of the differences between one measurement and the other are included.&lt;/p&gt;
+&lt;p&gt;Only the &lt;strong&gt;context of your analysis&lt;/strong&gt; could define whether the agreement interval is too wide or sufficiently narrow for your purpose. This is why you should arbitrary set the limits of maximum acceptable differences (limits of agreement expected) based on relevant criteria defined in the context of your analysis.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;software-implementation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Software implementation&lt;/h2&gt;
+&lt;p&gt;I mainly work in R (&lt;a href=&#34;https://www.r-bloggers.com/why-use-r-five-reasons/&#34;&gt;and you should too&lt;/a&gt;). If you already do so, I would recommand you the excellent &lt;a href=&#34;https://cran.r-project.org/web/packages/BlandAltmanLeh/vignettes/Intro.html&#34;&gt;BlandAltmanLeh&lt;/a&gt; package that is sufficiently well document in order to perform your own Bland Altman analysis.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;see-also&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;See also&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.medcalc.org/manual/blandaltman.php&#34;&gt;medcalc.org Bland Altman explanation page&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Bland%E2%80%93Altman_plot#/media/File:Bland-Alman_Plot_with_CI%27s_on_LOA.png&#34;&gt;Bland Altman Wikipedia page&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://repository.uwl.ac.uk/id/eprint/2044/1/Amoako-Attah-Jahromi-2015-Method-comparison-analysis-of-dwellings-temperatures-in-the-UK.pdf&#34;&gt;a scientific paper that presents a use case of Bland Altman study in the context of temperature measurement&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>
