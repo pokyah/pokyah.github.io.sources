@@ -6,48 +6,10 @@
     <description>Recent content in Productivity on pokyah - opensource science, GIS and data-analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 12 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 08 Jun 2018 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/tags/productivity/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Boost your R productivity</title>
-      <link>/post/how-to-boost-your-r-productivity/</link>
-      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/how-to-boost-your-r-productivity/</guid>
-      <description>&lt;div id=&#34;dockerized-r-studio&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Dockerized R studio&lt;/h1&gt;
-&lt;p&gt;Serve multiple instances of R studio server (free version) at multiple ports for parallel tasks.&lt;/p&gt;
-&lt;p&gt;An extensive documentation is available on the &lt;a href=&#34;https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image&#34;&gt;rocker-org wiki&lt;/a&gt;&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo docker run -w /home/rstudio/ --rm -p 1515:8787 -v /home/&amp;lt;hostusername&amp;gt;/:/home/rstudio/ pokyah/agrometeordocker&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo docker run -w /home/rstudio/ --rm -p 1414:8787 -v /home/&amp;lt;hostusername&amp;gt;/:/home/rstudio/ pokyah/agrometeordocker&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;shiny-apps-as-package-dockerized-shiny-server&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Shiny apps as package + dockerized shiny server&lt;/h1&gt;
-&lt;p&gt;See doc from &lt;a href=&#34;https://github.com/pokyah/shiny-1&#34;&gt;rocker-org shiny server Docker image&lt;/a&gt; and Dean Attali Stackoverflow &lt;a href=&#34;https://stackoverflow.com/questions/37830819/developing-shiny-app-as-a-package-and-deploying-it-to-shiny-server&#34;&gt;answser&lt;/a&gt; regarding shinyapps as packages&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;snippets&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Snippets&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets&#34;&gt;R studio doc&lt;/a&gt; Pay attention to escaping characters&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;renviron&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;.Renviron&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;https://csgillespie.github.io/efficientR/r-startup.html&#34;&gt;Efficient R programming book&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;r-project-git&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R project + git&lt;/h1&gt;
-&lt;p&gt;.RData environ git for code gitignore for R&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;r-dir-initializer&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R dir initializer&lt;/h1&gt;
-&lt;/div&gt;
-&lt;div id=&#34;knitr-doc&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;knitr doc&lt;/h1&gt;
-&lt;/div&gt;
-</description>
-    </item>
     
     <item>
       <title>Quickly create your R project directory tree with pre-filled common files</title>

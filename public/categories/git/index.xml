@@ -6,30 +6,10 @@
     <description>Recent content in Git on pokyah - opensource science, GIS and data-analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 12 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Mar 2018 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/categories/git/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Removing large files from you git version control</title>
-      <link>/post/git-ignore-tips-and-tricks/</link>
-      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/git-ignore-tips-and-tricks/</guid>
-      <description>&lt;p&gt;While working with geodata, you might often end up downloading large raw-data files likes &lt;code&gt;.shp&lt;/code&gt; that you will need in your data process chain.&lt;/p&gt;
-&lt;p&gt;As you don’t want to keep this static files under version control, you must tell git to ignore these files. Usually, you do it by adding a rule to your &lt;code&gt;.gitignore&lt;/code&gt; file. But what if those files were created before there were added to the &lt;code&gt;.gitignore&lt;/code&gt; ?&lt;/p&gt;
-&lt;p&gt;This problem happened to me this morning. My usual R specific &lt;code&gt;.gitignore&lt;/code&gt; file was not setup to ignore large &lt;code&gt;.shp&lt;/code&gt; files and I inadvertently added my &lt;code&gt;.shp&lt;/code&gt; files to git. After some local commits, I pushed my work to my online repo and as it took a longer time than usual to upload, I suspected that large files were polluting my git index.&lt;/p&gt;
-&lt;p&gt;So the first thing I did, is to add a “ignore the folder containing my geodata” rule to my &lt;code&gt;.gitignore&lt;/code&gt; file : &lt;code&gt;geodata/&lt;/code&gt;. To learn more about ignore folders, check &lt;a href=&#34;https://stackoverflow.com/questions/14700835/gitignore-a-folder-content?noredirect=1&amp;amp;lq=1&#34;&gt;this&lt;/a&gt; SO thread.&lt;/p&gt;
-&lt;p&gt;Then, because the ignoring rule was setup after those files were already added to my git index, I had to remove them from the cache :&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git rm --cached &amp;lt;FOLDER_NAME_OR_FILE_NAME&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This command was found on &lt;a href=&#34;https://stackoverflow.com/questions/2047465/how-can-i-delete-a-file-from-git-repo&#34;&gt;this&lt;/a&gt; SO thread&lt;/p&gt;
-&lt;p&gt;If you want to inspect which files of your project are ignored by git, run this command from &lt;a href=&#34;https://stackoverflow.com/questions/15931238/unable-to-remove-file-that-really-exists-fatal-pathspec-did-not-match-any#15931542&#34;&gt;this&lt;/a&gt; SO thread :&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git ls-files --others -i --exclude-standard&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Finally, after adding the rule, and removing the files from my repository, I pushed again and ended up with the exact same problem : large files were being uploaded to my online repo. How could this be possible ? The problem, as mentioned in &lt;a href=&#34;https://stackoverflow.com/questions/19573031/cant-push-to-github-because-of-large-file-which-i-already-deleted#23657759&#34;&gt;this&lt;/a&gt; SO thread, was that the file was still in my history. So I simply executed this command to solve my problem :&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git filter-branch --index-filter &amp;#39;git rm -r --cached --ignore-unmatch &amp;lt;file/dir&amp;gt;&amp;#39; HEAD&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
     
     <item>
       <title>Quickly publish your R interactive data visualization tools with github pages</title>
