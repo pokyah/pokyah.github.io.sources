@@ -35,9 +35,9 @@ tags:
 </div>
 <div id="install-the-docker-shiny-server-image-on-your-server" class="section level1">
 <h1>Install the docker shiny server image on your server</h1>
-<p>Once docker hub shows that the image build is ready with no errors, download the image on your host server by adapting this command :</p>
+<p>Once docker hub shows that the image build is ready with no errors, download the image on your host server using the following command :</p>
 <pre class="bash"><code>$ sudo docker pull &lt;DOCKERHUB_USERNAME/IMAGENAME&gt;</code></pre>
-<p>At this point, you only need some extra lines of R code to actually deploy your packaged shiny apps ! As your shiny apps source files are located into the <a href="http://r-pkgs.had.co.nz/inst.html"><code>inst</code> folder</a> of your packages, you will use the <code>sytem.file</code> function to actually call and initiate these. On your host server, create a folder and name it for example <code>shiny_launchers_mountpoint</code>. Inside this folder, create a folder for each of the shiny apps you have add to your Docker image, and give these folders the same name as your packaged shiny apps. Finally, inside each of this folder create and <code>app.R</code> file that contains the following lines (of course, don’t forget to adapt the &lt;PLACEHOLDERS&gt;) :</p>
+<p>At this point, you only need some extra lines of R code to actually deploy your packaged shiny apps ! As your shiny apps source files are located into the <a href="http://r-pkgs.had.co.nz/inst.html"><code>inst</code> folder</a> of your packages, you will use the <code>sytem.file</code> function to actually call and initiate these. On your host server, create a folder and name it for example <code>shiny_launchers_mountpoint</code>. Inside this folder, create a folder for each of the shiny apps you have add to your Docker image, and give these folders the same name as your packaged shiny apps repos. Finally, inside each of this folder create and <code>app.R</code> file that contains the following lines (of course, don’t forget to adapt the &lt;PLACEHOLDERS&gt;) :</p>
 <pre class="r"><code>dir &lt;- system.file(&quot;&lt;SHINY_APP_CODE_LOCATION_INSIDE_INST_FOLDER&gt;&quot;, package = &quot;&lt;PACKAGE_REPO_NAME&gt;&quot;)
 setwd(dir)
 shiny::shinyAppDir(&quot;.&quot;)</code></pre>

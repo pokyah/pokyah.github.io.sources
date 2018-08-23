@@ -43,12 +43,12 @@ This step will later allows you to quickly install and instantiate the shiny ser
 
 # Install the docker shiny server image on your server 
 
-Once docker hub shows that the image build is ready with no errors, download the image on your host server by adapting this command : 
+Once docker hub shows that the image build is ready with no errors, download the image on your host server using the following command : 
 
 ```bash
 $ sudo docker pull <DOCKERHUB_USERNAME/IMAGENAME>
 ```
-At this point, you only need some extra lines of R code to actually deploy your packaged shiny apps ! As your shiny apps source files are located into the [`inst` folder](http://r-pkgs.had.co.nz/inst.html) of your packages, you will use the `sytem.file` function to actually call and initiate these. On your host server, create a folder and name it for example `shiny_launchers_mountpoint`. Inside this folder, create a folder for each of the shiny apps you have add to your Docker image, and give these folders the same name as your packaged shiny apps. Finally, inside each of this folder create and `app.R` file that contains the following lines (of course, don't forget to adapt the \<PLACEHOLDERS\>) :
+At this point, you only need some extra lines of R code to actually deploy your packaged shiny apps ! As your shiny apps source files are located into the [`inst` folder](http://r-pkgs.had.co.nz/inst.html) of your packages, you will use the `sytem.file` function to actually call and initiate these. On your host server, create a folder and name it for example `shiny_launchers_mountpoint`. Inside this folder, create a folder for each of the shiny apps you have add to your Docker image, and give these folders the same name as your packaged shiny apps repos. Finally, inside each of this folder create and `app.R` file that contains the following lines (of course, don't forget to adapt the \<PLACEHOLDERS\>) :
 
 ```r
 dir <- system.file("<SHINY_APP_CODE_LOCATION_INSIDE_INST_FOLDER>", package = "<PACKAGE_REPO_NAME>")
