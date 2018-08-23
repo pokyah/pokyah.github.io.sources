@@ -68,7 +68,7 @@
     <item>
       <title>Docker</title>
       <link>/categories/docker/</link>
-      <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/docker/</guid>
       <description></description>
@@ -140,7 +140,7 @@
     <item>
       <title>Linux</title>
       <link>/categories/linux/</link>
-      <pubDate>Fri, 08 Jun 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/linux/</guid>
       <description></description>
@@ -194,7 +194,7 @@
     <item>
       <title>R</title>
       <link>/categories/r/</link>
-      <pubDate>Fri, 08 Jun 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/r/</guid>
       <description></description>
@@ -206,6 +206,15 @@
       <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/research/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shiny</title>
+      <link>/categories/shiny/</link>
+      <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/shiny/</guid>
       <description></description>
     </item>
     
