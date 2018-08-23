@@ -588,17 +588,17 @@ section.main .content .markdown h1 {
   margin-bottom: 2rem;
 }
 section.main .content .markdown h2 {
-  font-size: 2.25rem;
+  font-size: 1.25rem;
   margin-bottom: 1.5rem;
 }
 section.main .content .markdown h3 {
-  font-size: 2rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
 }
 section.main .content .markdown h4,
 section.main .content .markdown h5,
 section.main .content .markdown h6 {
-  font-size: 1.75rem;
+  font-size: 0.75rem;
   margin-bottom: 1rem;
   letter-spacing: none;
 }
