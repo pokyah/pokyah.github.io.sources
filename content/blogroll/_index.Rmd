@@ -43,3 +43,6 @@ sf packages & spatial R stuffs
 
 * [stat545](https://github.com/STAT545-UBC/STAT545-UBC.github.io)
 Qualitative R-courses 
+
+* [Sellorn](http://blog.sellorm.com)
+R engineer

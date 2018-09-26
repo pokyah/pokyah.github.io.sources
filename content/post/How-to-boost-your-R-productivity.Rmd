@@ -10,6 +10,9 @@ tags:
   - productivity
 ---
 
+# Rmarkdown wordcount
+https://github.com/benmarwick/wordcountaddin
+
 # Dockerized R studio
 Serve multiple instances of R studio server (free version) at multiple ports for parallel tasks.
 

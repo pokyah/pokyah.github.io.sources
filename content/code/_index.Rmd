@@ -6,11 +6,26 @@ date: '2017-04-01'
 
 ## Agromet project
 
+* [agrometAPI](https://github.com/pokyah/agrometAPI)
+R package to play with the Agromet API
+
+* [agrometInternship](https://github.com/pokyah/agrometInternship)
+Repository containing the reports from or interns. These reports are written with [thesisdown](https://github.com/ismayc/thesisdown) package. A report = a specific branch
+
+* [mlr](https://github.com/pokyah/mlr)
+My ongoing contribution to the machine learning [mlr R](https://mlr-org.github.io) package. This contributions aims to integrate the famous geostatistical modelling [gstat package](https://cran.r-project.org/web/packages/gstat/gstat.pdf) into mlr.
+
+* [defHydWal](https://github.com/pokyah/defHydWal)
+A simple shiny app coded as a package to explore the water deficit in Wallonia. This was integrated to a shiny server as explained in my [post](https://pokyah.github.io/post/2018-08-01-building-a-dockerized-shiny-server-with-packaged-shiny-apps/)
+
 * [Public Agromet code](https://github.com/pokyah/agrometeor-public)  
 Working tested code related to the Agromet project and sufficiently documented.
 
 * [AgrometeoR Docker](https://github.com/pokyah/agrometeorDocker)  
-Dockerfile for AgrometeoR development environment using Docker
+Dockerfile for AgrometeoR development environment using Docker based on rocker R studio container
+
+* [geoTools](https://github.com/pokyah/geoTools)
+An R package aimed to prepare geospatial data that is required for our weather spatialization (DEM, Corine Land Cover, admin borders, etc...)
 
 * [AgrometeoR Spatial Benchmarking](https://github.com/pokyah/agrometeor-spatial-benchmarking)
 Benchmark of various machine learning regression methods
@@ -48,6 +63,9 @@ Worth reading to improve your R skills and workflows for a better productivity
 
 * [Happy git with R](http://happygitwithr.com/big-picture.html)
 Work efficiently with R + git combo
+
+* [An Intro to R](https://colinfay.me/intro-to-r/)
+The basics !
 
 # Data-analasys packages
 
