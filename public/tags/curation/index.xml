@@ -138,16 +138,18 @@
     </item>
     
     <item>
-      <title>Curated list of Open Source Geo Data and Tools</title>
+      <title>Curated list of free geodata and softwares</title>
       <link>/geo-tools/</link>
       <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/geo-tools/</guid>
-      <description>&lt;div id=&#34;online-map-editors-data-visualisation-tool&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Online map editors &amp;amp; data visualisation tool&lt;/h2&gt;
+      <description>&lt;div id=&#34;online-map-editors-data-visualisation-various-tools&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Online map editors, data visualisation &amp;amp; various tools&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://carto.com/&#34; class=&#34;uri&#34;&gt;https://carto.com/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://umap.openstreetmap.fr/fr/&#34; class=&#34;uri&#34;&gt;https://umap.openstreetmap.fr/fr/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://epsg.io&#34; class=&#34;uri&#34;&gt;https://epsg.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://geojson.io/&#34; class=&#34;uri&#34;&gt;http://geojson.io/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;geocoding&#34; class=&#34;section level2&#34;&gt;
@@ -156,8 +158,8 @@
 &lt;li&gt;&lt;a href=&#34;https://wiki.openstreetmap.org/wiki/Nominatim&#34; class=&#34;uri&#34;&gt;https://wiki.openstreetmap.org/wiki/Nominatim&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;div id=&#34;basemap-providers&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Basemap providers&lt;/h2&gt;
+&lt;div id=&#34;basemap-providers-editors&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Basemap providers &amp;amp; editors&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://openmaptiles.org&#34; class=&#34;uri&#34;&gt;https://openmaptiles.org&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://maps.stamen.com&#34; class=&#34;uri&#34;&gt;http://maps.stamen.com&lt;/a&gt;&lt;/li&gt;
@@ -167,26 +169,25 @@
 &lt;li&gt;&lt;a href=&#34;http://maperitive.net/&#34; class=&#34;uri&#34;&gt;http://maperitive.net/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.maptiler.com&#34; class=&#34;uri&#34;&gt;https://www.maptiler.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://openmaptiles.org&#34; class=&#34;uri&#34;&gt;https://openmaptiles.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://leaflet-extras.github.io/leaflet-providers/preview/index.html&#34;&gt;Leaflet basemaps providers list&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;colorbrewer2.org&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://colorbrewer2.org/#type=sequential&amp;amp;scheme=BuGn&amp;amp;n=3&#34;&gt;Colorbrewer palettes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://rmarkdown.rstudio.com/revealjs_presentation_format#display_modes&#34;&gt;making presentations with R&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;r-packages&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;R packages&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://rstudio.github.io/leaflet/&#34; class=&#34;uri&#34;&gt;https://rstudio.github.io/leaflet/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://bhaskarvk.github.io/leaflet.extras/&#34; class=&#34;uri&#34;&gt;https://bhaskarvk.github.io/leaflet.extras/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/raster/index.html&#34; class=&#34;uri&#34;&gt;https://cran.r-project.org/web/packages/raster/index.html&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://r-spatial.github.io/sf/&#34; class=&#34;uri&#34;&gt;https://r-spatial.github.io/sf/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://r-spatial.github.io/lwgeom/&#34; class=&#34;uri&#34;&gt;https://r-spatial.github.io/lwgeom/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/sp/index.html&#34; class=&#34;uri&#34;&gt;https://cran.r-project.org/web/packages/sp/index.html&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/hadley/rvest&#34; class=&#34;uri&#34;&gt;https://github.com/hadley/rvest&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ropensci.github.io/RSelenium/&#34; class=&#34;uri&#34;&gt;http://ropensci.github.io/RSelenium/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;simple-online-tools&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Simple Online tools&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://epsg.io&#34; class=&#34;uri&#34;&gt;https://epsg.io&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://geojson.io/&#34; class=&#34;uri&#34;&gt;http://geojson.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://rstudio.github.io/leaflet/&#34;&gt;Leaflet for R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Leaflet additional features()]&lt;a href=&#34;https://bhaskarvk.github.io/leaflet.extras/&#34; class=&#34;uri&#34;&gt;https://bhaskarvk.github.io/leaflet.extras/&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/raster/index.html&#34;&gt;Raster manipulation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://r-spatial.github.io/sf/&#34;&gt;Vector manipulation with sf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/sp/index.html&#34;&gt;Vector manipulation with sp&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/hadley/rvest&#34;&gt;Harvesting data from websites&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ropensci.github.io/osmdata/&#34;&gt;Querying osmdata with R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ropensci.github.io/RSelenium/&#34;&gt;Selenium server for R&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;design-fonts-and-icons&#34; class=&#34;section level2&#34;&gt;
@@ -198,7 +199,7 @@
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;datasets&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;datasets&lt;/h2&gt;
+&lt;h2&gt;Datasets&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://geopole.org/&#34; class=&#34;uri&#34;&gt;http://geopole.org/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://gadm.org/&#34; class=&#34;uri&#34;&gt;https://gadm.org/&lt;/a&gt;&lt;/li&gt;
@@ -213,10 +214,11 @@
 &lt;li&gt;&lt;a href=&#34;http://inspire.ngi.be/download-free/atomfeeds/AtomFeed-CLC2012-en.xml&#34; class=&#34;uri&#34;&gt;http://inspire.ngi.be/download-free/atomfeeds/AtomFeed-CLC2012-en.xml&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;div id=&#34;books&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;books&lt;/h2&gt;
+&lt;div id=&#34;books-tutorials&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;books &amp;amp; tutorials&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://geocompr.robinlovelace.net&#34; class=&#34;uri&#34;&gt;https://geocompr.robinlovelace.net&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geocompr.robinlovelace.net&#34;&gt;geocomputation with R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster?tap_a=5644-dce66f&amp;amp;tap_s=10907-287229&#34;&gt;datacamp course&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 </description>
