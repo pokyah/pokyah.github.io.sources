@@ -1,5 +1,5 @@
 ---
-title: Curated list of Open Source Geo Data and Tools
+title: Curated list of free geodata and softwares
 author: Thomas Goossens
 date: '2018-06-19'
 categories:
@@ -11,14 +11,16 @@ tags:
 ---
 
 
-## Online map editors & data visualisation tool
+## Online map editors, data visualisation  & various tools
 * https://carto.com/
 * https://umap.openstreetmap.fr/fr/
+* https://epsg.io
+* http://geojson.io/
 
 ## Geocoding
 * https://wiki.openstreetmap.org/wiki/Nominatim
 
-## Basemap providers
+## Basemap providers & editors
 * https://openmaptiles.org
 * http://maps.stamen.com
 * https://www.mapbox.com/
@@ -27,27 +29,31 @@ tags:
 * http://maperitive.net/
 * https://www.maptiler.com
 * https://openmaptiles.org
+* [Leaflet basemaps providers list](http://leaflet-extras.github.io/leaflet-providers/preview/index.html)
+
+colorbrewer2.org
+
+
+
+* [Colorbrewer palettes](http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
+* [making presentations with R](https://rmarkdown.rstudio.com/revealjs_presentation_format#display_modes)
 
 ## R packages
-* https://rstudio.github.io/leaflet/
-* https://bhaskarvk.github.io/leaflet.extras/
-* https://cran.r-project.org/web/packages/raster/index.html
-* https://r-spatial.github.io/sf/
-* https://r-spatial.github.io/lwgeom/
-* https://cran.r-project.org/web/packages/sp/index.html
-* https://github.com/hadley/rvest
-* http://ropensci.github.io/RSelenium/
-
-## Simple Online tools
-* https://epsg.io
-* http://geojson.io/
+* [Leaflet for R](https://rstudio.github.io/leaflet/)
+* [Leaflet additional features()]https://bhaskarvk.github.io/leaflet.extras/)
+* [Raster manipulation](https://cran.r-project.org/web/packages/raster/index.html)
+* [Vector manipulation with sf](https://r-spatial.github.io/sf/)
+* [Vector manipulation with sp](https://cran.r-project.org/web/packages/sp/index.html)
+* [Harvesting data from websites](https://github.com/hadley/rvest)
+* [Querying osmdata with R](https://ropensci.github.io/osmdata/)
+* [Selenium server for R](http://ropensci.github.io/RSelenium/)
 
 ## Design, fonts and icons
 * http://colorbrewer2.org
 * https://materialdesignicons.com/
 * https://fontawesome.com/
 
-## datasets
+## Datasets
 * http://geopole.org/
 * https://gadm.org/
 * http://overpass-turbo.eu/
@@ -60,7 +66,8 @@ tags:
 * http://www.atlas-belgique.be/cms2/
 * http://inspire.ngi.be/download-free/atomfeeds/AtomFeed-CLC2012-en.xml
 
-## books
-* https://geocompr.robinlovelace.net
+## books & tutorials
+* [geocomputation with R](https://geocompr.robinlovelace.net)
+* [datacamp course](https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster?tap_a=5644-dce66f&tap_s=10907-287229)
 
 
