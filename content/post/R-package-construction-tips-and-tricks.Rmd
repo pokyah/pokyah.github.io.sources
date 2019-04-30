@@ -1,0 +1,24 @@
+---
+title: R package construction tips & tricks
+author: Thomas Goossens
+date: '2018-11-22'
+draft: true
+categories:
+  - r
+tags:
+  - how-to
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Description file 
+
+How to refer a package version ? ==> https://cran.r-project.org/web/packages/devtools/vignettes/dependencies.html
+https://stackoverflow.com/questions/30493388/create-an-r-package-that-depends-on-another-r-package-located-on-github
+http://r-pkgs.had.co.nz/description.html
+
+## internal data set creation
+http://r-pkgs.had.co.nz/data.html
+https://stackoverflow.com/questions/38478176/store-multiple-objects-in-sysdata-rda-r-package-development
