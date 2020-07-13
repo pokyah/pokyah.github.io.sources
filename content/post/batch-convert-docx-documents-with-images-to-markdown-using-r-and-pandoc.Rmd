@@ -1,10 +1,12 @@
 ---
-title: Building a dockerized shiny server with packaged shiny apps and deploy it publicly in 2 minutes
+title: batch convert docx documents with images to markdown using R + pandoc
 author: Thomas Goossens
 date: '2018-08-23'
 categories:
   - r
-  - pandoc
+  - docker
+  - linux
+  - shiny
 tags:
   - how-to
 ---
