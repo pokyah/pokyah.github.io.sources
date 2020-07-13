@@ -1,7 +1,7 @@
 ---
 title: batch convert docx documents with images to markdown using R + pandoc
 author: Thomas Goossens
-date: '2018-08-23'
+date: '2020-07-13'
 categories:
   - r
   - docker
@@ -11,61 +11,91 @@ tags:
   - how-to
 ---
 
-Let's imagine you want to build an interactive data vizualization app that could be accessible from the internet. As an R expert, one of your best bet could be to use the power of shiny apps. You probably wonder what could be one of the most efficient way to easily and quickly deploy it ? Let's find out how the magic of docker and R packages will help you achieve this ! 
+Do you or your organization have a batch a MS Word `.docx` files that need to be converted to markdown ? 
 
-# Write your shiny App as a package
+In this post I'll show you how you can use the power of Pandoc and RMarkdown to achieve this operation. And it will even work with `.docx` files containing tables and or images.
 
-[Building shiny apps as package](https://wlandau.github.io/2016/11/01/appPackage/) will help you to produce a cleaner and easier to maintain code thanks to devtools and testthat. I heavily recommand you to code your app this way. Doing so will also allow you to use `devtools::install_github()` to quickly install your app on any computer, server and Docker container.
+It's basically a small R function that will parse a specified folder and call a pandoc command for each of the `.docx` files found in this folder. Here is the source code of the function
 
-Moreover R packages are [the most efficient way to make reproductible science](https://kbroman.org/pkg_primer/pages/why.html).
+```{r eval=FALSE}
+convert_docx_to_md = function(folder){
+  docx_files_path = as.list(list.files(path = folder, pattern = ".docx"))
+  docx_files_names = as.list(list.files(path = folder, full.names = FALSE, pattern = ".docx"))
 
-To understand how to code your shiny app as a package, Dean Attali's answers in [this](https://stackoverflow.com/questions/37830819/developing-shiny-app-as-a-package-and-deploying-it-to-shiny-server) stackoveflow thread, and his blog post ["Supplementing your R package with a Shiny app"](https://deanattali.com/2015/04/21/r-package-shiny-app/) are excellent starting points.
+  convert = function(docx_file_name){
+    
+    docx_file_path = paste0(
+      folder, 
+      "/",
+      docx_file_name
+    )
+    
+    file_name = gsub(pattern = "\\.docx$", "", docx_file_name)
+    
+    dir.create(
+      path = paste0(
+        folder,
+        "/",
+        file_name
+      ))
+    
+    file.copy(
+      from = paste0(
+        folder,
+        "/",
+        file_name, ".docx"
+      ),
+      to = paste0(
+        folder,
+        "/",
+        file_name,
+        "/",
+        file_name,
+        ".docx"
+      )
+    )
+    
+    command_pandoc = paste0(
+      "pandoc -f docx -t markdown_mmd ",
+      folder,"/",
+      file_name, "/", file_name,
+      ".docx ",
+      paste0("--output=", folder, "/", file_name, "/", file_name, ".md"),
+      paste0(" --extract-media=", folder, "/", file_name, "/")
+    )
+    system(command = command_pandoc)
+    file.remove(paste0(
+      folder,
+      "/",
+      file_name,
+      "/",
+      file_name,
+      ".docx"
+    ))
+  }
 
-Follow the instructions and make sure that your shiny app code is placed into the `inst` folder of your package.
-
-# Create a shiny server docker image which contains the packaged shiny app(s)
-
-A [shiny server](https://shiny.rstudio.com/articles/shiny-server.html) allows you to distribute multiple shiny apps over the internet at their own URL in an easy and efficient way. Setting up a shiny server may be time consuming but thanks to Docker and the [rocker-org community](https://www.rocker-project.org/), you can now quickly set up your own shiny server ! To do so, simply clone the rocker-org shiny server [repo](https://github.com/tocker-org/shiny-1) :
-
-```bash
-$ git clone git@github.com:rocker-org/shiny.git
+  lapply(docx_files_names, function(x)convert(x))
+}
 ```
 
-Open the Dockerfile (which is the recipe to create the Docker image that will be used to instantiate the shiny server) and add the instruction line to add your packaged shinyApp to your Docker image. If your packaged app is pushed to a github repository, paste this line in the Dockerfile and adapt the \<PLACEHOLDERS\> : 
+To use it, copy and paste it in a `.R` file that you name e.g. `docx_to_md.R` and save in your working directory. Then source the file : 
 
-`RUN R -e "devtools::install_github('<GITHUB_USERNAME>/<PACKAGE_REPO_NAME>', ref='<BRANCHNAME>', force=TRUE)"`
-
-Repeat this step for every packaged shiny app you want to be accessible through your dockerized shiny server. Save your work and push it to github.
-
-# Make your docker shiny server image accessible through docker hub
-
-This step will later allows you to quickly install and instantiate the shiny server docker container. To do so, simply link your github and dockerhub accounts by following the instructions provided in [this post](https://felixcentmerino.wordpress.com/containers/sync-up-docker-hub-and-github-to-build-images-automatically/)
-
-# Install the docker shiny server image on your server 
-
-Once docker hub shows that the image build is ready with no errors, download the image on your host server using the following command : 
-
-```bash
-$ sudo docker pull <DOCKERHUB_USERNAME/IMAGENAME>
-```
-At this point, you only need some extra lines of R code to actually deploy your packaged shiny apps ! As your shiny apps source files are located into the [`inst` folder](http://r-pkgs.had.co.nz/inst.html) of your packages, you will use the `sytem.file` function to actually call and initiate these. On your host server, create a folder and name it for example `shiny_launchers_mountpoint`. Inside this folder, create a folder for each of the shiny apps you have add to your Docker image, and give these folders the same name as your packaged shiny apps repos. Finally, inside each of this folder create and `app.R` file that contains the following lines (of course, don't forget to adapt the \<PLACEHOLDERS\>) :
-
-```r
-dir <- system.file("<SHINY_APP_CODE_LOCATION_INSIDE_INST_FOLDER>", package = "<PACKAGE_REPO_NAME>")
-setwd(dir)
-shiny::shinyAppDir(".")
+```{r eval=FALSE}
+source("docx_to_md.R")
 ```
 
-At the root of the `shiny_launchers_mountpoint` create an index.html file that will act as the homepage of your shiny server. You can put whatver you want into it. A good idea is to create a link for each of your shiny apps.
+Now, you can call the function by passing it the full path of the folder containing the `.docx` documents. Let's pretend you want to convert a batch of `.docx` files stored into the `files_to_convert` folder present on your Desktop. Here is the 2 lines of code that you need to execute to convert all the files :
 
-# Instantiate your docker container
-
-Now that all of your infrastructure is ready, the last step is to run your shiny server. In your host server terminal, run this command to instantiate your shiny apps server container in detached mode : 
-
-```bash
-sudo docker run -d --rm -p 3838:3838 -v <FULL_PATH_OF_YOUR_FOLDER_CONTAINING_THE_R_SCRIPT>:/srv/shiny-server/     -v /srv/shinylog/:/var/log/shiny-server/     <DOCKERHUB_USERNAME>/<REPONAME>
+```{r eval=FALSE}
+folder = "C:/Desktop/files_to_convert"
+convert_docx_to_md(folder = folder)
 ```
 
-Now head at `localhost:3838/apps` into your browser and your index.html file will be served. Click on the link of the shiny app you want to consult and you are done ! 
+As markdown files are plain text files, the images are not stored in the file itself. The file simply contains a link that points to the image file to be displayed. To avoid names collapses, Each of the images that must be rendered in a markdown file must therefore be stored in a folder
 
-If you want to consult it from another computer, replace `localhost` by the domain name or IP of your host server ! 
+What does the function do ? 
+
+The function take the docx files one by one and for each file, it will proceed as follows : 
+
+1. copy the `.docx` file in a new subfolder that takes the exact same name as the `.docx` file. 
+* in this subfolder, convert the `.docx` to a markdown file that takes the exact same name as the copied `.docx` file. If this `.docx` file document contains images, the function will create a subfolder named `media` into which all the images of the `.docx` file will be stored. This is required to avoid 

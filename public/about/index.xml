@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>About on pokyah - opensource science, GIS and data-analysis</title>
@@ -8,7 +8,7 @@
     <language>en-US</language>
     <lastBuildDate>Sat, 01 Apr 2017 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/about/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/about/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,21 +17,8 @@
       <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>/about/colofon/</guid>
-      <description>&lt;div id=&#34;why-this-website&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Why this website ?&lt;/h1&gt;
-&lt;p&gt;A website is highly useful for yourself to keep track of what you have done and thought. Sometimes you may go back to a certain old post of yours to relearn the tricks or methods you once mastered in the past but have forgotten.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-is-it-built&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;How is it built ?&lt;/h1&gt;
-&lt;p&gt;This website is built with &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;R blogdown&lt;/a&gt; which uses a combination of Hugo, Rmarkdown and knitr.&lt;/p&gt;
-&lt;p&gt;Its source code is publicly availbale on &lt;a href=&#34;https://github.com/pokyah-hugo-blog-source&#34;&gt;github&lt;/a&gt;. Don’t hesitate to fork, appropriate, edit and improve.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;licenses&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Licenses&lt;/h1&gt;
-&lt;p&gt;The Stackoverlow and Spotify icons are provided by &lt;a href=&#34;Creative%20Commons%20Attribution%204.0&#34;&gt;fontawesome under the Creative Commons Attribution 4.0 License&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Copyright : Thomas Goossens - &lt;a href=&#34;mailto:hello.pokyah@gmail.com&#34;&gt;hello.pokyah@gmail.com&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-</description>
+      <description>Why this website ?A website is highly useful for yourself to keep track of what you have done and thought. Sometimes you may go back to a certain old post of yours to relearn the tricks or methods you once mastered in the past but have forgotten.
+How is it built ?This website is built with R blogdown which uses a combination of Hugo, Rmarkdown and knitr.</description>
     </item>
     
   </channel>

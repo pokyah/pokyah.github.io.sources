@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Opensource on pokyah - opensource science, GIS and data-analysis</title>
+    <title>opensource on pokyah - opensource science, GIS and data-analysis</title>
     <link>/categories/opensource/</link>
-    <description>Recent content in Opensource on pokyah - opensource science, GIS and data-analysis</description>
+    <description>Recent content in opensource on pokyah - opensource science, GIS and data-analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 19 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/categories/opensource/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/opensource/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,85 +17,8 @@
       <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/geo-tools/</guid>
-      <description>&lt;div id=&#34;online-map-editors-data-visualisation-various-tools&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Online map editors, data visualisation &amp;amp; various tools&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://carto.com/&#34; class=&#34;uri&#34;&gt;https://carto.com/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://umap.openstreetmap.fr/fr/&#34; class=&#34;uri&#34;&gt;https://umap.openstreetmap.fr/fr/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://epsg.io&#34; class=&#34;uri&#34;&gt;https://epsg.io&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://geojson.io/&#34; class=&#34;uri&#34;&gt;http://geojson.io/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;geocoding&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Geocoding&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://wiki.openstreetmap.org/wiki/Nominatim&#34; class=&#34;uri&#34;&gt;https://wiki.openstreetmap.org/wiki/Nominatim&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;basemap-providers-editors&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Basemap providers &amp;amp; editors&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://openmaptiles.org&#34; class=&#34;uri&#34;&gt;https://openmaptiles.org&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://maps.stamen.com&#34; class=&#34;uri&#34;&gt;http://maps.stamen.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.mapbox.com/&#34; class=&#34;uri&#34;&gt;https://www.mapbox.com/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://openaerialmap.org/&#34; class=&#34;uri&#34;&gt;https://openaerialmap.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.mapillary.com/&#34; class=&#34;uri&#34;&gt;https://www.mapillary.com/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://maperitive.net/&#34; class=&#34;uri&#34;&gt;http://maperitive.net/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.maptiler.com&#34; class=&#34;uri&#34;&gt;https://www.maptiler.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://openmaptiles.org&#34; class=&#34;uri&#34;&gt;https://openmaptiles.org&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://leaflet-extras.github.io/leaflet-providers/preview/index.html&#34;&gt;Leaflet basemaps providers list&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;colorbrewer2.org&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://colorbrewer2.org/#type=sequential&amp;amp;scheme=BuGn&amp;amp;n=3&#34;&gt;Colorbrewer palettes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://rmarkdown.rstudio.com/revealjs_presentation_format#display_modes&#34;&gt;making presentations with R&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;r-packages&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;R packages&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://rstudio.github.io/leaflet/&#34;&gt;Leaflet for R&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;[Leaflet additional features()]&lt;a href=&#34;https://bhaskarvk.github.io/leaflet.extras/&#34; class=&#34;uri&#34;&gt;https://bhaskarvk.github.io/leaflet.extras/&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/raster/index.html&#34;&gt;Raster manipulation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://r-spatial.github.io/sf/&#34;&gt;Vector manipulation with sf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/sp/index.html&#34;&gt;Vector manipulation with sp&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/hadley/rvest&#34;&gt;Harvesting data from websites&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://ropensci.github.io/osmdata/&#34;&gt;Querying osmdata with R&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ropensci.github.io/RSelenium/&#34;&gt;Selenium server for R&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;design-fonts-and-icons&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Design, fonts and icons&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://colorbrewer2.org&#34; class=&#34;uri&#34;&gt;http://colorbrewer2.org&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://materialdesignicons.com/&#34; class=&#34;uri&#34;&gt;https://materialdesignicons.com/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://fontawesome.com/&#34; class=&#34;uri&#34;&gt;https://fontawesome.com/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;datasets&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Datasets&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://geopole.org/&#34; class=&#34;uri&#34;&gt;http://geopole.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://gadm.org/&#34; class=&#34;uri&#34;&gt;https://gadm.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://overpass-turbo.eu/&#34; class=&#34;uri&#34;&gt;http://overpass-turbo.eu/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://srtm.csi.cgiar.org/&#34; class=&#34;uri&#34;&gt;http://srtm.csi.cgiar.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://photovoltaic-software.com/solar-radiation-database.php&#34; class=&#34;uri&#34;&gt;https://photovoltaic-software.com/solar-radiation-database.php&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/&#34; class=&#34;uri&#34;&gt;http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.gpsies.com/#10_50.2944_5.0978_hikebike&#34; class=&#34;uri&#34;&gt;https://www.gpsies.com/#10_50.2944_5.0978_hikebike&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://openweathermap.org/&#34; class=&#34;uri&#34;&gt;https://openweathermap.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/tmcw/awesome-geojson&#34; class=&#34;uri&#34;&gt;https://github.com/tmcw/awesome-geojson&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.atlas-belgique.be/cms2/&#34; class=&#34;uri&#34;&gt;http://www.atlas-belgique.be/cms2/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://inspire.ngi.be/download-free/atomfeeds/AtomFeed-CLC2012-en.xml&#34; class=&#34;uri&#34;&gt;http://inspire.ngi.be/download-free/atomfeeds/AtomFeed-CLC2012-en.xml&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;books-tutorials&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;books &amp;amp; tutorials&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://geocompr.robinlovelace.net&#34;&gt;geocomputation with R&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster?tap_a=5644-dce66f&amp;amp;tap_s=10907-287229&#34;&gt;datacamp course&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-</description>
+      <description>Online map editors, data visualisation &amp;amp; various toolshttps://carto.com/https://umap.openstreetmap.fr/fr/https://epsg.iohttp://geojson.io/Geocodinghttps://wiki.openstreetmap.org/wiki/NominatimBasemap providers &amp;amp; editorshttps://openmaptiles.orghttp://maps.stamen.comhttps://www.mapbox.com/https://openaerialmap.org/https://www.mapillary.com/http://maperitive.net/https://www.maptiler.comhttps://openmaptiles.orgLeaflet basemaps providers listcolorbrewer2.org
+Colorbrewer palettesmaking presentations with RR packagesLeaflet for R[Leaflet additional features()]https://bhaskarvk.github.io/leaflet.extras/)Raster manipulationVector manipulation with sfVector manipulation with spHarvesting data from websitesQuerying osmdata with RSelenium server for RDesign, fonts and iconshttp://colorbrewer2.</description>
     </item>
     
   </channel>

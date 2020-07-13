@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Statistics on pokyah - opensource science, GIS and data-analysis</title>
+    <title>statistics on pokyah - opensource science, GIS and data-analysis</title>
     <link>/categories/statistics/</link>
-    <description>Recent content in Statistics on pokyah - opensource science, GIS and data-analysis</description>
+    <description>Recent content in statistics on pokyah - opensource science, GIS and data-analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/categories/statistics/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/statistics/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,118 +17,7 @@
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/gridded-uncertainty/</guid>
-      <description>&lt;p&gt;In the context of the Agromet project, we need to produce gridded maps of temperature using data acquired by a network of 30 automatic weather stations (AWS) spatially distributed in Wallonia. To each cell, an indicator of uncertainty (i.e. prediction error) must also be attached. Providing this uncertainty is of major importance because errors are not likely to be spatially homogeneous but will rather depend of the spatial arrangement of available points used to compute the model. This post will &lt;strong&gt;briefly&lt;/strong&gt; present what could be described as prediction uncertainties and how to extract these using basic R examples.&lt;/p&gt;
-&lt;div id=&#34;theory-regarding-the-uncertainty&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Theory regarding the uncertainty&lt;/h2&gt;
-&lt;p&gt;Model parameters are computed from a sample (the data from our AWS network in our case) to estimate the parameters of the whole population (our grid). Models actually generalize what is learnt on a sample on the whole population. So the question arises whether we can use this generalization with enough confidence (can we extrapolate these parameters to the whole population) ?&lt;/p&gt;
-&lt;p&gt;To answer this question, 2 tools are commonly used :&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;the &lt;strong&gt;standard error&lt;/strong&gt;&lt;br /&gt;
-&lt;/li&gt;
-&lt;li&gt;the &lt;strong&gt;confidence interval&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The standard error is what quantifies the uncertainty while the 95% confidence intervals represent quantiles between which are found 95 % of the samples means after removing the 2.5 % of both the bigger and smaller values. A good explanation of its meaning can be found &lt;a href=&#34;https://www.mathsisfun.com/data/confidence-interval.html&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;https://www.thoughtco.com/what-is-a-confidence-interval-3126415&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;In the paper &lt;a href=&#34;https://www.sciencedirect.com/science/article/pii/0304380095001913&#34;&gt;&lt;em&gt;Spatial uncertainty analysis: propagation of interpolation errors in spatially distributed models&lt;/em&gt;&lt;/a&gt;, the uncertainty is depicted as the &lt;strong&gt;standard error&lt;/strong&gt; of the predictions.&lt;/p&gt;
-&lt;p&gt;We can also cite the &lt;a href=&#34;http://www.irceline.be/~celinair/rio/rio_corine.pdf&#34;&gt;&lt;em&gt;Spatial interpolation of air pollution measurements using CORINE land cover data&lt;/em&gt;&lt;/a&gt; paper :&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;When solving the Ordinary Kriging equations, a value for the error variance can be obtained at the same time (Isaaks et al. 1989). This error variance is a measure for the uncertainty of the interpolation result&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;As a reminder, here are some definitions useful to understand what the standard error exactly is:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;The &lt;strong&gt;standard error&lt;/strong&gt; (SE) of a statistic (usually an estimate of a parameter) is the &lt;strong&gt;standard deviation&lt;/strong&gt; of its sampling distribution.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The &lt;strong&gt;standard deviation&lt;/strong&gt; is the positive square root of the &lt;strong&gt;variance&lt;/strong&gt;. The standard deviation is expressed in the same units as the mean is, whereas the variance is expressed in squared units.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The &lt;strong&gt;variance&lt;/strong&gt; is the average squared dispersion around the mean. Variance is a measurement of the spread between numbers in a data set. The variance measures how far each number in the set is from the mean. Variance is calculated by taking the differences between each number in the set and the mean, squaring the differences (to make them positive) and dividing the sum of the squares by the number of values in the set.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-to-extract-the-uncertainties-of-predictions-using-r&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;How to extract the uncertainties of predictions using R ?&lt;/h2&gt;
-&lt;p&gt;Let’s find an example on the web. &lt;a href=&#34;https://scholar.google.com/citations?user=2oYU7S8AAAAJ&amp;amp;hl=en&#34;&gt;Tomislav Hengl&lt;/a&gt;, an expert in the field of geostatistics has published a nice tutorial about how to &lt;a href=&#34;http://spatial-analyst.net/wiki/index.php/Uncertainty_visualization#Visualization_of_uncertainty_using_whitening_in_R&#34;&gt;vizualize spatial uncertainty&lt;/a&gt;. In his tutorial, he uses the &lt;code&gt;se&lt;/code&gt; output of the &lt;code&gt;krige&lt;/code&gt; function as the uncertainty indicator. (&lt;a href=&#34;https://www.rdocumentation.org/packages/gstat/versions/1.1-6/topics/krige&#34;&gt;&lt;code&gt;krige&lt;/code&gt; doc&lt;/a&gt;, is a simple wrapper method around &lt;code&gt;gstat&lt;/code&gt; and &lt;code&gt;predict&lt;/code&gt;). The code here below comes from his tutorial&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(rgdal)
-library(maptools)
-library(gstat)
-
-# using the Meuse dataset
-data(meuse)
-coordinates(meuse) &amp;lt;- ~x+y
-data(meuse.grid)
-gridded(meuse.grid) &amp;lt;- ~x+y
-fullgrid(meuse.grid) &amp;lt;- TRUE
-
-# universal kriging:
-k.m &amp;lt;- fit.variogram(variogram(log(zinc)~sqrt(dist), meuse), vgm(1, &amp;quot;Sph&amp;quot;, 300, 1))
-vismaps &amp;lt;- krige(log(zinc)~sqrt(dist), meuse, meuse.grid, model=k.m)
-names(vismaps) &amp;lt;- c(&amp;quot;z&amp;quot;,&amp;quot;e&amp;quot;)
-
-# Plot the predictions and the standard error :
-z.plot &amp;lt;- spplot(vismaps[&amp;quot;z&amp;quot;], col.regions=bpy.colors(), scales=list(draw=TRUE), sp.layout=list(&amp;quot;sp.points&amp;quot;, pch=&amp;quot;+&amp;quot;, col=&amp;quot;black&amp;quot;, meuse))
-e.plot &amp;lt;- spplot(vismaps[&amp;quot;e&amp;quot;], col.regions=bpy.colors(), scales=list(draw=TRUE))
-
-print(z.plot, split=c(1,1,2,1), more=TRUE)
-print(e.plot, split=c(2,1,2,1), more=FALSE)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;../../post/gridded-uncertainty_files/meuse_grid_uncertainty.png&#34; alt=&#34;Meuse data Kriging + uncertainty&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;Meuse data Kriging + uncertainty&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Nice we have what we need ! Easy ! But how are SE computed for the predictions ? We could have a look at the source code of the krige function. But let’s build it manually with a simple example for the sake of comprehesion. Doing so, requires some matrix algebra (variance + covariance matrix). A detailed explanation of the next code block is available in &lt;a href=&#34;http://www.cra.wallonie.be/wp/wp-content/uploads/2016/12/Formation_Stats_3_1_GLM.pdf&#34;&gt;this course&lt;/a&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# example from @frdvwn
-
-# creating a sample
-set.seed(123)
-n &amp;lt;- 100
-n.lev &amp;lt;- 10
-alpha &amp;lt;- 10
-beta &amp;lt;- 1.3
-sigma &amp;lt;- 4
-
-x &amp;lt;- rep(1:n.lev,each=n/n.lev)
-y &amp;lt;- alpha - beta*x + rnorm(n,0,sigma)
-
-# vizualizing the dataset
-plot(x,y)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;../../post/gridded-uncertainty_files/data_meuse_uncertainty.png&#34; alt=&#34;Meuse plot&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;Meuse plot&lt;/p&gt;
-&lt;/div&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# modelizing
-mod &amp;lt;- lm(y~x)
-
-# creating the points on which we want to predict values using the model equation
-X &amp;lt;- cbind(1,seq(0,10,0.01))
-beta &amp;lt;- coef(mod)
-
-# Predicting manually using matrix algebra
-y.hat &amp;lt;- X %*% beta
-V &amp;lt;- as.matrix(vcov(mod))
-y.hat.se &amp;lt;- sqrt(diag(X %*% V %*% t(X)))
-
-# Predicting using predict function
-auto.y.hat.se &amp;lt;- predict(object = mod, newdata = data.frame(x=X[,2]), se.fit=TRUE)$se.fit
-
-# Vizualizing the SE
-plot(y~x)
-lines(y.hat ~ X[,2],col=&amp;quot;red&amp;quot;)
-lines(y.hat + y.hat.se ~ X[,2],col=&amp;quot;red&amp;quot;,lty=2)
-lines(y.hat - y.hat.se ~ X[,2],col=&amp;quot;red&amp;quot;,lty=2)
-lines(y.hat + auto.y.hat.se ~ X[,2],col=&amp;quot;green&amp;quot;,lty=2)
-lines(y.hat - auto.y.hat.se ~ X[,2],col=&amp;quot;green&amp;quot;,lty=2)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;../../post/gridded-uncertainty_files/data_meuse_uncertainty_model.png&#34; alt=&#34;Meuse plot with SE&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;Meuse plot with SE&lt;/p&gt;
-&lt;/div&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# same values ? 
-print(head(auto.y.hat.se))
-
-    ##         1         2         3         4         5         6 
-    ## 0.7905189 0.7893898 0.7882612 0.7871330 0.7860052 0.7848779
-
-print(head(y.hat.se))
-
-    ##         1         2         3         4         5         6 
-    ## 0.7905189 0.7893898 0.7882612 0.7871330 0.7860052 0.7848779
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Ok we have succeeded to manually compute the Standard errors of the predictions !&lt;/p&gt;
-&lt;/div&gt;
-</description>
+      <description>In the context of the Agromet project, we need to produce gridded maps of temperature using data acquired by a network of 30 automatic weather stations (AWS) spatially distributed in Wallonia. To each cell, an indicator of uncertainty (i.e. prediction error) must also be attached. Providing this uncertainty is of major importance because errors are not likely to be spatially homogeneous but will rather depend of the spatial arrangement of available points used to compute the model.</description>
     </item>
     
     <item>
@@ -137,147 +26,7 @@ print(head(y.hat.se))
       <pubDate>Tue, 03 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/spatial-interpolation-using-multiple-linear-regression-a-beginners-overview-r-implementation/</guid>
-      <description>&lt;p&gt;The AGROMET Project lead by the Walloon agricultural research center (&lt;a href=&#34;http://www.cra.wallonie.be/fr&#34;&gt;CRA-W&lt;/a&gt;) requires to generate spatialized weather dataset. In this context, multiple spatialization methods will be tested and evaluated among which the &lt;strong&gt;multiple regression&lt;/strong&gt; technique. This post provides an introductory material to the multiple regression modeling technique applied to spatial data. It is not a tutorial and it is rather aimed at paving the way for beginners who want to take their first steps into in the field of applied geostatistics (with R) by defining key concepts and providing a lot of external resources worth reading !&lt;/p&gt;
-&lt;details&gt; &lt;summary&gt;Full details about the AGROMET project&lt;/summary&gt;
-&lt;p&gt;
-&lt;!-- the above p cannot start right at the beginning of the line and is mandatory for everything else to work --&gt;
-&lt;h3&gt;
-Context
-&lt;/h3&gt;
-&lt;p&gt;The European directive 2009/128/CE imposes member-states to set up tools that allow for a more rational use of crop protection products. Among these tools, agricultural warning systems, based on crop monitoring models for the control of pests and diseases are widely adopted and have proved their efficiency. However, due to the difficulty to get meteorological data at high spatial resolution (at the parcel scale), they still are underused. The use of geostatistical tools (Kriging, Multiple Regressions, Artificial Neural Networks, etc.) makes it possible to interpolate data provided by physical weather stations in such a way that a high spatial resolution network (mesh size of 1 km2) of virtual weather stations could be generated. That is the objective of the AGROMET project. &lt;br&gt;&lt;/p&gt;
-&lt;h3&gt;
-Objectives
-&lt;/h3&gt;
-&lt;p&gt;The project aims to set up an operational web-platform designed for real-time agro-meteorological data dissemination at high spatial (1km2) and temporal (hourly) resolution. To achieve the availability of data at such a high spatial resolution, we plan to “spatialize” the real-time data sent by more than 30 connected physical weather stations belonging to the PAMESEB and RMI networks. This spatialization will then result in a gridded dataset corresponding to a network of 16 000 virtual stations uniformly spread on the whole territory of Wallonia. These “spatialized” data will be made available through a web-platform providing interactive visualization widgets (maps, charts, tables and various indicators) and an API allowing their use on the fly, notably by agricultural warning systems providers. An extensive and precise documentation about data origin, geo-statistic algorithms used and uncertainty will also be available.&lt;/p&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;/details&gt;&lt;/p&gt;
-&lt;div id=&#34;spatialization-definition&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Spatialization definition&lt;/h2&gt;
-&lt;p&gt;Spatialization or spatial interpolation creates a &lt;strong&gt;continuous surface&lt;/strong&gt; from values measured at discrete locations to predict values at any location in the interest zone with the best accuracy. Characterizing the error and the variability of the predicted data are also parts of spatialization procedures.&lt;/p&gt;
-&lt;p&gt;In the chapter &lt;em&gt;The principles of geostatistical analysis&lt;/em&gt; of the &lt;a href=&#34;http://dusk2.geo.orst.edu/gis/geostat_analyst.pdf&#34;&gt;Using ArcGis Geostatistical analyst&lt;/a&gt;, K. Johnston gives an efficient overview of what spatialization is and what are the two big groups of techniques (deterministic and stochastic).&lt;/p&gt;
-&lt;p&gt;We will not present all of them in the context of this post to keep the focus on the multiple regression technique.&lt;/p&gt;
-&lt;p&gt;(&lt;em&gt;The book also provides a glossary of recurrent geostatistical terms (another useful one is available on Pr. D.E. Meyers &lt;a href=&#34;http://www.u.arizona.edu/~donaldm/homepage/glossary.html&#34;&gt;personal page&lt;/a&gt;&lt;/em&gt;).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;multiple-linear-regression-key-concept&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Multiple linear Regression : key concept&lt;/h2&gt;
-&lt;p&gt;No need to reinvent the wheel, let’s borrow 3 definitions found in the literature :&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;From Selva Prabhakaran’s &lt;a href=&#34;http://r-statistics.co/Linear-Regression.html&#34;&gt;r-statistics.co site&lt;/a&gt; :&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;“Linear regression is used to predict the value of an outcome variable Y based on one or more input predictor variables X. The aim is to establish a linear relationship (a mathematical formula) between the predictor variable(s) and the response variable, so that, we can use this formula to estimate the value of the response Y, when only the predictors (Xs) values are known.”&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;In his comprehensive &lt;a href=&#34;https://www.snap.uaf.edu/sites/default/files/files/Interpolation_methods_for_climate_data.pdf&#34;&gt;litterature review&lt;/a&gt;, R. Sluiters from the &lt;a href=&#34;http://www.knmi.nl/home&#34;&gt;KNMI&lt;/a&gt; defines multiple regression as follows :&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;“Linear regression expresses the relation between a predicted variable and one or more explanatory variables. In its simples form a straight line is fitted through the data points. Linear regression models are most often global interpolators. Linear regression models are deterministic, but by considering some statistical assumptions about the probability distribution of the predicted variable the method becomes stochastic. In that case the standard error can be calculated, the inference about the regression parameter and the predicted values can be assessed and the prediction accuracy can be calculated. For deterministic linear regression models the assumption is that the regression model could be interpreted on the basis of physical reasons, for stochastic linear regression models a normal distribution and spatial independence is also assumed. No extrapolations are allowed from the theoretical perspective. Ancillary data can be included using multiple regression. For deterministic linear regression models the measure of success is through cross validation. For stochastic linear regression models it can be measured by the explained variance and the regression standard error.”&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;In their paper (from which the Agromet project was inspired) &lt;em&gt;Decision Support Systems in Agriculture: Administration of Meteorological Data, Use of Geographic Information Systems(GIS) and Validation Methods in Crop Protection Warning Service&lt;/em&gt;, &lt;a href=&#34;https://www.intechopen.com/books/efficient-decision-support-systems-practice-and-challenges-from-current-to-future/decision-support-systems-in-agriculture-administration-of-meteorological-data-use-of-geographic-info&#34;&gt;Racca et al. 2011&lt;/a&gt; present multiple regression in these terms:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;“The general purpose of multiple regressions (the term was first used by Pearson, 1908) is to learn more about the relationship between several independent or predictor variables and a dependent or criterion variable. MR is an interpolation method that allows simultaneous testing and modeling of multiple independent variables (Cohen, et al., 2003). Parameters that have an influence on temperature and relative humidity, e.g. elevation, slope, aspect, can therefore be tested simultaneously.”&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;(&lt;em&gt;In this paper, the authors also briefly present why the Multiple Regression technique was chosen over other modeling techniques. A more detailed explanation of the comparative study between the various techniques is available in the companion paper by &lt;a href=&#34;https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1365-2338.2007.01134.x&#34;&gt;Zeuner et. 2007&lt;/a&gt;&lt;/em&gt;).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;data-prediction-using-multiple-linear-regression-workflow&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Data prediction using multiple linear regression : workflow&lt;/h2&gt;
-&lt;div id=&#34;building-the-model&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Building the model&lt;/h3&gt;
-&lt;p&gt;In &lt;a href=&#34;https://machinelearningmastery.com/supervised-and-unsupervised-machine-learning-algorithms/&#34;&gt;Supervised machine learning&lt;/a&gt;, the response variable is modeled as a function of predictors. To build the model you will need to construct a dataset made of predictors (e.g. elevation, latitude, longitude, soil occupation, aspect) and response variable (e.g. temperature, humidity, rainfall). You will most likely also need to inspect and clean your dataset (e.g. removing outliers, check for errors, treat any missing values) before building the model :&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Garbage_in,_garbage_out&#34;&gt;Garbage in, garbage out&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Once your dataset is prepared you can build your regression model. Each data-analysis software provides a set of functions to build such a kind of model (in R you do it with the &lt;code&gt;lm()&lt;/code&gt; function).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;evaluating-the-model---linear-regression-diagnostics&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Evaluating the model - Linear Regression Diagnostics&lt;/h3&gt;
-&lt;p&gt;Once the linear model is fitted, the mathematical formula to predict the response variable is obtained. However it is not enough to actually use this model ! Before using a regression model, you have to ensure that it is &lt;strong&gt;statistically significant&lt;/strong&gt;. There are many indicators that you can use to evaluate the validity of a regression model, among which :&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Residual plot&lt;/li&gt;
-&lt;li&gt;Goodness of fit&lt;/li&gt;
-&lt;li&gt;Standard error of the regression&lt;/li&gt;
-&lt;li&gt;p-value&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;To get a deep insight of these model diagnostic indicators, check these 2 excellent R-oriented posts about evaluating regression model outputs by &lt;a href=&#34;https://feliperego.github.io/blog/2015/10/23/Interpreting-Model-Output-In-R&#34;&gt;Felipe Rego&lt;/a&gt; and &lt;a href=&#34;http://r-statistics.co/Linear-Regression.html&#34;&gt;Selva Prabhakaran&lt;/a&gt;. You can also have a quick look at this &lt;a href=&#34;https://www.otexts.org/fpp/4/4&#34;&gt;page&lt;/a&gt;. You may also have a look at the Minitab’s blog posts (&lt;a href=&#34;http://blog.minitab.com/blog/adventures-in-statistics-2/multiple-regession-analysis-use-adjusted-r-squared-and-predicted-r-squared-to-include-the-correct-number-of-variables&#34;&gt;1&lt;/a&gt;, &lt;a href=&#34;http://blog.minitab.com/blog/adventures-in-statistics-2/regression-analysis-how-do-i-interpret-r-squared-and-assess-the-goodness-of-fit&#34;&gt;2&lt;/a&gt; concerning the interpretation of the R² values&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;using-the-model-and-measuring-its-success-i.e.validation-process&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Using the model and measuring its success (i.e. validation process)&lt;/h3&gt;
-&lt;p&gt;Now that you have tested the validity of your model (i.e. your model is statistically significant), you can use it to make some predictions. But an important question then arises : how well your model performs at predicting the data at unknown locations ? To answer this question, you need to rigorously test your model performance as much as possible. This is done using a &lt;strong&gt;cross-validation&lt;/strong&gt; (CV) process.&lt;/p&gt;
-&lt;p&gt;From Robin Lovelace’s &lt;em&gt;Geocomputation with R&lt;/em&gt; &lt;a href=&#34;https://geocompr.robinlovelace.net/spatial-cv.html&#34;&gt;book&lt;/a&gt; :&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;CV determines a model’s ability to predict new data or differently put its ability to generalize. To achieve this, CV splits a dataset (repeatedly) into &lt;strong&gt;test&lt;/strong&gt; and &lt;strong&gt;training&lt;/strong&gt; sets. It uses the training data to fit the model, and checks if the trained model is able to predict the correct results for the test data. Basically, cross-validation helps to detect over-fitting since a model that fits too closely the training data and its specific peculiarities (noise, random fluctuations) will have a bad prediction performance on the test data. However, the basic requirement for this is, that the test data is independent of the training data. CV achieves this by splitting the data randomly into test and training sets. However, randomly splitting spatial data results in the fact that training points are frequently located next to test points. Since points close to each other are more similar compared to points further away, test and training datasets might not be independent. The consequence is that cross-validation would fail to detect over-fitting in the presence of spatial autocorrelation&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;(&lt;em&gt;To understand the &lt;a href=&#34;https://stats.stackexchange.com/questions/36145/linear-regression-and-spatial-autocorrelation&#34;&gt;importance of the autocorrelation concept&lt;/a&gt;, you could read the &lt;a href=&#34;http://rspatial.org/analysis/rst/7-spregression.html&#34;&gt;Spatial regression models paragraph&lt;/a&gt; of the Spatial Data Analysis and Modeling with R website and watch this short &lt;a href=&#34;https://www.youtube.com/watch?v=M9ecMxVG6jQ&#34;&gt;video&lt;/a&gt;&lt;/em&gt;).&lt;/p&gt;
-&lt;p&gt;To assess how well a model performs at making its predictions actually good predictions, 2 CV methods are often presented :&lt;br /&gt;
-* (spatial) k-fold cross validation * (spatial) leave-one-out (refs : &lt;a href=&#34;https://onlinelibrary.wiley.com/doi/pdf/10.1111/geb.12161&#34;&gt;K. Le Rest&lt;/a&gt; &amp;amp; &lt;a href=&#34;https://davidrroberts.wordpress.com/2016/03/11/spatial-leave-one-out-sloo-cross-validation/&#34;&gt;D.R. Roberts&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;How to know which one best fits your needs &lt;a href=&#34;https://stats.stackexchange.com/questions/154830/10-fold-cross-validation-vs-leave-one-out-cross-validation&#34;&gt;(k-fold or leave-one-out)&lt;/a&gt; ? The short answer is to use the leave-one-out method when you have a small amount of samples.&lt;/p&gt;
-&lt;p&gt;To check if the trained model is able to predict the correct results for the test data, &lt;a href=&#34;http://r-statistics.co/Linear-Regression.html&#34;&gt;calculating the accuracy measures and error rates&lt;/a&gt; allows to find out the prediction accuracy of the model. &lt;a href=&#34;https://www.geos.ed.ac.uk/~gisteac/gis_book_abridged/files/ch14.pdf&#34;&gt;Paper&lt;/a&gt; about spatial predictions errors&lt;/p&gt;
-&lt;p&gt;In your analysis, you might try many variants of the same kind of modeling technique, for example, by adding or removing extra independent variables. In this case, you will need to establish a diagnostic of the measure of success of each of the variants investigated. There is no universal technique to compare these. You can grab some ideas to implement in your own work from the &lt;a href=&#34;https://www.sciencedirect.com/science/article/pii/S0304380010000463&#34;&gt;Aertsen et al. 2010 paper&lt;/a&gt; where they describe a multi-criteria decision analysis for model evaluation.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;assessing-the-uncertainty-on-the-predicted-values&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Assessing the uncertainty on the predicted values&lt;/h3&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;r-guidelines&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;R guidelines&lt;/h2&gt;
-&lt;p&gt;Now that you have a better insight of what spatialization and multiple linear regressions are, it’s time to get the job done and dive in some coding work with R !&lt;/p&gt;
-&lt;div id=&#34;if-you-are-totally-new-to-programming-with-r&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;If you are totally new to programming with R…&lt;/h3&gt;
-&lt;p&gt;Learning and mastering a new programming language might scare you as it seems as a very difficult goal to achieve. However, with the help of the Internet and the R community, you can quickly start to write your first R programs. You can learn through tutorials (like at &lt;a href=&#34;https://www.datacamp.com/courses/free-introduction-to-r&#34;&gt;Datacamp&lt;/a&gt;), blog posts (like the blog aggregator &lt;a href=&#34;https://www.r-bloggers.com/&#34;&gt;R-Bloggers&lt;/a&gt;), package documentation (on &lt;a href=&#34;https://cran.r-project.org/&#34;&gt;CRAN&lt;/a&gt;) and of course help forums like &lt;a href=&#34;https://stackoverflow.com/&#34;&gt;Stackoverflow&lt;/a&gt; which is where I spend a lot of time searching answers to my questions (most of the time already posted by others).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;why-r&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Why R ?&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;R is open-source &lt;a href=&#34;https://www.gnu.org/philosophy/shouldbefree.en.html&#34;&gt;(why it is important)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;R is gaining more and more popularity. Mastering it can opens you &lt;a href=&#34;https://thenextweb.com/offers/2018/03/28/tech-giants-are-harnessing-r-programming-learn-it-and-get-hired-with-this-complete-training-bundle/&#34;&gt;many job opportunities&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;A good starting point to work with multiple regression analysis with R is &lt;a href=&#34;https://feliperego.github.io/blog/2015/03/12/Multiple-Linear-Regression-First-Steps&#34;&gt;this&lt;/a&gt; tutorial by Felipe Rego. On his excellent blog you will also find a detailed &lt;a href=&#34;https://feliperego.github.io/blog/2015/10/23/Interpreting-Model-Output-In-R&#34;&gt;post&lt;/a&gt; about regression model output interpretation.&lt;/p&gt;
-&lt;p&gt;(&lt;em&gt;A special version of spatial regression modeling is the Geographically weighted regression which is described in &lt;a href=&#34;https://rpubs.com/chrisbrunsdon/101305&#34;&gt;this&lt;/a&gt; R tutorial written by Pr. Chris Brundson&lt;/em&gt;).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;getting-started-with-r-for-spatial-data-analysis&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Getting started with R for spatial data analysis&lt;/h3&gt;
-&lt;p&gt;In the &lt;a href=&#34;https://geocompr.robinlovelace.net&#34;&gt;Geocomputation with R book&lt;/a&gt; by Robin Lovelace you will get all you need to get started with spatial data manipulation and analysis with R. The book tutorials make a heavy use of these libraries, and especially the new &lt;a href=&#34;https://edzer.github.io/UseR2017/&#34;&gt;sf package&lt;/a&gt; for spatial data analysis.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(sf)            # classes and functions for vector data
-library(raster)        # classes and functions for raster data
-library(spData)        # load geographic data
-library(spDataLarge)   # load larger geographic data&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;useful-r-cheatsheets&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Useful R cheatsheets&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf&#34;&gt;dplyr&lt;/a&gt; - Data manipulation&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf&#34;&gt;ggplot2&lt;/a&gt; - Data Visualization&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf&#34;&gt;Coordiante reference systems&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;worth-reading-r-spatial-oriented-blog&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Worth reading R spatial oriented blog&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.r-spatial.org/&#34; class=&#34;uri&#34;&gt;https://www.r-spatial.org/&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;a-note-about-coordinate-reference-systems-crs-notations&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;A note about coordinate reference systems (CRS) notations&lt;/h2&gt;
-&lt;div id=&#34;geographic-vs-projected-coordinate-reference-system-crs&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Geographic vs projected coordinate reference system (CRS)&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Geographic CRS’s&lt;/strong&gt; identify any location on the Earth’s surface using two values — longitude and latitude&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Projected CRS’s&lt;/strong&gt; are based on Cartesian coordinates on an implicitly flat surface. They have an origin, x and y axes, and a linear unit of measurement such as meters. All projected CRSs are based on a geographic CRS, and rely on map projections to convert the three-dimensional surface of the Earth into Easting and Northing (x and y) values in a projected CRS.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;notations-systems-of-crss&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Notations systems of CRSs&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://earthdatascience.org/courses/earth-analytics/spatial-data-r/understand-epsg-wkt-and-other-crs-definition-file-types/&#34;&gt;EPSG vs. proj4string notations&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Thanks to this post and all its references, you should now be able to start building a multiple regression spatial interpolation analysis based on your own data using R. If you need additional references, you could also check out this multiple linear regression &lt;a href=&#34;https://www.statmethods.net/stats/regression.html&#34;&gt;tutorial&lt;/a&gt; by R.I. Kabacoff.&lt;/p&gt;
-&lt;/div&gt;
-</description>
+      <description>The AGROMET Project lead by the Walloon agricultural research center (CRA-W) requires to generate spatialized weather dataset. In this context, multiple spatialization methods will be tested and evaluated among which the multiple regression technique. This post provides an introductory material to the multiple regression modeling technique applied to spatial data. It is not a tutorial and it is rather aimed at paving the way for beginners who want to take their first steps into in the field of applied geostatistics (with R) by defining key concepts and providing a lot of external resources worth reading !</description>
     </item>
     
     <item>
@@ -286,59 +35,9 @@ library(spDataLarge)   # load larger geographic data&lt;/code&gt;&lt;/pre&gt;
       <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/assessing-the-agreement-between-two-quantitative-methods-of-measurements-understanding-the-bland-altman-analysis/</guid>
-      <description>&lt;p&gt;Attempting to statistically assess the agreement level between two quantitative methods of measurements requires a validation tool.&lt;/p&gt;
-&lt;p&gt;A widely adopted tool is the correlation study computed with one method as predictor and the other as response variable (e.g. see &lt;a href=&#34;http://onlinelibrary.wiley.com/doi/10.1002/wea.2158/pdf&#34;&gt;this&lt;/a&gt; publication that compares temperature measurements obtained by two different kind of weather stations at the exact same location).&lt;/p&gt;
-&lt;p&gt;However, as described by &lt;a href=&#34;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4470095/&#34;&gt;Giavarina (2015)&lt;/a&gt;, correlation study should not be used to asses the comparatibility or agreement between two instruments (because it studies the relation between one variable and the other and not the &lt;strong&gt;differences&lt;/strong&gt;).&lt;/p&gt;
-&lt;p&gt;In 1986, &lt;a href=&#34;https://www-users.york.ac.uk/~mb55/meas/ba.pdf&#34;&gt;Bland and Altman&lt;/a&gt; have proposed an analysis that quantifies the agreement between two quantitative sets of measurements of the same parameter by statistically studying the behaviors of the differences between paired measurements. This analysis is useful to determine if a method can be used interoperably with another without the need of a correction model&lt;/p&gt;
-&lt;div id=&#34;some-words-about-measurements-difference&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Some words about measurements difference&lt;/h2&gt;
-&lt;p&gt;From &lt;a href=&#34;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4470095/&#34;&gt;Giavarina (2015)&lt;/a&gt; :&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;An ideal model would claim that the measurements obtained by one method or another gave exactly the same results. So, all the differences would be equal to zero. But any measurement of variables always implies some degree of error. Even the mere analytical imprecision for method A and method B generates a variability of the differences. However, if the variability of the differences were only linked to analytical imprecision of each of the two methods, the average of these differences should be zero. This is the first point required to evaluate the agreement between the two methods: look at the average of the differences between the paired data.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/div&gt;
-&lt;div id=&#34;quick-presentation-of-the-bland-altman-analysis&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Quick presentation of the Bland Altman analysis&lt;/h2&gt;
-&lt;p&gt;Their graphical method plots the &lt;strong&gt;differences between the two paired measurements&lt;/strong&gt; against &lt;strong&gt;the averages of these measurements&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Here is an examplative Bland-Altman plot : [blandAltman plot example]({{ “/assets/images/blandAltman.png” | absolute_url }})&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/BlandAltmanLeh/vignettes/Intro.html&#34;&gt;Source&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Horizontal lines are drawn at the &lt;strong&gt;mean difference&lt;/strong&gt; (thick red line), and at the upper and lower &lt;strong&gt;limits of agreement&lt;/strong&gt; (thick blue lines) together with their 0.95 &lt;a href=&#34;https://www.mathsisfun.com/data/confidence-interval.html&#34;&gt;confidence interval - CI&lt;/a&gt; (thin lines).&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;The &lt;strong&gt;mean difference&lt;/strong&gt; is the estimated &lt;strong&gt;bias&lt;/strong&gt;. Its 0.95 CI illustrates the magnitude of the systematic difference.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The &lt;strong&gt;limits of agreement&lt;/strong&gt; measure the &lt;strong&gt;random fluctuations around the mean difference&lt;/strong&gt;. These correspond to the mean difference plus and minus 1.96 times the standard deviation of the differences. These lines tell us how far apart measurements by 2 methods were more likely to be for most individuals.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The Maximum allowed difference between methods (D)&lt;/strong&gt; is an arbitrary treshold which value must be chosen so that differences in the range −D to D are considered irrelevant or neglectable in the context of your study.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;interpretation-guidelines&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Interpretation guidelines&lt;/h2&gt;
-&lt;p&gt;The plot allows to infer some information about the agreement of two methods :&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;If the line of equality (horizontal line at 0) is not in the mean difference 0.95 CI, there is a &lt;strong&gt;significant systematic difference&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If the mean value of the difference differs significantly from 0, this indicates the presence of a &lt;strong&gt;fixed bias&lt;/strong&gt;. This bias can be adjusted for by subtracting the mean difference from the the measurements of the method we want to determine if it can substituate the other.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If the limits of agreement do not exceed the maximum allowed difference, the two methods are considered to be &lt;strong&gt;in agreement&lt;/strong&gt;. They are therefore considered as interchangeable. This interpretation does not however takes CI into accounts (see next point).&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If the maximum allowed difference is higher than the 0.95 upper limit of the higher limit of agreement and if the maximum allowed difference is lower than the 0.95 lower limit of the lower limit, we are &lt;strong&gt;95% certain that the methods do not disagree&lt;/strong&gt; (if the differences are &lt;a href=&#34;https://rexplorations.wordpress.com/2015/08/11/normality-tests-in-r/&#34;&gt;normally distributed&lt;/a&gt;).&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If the scatter presents a trend, there is a relationship between the differences and the magnitude of measurements (&lt;strong&gt;proportional error/bias&lt;/strong&gt;). The existence of such a proportional bias indicates that the methods do not agree equally through the range of measurements. To formally evaluate this relationship, one could compute a regression model between the difference and the average of the 2 methods.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;some-usage-precautions&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Some usage precautions&lt;/h2&gt;
-&lt;p&gt;The Bland and Altman analysis allows to determine if the bias is significant (e.i. the line of equality is not within the confidence interval of the mean difference) &lt;strong&gt;but&lt;/strong&gt; it does not allow to say if the agreement is sufficient or suitable for your instruments interoperability.&lt;/p&gt;
-&lt;p&gt;This analysis modestly quantifies the bias and a range of agreement within which 95% of the differences between one measurement and the other are included.&lt;/p&gt;
-&lt;p&gt;Only the &lt;strong&gt;context of your analysis&lt;/strong&gt; could define whether the agreement interval is too wide or sufficiently narrow for your purpose. This is why you should arbitrary set the limits of maximum acceptable differences (limits of agreement expected) based on relevant criteria defined in the context of your analysis.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;software-implementation&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Software implementation&lt;/h2&gt;
-&lt;p&gt;I mainly work in R (&lt;a href=&#34;https://www.r-bloggers.com/why-use-r-five-reasons/&#34;&gt;and you should too&lt;/a&gt;). If you already do so, I would recommand you the excellent &lt;a href=&#34;https://cran.r-project.org/web/packages/BlandAltmanLeh/vignettes/Intro.html&#34;&gt;BlandAltmanLeh&lt;/a&gt; package that is sufficiently well document in order to perform your own Bland Altman analysis.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;see-also&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;See also&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.medcalc.org/manual/blandaltman.php&#34;&gt;medcalc.org Bland Altman explanation page&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Bland%E2%80%93Altman_plot#/media/File:Bland-Alman_Plot_with_CI%27s_on_LOA.png&#34;&gt;Bland Altman Wikipedia page&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://repository.uwl.ac.uk/id/eprint/2044/1/Amoako-Attah-Jahromi-2015-Method-comparison-analysis-of-dwellings-temperatures-in-the-UK.pdf&#34;&gt;a scientific paper that presents a use case of Bland Altman study in the context of temperature measurement&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-</description>
+      <description>Attempting to statistically assess the agreement level between two quantitative methods of measurements requires a validation tool.
+A widely adopted tool is the correlation study computed with one method as predictor and the other as response variable (e.g. see this publication that compares temperature measurements obtained by two different kind of weather stations at the exact same location).
+However, as described by Giavarina (2015), correlation study should not be used to asses the comparatibility or agreement between two instruments (because it studies the relation between one variable and the other and not the differences).</description>
     </item>
     
   </channel>

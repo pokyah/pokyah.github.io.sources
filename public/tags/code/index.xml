@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Code on pokyah - opensource science, GIS and data-analysis</title>
+    <title>code on pokyah - opensource science, GIS and data-analysis</title>
     <link>/tags/code/</link>
-    <description>Recent content in Code on pokyah - opensource science, GIS and data-analysis</description>
+    <description>Recent content in code on pokyah - opensource science, GIS and data-analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Fri, 20 Jul 2018 12:52:41 +0000</lastBuildDate>
     
-        <atom:link href="/tags/code/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/code/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,175 +17,8 @@
       <pubDate>Fri, 20 Jul 2018 12:52:41 +0000</pubDate>
       
       <guid>/post/interactively-mapping-spatial-prediction-with-the-attached-standard-error-using-mlr-gstat-and-leaflet/</guid>
-      <description>&lt;p&gt;Here we demonstrate how to map the prediction together with the uncertainty in an intuitive and intelligible way. Our approach is based on &lt;a href=&#34;http://spatial-analyst.net/wiki/index.php/Uncertainty_visualization#Visualization_of_uncertainty_using_whitening_in_R&#34;&gt;this&lt;/a&gt; post by &lt;em&gt;Tomislav Hengl&lt;/em&gt; and &lt;a href=&#34;https://www.e-education.psu.edu/geog486/node/1891&#34;&gt;this&lt;/a&gt; post by &lt;em&gt;Penn state college of earth and mineral sciences&lt;/em&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# For the example, using the output of mlr gstat KED from previous section
-# loading datasets
-data(meuse)
-data(meuse.grid)
-# imputing values to missing data
-meuse = impute(meuse, classes = list(numeric = imputeMean(), factor = imputeMode()),
-  dummy.classes = &amp;quot;integer&amp;quot;)$data
-meuse.grid = impute(meuse.grid, classes = list(numeric = imputeMean(), factor = imputeMode()),
-  dummy.classes = &amp;quot;integer&amp;quot;)$data
-# adding a column with log zinc
-meuse = meuse %&amp;gt;% dplyr::mutate(log_zinc = log(zinc))
-# adding a column with sqrt dist
-meuse = meuse %&amp;gt;% dplyr::mutate(sqrt_dist = sqrt(dist))
-meuse.grid = meuse.grid %&amp;gt;% dplyr::mutate(sqrt_dist = sqrt(dist))
-# defining the regression task
-task = makeRegrTask(id = &amp;quot;meuse&amp;quot;,  data = meuse, target = &amp;quot;log_zinc&amp;quot;)
-task.krg = dropFeatures(task = task, features = getTaskFeatureNames(task)[-c(1,2,15)])
-# defining the learner
-lrn.krg = makeLearner(cl = &amp;quot;regr.gstat&amp;quot;, id = &amp;quot;ln(zn) mlr kriging with external drift&amp;quot;, predict.type = &amp;quot;response&amp;quot;, psill = 1, model = &amp;quot;Exp&amp;quot;, range = 300, nugget = 1, locations = ~x+y) 
-# training the model
-mod.krg = train(lrn.krg, task.krg)
-# kriging
-newdata.pred.krg = predict(object = mod.krg, newdata = meuse.grid)
-mlr.krg = bind_cols(data.frame(meuse.grid), newdata.pred.krg$data)
-# mapping
-coordinates(mlr.krg) = ~x+y
-gridded(mlr.krg) = TRUE
-pred.plot = spplot(mlr.krg[&amp;quot;response&amp;quot;], do.log = T, colorkey = TRUE, main = mod.krg$learner$id)
-# SE - defining the standard error learner by altering the previous one.
-se.lrn.krg = setPredictType(lrn.krg, predict.type = &amp;quot;se&amp;quot;)
-# training the SE model
-se.mod.krg = train(se.lrn.krg, task.krg)
-# SE kriging
-se.newdata.pred.krg = predict(object = se.mod.krg, newdata = meuse.grid)
-se.mlr.krg = bind_cols(data.frame(meuse.grid), se.newdata.pred.krg$data)
-
-# mapping with leaflet
-
-# loading the required libraries
-library(leaflet)
-library(dplyr)
-library(htmltools)
-library(sf)
-
-# defining the function to create a palette of different levels of alpha for the choosen color 
-alphaPal = function(color) {
-  alpha = seq(0,1,0.1)
-  r = col2rgb(color, alpha=T)
-  r = t(apply(r, 1, rep, length(alpha)))
-  # Apply alpha
-  r[4,] = alpha*255
-  r = r/255.0
-  codes = (rgb(r[1,], r[2,], r[3,], r[4,]))
-  return(codes)
-}
-
-# keeping what we need 
-interpolated.df = se.mlr.krg %&amp;gt;% select(one_of(c(&amp;quot;x&amp;quot;,&amp;quot;y&amp;quot;,&amp;quot;response&amp;quot;,&amp;quot;se&amp;quot;)))
-# making it spatial object class sf
-interpolated.sf = st_as_sf(interpolated.df,coords = c(&amp;quot;x&amp;quot;,&amp;quot;y&amp;quot;))
-# defining the crs
-st_crs(interpolated.sf) = 28992 # found at https://rdrr.io/cran/sp/man/meuse.html
-# transforming to geographic CRS (EPSG = 4326)
-interpolated.sf = st_transform(interpolated.sf, crs = 4326)
-# Now we need to inject this point info into polygon centered arounds the points to fake a raster layer but which is interactive
-class(mlr.krg) # SpatialPixelsDataFrame
-# making the gridded mlr.krg a raster 
-grid.r = raster::raster(mlr.krg, values=TRUE)
-# convert raster to polygons
-grid.sp = raster::rasterToPolygons(grid.r, dissolve = F)
-class(grid.sp) # SpatialPolygonsDataFrame
-# converting to sf for later joining
-grid.sf = st_as_sf(grid.sp)
-st_crs(grid.sf) = 28992 # found at https://rdrr.io/cran/sp/man/meuse.html
-# transforming to geographic CRS (EPSG = 4326)
-grid.sf = st_transform(grid.sf, crs = 4326)
-# injecting the prediction and se data into the polygon grid doing a spatial join
-# interpolated.sf = st_join(grid.sf, interpolated.sf) %&amp;gt;% select(one_of(c(&amp;quot;response&amp;quot;, &amp;quot;se&amp;quot;)))
-interpolated.pg.sf = dplyr::bind_cols(grid.sf, interpolated.sf)
-interpolated.pg.sf = interpolated.pg.sf %&amp;gt;% select(one_of(c(&amp;quot;response&amp;quot;, &amp;quot;se&amp;quot;)))
-# Do we have polygons ? 
-head(interpolated.pg.sf)
-
-# defining the function to map using leaflet
-leafletize = function(data.sf){
-  # to make the map responsive
-  responsiveness.chr = &amp;quot;\&amp;#39;&amp;lt;meta name=\&amp;quot;viewport\&amp;quot; content=\&amp;quot;width=device-width, initial-scale=1.0\&amp;quot;&amp;gt;\&amp;#39;&amp;quot;
-  
-  # defining the color palette for the response
-  varPal = colorNumeric(
-    palette = &amp;quot;Spectral&amp;quot;,
-    domain = data.sf$response
-  )
-  
-  # defining the transparent colorpal for the se
-  uncPal = colorNumeric(
-    palette = alphaPal(&amp;quot;#e6e6e6&amp;quot;),
-    domain = data.sf$se,
-    alpha = TRUE
-  )
-
-  # 
-  prediction.map = leaflet::leaflet(data.sf) %&amp;gt;%
-    addProviderTiles(group = &amp;quot;Stamen&amp;quot;,
-                     providers$Stamen.Toner,
-                     options = providerTileOptions(opacity = 0.25)
-    ) %&amp;gt;%
-    addProviderTiles(group = &amp;quot;Satellite&amp;quot;,
-                     providers$Esri.WorldImagery,
-                     options = providerTileOptions(opacity = 1)
-    ) %&amp;gt;%
-    fitBounds(sf::st_bbox(data.sf)[[1]],
-              sf::st_bbox(data.sf)[[2]],
-              sf::st_bbox(data.sf)[[3]],
-              sf::st_bbox(data.sf)[[4]]
-    ) %&amp;gt;%
-    addLayersControl(baseGroups = c(&amp;quot;Stamen&amp;quot;, &amp;quot;Satellite&amp;quot;),
-                     overlayGroups = c(&amp;quot;prediction&amp;quot;, &amp;quot;se&amp;quot;),
-                     options = layersControlOptions(collapsed = TRUE)
-    ) %&amp;gt;%
-    addEasyButton(easyButton(
-      icon=&amp;quot;fa-crosshairs&amp;quot;, title=&amp;quot;Locate Me&amp;quot;,
-      onClick=JS(&amp;quot;function(btn, map){ map.locate({setView: true}); }&amp;quot;))) %&amp;gt;%
-    htmlwidgets::onRender(paste0(&amp;quot;
-                                 function(el, x) {
-                                 $(&amp;#39;head&amp;#39;).append(&amp;quot;,responsiveness.chr,&amp;quot;);
-                                 }&amp;quot;)
-    ) %&amp;gt;%
-    addPolygons(
-                group = &amp;quot;prediction&amp;quot;,
-                color = &amp;quot;#444444&amp;quot;, stroke = FALSE, weight = 1, smoothFactor = 0.5,
-                opacity = 1.0, fillOpacity = 0.9,
-                fillColor = ~varPal(response),
-                highlightOptions = highlightOptions(color = &amp;quot;white&amp;quot;, weight = 2,
-                                                    bringToFront = TRUE)
-    )%&amp;gt;%
-    addLegend(
-              position = &amp;quot;bottomright&amp;quot;, pal = varPal, values = ~response,
-              title = &amp;quot;prediction&amp;quot;,
-              group = &amp;quot;prediction&amp;quot;,
-              opacity = 1
-    )%&amp;gt;%
-    addPolygons(
-                group = &amp;quot;se&amp;quot;,
-                color = &amp;quot;#444444&amp;quot;, stroke = FALSE, weight = 1, smoothFactor = 0.5,
-                opacity = 1.0, fillOpacity = 1,
-                fillColor = ~uncPal(se),
-                highlightOptions = highlightOptions(color = &amp;quot;white&amp;quot;, weight = 2,
-                                                    bringToFront = TRUE),
-                label = ~ paste(&amp;quot;prediction:&amp;quot;, signif(data.sf$response, 2), &amp;quot;\n&amp;quot;,&amp;quot;se: &amp;quot;, signif(data.sf$se, 2))
-    ) %&amp;gt;%
-    addLegend(
-              group = &amp;quot;se&amp;quot;,
-              position = &amp;quot;bottomleft&amp;quot;, pal = uncPal, values = ~se,
-              title = &amp;quot;se&amp;quot;,
-              opacity = 1
-    )
-  return(prediction.map)
-}
-# create the map object
-prediction.map = leafletize(interpolated.pg.sf)
-
-# render it
-html = list(h3(paste0(&amp;quot;interactive prediction map&amp;quot;)),
-                 prediction.map 
-                 )
-tagList(html)&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>Here we demonstrate how to map the prediction together with the uncertainty in an intuitive and intelligible way. Our approach is based on this post by Tomislav Hengl and this post by Penn state college of earth and mineral sciences
+# For the example, using the output of mlr gstat KED from previous section# loading datasetsdata(meuse)data(meuse.grid)# imputing values to missing datameuse = impute(meuse, classes = list(numeric = imputeMean(), factor = imputeMode()),dummy.</description>
     </item>
     
   </channel>

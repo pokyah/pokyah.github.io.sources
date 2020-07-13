@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on pokyah - opensource science, GIS and data-analysis</title>
@@ -6,13 +6,31 @@
     <description>Recent content in Tags on pokyah - opensource science, GIS and data-analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 09 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2020 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Curation</title>
+      <title>how-to</title>
+      <link>/tags/how-to/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/how-to/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>code</title>
+      <link>/tags/code/</link>
+      <pubDate>Fri, 20 Jul 2018 12:52:41 +0000</pubDate>
+      
+      <guid>/tags/code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>curation</title>
       <link>/tags/curation/</link>
       <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
       
@@ -21,25 +39,16 @@
     </item>
     
     <item>
-      <title>Cv</title>
-      <link>/tags/cv/</link>
-      <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
+      <title>productivity</title>
+      <link>/tags/productivity/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/cv/</guid>
+      <guid>/tags/productivity/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>How To</title>
-      <link>/tags/how-to/</link>
-      <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/how-to/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Methodology</title>
+      <title>methodology</title>
       <link>/tags/methodology/</link>
       <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
       
@@ -48,34 +57,7 @@
     </item>
     
     <item>
-      <title>Productivity</title>
-      <link>/tags/productivity/</link>
-      <pubDate>Fri, 08 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/productivity/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Professional Skills</title>
-      <link>/tags/professional-skills/</link>
-      <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/professional-skills/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Resume</title>
-      <link>/tags/resume/</link>
-      <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/resume/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Review</title>
+      <title>review</title>
       <link>/tags/review/</link>
       <pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate>
       
@@ -84,11 +66,38 @@
     </item>
     
     <item>
-      <title>Theory</title>
+      <title>theory</title>
       <link>/tags/theory/</link>
       <pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/theory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cv</title>
+      <link>/tags/cv/</link>
+      <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/cv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>professional skills</title>
+      <link>/tags/professional-skills/</link>
+      <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/professional-skills/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>resume</title>
+      <link>/tags/resume/</link>
+      <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/resume/</guid>
       <description></description>
     </item>
     

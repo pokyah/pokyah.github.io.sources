@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on pokyah - opensource science, GIS and data-analysis</title>
@@ -6,49 +6,67 @@
     <description>Recent content in Categories on pokyah - opensource science, GIS and data-analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 28 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2020 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Agromet</title>
-      <link>/categories/agromet/</link>
-      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
+      <title>docker</title>
+      <link>/categories/docker/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
       
-      <guid>/categories/agromet/</guid>
+      <guid>/categories/docker/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Bash</title>
-      <link>/categories/bash/</link>
-      <pubDate>Fri, 08 Jun 2018 00:00:00 +0000</pubDate>
+      <title>linux</title>
+      <link>/categories/linux/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
       
-      <guid>/categories/bash/</guid>
+      <guid>/categories/linux/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Blockchain</title>
-      <link>/categories/blockchain/</link>
-      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      <title>r</title>
+      <link>/categories/r/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
       
-      <guid>/categories/blockchain/</guid>
+      <guid>/categories/r/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Blog</title>
-      <link>/categories/blog/</link>
-      <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
+      <title>shiny</title>
+      <link>/categories/shiny/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
       
-      <guid>/categories/blog/</guid>
+      <guid>/categories/shiny/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Consciousness</title>
+      <title>pandoc</title>
+      <link>/categories/pandoc/</link>
+      <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/pandoc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>geomatic</title>
+      <link>/categories/geomatic/</link>
+      <pubDate>Fri, 20 Jul 2018 12:52:41 +0000</pubDate>
+      
+      <guid>/categories/geomatic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>consciousness</title>
       <link>/categories/consciousness/</link>
       <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
       
@@ -57,61 +75,7 @@
     </item>
     
     <item>
-      <title>Data</title>
-      <link>/categories/data/</link>
-      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/data/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Docker</title>
-      <link>/categories/docker/</link>
-      <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Geomatic</title>
-      <link>/categories/geomatic/</link>
-      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/geomatic/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Git</title>
-      <link>/categories/git/</link>
-      <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Github</title>
-      <link>/categories/github/</link>
-      <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/github/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hugo</title>
-      <link>/categories/hugo/</link>
-      <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Idealism</title>
+      <title>idealism</title>
       <link>/categories/idealism/</link>
       <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
       
@@ -120,16 +84,7 @@
     </item>
     
     <item>
-      <title>Leaflet</title>
-      <link>/categories/leaflet/</link>
-      <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/leaflet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Life</title>
+      <title>life</title>
       <link>/categories/life/</link>
       <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
       
@@ -138,16 +93,7 @@
     </item>
     
     <item>
-      <title>Linux</title>
-      <link>/categories/linux/</link>
-      <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Materialism</title>
+      <title>materialism</title>
       <link>/categories/materialism/</link>
       <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
       
@@ -156,7 +102,7 @@
     </item>
     
     <item>
-      <title>Metaphysics</title>
+      <title>metaphysics</title>
       <link>/categories/metaphysics/</link>
       <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
       
@@ -165,25 +111,7 @@
     </item>
     
     <item>
-      <title>Modeling</title>
-      <link>/categories/modeling/</link>
-      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/modeling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Opensource</title>
-      <link>/categories/opensource/</link>
-      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/opensource/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Quantum Physics</title>
+      <title>quantum physics</title>
       <link>/categories/quantum-physics/</link>
       <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
       
@@ -192,52 +120,7 @@
     </item>
     
     <item>
-      <title>R</title>
-      <link>/categories/r/</link>
-      <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/r/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Research</title>
-      <link>/categories/research/</link>
-      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/research/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Shiny</title>
-      <link>/categories/shiny/</link>
-      <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/shiny/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ssh</title>
-      <link>/categories/ssh/</link>
-      <pubDate>Sun, 30 Apr 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/ssh/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Statistics</title>
-      <link>/categories/statistics/</link>
-      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/statistics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Universe</title>
+      <title>universe</title>
       <link>/categories/universe/</link>
       <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
       
@@ -246,16 +129,133 @@
     </item>
     
     <item>
-      <title>Unix</title>
-      <link>/categories/unix/</link>
-      <pubDate>Sun, 30 Apr 2017 00:00:00 +0000</pubDate>
+      <title>blockchain</title>
+      <link>/categories/blockchain/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/categories/unix/</guid>
+      <guid>/categories/blockchain/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Weather</title>
+      <title>data</title>
+      <link>/categories/data/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>research</title>
+      <link>/categories/research/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/research/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>opensource</title>
+      <link>/categories/opensource/</link>
+      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/opensource/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web</title>
+      <link>/categories/web/</link>
+      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>code</title>
+      <link>/categories/code/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>/categories/git/</link>
+      <pubDate>Tue, 12 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bash</title>
+      <link>/categories/bash/</link>
+      <pubDate>Fri, 08 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>/categories/blog/</link>
+      <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>github</title>
+      <link>/categories/github/</link>
+      <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>/categories/hugo/</link>
+      <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>modeling</title>
+      <link>/categories/modeling/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/modeling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>statistics</title>
+      <link>/categories/statistics/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>agromet</title>
+      <link>/categories/agromet/</link>
+      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/agromet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>weather</title>
       <link>/categories/weather/</link>
       <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
       
@@ -264,11 +264,29 @@
     </item>
     
     <item>
-      <title>Web</title>
-      <link>/categories/web/</link>
-      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+      <title>leaflet</title>
+      <link>/categories/leaflet/</link>
+      <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/categories/web/</guid>
+      <guid>/categories/leaflet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssh</title>
+      <link>/categories/ssh/</link>
+      <pubDate>Sun, 30 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>unix</title>
+      <link>/categories/unix/</link>
+      <pubDate>Sun, 30 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/unix/</guid>
       <description></description>
     </item>
     
